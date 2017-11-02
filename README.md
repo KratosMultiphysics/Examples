@@ -4,9 +4,9 @@ This repository contains a collection of validation and use cases showcasing dif
 
 Each folder presents cases on a given area, organized as follows:
 
-- **Use cases:** Complete examples showcasing a given feature or application.
+- **Use cases:** Complete cases showcasing a given feature or application.
 
-- **Benchmarks:** Academic cases that can be compared to reference data from scientific literature.
+- **Validation:** Benchmark problems (academic or otherwise) that can be compared to reference data from scientific literature.
 
 Each case should be self-contained: include all input data and relevant scripts so that users can test it. It should also be accompanied by a page (a simple file such as this readme, or a full wiki page) presenting it and linking to reference results, if available in the literature.
 
