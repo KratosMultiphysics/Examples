@@ -11,3 +11,9 @@ Each folder presents cases on a given area, organized as follows:
 Each case should be self-contained: include all input data and relevant scripts so that users can test it. It should also be accompanied by a page (a simple file such as this readme, or a full wiki page) presenting it and linking to reference results, if available in the literature.
 
 Unit tests should *not* be uploaded to this repository. Please put them in the `tests` folder of the corresponding application.
+
+## Fluid-Structure Interaction (FSI)
+
+**Validation**
+
+- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md) 
