@@ -22,7 +22,7 @@ Regarding the inlet velocity, the next parabolic profile is imposed
 
 ![Mok inlet profile](data/Mok_inlet_formula_1.png)
 
-in where the time dependent reference velocity is defined as
+where the time dependent reference velocity is defined as
 
 ![Mok velocity formula](data/Mok_inlet_formula_2.png)
 
@@ -32,7 +32,7 @@ A Newtonian constitutive law is considered in the fluid domain. The fluid charac
 
 On the other hand, a linear elastic plane stress constitutive law with unit thickness is considered in the structure domain. The structure characteristic parameters are
 * Density (&rho;): 1500 _Kg/m<sup>3</sup>_
-* Kinematic viscosity (E):  2.30000E+06 _Pa_
+* Elastic modulus (E):  2.30000E+06 _Pa_
 * Poisson ratio (&nu;): 0.45 
 
 The time step is 0.1 seconds, while the total simulation time is 25.0 seconds.
