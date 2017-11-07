@@ -1,10 +1,10 @@
 # Mok benchmark
 
-** Author:** Rubén Zorrilla
+**Author:** Rubén Zorrilla
 
-** Kratos version:** 5.2
+**Kratos version:** 5.2
 
-** Source files:** https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/fsi_mok/source
+**Source files:** [FSI-Mok](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/fsi_mok/source)
 
 ## Case Specification
 
