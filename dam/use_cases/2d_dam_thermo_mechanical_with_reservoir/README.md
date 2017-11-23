@@ -15,7 +15,9 @@ At dam a body acceleration is induced in order to simulate an earthquake. Since 
 The time step is 0.1 seconds, while the total simulation time is 25.0 seconds.
 
 The following applications of Kratos are used:
-* SolidApplication
+* SolidMechanicsApplication
 * PoromechanicsApplication 
 * ConvectionDifussionApplication
 * DamApplication
+
+## Results

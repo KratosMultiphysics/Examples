@@ -15,12 +15,15 @@ A hydrostatic load is applied at the upstream wall (water level dependent). The 
 The time step is 1 month, while the total simulation time is 12 months.
 
 The following applications of Kratos are used:
-* SolidApplication
+* SolidMechanicsApplication
 * PoromechanicsApplication 
 * ConvectionDifussionApplication
 * DamApplication
 
 This tipe of simulation allows to the user to obtain a dam estimation movement depending on the season. This opens the possibility of computing large periods of analysis.
+
+## Results
+
 
 ## References
 Z. Bofang. Prediction water temperature in deep reservoirs. Dam Eng. 8,1 13-25, 1997. 
