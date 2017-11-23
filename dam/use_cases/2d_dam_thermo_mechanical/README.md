@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [2D-ThermomechanicalSeasonalEffects](https://github.com/KratosMultiphysics/Examples/tree/master/dam/use_cases/2d_dam_thermo_mechanical/source)
+**Source files:** [2D Thermo-mechanical Seasonal Effects](https://github.com/KratosMultiphysics/Examples/tree/master/dam/use_cases/2d_dam_thermo_mechanical/source)
 
 ## Case Specification
 

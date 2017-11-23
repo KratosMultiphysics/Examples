@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [2D-ThermomechanicalReservoirNonlocal](https://github.com/KratosMultiphysics/Examples/tree/master/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/source)
+**Source files:** [2D Thermo-mechanical Reservoir Nonlocal Damage](https://github.com/KratosMultiphysics/Examples/tree/master/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/source)
 
 ## Case Specification
 
@@ -32,7 +32,7 @@ The obtained pressure, temperature and damage fields at the end of the simulatio
   src="data/2d_thermo_mechanical_reservoir_damage_post.png"
   width="400"
   title="Winter">
-  <img
+<img
   src="data/2d_thermo_mechanical_reservoir_temp_post.png"
   width="400"
   title="Winter">
