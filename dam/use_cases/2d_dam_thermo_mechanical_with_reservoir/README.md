@@ -8,9 +8,9 @@
 
 ## Case Specification
 
-This is a 2D dam thermo-mechanical problem considering the effects of the reservoir at dam. A coupled formulation for considering reservoir effects at the upstream wall is used. This formulation connects the pressure field at the reservoir with the accelerations at the body. The thermal problem is solved at dam body and using the temperature gradients it is possible to compute the generated mechanical efforts (one way coupling). The constitutive model for the mechanical problem is based on Simo Ju law applying a non-local regularization.
+This is a 2D dam thermo-mechanical problem considering the effects of the reservoir at dam. A coupled formulation for considering reservoir effects at the upstream wall is used. This formulation connects the pressure field at the reservoir with the accelerations at the body. The thermal problem is solved at dam body and, using the temperature gradients it is possible to compute the generated mechanical efforts (one way coupling). The constitutive model for the mechanical problem is based on Simo Ju law applying a non-local regularization at damage internal variable.
 
-At dam a body acceleration is induced in order to simulate an earthquake. Since the concrete parameters have small diffusivity, the thermal values has been changed in order to appreciate the temperature evolution.
+At dam a body acceleration is induced simulating an earthquake. Since the concrete parameters have small diffusivity, the thermal values has been changed in order to appreciate the temperature evolution as well.
 
 The time step is 0.1 seconds, while the total simulation time is 25.0 seconds.
 
@@ -21,3 +21,18 @@ The following applications of Kratos are used:
 * DamApplication
 
 ## Results
+
+The obtained pressure, temperature and damage fields are presented below.  
+
+<img
+  src="data/2d_thermo_mechanical_reservoir_damage_post.png"
+  width="400"
+  title="Summer">
+<img
+  src="data/2d_thermo_mechanical_reservoir_pressure_post.png"
+  width="400"
+  title="Winter">
+  <img
+  src="data/2d_thermo_mechanical_reservoir_temp_post.png"
+  width="400"
+  title="Winter">
