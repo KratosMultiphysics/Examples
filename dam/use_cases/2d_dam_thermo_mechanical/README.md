@@ -24,6 +24,10 @@ This tipe of simulation allows to the user to obtain a dam estimation movement d
 
 ## Results
 
+Some results depending on the season (month) are presented below.
+
+![Summer](data/2d_thermo_mechanical_summer_post.png)
+![Winter](data/2d_thermo_mechanical_winter_post.png)
 
 ## References
 Z. Bofang. Prediction water temperature in deep reservoirs. Dam Eng. 8,1 13-25, 1997. 
