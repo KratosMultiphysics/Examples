@@ -1,6 +1,10 @@
 # Dam Examples
 
-In this directory it is possible to find several simulations used the Dam Application. Dam application has some dependencies of other applications so it is necessary to compile them. In each performed case the applications used are commented.
+In this directory it is possible to find several simulations lauched with the Dam Application. Dam application has some dependencies of other applications so it is necessary to compile them, in each performed case the applications used are commented.
+
+The Setup page provides instructions on how to setup the working environment under [Windows](https://github.com/KratosMultiphysics/Kratos/wiki/Windows-Install), [Linux](https://github.com/KratosMultiphysics/Kratos/wiki/Linux-Build) and [MacOS](https://github.com/KratosMultiphysics/Kratos/wiki/MacOS-Install).
+
+Click the preview images to view the examples.
 
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_dam_thermo_mechanical/data/2d_thermo_mechanical_summer_post.png?raw=true"
