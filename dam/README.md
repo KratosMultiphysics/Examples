@@ -4,25 +4,21 @@ In this directory it is possible to find several simulations used the Dam Applic
 
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_dam_thermo_mechanical/data/2d_thermo_mechanical_summer_post.png?raw=true"
-  width="300"
-  height="200"
+  width="400"
   title="Thermo-mechanical problem. Seasonal Effects.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/2d_dam_thermo_mechanical/)
 [<img
-  src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_joint_element/data/2d_joint_post.png?raw=true"
-  width="300"
-  height="200"
+  src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/data/2d_thermo_mechanical_reservoir_pressure_post.png?raw=true"
+  width="400"
   title="Thermo-mechanical problem with reservoir interaction. Non Local Damage.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/)
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_joint_element/data/2d_joint_post.png?raw=true"
-  width="300"
-  height="200"
+  width="400"
   title="Joint Element. Bilinear cohesive law.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/2d_joint_element/)
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/Acoustic/data/acoustic_post.png?raw=true"
-  width="300"
-  height="200"
+  width="400"
   title="Acosutic problem. Boundary radiation condition.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/Acoustic/)
