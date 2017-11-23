@@ -1,4 +1,4 @@
-# 2D Thermomechanical including reservoir effects Example
+# 2D Thermo-mechanical Including Reservoir Effects Example
 
 **Author:** Lorenzo Gracia
 
