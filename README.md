@@ -26,4 +26,4 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [2D Thermo-mechanical Including Reservoir Effects](dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/README.md) 
 - [2D Joint Beams](dam/use_cases/2d_joint_element/README.md) 
 - [3D Construction Process](dam/use_cases/3d_dam_construction/README.md) 
-- [Acoustic Pulse](dam/use_cases/Acoustic/README.md) 
+- [2D Acoustic Pulse](dam/use_cases/Acoustic/README.md) 
