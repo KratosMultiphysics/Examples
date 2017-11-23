@@ -22,14 +22,14 @@ The following applications of Kratos are used:
 
 ## Results
 
-The obtained pressure, temperature and damage fields are presented below.  
+The obtained pressure, temperature and damage fields at the end of the simulation are presented below.  
 
 <img
-  src="data/2d_thermo_mechanical_reservoir_damage_post.png"
-  width="400"
+  src="data/2d_thermo_mechanical_reservoir_pressure_post.png"
+  width="800"
   title="Summer">
 <img
-  src="data/2d_thermo_mechanical_reservoir_pressure_post.png"
+  src="data/2d_thermo_mechanical_reservoir_damage_post.png"
   width="400"
   title="Winter">
   <img
