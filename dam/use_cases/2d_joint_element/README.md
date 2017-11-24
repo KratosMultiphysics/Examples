@@ -1,4 +1,4 @@
-# 2D Joint Eeams Example
+# 2D Joint Beams Example
 
 **Author:** Lorenzo Gracia
 
