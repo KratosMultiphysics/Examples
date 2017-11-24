@@ -18,7 +18,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 - [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md) 
 
-## [Dam](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam) 
+## Dam 
 
 **Use cases**
 

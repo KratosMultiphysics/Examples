@@ -8,7 +8,7 @@
 
 ## Case Specification
 
-This is a 2D mechanical problem for showing one of the several applications of the joint element. The joint element is a quasi-zero thickness element which allows to capture some discontinuities. 
+This is a 2D mechanical problem for showing one of the several applications of the joint element. The joint element is a quasi-zero thickness element which allows to capture some discontinuities in the solution. 
 
 The problem consist on two beams in contact thanks to the joint element. The left side is totally clamped, working as a cantilever. An incremental point load is applied at the free side.
 
@@ -20,8 +20,7 @@ The following applications of Kratos are used:
 
 ## Results
 
-The maximum compressive stresses are presented below. The application of an incremental load provokes that at some point both beams contacted and the joint element works as a contact element. 
-
+The problem stated above has been solved with a structured mesh composed by linear quadrilateral elements. The maximum compressive stresses are presented below. In the figure it is possible to appreciate that the incremental load provokes the contact between both both beams and the joint element works as a contact element. 
 <img
   src="data/2d_joint_post.png"
   width="800"

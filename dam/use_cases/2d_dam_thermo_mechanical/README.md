@@ -8,7 +8,7 @@
 
 ## Case Specification
 
-This is a 2D dam thermo-mechanical problem. The thermal problem is solved at dam body and using this temperature field it is possible to compute the gradients and the generated mechanical efforts (one way coupling).
+This is a 2D dam thermo-mechanical problem. The thermal problem is solved at dam body and, using this temperature field, it is possible to compute the gradients as well as the generated mechanical efforts (one way coupling).
 
 A hydrostatic load is applied at the upstream wall (water level dependent). The temperature at the upstream wall is imposed using the formulation proposed by Bofang (1997). This formulation depends on the season and water level among others. The month (season) as weel as the water level are introduced through different tables.
 
@@ -24,7 +24,7 @@ This type of simulation allows to the user to obtain a dam estimation movement d
 
 ## Results
 
-Some results depending on the season (month) are presented below.
+The problem stated above has been solved with a unstructured mesh composed by linear triangular elements. The obtained pressure fields at time 0.003 of the simulation is presented below. Some results depending on the season (month) are presented below.
 
 <img
   src="data/2d_thermo_mechanical_summer_post.png"
