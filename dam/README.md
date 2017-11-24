@@ -14,12 +14,12 @@ Click the preview images to view the examples.
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/data/2d_thermo_mechanical_reservoir_pressure_post.png?raw=true"
   width="400"
-  title="Thermo-mechanical problem with reservoir interaction. Non Local Damage.">
+  title="Thermo-mechanical problem. Reservoir interaction. Non Local Damage.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/2d_dam_thermo_mechanical_with_reservoir/)
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/2d_joint_element/data/2d_joint_post.png?raw=true"
   width="400"
-  title="Joint Element. Bilinear cohesive law.">
+  title="Joint Element. Contact. Bilinear cohesive law.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/2d_joint_element/)
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/3d_dam_construction/data/3d_dam_construction_alpha_post_103.png?raw=true"
@@ -29,5 +29,5 @@ Click the preview images to view the examples.
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/dam-examples/dam/use_cases/Acoustic/data/acoustic_post.png?raw=true"
   width="400"
-  title="Acosutic problem. Boundary radiation condition. Ragnar.">
+  title="Acoustic problem. Boundary radiation condition. Ragnar.">
 ](https://github.com/KratosMultiphysics/Examples/tree/dam-examples/dam/use_cases/Acoustic/)
