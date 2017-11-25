@@ -4,18 +4,17 @@
 
 **Kratos version:** 5.2
 
+**Kratos Applications used**
+* ExternalSolversApplication
+* FluidDynamicsApplication
+* PoromechanicsApplication
+* SolidMechanicsApplication
+
 **Source files** [2D undrained soil column source files](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
 
 ## Case Specification
 
 This example consists on a 1 x 30m column of saturated soil subjected to a surface loading that lies on a rigid rock bed. The objective of the test is to capture the pressure distribution along the soil column which, near the undrained-incompressible limit, should equal the applied load. The main challenge is that, under such conditions, the direct formulation for the displacement-pore pressure element exhibits locking of the pressure field due to the violation of Babuska-Brezzi conditions. The reference solution is taken from [1].
-
-The following applications from Kratos are used:
-
-* ExternalSolversApplication
-* FluidDynamicsApplication
-* PoromechanicsApplication
-* SolidMechanicsApplication
 
 The problem geometry and boundary conditions are shown below.
 <!-- ![undrained soil column geometry.](data/soil-column_geometry.png) -->
@@ -39,37 +38,6 @@ The considered load is represented in the next figure:
 <img src="data/load.png" width="400">
 
 The time step is 0.02 seconds.
-
-## How to run the example
-
-There are essentially two ways of running this example: using python from the terminal, and using the GUI from GiD.
-
-**Run the example from the terminal**
-
-*Linux/macOS*
-
-Open a terminal, go to the folder of the case and type:
-
->
-    python3 MainKratos.py
-
-*Windows*
-
-First create a "run.bat" file to run the case. It should contain the path of the installed Kratos libs and the order to run the python script. If Kratos is installed in C:
-
-> set PATH=C:\\KratosInstall;C:\\KratosInstall\\libs;%PATH%
-> C:\\KratosInstall\\runkratos MainKratos.py
-
-After that, open a Windows command line, go to the folder of the case and call the "run.bat" file to run the case:
-
->
-    run.bat
-
-**Run the example from GiD**
-
-In this case we will run the example using a GUI from the pre and post processing software GiD.
-
-TODO
 
 ## Results
 
