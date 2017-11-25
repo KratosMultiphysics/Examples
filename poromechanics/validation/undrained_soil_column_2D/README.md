@@ -40,18 +40,6 @@ The considered load is represented in the next figure:
 
 The time step is 0.02 seconds.
 
-## Results
-
-The next graph shows the normalized pore pressure along the normalized height of the soil column for each type of element at a time t = 2 s.
-
-<img src="data/height-pressure.png" width="400">
-
-## References
-
-[1] O.C. Zienkiewicz, C.T. Chang and P. Bettess. Drained, undrained, consolidating dynamic behaviour assumptions in soils. Géotechnique, vol. 30, pp. 385-395, 1980. DOI: 10.1680/geot.1980.30.4.385. [https://doi.org/10.1680/geot.1980.30.4.385](https://doi.org/10.1680/geot.1980.30.4.385)
-
-[2] I. de Pouplana and E. Oñate. A FIC-based stabilized mixed finite element method with equal order interpolation for solid-pore fluid interaction problems. International Journal for Numerical and Analytical Methods in Geomechanics, vol. 41, pp. 110-134, 2016. DOI: 10.1002/nag.2550. [http://onlinelibrary.wiley.com/doi/10.1002/nag.2550/full](http://onlinelibrary.wiley.com/doi/10.1002/nag.2550/full)
-
 ## How to run the example
 
 There are essentially two ways of running this example: using python from the terminal, and using the GUI from GiD.
@@ -70,7 +58,7 @@ Open a terminal, go to the folder of the case and type:
 First create a "run.bat" file to run the case. It should contain the path of the installed Kratos libs and the order to run the python script. If Kratos is installed in C:
 
 > set PATH=C:\\KratosInstall;C:\\KratosInstall\\libs;%PATH%
-C:\\KratosInstall\\runkratos MainKratos.py
+> C:\\KratosInstall\\runkratos MainKratos.py
 
 After that, open a Windows command line, go to the folder of the case and call the "run.bat" file to run the case:
 
@@ -82,3 +70,15 @@ After that, open a Windows command line, go to the folder of the case and call t
 In this case we will run the example using a GUI from the pre and post processing software GiD.
 
 TODO
+
+## Results
+
+The next graph shows the normalized pore pressure along the normalized height of the soil column for each type of element at a time t = 2 s.
+
+<img src="data/height-pressure.png" width="400">
+
+## References
+
+[1] O.C. Zienkiewicz, C.T. Chang and P. Bettess. Drained, undrained, consolidating dynamic behaviour assumptions in soils. Géotechnique, vol. 30, pp. 385-395, 1980. DOI: 10.1680/geot.1980.30.4.385. [https://doi.org/10.1680/geot.1980.30.4.385](https://doi.org/10.1680/geot.1980.30.4.385)
+
+[2] I. de Pouplana and E. Oñate. A FIC-based stabilized mixed finite element method with equal order interpolation for solid-pore fluid interaction problems. International Journal for Numerical and Analytical Methods in Geomechanics, vol. 41, pp. 110-134, 2016. DOI: 10.1002/nag.2550. [http://onlinelibrary.wiley.com/doi/10.1002/nag.2550/full](http://onlinelibrary.wiley.com/doi/10.1002/nag.2550/full)
