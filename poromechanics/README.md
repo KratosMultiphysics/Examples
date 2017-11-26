@@ -55,11 +55,11 @@ Open the latter folder from GiD and you will be able to modify the boundary cond
 
 ## Examples
 
-[<img
+<!-- [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/validation/undrained_soil_column_2D/data/height-pressure.png?raw=true"
   width="400"
   title="Undrained soil column 2D test.">
 ](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/)
-[<img
+[<img -->
 
 TODO
