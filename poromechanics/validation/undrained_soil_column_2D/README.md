@@ -1,16 +1,12 @@
-# Undrained-incompressible soil column test
+# Undrained soil column 2D test
 
 **Author:** Ignasi de Pouplana
 
 **Kratos version:** 5.2
 
-**Source files** [2D undrained soil column source files](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
+**Source files:** [Undrained soil column 2D](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
 
-**Applications used**
-* ExternalSolversApplication
-* FluidDynamicsApplication
-* PoromechanicsApplication
-* SolidMechanicsApplication
+**How to run:** from terminal using python or from the GUI using GiD.
 
 ## Case Specification
 
