@@ -4,13 +4,13 @@
 
 **Kratos version:** 5.2
 
-**Kratos Applications used**
+**Source files** [2D undrained soil column source files](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
+
+**Applications used**
 * ExternalSolversApplication
 * FluidDynamicsApplication
 * PoromechanicsApplication
 * SolidMechanicsApplication
-
-**Source files** [2D undrained soil column source files](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
 
 ## Case Specification
 

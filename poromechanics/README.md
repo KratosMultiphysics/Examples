@@ -4,7 +4,7 @@ TODO
 
 ## How to run the examples
 
-There are essentially two ways of running this example: using python from the terminal, and using the GUI from GiD.
+There are essentially two ways of running any example of the Poromechanics Application: using python from the terminal, and using the GUI from GiD.
 
 **Run the example from the terminal**
 
