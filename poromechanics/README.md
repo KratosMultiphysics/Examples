@@ -2,12 +2,12 @@
 
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/validation/undrained_soil_column_2D/data/height-pressure.png?raw=true"
-  width="400"
+  width="300"
   title="Undrained soil column 2D test.">
 ](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/)
 [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/use_cases/fluid_pumping_2D/data/intersec_pw.png?raw=true"
-  width="400"
+  width="500"
   title="Fluid flow in pre-existing fractures network.">
 ](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/use_cases/fluid_pumping_2D/)
 
