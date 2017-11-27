@@ -9,7 +9,7 @@
   src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/use_cases/fluid_pumping_2D/data/intersec_pw.png?raw=true"
   width="400"
   title="Fluid flow in pre-existing fractures network.">
-](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/fluid_pumping_2D/)
+](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/use_cases/fluid_pumping_2D/)
 
 ## Applications used
 
