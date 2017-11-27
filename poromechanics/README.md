@@ -53,7 +53,7 @@ After that, copy all source files of the example inside a new folder named "_exa
 
 Open the latter folder from GiD and you will be able to modify the boundary conditions, the properties, or the solver settings of the example, mesh the geometry and run the case.
 
-## Examples
+<!-- ## Examples -->
 
 <!-- [<img
   src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/validation/undrained_soil_column_2D/data/height-pressure.png?raw=true"
@@ -62,4 +62,4 @@ Open the latter folder from GiD and you will be able to modify the boundary cond
 ](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/)
 [<img -->
 
-TODO
+<!-- TODO -->
