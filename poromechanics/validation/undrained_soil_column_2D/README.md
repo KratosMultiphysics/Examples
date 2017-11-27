@@ -10,7 +10,7 @@
 
 ## Case Specification
 
-This example consists on a 1 x 30m column of saturated soil subjected to a surface loading that lies on a rigid rock bed. The objective of the test is to capture the pressure distribution along the soil column which, near the undrained-incompressible limit, should equal the applied load. The main challenge is that, under such conditions, the direct formulation for the displacement-pore pressure element exhibits locking of the pressure field due to the violation of Babuska-Brezzi conditions. The reference solution is taken from [1].
+This example consists on a 1 x 30 m column of saturated soil subjected to a surface loading that lies on a rigid rock bed. The objective of the test is to capture the pressure distribution along the soil column which, near the undrained-incompressible limit, should equal the applied load. The main challenge is that, under such conditions, the direct formulation for the displacement-pore pressure element exhibits locking of the pressure field due to the violation of Babuska-Brezzi conditions. The reference solution is taken from [1].
 
 The problem geometry and boundary conditions are shown below.
 <!-- ![undrained soil column geometry.](data/soil-column_geometry.png) -->
@@ -22,10 +22,10 @@ The material properties of the soil column are the following:
 * Solid density (&rho;<sub>s</sub>): 2000 _Kg/m<sup>3</sup>_
 * Fluid density (&rho;<sub>f</sub>): 1000 _Kg/m<sup>3</sup>_
 * Porosity (&phi;): 0.3
-* Dynamic viscosity (&mu;): 0.001 _s·N/m<sup>2</sup>_
 * Solid bulk modulus (K<sub>s</sub>): 1.5E+17 _N/m<sup>2</sup>_
 * Fluid bulk modulus (K<sub>f</sub>): 3.0E+14 _N/m<sup>2</sup>_
 * Intrinsic permeability (k): 1.0E-14 _m<sup>2</sup>_
+* Dynamic viscosity (&mu;): 0.001 _s·N/m<sup>2</sup>_
 
 This problem is solved in a 2D configuration under plane strain conditions. The geometry is discretized with a structured mesh of 20 quadrilateral elements. Three different types of elements have been used here: 4-noded quadrilateral elements with bilinear shape functions for both the pressure and the displacements (Q4P4-Direct), 9-noded quadrilateral elements with biquadratic shape functions for the displacements and bilinear shape functions for the pressure (Q9P4), and also FIC-stabilized 4-noded quadrilateral elements of equal order interpolation for the displacements and pore pressure (Q4P4-FIC). The formulation of the latter element is thoroughly described in [2].
 

@@ -11,7 +11,7 @@ All the examples shown here use the following applications of Kratos:
 
 ## Source files
 
-Any example has a source folder containing all necessary files to run the case. Some of the files are used by the GUI of GiD and others are used by Kratos. The most important ones are the following:
+Any example of the Poromechanics Application has a source folder containing all the necessary files to run the case. Some of the files are used by the GUI of GiD and others are used by Kratos. The most important ones are the following:
 
 * MainKratos.py: is the main script of the example. We call it from python to run the case. 
 * _example\_name_.mdpa: contains information of the _modelpart_. Lists the material properties, the nodes, the elements, the conditions and the _submodelparts_.
