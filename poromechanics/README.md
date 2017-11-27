@@ -1,13 +1,27 @@
 # Poromechanics Examples
 
+[<img
+  src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/validation/undrained_soil_column_2D/data/height-pressure.png?raw=true"
+  width="400"
+  title="Undrained soil column 2D test.">
+](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/)
+[<img
+
+[<img
+  src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/use_cases/fluid_pumping_2D/data/intersec_pw.png?raw=true"
+  width="400"
+  title="Fluid flow in pre-existing fractures network.">
+](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/fluid_pumping_2D/)
+[<img
+
 ## Applications used
 
 All the examples shown here use the following applications of Kratos:
 
 * ExternalSolversApplication
 * FluidDynamicsApplication
-* PoromechanicsApplication
 * SolidMechanicsApplication
+* PoromechanicsApplication
 
 ## Source files
 
@@ -52,14 +66,3 @@ First copy the folder [Poromechanics_Application.gid](https://github.com/KratosM
 After that, copy all source files of the example inside a new folder named "_example\_name_.gid".
 
 Open the latter folder from GiD and you will be able to modify the boundary conditions, the properties, or the solver settings of the example, mesh the geometry and run the case.
-
-<!-- ## Examples -->
-
-<!-- [<img
-  src="https://github.com/KratosMultiphysics/Examples/blob/master/poromechanics/validation/undrained_soil_column_2D/data/height-pressure.png?raw=true"
-  width="400"
-  title="Undrained soil column 2D test.">
-](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/)
-[<img -->
-
-<!-- TODO -->
