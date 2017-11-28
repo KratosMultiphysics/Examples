@@ -27,3 +27,19 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [2D Joint Beams](dam/use_cases/2d_joint_element/README.md) 
 - [3D Construction Process](dam/use_cases/3d_dam_construction/README.md) 
 - [2D Acoustic Pulse](dam/use_cases/Acoustic/README.md) 
+
+## Poromechanics
+
+**Validation**
+
+- [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md) 
+
+**Use cases**
+
+- [Fluid flow in pre-existing fractures network](poromechanics/use_cases/fluid_pumping_2D/README.md)
+
+## Structural Mechanics
+
+**Validation**
+
+- [Beam Eigenvalue Analysis](structural_mechanics/validation/beam_eigenvalue_analysis/README.md)
