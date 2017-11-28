@@ -12,6 +12,12 @@ Each case should be self-contained: include all input data and relevant scripts 
 
 Unit tests should *not* be uploaded to this repository. Please put them in the `tests` folder of the corresponding application.
 
+## Fluid Dynamics
+
+**Use cases**
+
+- [3D Wind over Barcelona](fluid_dynamics/use_cases/Barcelona%20Wind/README.md) 
+
 ## Fluid-Structure Interaction (FSI)
 
 **Validation**
