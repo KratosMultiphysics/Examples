@@ -4,13 +4,13 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [Beam Eigenvalues](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/beam_eigenvalue_analysis/source)
+**Source files:** [Beam Eigenvalues](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_eigenvalue_analysis/source)
 
 ## Case Specification
 
 This simple example shows how the eigenvalues (Eigenfrequencies and Eigenmodes) of a cantilever beam can be computed.
 
-The properties of the beam can be seen in the [Materials file](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/beam_eigenvalue_analysis/source/StructuralMaterials.json)
+The properties of the beam can be seen in the [Materials file](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_eigenvalue_analysis/source/StructuralMaterials.json)
 
 Here we are only interested in the first three bending modes, for which we can calculate the analytical solution with ([source](http://me-lrt.de/eigenfrequenzen-eigenformen-beim-balken)):
 
