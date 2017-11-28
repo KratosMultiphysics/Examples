@@ -25,3 +25,7 @@ The problem stated above has been solved in HLRN machine using 3k cores. The obt
 
 ![The velocity vector in a horizontal plane 40 meter above sea level.](resources/BarcelonaVelocityVector.png)
 
+## Scalability
+The simulation has been run over 3000 cores in HLRN machine and scales almost perfectly up to 1k cores and for 3k cores the pressure solver start to decrease its scalability because the problem become too small for multi grid solver. Nevertheless the build and velocity solutions continue scaling up to 3k cores as can be seen in following graph: 
+
+![The velocity vector in a horizontal plane 40 meter above sea level.](resources/Scalability.png)
