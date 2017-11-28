@@ -16,7 +16,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 **Use cases**
 
-- [3D Wind over Barcelona](fluid_dynamics/use_cases/Barcelona%20Wind/README.md) 
+- [3D Wind over Barcelona](fluid_dynamics/use_cases/barcelona_wind/README.md) 
 
 ## Fluid-Structure Interaction (FSI)
 
