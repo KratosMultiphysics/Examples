@@ -11,6 +11,7 @@ The Examples are continously updated and extended
 - [Beam Non-Linear Cantilever](validation/beam_nonlinear_cantilever/README.md)
 - [Beam Shallow-angled Structure](validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](validation/beam_roll_up/README.md)
+- [Truss Two-Bar-Truss Snapthrough](validation/truss_snap_through/README.md)
 
 ## Use Cases
 

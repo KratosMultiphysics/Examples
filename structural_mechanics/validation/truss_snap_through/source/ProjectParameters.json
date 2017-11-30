@@ -1,0 +1,112 @@
+{
+    "problem_data"             : {
+        "problem_name"    : "SnapThrough",
+        "model_part_name" : "Structure",
+        "domain_size"     : 3,
+        "parallel_type"   : "OpenMP",
+        "time_step"       : 0.001,
+        "start_time"      : 0.0,
+        "end_time"        : 1.20,
+        "echo_level"      : 0
+    },
+    "solver_settings"          : {
+        "solver_type"                        : "Static",
+        "echo_level"                         : 1,
+        "analysis_type"			     : "non_linear",
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "SnapThrough"
+        },
+        "material_import_settings"           : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "line_search"                        : false,
+        "convergence_criterion"              : "residual_criterion",
+        "displacement_relative_tolerance"    : 1e-9,
+        "displacement_absolute_tolerance"    : 1e-9,
+        "residual_relative_tolerance"        : 0.0001,
+        "residual_absolute_tolerance"        : 1e-9,
+        "max_iteration"                      : 1000,
+        "linear_solver_settings"             : {
+            "solver_type" : "Super_LU",
+            "scaling"     : false,
+            "verbosity"   : 0
+        },
+        "problem_domain_sub_model_part_list" : ["Parts_structure"],
+        "processes_sub_model_part_list"      : ["DISPLACEMENT_dirichletXYZ","DISPLACEMENT_dirichletXZ","PointLoad3D_neumann"],
+        "rotation_dofs"                      : true
+    },
+    "constraints_process_list" : [{
+        "python_module" : "assign_vector_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "help"          : "This process fixes the selected components of a given vector variable",
+        "process_name"  : "AssignVectorVariableProcess",
+        "Parameters"            : {
+            "mesh_id"         : 0,
+            "model_part_name" : "DISPLACEMENT_dirichletXYZ",
+            "variable_name"   : "DISPLACEMENT",
+            "value"           : [0.0,0.0,0.0],
+            "interval"        : [0.0,"End"]
+        }
+    },{
+        "python_module" : "assign_vector_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "help"          : "This process fixes the selected components of a given vector variable",
+        "process_name"  : "AssignVectorVariableProcess",
+        "Parameters"            : {
+            "mesh_id"         : 0,
+            "model_part_name" : "DISPLACEMENT_dirichletXZ",
+            "variable_name"   : "DISPLACEMENT",
+            "value"           : [0.0,null,0.0],
+            "interval"        : [0.0,"End"]
+        }
+    }],
+    "loads_process_list"       : [{
+        "python_module" : "assign_vector_by_direction_to_condition_process",
+        "kratos_module" : "KratosMultiphysics",
+        "help"          : "This process sets a vector variable value over a condition",
+        "check"         : "DirectorVectorNonZero direction",
+        "process_name"  : "AssignModulusAndDirectionToConditionsProcess",
+        "Parameters"            : {
+            "mesh_id"         : 0,
+            "model_part_name" : "PointLoad3D_neumann",
+            "variable_name"   : "POINT_LOAD",
+            "modulus"          : 0,
+            "direction"       : [0,-1,0],
+            "interval"        : [0.0,"End"]
+        }
+    }],
+    "output_configuration"     : {
+        "result_file_configuration" : {
+            "gidpost_flags"       : {
+                "GiDPostMode"           : "GiD_PostBinary",
+                "WriteDeformedMeshFlag" : "WriteDeformed",
+                "WriteConditionsFlag"   : "WriteConditions",
+                "MultiFileFlag"         : "SingleFile"
+            },
+            "file_label"          : "step",
+            "output_control_type" : "step",
+            "output_frequency"    : 1.0,
+            "body_output"         : true,
+            "node_output"         : false,
+            "skin_output"         : false,
+            "plane_output"        : [],
+            "nodal_results"       : ["DISPLACEMENT","REACTION","ROTATION","POINT_LOAD"],
+            "gauss_point_results" : []
+        },
+        "point_data_configuration"  : []
+    },
+    "restart_options"          : {
+        "SaveRestart"      : false,
+        "RestartFrequency" : 0,
+        "LoadRestart"      : false,
+        "Restart_Step"     : 0
+    },
+    "constraints_data"         : {
+        "incremental_load"         : false,
+        "incremental_displacement" : false
+    },
+    "material_import_settings" : {
+        "materials_filename" : "StructuralMaterials.json"
+    }
+}
