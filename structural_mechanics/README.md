@@ -8,8 +8,11 @@ The Examples are continously updated and extended
 
 ## Validation
 - [Beam Eigenvalue Analysis](validation/beam_eigenvalue_analysis/README.md)
-
 - [Beam Non-Linear Cantilever](validation/beam_nonlinear_cantilever/README.md)
+- [Beam Shallow-angled Structure](validation/beam_shallow_angled_structure/README.md)
 
 ## Use Cases
+
+
+
 
