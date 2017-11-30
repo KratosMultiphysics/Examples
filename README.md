@@ -22,7 +22,8 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 **Validation**
 
-- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md) 
+- [Lid-driven cavity flow benchmark](fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md) 
+- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md)
 
 ## Dam 
 
