@@ -51,3 +51,4 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Eigenvalue Analysis](structural_mechanics/validation/beam_eigenvalue_analysis/README.md)
 - [Beam Non-Linear Cantilever](structural_mechanics/validation/beam_nonlinear_cantilever/README.md)
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
+- [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
