@@ -38,8 +38,18 @@ The time step is 0.1 seconds, while the total simulation time is 70.0 seconds.
 ## Results
 The problem stated above has been solved using a total Lagrangian approach in the structural domain together with an incompressible Navier-Stokes formulation with ASGS stabilization in the fluid domain. Concerning the mesh, the structure is meshed with a 2x32 divisions structured meshed composed by linear quadrilateral elements. On the other hand, the fluid is meshed with a 32x32 divisions structured mesh composed by linear triangular elements. The obtained velocity and pressure fields, together with the deformed geometry, are shown below. Besides, some comparisons with the reference solutions are depicted as well. 
 
-![Obtained velocity field (t = 25.0).](data/Mok_velocity_field.png)
-![Obtained pressure field (t = 25.0).](data/Mok_pressure_field.png)
+<p align="center">
+  <img src="data/fsi_lid_driven_cavity_pressure.gif" alt="FSI lid-driven cavity benchmark pressure field [Pa]." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/fsi_lid_driven_cavity_velocity.gif" alt="FSI lid-driven cavity benchmark velocity modulus field [m/s]." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/fsi_lid_driven_cavity_uy_A.png" alt="Centered bottom membrane point vertical displacement comparison [m/s]." style="width: 600px;"/>
+</p>
+
 ![Point A horizontal displacement comparison.](data/Mok_ux_A.png)
 
 ## References
