@@ -1,0 +1,23 @@
+{
+    "properties" : [{
+        "model_part_name" : "Parts_structure",
+        "properties_id"   : 1,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "KratosMultiphysics.StructuralMechanicsApplication.LinearElasticPlaneStress2DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"       : 7850.0,
+                "YOUNG_MODULUS" : 210000000000.0,
+                "POISSON_RATIO" : 0.3,                
+                "KratosMultiphysics.StructuralMechanicsApplication.CROSS_AREA"  : 0.01,
+		"KratosMultiphysics.StructuralMechanicsApplication.TORSIONAL_INERTIA"  : 0.00001,
+		"KratosMultiphysics.StructuralMechanicsApplication.I22"  : 0.00001,
+		"KratosMultiphysics.StructuralMechanicsApplication.I33"  : 0.00001
+            },
+            "Tables"           : {}
+        }
+    }]
+}
+
+
