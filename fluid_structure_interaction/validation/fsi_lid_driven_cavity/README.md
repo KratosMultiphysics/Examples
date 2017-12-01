@@ -50,8 +50,6 @@ The problem stated above has been solved using a total Lagrangian approach in th
   <img src="data/fsi_lid_driven_cavity_uy_A.png" alt="Centered bottom membrane point vertical displacement comparison [m/s]." style="width: 600px;"/>
 </p>
 
-![Point A horizontal displacement comparison.](data/Mok_ux_A.png)
-
 ## References
 D.P. Mok. Partitionierte Lösungsansätze in der Strukturdynamik und der Fluid−Struktur−Interaktion. PhD thesis: Institut für Baustatik, Universität Stuttgart, 2001. [https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf](https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf)
 

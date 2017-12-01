@@ -15,16 +15,21 @@ This is a 2D FSI simulation of the Mok benchmark test. It consists in a 2D conve
 * StructuralMechanicsApplication
 
 The problem geometry as well as the boundary conditions are sketched below. 
-
-![Mok benchmark geometry.](data/Mok_benchmark_geometry.png)
+<p align="center">
+  <img src="data/Mok_benchmark_geometry.png" alt="Mok benchmark geometry." style="width: 600px;"/>
+</p>
 
 Regarding the inlet velocity, the next parabolic profile is imposed
 
-![Mok inlet profile](data/Mok_inlet_formula_1.png)
+<p align="center">
+  <img src="data/Mok_inlet_formula_1.png" alt="Mok inlet profile." style="width: 200px;"/>
+</p>
 
 where the time dependent reference velocity is defined as
 
-![Mok velocity formula](data/Mok_inlet_formula_2.png)
+<p align="center">
+  <img src="data/Mok_inlet_formula_2.png" alt="Mok velocity formula." style="width: 200px;"/>
+</p>
 
 A Newtonian constitutive law is considered in the fluid domain. The fluid characteristic parameters are:
 * Density (&rho;): 956 _Kg/m<sup>3</sup>_
@@ -40,9 +45,17 @@ The time step is 0.1 seconds, while the total simulation time is 25.0 seconds.
 ## Results
 The problem stated above has been solved with a structured mesh with 4x100 divisions composed by linear quadrilateral total Lagrangian elements in the structural domain. In the fluid domain, a mesh composed by around 7000 linear triangular elements has been used. The obtained velocity and pressure fields, together with the deformed geometry, are shown below. Besides, some comparisons with the reference solutions are depicted as well. 
 
-![Obtained velocity field (t = 25.0).](data/Mok_velocity_field.png)
-![Obtained pressure field (t = 25.0).](data/Mok_pressure_field.png)
-![Point A horizontal displacement comparison.](data/Mok_ux_A.png)
+<p align="center">
+  <img src="data/Mok_velocity_field.png" alt="Obtained velocity field (t = 25.0)." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/Mok_pressure_field.png" alt="Obtained pressure field (t = 25.0)." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/Mok_ux_A.png" alt="Point A horizontal displacement comparison." style="width: 600px;"/>
+</p>
 
 ## References
 D.P. Mok. Partitionierte Lösungsansätze in der Strukturdynamik und der Fluid−Struktur−Interaktion. PhD thesis: Institut für Baustatik, Universität Stuttgart, 2001. [https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf](https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf)
