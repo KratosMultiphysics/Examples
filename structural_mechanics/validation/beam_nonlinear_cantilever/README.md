@@ -1,3 +1,11 @@
+# Non-Linear Cantilever beam
+
+**Author:** Klaus B. Sautter
+
+**Kratos version:** 5.2
+
+**Source files:** [Beam Non-Linear Cantilever](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_nonlinear_cantilever/source)
+
 ## Problem definition
 To demonstrate the ability of the co-rotational beam element to handle very large deformation a cantilever with L = 2.00 and a linearly increased transverse load is investigated:
 
