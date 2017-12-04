@@ -1,3 +1,11 @@
+# Shallow Angled Beam Structure
+
+**Author:** Klaus B. Sautter
+
+**Kratos version:** 5.2
+
+**Source files:** [Beam Shallow-angled Structure](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_shallow_angled_structure)
+
 ## Problem definition
 As the effect of bending on the shorting of the beam element is not included in the underlying co-rotational beam theory, the following example shows, how this effect can be modeled with the help of multiple beam elements. For that purpose the following shallow angled beam is investigated:
 

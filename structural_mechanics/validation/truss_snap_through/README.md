@@ -1,3 +1,12 @@
+# Two-Bar-Truss Snapthrough
+
+**Author:** Klaus B. Sautter
+
+**Kratos version:** 5.2
+
+**Source files:** [Truss Two-Bar-Truss Snapthrough](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/truss_snap_through/source)
+
+
 ## Problem definition
 To demonstrate the ability of the non-linear truss element to describe geometric non-linearities the following symmetry of a two bar truss is investigated:
 
