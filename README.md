@@ -25,6 +25,25 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Lid-driven cavity flow benchmark](fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md) 
 - [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md)
 
+## Contact Structural Mechanics
+
+**Validation**
+
+- [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)
+
+## MMG remeshing
+
+**Validation**
+- [Bunny example](mmg_remeshing_examples/validation/bunny/README.md)
+- [Lamborghini example](mmg_remeshing_examples/validation/lamborghini/README.md)
+- [Channel sphere 2D](mmg_remeshing_examples/validation/channel_sphere2D/README.md)
+
+**Use Cases**
+- [Hessian2D](mmg_remeshing_examples/use_cases/hessian2D/README.md)
+- [Hessian3D](mmg_remeshing_examples/use_cases/hessian3D/README.md)
+- [Beam 2D](mmg_remeshing_examples/use_cases/beam2D/README.md)
+- [Cavity 2D](mmg_remeshing_examples/use_cases/cavity2D/README.md)
+
 ## Dam 
 
 **Use cases**
