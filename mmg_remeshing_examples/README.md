@@ -38,14 +38,15 @@ The Examples are continously updated and extended
 ## Validation
 - [Bunny example](validation/bunny/README.md)
 - [Lamborghini example](validation/lamborghini/README.md)
+- [Beam 3D](validation/beam3D/README.md)
+- [Channel sphere 2D](validation/channel_sphere2D/README.md)
+- [Channel sphere 3D](validation/channel_sphere3D/README.md)
 
 ## Use Cases
-- [Hessian](use_cases/hessian/README.md)
+- [Hessian2D](use_cases/hessian2D/README.md)
+- [Hessian3D](use_cases/hessian3D/README.md)
 - [Beam 2D](use_cases/beam2D/README.md)
-- [Beam 3D](use_cases/beam3D/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
-- [Channel sphere 2D](use_cases/channel_sphere2D/README.md)
-- [Channel sphere 3D](use_cases/channel_sphere3D/README.md)
 
 
 

@@ -14,7 +14,7 @@ The following applications of Kratos are used:
 - *StructuralMechanicsApplication*
 - *MeshingApplication* with the *MMG* module
 
-The problem  corresponds th following, a steel cantilever 10x1 and considering as only load self-weight:
+The problem corresponds with a steel cantilever 10x1 and considering as only load self-weight:
 <p align="center">
   <img src="data/beam.png" alt="Beam." style="width: 600px;"/>
 </p>
@@ -51,6 +51,12 @@ Having as final result the following deformed shape:
 <p align="center">
   <img src="data/result.png" alt="Result" style="width: 600px;"/>
 </p>
+
+<p align="center">
+  <img src="data/animation_result.gif" alt="Result" style="width: 600px;"/>
+</p>
+
+[Youtube](https://youtu.be/6SYZ1Ur0mKc)
 
 ## References
 *Frédéric Alauzet*. Metric-Based Anisotropic Mesh Adaptation. Course material, CEA-EDF-INRIA Schools. Numerical Analysis Summer School.  [https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf)
