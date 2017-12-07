@@ -11,7 +11,7 @@
 In this test case we want to remesh anisotropically the geometry of *Lamborghini*, more complex that the previous bunny.
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication* with the *MMG* module
+- *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
 The problem  corresponds with the figures:

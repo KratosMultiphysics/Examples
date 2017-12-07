@@ -11,7 +11,7 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication* with the *MMG* module
+- *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
 The problem corresponds with the  example proposed in [reference](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf), translated to 3D. The  objective is to remesh the following unstructured mesh of a domain 1x1x0.1:
