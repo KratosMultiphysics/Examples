@@ -2,6 +2,6 @@
 
 This folder contains the validation cases:
 
+- [Hessian2D](hessian2D/README.md)
+- [Hessian3D](hessian3D/README.md)
 - [Bunny example](bunny/README.md)
-- [Lamborghini example](lamborghini/README.md)
-- [Channel sphere 2D](channel_sphere2D/README.md)

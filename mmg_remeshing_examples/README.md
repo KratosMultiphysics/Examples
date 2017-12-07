@@ -36,15 +36,17 @@ Add the following to the main Kratos configure.sh:
 The Examples are continously updated and extended
 
 ## Validation
+
+- [Hessian2D](validation/hessian2D/README.md)
+- [Hessian3D](validation/hessian3D/README.md)
 - [Bunny example](validation/bunny/README.md)
-- [Lamborghini example](validation/lamborghini/README.md)
-- [Channel sphere 2D](validation/channel_sphere2D/README.md)
 
 ## Use Cases
-- [Hessian2D](use_cases/hessian2D/README.md)
-- [Hessian3D](use_cases/hessian3D/README.md)
+
 - [Beam 2D](use_cases/beam2D/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
+- [Lamborghini example](use_cases/lamborghini/README.md)
+- [Channel sphere 2D](use_cases/channel_sphere2D/README.md)
 
 
 
