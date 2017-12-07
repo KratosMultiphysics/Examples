@@ -21,7 +21,7 @@ The problem  corresponds with the very known geometry of the [Standford bunny](h
 
 The challenge consists in meshing anisotropically the geometry using as error measure the gradient of the distance, measured previously with an octree mesher ([GiD](https://www.gidhome.com/)). The *STL* file used can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/bunny/source/low-res-bunny.stl)
  
-The mesh corresponding befoire remeshing corresponds with:
+The mesh corresponding before remeshing corresponds with:
 
 <p align="center">
   <img src="data/octree.png" alt="Octree" style="width: 600px;"/>
