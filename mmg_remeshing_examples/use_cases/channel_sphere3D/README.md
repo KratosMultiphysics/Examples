@@ -1,10 +1,10 @@
-# Channel sphere 2D remeshing
+# Channel sphere 3D remeshing
 
 **Author:** Vicente Mataix Ferrándiz
 
 **Kratos version:** 5.2
 
-**Source files:** [Channel sphere 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/channel_sphere2D/source)
+**Source files:** [Channel sphere 3D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/channel_sphere3D/source)
 
 ## Case Specification
 
@@ -14,7 +14,7 @@ The following applications of Kratos are used:
 - *FluidDynamicsApplication* with the *MMG* module
 - *MeshingApplication* with the *MMG* module
 
-Adaptative remeshing of 2D fluid channel with sphere using Hessian of velocity as metric measure. It consists in a channel 3x1, a sphere of 0.5 diameter and with a velocity of 1 m/s in the inlet an zero pressure in the outlet. The total time of simulation is *5s* with a time step of *0.01s*. The remeshing is performed each 20 steps.
+Adaptative remeshing of 3D fluid channel with sphere using Hessian of velocity as metric measure. It consists in a channel 3x1x1, a sphere of 0.5 diameter and with a velocity of 1 m/s in the inlet an zero pressure in the outlet. The total time of simulation is *1.2s* with a time step of *0.01s*. The remeshing is performed each 20 steps.
 
 <p align="center">
   <img src="data/geometry.png" alt="Geometry." style="width: 600px;"/>
@@ -34,7 +34,7 @@ The results obtained corresponds with the following:
   <img src="data/result.gif" alt="Solution" style="width: 600px;"/>
 </p>
 
-[YouTube](https://www.youtube.com/watch?v=Yd57qxtnNFk&feature=youtu.be)
+[YouTube](https://youtu.be/HVNa5O6h4wM)
 
 ## References
 *Frédéric Alauzet*. Metric-Based Anisotropic Mesh Adaptation. Course material, CEA-EDF-INRIA Schools. Numerical Analysis Summer School.  [https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf)
