@@ -40,6 +40,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 **Use Cases**
 - [Channel sphere 2D](mmg_remeshing_examples/use_cases/channel_sphere2D/README.md)
+- [Channel sphere 3D](mmg_remeshing_examples/use_cases/channel_sphere3D/README.md)
 - [Beam 2D](mmg_remeshing_examples/use_cases/beam2D/README.md)
 - [Cavity 2D](mmg_remeshing_examples/use_cases/cavity2D/README.md)
 - [Lamborghini example](mmg_remeshing_examples/use_cases/lamborghini/README.md)
