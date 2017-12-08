@@ -10,7 +10,7 @@
 ## Problem definition
 To demonstrate the ability of the non-linear truss element to describe geometric non-linearities the following symmetry of a two bar truss is investigated:
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Non_linear_truss_snap_through/symmetryTrussSystem.jpg" width="300">
+<img src="data/symmetryTrussSystem.jpg" width="300">
 
 _Statical System [1]_
 
@@ -22,14 +22,14 @@ Two different approaches can be used to analyze the structure.
 
 By incrementally increasing the load and solving for the residual to be zero the first limit point can be found:
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Non_linear_truss_snap_through/LoadCont.PNG" width="500">
+<img src="data/LoadCont.PNG" width="500">
 
 _Non-linear snap through: Load-control_
 
 Whereas both limit points can be found by incrementally increasing the displacement and solving for the residual to be zero:
 
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Non_linear_truss_snap_through/DispCont.PNG" width="500">
+<img src="data/DispCont.PNG" width="500">
 
 _Non-linear snap through: Displacement-control_
 

@@ -9,7 +9,7 @@
 ## Problem definition
 As the effect of bending on the shorting of the beam element is not included in the underlying co-rotational beam theory, the following example shows, how this effect can be modeled with the help of multiple beam elements. For that purpose the following shallow angled beam is investigated:
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Shallow_angle_beam/shallowbeamSystem.JPG" width="500">
+<img src="data/shallowbeamSystem.JPG" width="500">
 
 _Statical System [1]_
 
@@ -19,11 +19,11 @@ With L = 10, h = 0.24, E = 210E09, ν = 0.30, A = 0.01 and Iz=Iy=IT = 3.34E-05. 
 
 The following deformation (exaggerated) animation of the Kratos is provided for context:
 
-![Open cylinder pullout animation](https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Shallow_angle_beam/shallowAngleBeam.gif)
+![shallowangledbeamGIF](data/shallowAngleBeam.gif)
 
 The results of the vertical deformation of the middle node are given in the following graph, where both the axes are scaled:
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Shallow_angle_beam/ShallowAngledBeamResult.PNG" width="500">
+<img src="data/ShallowAngledBeamResult.PNG" width="500">
 
 
 _Vertical Displacement of the middle top node_
