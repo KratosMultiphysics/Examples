@@ -45,6 +45,7 @@ The Examples are continously updated and extended
 
 - [Beam 2D](use_cases/beam2D/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
+- [Coarse sphere](use_cases/coarse_sphere/README.md)
 - [Lamborghini example](use_cases/lamborghini/README.md)
 - [Channel sphere 2D](use_cases/channel_sphere2D/README.md)
 - [Channel sphere 3D](use_cases/channel_sphere3D/README.md)

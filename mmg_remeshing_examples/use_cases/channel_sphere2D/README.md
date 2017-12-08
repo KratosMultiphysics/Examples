@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [Channel sphere 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/channel_sphere2D/source)
+**Source files:** [Channel sphere 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/channel_sphere2D/source)
 
 ## Case Specification
 

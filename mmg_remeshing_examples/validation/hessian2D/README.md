@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [Hessian 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/hessian2D/source)
+**Source files:** [Hessian 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/hessian2D/source)
 
 ## Case Specification
 

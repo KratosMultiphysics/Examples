@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [Lamborghini](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/lamborghini/source) (Please  decompress the mdpa file)
+**Source files:** [Lamborghini](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/lamborghini/source) (Please  decompress the mdpa file)
 
 ## Case Specification
 
@@ -24,7 +24,7 @@ The problem  corresponds with the figures:
   <img src="data/stl_gid2.png" alt="Lamborghini" style="width: 600px;"/>
 </p>
 
-The challenge consists in meshing anisotropically the geometry using as error measure the gradient of the distance, measured previously with an octree mesher ([GiD](https://www.gidhome.com/)). The *STL* file used can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/lamborghini/source/lamborghini_car.stl)
+The challenge consists in meshing anisotropically the geometry using as error measure the gradient of the distance, measured previously with an octree mesher ([GiD](https://www.gidhome.com/)). The *STL* file used can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/lamborghini/source/lamborghini_car.stl)
  
 The mesh corresponding before remeshing corresponds with:
 
