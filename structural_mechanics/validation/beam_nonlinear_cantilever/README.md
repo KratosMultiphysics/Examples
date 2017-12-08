@@ -9,7 +9,7 @@
 ## Problem definition
 To demonstrate the ability of the co-rotational beam element to handle very large deformation a cantilever with L = 2.00 and a linearly increased transverse load is investigated:
 
-<img src="https://github.com/KratosMultiphysics/Documentation/blob/master/Wiki_files/Application_cases/Non_linear_cantilever_beam/beamnonlinearcantileverSys.jpg" width="400">
+<img src="data/system.jpg" width="400">
 
 _Statical System [1]_
 
