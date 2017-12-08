@@ -4,7 +4,7 @@
 
 **Kratos version:** 5.2
 
-**Source files:** [Coarse sphere](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/coarse_sphere//source)
+**Source files:** [Coarse sphere](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/coarse_sphere/source)
 
 ## Case Specification
 
