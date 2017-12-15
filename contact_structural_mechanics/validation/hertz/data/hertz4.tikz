@@ -1,0 +1,76 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\usepackage{amsmath}
+
+\begin{document}
+\definecolor{mycolor1}{rgb}{1.00000,0.00000,1.00000}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.762in,
+height=3.756in,
+at={(0.799in,0.507in)},
+scale only axis,
+xmin=0,
+xmax=1.37984072394409,
+xlabel style={font=\color{white!15!black}},
+xlabel={x [m]},
+ymin=0,
+ymax=12,
+ylabel style={font=\color{white!15!black}},
+ylabel={Error pressure from analytical solution},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left, legend plot pos=left, draw=black}
+]
+\addplot [color=mycolor1, mark=o, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+0	0.0255046815706366\\
+0.191	0.024281258285626\\
+0.382	0.0204664352011556\\
+0.572	0.0138940196295827\\
+0.762	0.00286284715372239\\
+0.95	0.0177157885217356\\
+1.14	0.235214589526029\\
+1.32	1.78207159293955\\
+};
+\addlegendentry{Sim. Coarsed}
+
+\addplot [color=blue, mark=o, mark options={solid, blue}]
+  table[row sep=crcr]{%
+0	0.155679237006979\\
+0.094565999999997	0.154667854177524\\
+0.189105999999999	0.151601707139047\\
+0.283591999999999	0.146378673132125\\
+0.378	0.138813035703433\\
+0.472308999999999	0.128601749877026\\
+0.566499999999998	0.115264756942587\\
+0.660558999999999	0.0372831304550687\\
+0.754477999999999	0.0733926572854444\\
+0.848265999999999	0.0451905445114197\\
+0.941958999999997	0.0103481691683154\\
+1.035328	0.0833348473225987\\
+1.128221	0.699706243304871\\
+1.221126	0.485371333212435\\
+1.313665	11.2777130958324\\
+};
+\addlegendentry{Sim. Refined}
+
+\end{axis}
+\end{tikzpicture}%
+\end{document}

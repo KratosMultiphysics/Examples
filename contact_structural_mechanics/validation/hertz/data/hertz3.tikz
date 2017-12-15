@@ -1,0 +1,74 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\usepackage{amsmath}
+
+\begin{document}
+\definecolor{mycolor1}{rgb}{1.00000,0.00000,1.00000}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.762in,
+height=3.756in,
+at={(0.799in,0.507in)},
+scale only axis,
+xmin=0,
+xmax=1.37984072394409,
+xlabel style={font=\color{white!15!black}},
+xlabel={x [m]},
+ymin=0.05,
+ymax=0.1,
+ylabel style={font=\color{white!15!black}},
+ylabel={Error displacement from analytical solution},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left, legend plot pos=left, draw=black}
+]
+\addplot [color=mycolor1, mark=o, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+0.191	0.0695272941405116\\
+0.382	0.0672616543926977\\
+0.572	0.0672256429800971\\
+0.762	0.0638542848454474\\
+0.95	0.0627732985852631\\
+1.14	0.0547266557602341\\
+1.32	0.0612248388888889\\
+};
+\addlegendentry{Sim. Coarsed}
+
+\addplot [color=blue, mark=o, mark options={solid, blue}]
+  table[row sep=crcr]{%
+0.094565999999997	0.0913299953912432\\
+0.189105999999999	0.0910583126021071\\
+0.283591999999999	0.0906102409581192\\
+0.378	0.0899687134710675\\
+0.472308999999999	0.0891184506262049\\
+0.566499999999998	0.0880490672516551\\
+0.660558999999999	0.0867418685501603\\
+0.754477999999999	0.0851729370328797\\
+0.848265999999999	0.0832886908875142\\
+0.941958999999997	0.0809849078059163\\
+1.035328	0.0787768684014092\\
+1.128221	0.0768627017917079\\
+1.221126	0.0742178674356624\\
+1.313665	0.071545327582899\\
+};
+\addlegendentry{Sim. Refined}
+
+\end{axis}
+\end{tikzpicture}%
+\end{document}

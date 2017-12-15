@@ -36,7 +36,7 @@ For the support material:
 The time step is *0.0005* seconds, while the total simulation time is *0.2* seconds. With an increment of the imposed displacement wual to *0.4t*.
 
 ## Results
-The problem stated above has been solved using an unstructured mesh of tetrahedron. The resulting defomation can be seen in the following image.
+The problem stated above has been solved using an unstructured mesh of tetrahedron. The resulting deformation can be seen in the following image.
 
 <p align="center">
   <img src="data/result.gif" alt="Solution" style="width: 600px;"/>
