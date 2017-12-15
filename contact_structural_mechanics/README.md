@@ -8,6 +8,7 @@ The Examples are continously updated and extended
 
 ## Validation
 - [Double arch contact benchmark](validation/double_arch/README.md)
+- [Hertz benchmark](validation/hertz/README.md)
 
 ## Use Cases
 
