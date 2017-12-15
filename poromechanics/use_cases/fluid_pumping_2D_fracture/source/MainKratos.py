@@ -71,9 +71,9 @@ PoroModel = KratosMultiphysics.Model()
 PoroModel.AddModelPart(main_model_part)
 
 # Build sub_model_parts (save the list of the submodel part in the object Model)
-for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
-    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
-    PoroModel.AddModelPart(main_model_part.GetSubModelPart(part_name))
+#for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
+#    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
+#    PoroModel.AddModelPart(main_model_part.GetSubModelPart(part_name))
 
 # Print model_part and properties
 if(echo_level > 1):
