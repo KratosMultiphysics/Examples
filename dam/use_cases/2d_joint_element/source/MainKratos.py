@@ -13,12 +13,12 @@ import os
 # Import kratos core and applications
 import KratosMultiphysics
 import KratosMultiphysics.ExternalSolversApplication as KratosSolvers
-#~ import KratosMultiphysics.TrilinosApplication as TrilinosApplication
+#import KratosMultiphysics.TrilinosApplication as TrilinosApplication
 import KratosMultiphysics.ConvectionDiffusionApplication as KratosConvDiff
 import KratosMultiphysics.SolidMechanicsApplication  as KratosSolid
 import KratosMultiphysics.PoromechanicsApplication as KratosPoro
 import KratosMultiphysics.DamApplication as KratosDam
-    
+
 # Parsing the parameters
 parameter_file = open("ProjectParameters.json",'r')
 ProjectParameters = KratosMultiphysics.Parameters( parameter_file.read())
@@ -49,6 +49,8 @@ time_scale = ProjectParameters["problem_data"]["time_scale"].GetString()
 # Time Units Converter
 if(time_scale=="Months"):               # Factor to pass from months to seconds
     time_unit_converter = 2592000.0
+elif(time_scale=="Weeks"):               # Factor to pass from weeks to seconds
+    time_unit_converter = 604800.0
 elif(time_scale=="Days"):               # Factor to pass from days to seconds
     time_unit_converter = 86400.0
 elif(time_scale=="Hours"):              # Factor to pass from hours to seconds
@@ -68,7 +70,6 @@ main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, domain_size
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.TIME, time)
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DELTA_TIME, delta_time)
 main_model_part.ProcessInfo.SetValue(KratosPoro.TIME_UNIT_CONVERTER, time_unit_converter)
-Model = {ProjectParameters["problem_data"]["model_part_name"].GetString() : main_model_part}
 
 # Construct the solver (main setting methods are located in the solver_module)
 solver_module = __import__(ProjectParameters["solver_settings"]["solver_type"].GetString())
@@ -83,10 +84,15 @@ solver.ImportModelPart()
 # Add degrees of freedom
 solver.AddDofs()
 
-# Build sub_model_parts (save the list of the submodel part in the object Model)
-for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
-    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
-    Model.update({part_name : main_model_part.GetSubModelPart(part_name)})
+# Creation of Kratos model
+DamModel = KratosMultiphysics.Model()
+DamModel.AddModelPart(main_model_part)
+
+# Build sub_model_parts or submeshes (rearrange parts for the application of custom processes)
+## Get the list of the submodel part in the object Model
+#for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
+#    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
+#    DamModel.AddModelPart(main_model_part.GetSubModelPart(part_name))
 
 # Print model_part and properties
 if(echo_level > 1):
@@ -99,8 +105,8 @@ if(echo_level > 1):
 
 # Construct processes to be applied
 import process_factory
-list_of_processes = process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["constraints_process_list"] )
-list_of_processes += process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["loads_process_list"] )
+list_of_processes = process_factory.KratosProcessFactory(DamModel).ConstructListOfProcesses( ProjectParameters["constraints_process_list"] )
+list_of_processes += process_factory.KratosProcessFactory(DamModel).ConstructListOfProcesses( ProjectParameters["loads_process_list"] )
 
 # Print list of constructed processes
 if(echo_level>1):
@@ -141,16 +147,16 @@ solver.Initialize()
 # ExecuteBeforeSolutionLoop
 for process in list_of_processes:
     process.ExecuteBeforeSolutionLoop()
-    
+
 ## Set results when they are written in a single file
 gid_output.ExecuteBeforeSolutionLoop()
 
-# Initialize streamlines_output_utility 
+# Initialize streamlines_output_utility
 UseStreamlineUtility = False
 if (use_streamline_utility == True and domain_size==3):
     UseStreamlineUtility = True
     import streamlines_output_utility
-    streamline_utility = streamlines_output_utility.StreamlinesOutputUtility(domain_size)    
+    streamline_utility = streamlines_output_utility.StreamlinesOutputUtility(domain_size)
 
 if (echo_level > 1):
     f = open("ProjectParametersOutput.json", 'w')
@@ -160,37 +166,37 @@ if (echo_level > 1):
 ## Temporal loop ---------------------------------------------------------------------------------------------
 
 while( (time+tol) <= end_time ):
-    
+
     # Update temporal variables
     delta_time = main_model_part.ProcessInfo[KratosMultiphysics.DELTA_TIME]
     time = time + delta_time
     main_model_part.CloneTimeStep(time)
-    
+
     # Update imposed conditions
     for process in list_of_processes:
         process.ExecuteInitializeSolutionStep()
 
     gid_output.ExecuteInitializeSolutionStep()
-    
+
     # Solve step
     solver.Solve()
 
     # streamlines_output_utility
     if (UseStreamlineUtility== True):
         streamline_utility.ComputeOutputStep( main_model_part ,domain_size)
-    
+
     gid_output.ExecuteFinalizeSolutionStep()
-    
+
     for process in list_of_processes:
         process.ExecuteFinalizeSolutionStep()
-    
+
     for process in list_of_processes:
         process.ExecuteBeforeOutputStep()
-    
+
     # Write GiD results
     if gid_output.IsOutputStep():
         gid_output.PrintOutput()
-    
+
     for process in list_of_processes:
         process.ExecuteAfterOutputStep()
 
@@ -202,7 +208,7 @@ gid_output.ExecuteFinalize()
 
 for process in list_of_processes:
     process.ExecuteFinalize()
-    
+
 # Finalizing strategy
 if parallel_type == "OpenMP":
     solver.Clear()

@@ -53,7 +53,7 @@ elif(time_scale=="Days"):               # Factor to pass from days to seconds
 elif(time_scale=="Hours"):              # Factor to pass from hours to seconds
     time_unit_converter = 3600.0
 else:                                       # No changes
-    time_unit_converter = 1.0             
+    time_unit_converter = 1.0
 
 # Update time variables
 delta_time = delta_time * time_unit_converter
@@ -70,10 +70,9 @@ main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, domain_size
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.TIME, time)
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DELTA_TIME, delta_time)
 main_model_part.ProcessInfo.SetValue(KratosPoro.TIME_UNIT_CONVERTER, time_unit_converter)
-Model = {ProjectParameters["problem_data"]["model_part_name"].GetString() : main_model_part}
 
 # Construct the solver (main setting methods are located in the solver_module)
-solver_module = __import__("dam_P_solver") 
+solver_module = __import__("dam_P_solver")
 solver = solver_module.CreateSolver(main_model_part, ProjectParameters["solver_settings"])
 
 # Add variables
@@ -85,11 +84,15 @@ solver.ImportModelPart()
 # Add degrees of freedom
 solver.AddDofs()
 
+# Creation of Kratos model
+DamModel = KratosMultiphysics.Model()
+DamModel.AddModelPart(main_model_part)
 
-# Build sub_model_parts
-for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
-    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
-    Model.update({part_name : main_model_part.GetSubModelPart(part_name)})
+# Build sub_model_parts or submeshes (rearrange parts for the application of custom processes)
+## Get the list of the submodel part in the object Model
+#for i in range(ProjectParameters["solver_settings"]["processes_sub_model_part_list"].size()):
+#    part_name = ProjectParameters["solver_settings"]["processes_sub_model_part_list"][i].GetString()
+#    DamModel.AddModelPart(main_model_part.GetSubModelPart(part_name))
 
 # Print control
 if(echo_level > 1):
@@ -102,8 +105,8 @@ if(echo_level > 1):
 
 # Construct the processes to be applied
 import process_factory
-list_of_processes = process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["constraints_process_list"] )
-list_of_processes += process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["loads_process_list"] )
+list_of_processes =  process_factory.KratosProcessFactory(DamModel).ConstructListOfProcesses( ProjectParameters["constraints_process_list"] )
+list_of_processes += process_factory.KratosProcessFactory(DamModel).ConstructListOfProcesses( ProjectParameters["loads_process_list"] )
 
 # Print list of constructed processes
 if(echo_level>1):
@@ -152,33 +155,33 @@ gid_output.ExecuteBeforeSolutionLoop()
 
 while( (time+tol) <= end_time ):
 
-    
+
     # Update temporal variables
     delta_time = main_model_part.ProcessInfo[KratosMultiphysics.DELTA_TIME]
     time = time + delta_time
     main_model_part.CloneTimeStep(time)
-    
+
     # Update imposed conditions
     for process in list_of_processes:
         process.ExecuteInitializeSolutionStep()
 
     gid_output.ExecuteInitializeSolutionStep()
-    
+
     # Solve step
     solver.Solve()
-    
+
     gid_output.ExecuteFinalizeSolutionStep()
-    
+
     for process in list_of_processes:
         process.ExecuteFinalizeSolutionStep()
-    
+
     for process in list_of_processes:
         process.ExecuteBeforeOutputStep()
-    
+
     # Write GiD results
     if gid_output.IsOutputStep():
         gid_output.PrintOutput()
-    
+
     for process in list_of_processes:
         process.ExecuteAfterOutputStep()
 
@@ -190,7 +193,7 @@ gid_output.ExecuteFinalize()
 
 for process in list_of_processes:
     process.ExecuteFinalize()
-        
+
 # Finalizing strategy
 if parallel_type == "OpenMP":
     solver.Clear()
