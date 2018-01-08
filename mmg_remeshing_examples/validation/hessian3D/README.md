@@ -46,13 +46,13 @@ The results obtained after remeshing can be see in the following figures:
 The color map of the test function:
 
 <p align="center">
-  <img src="data/error_stimation.png" alt="Distance" style="width: 600px;"/>
+  <img src="data/error_estimation.png" alt="Distance" style="width: 600px;"/>
 </p>
 
 In 3D:
 
 <p align="center">
-  <img src="data/error_stimation3d.png" alt="Nodal H" style="width: 600px;"/>
+  <img src="data/error_estimation3d.png" alt="Nodal H" style="width: 600px;"/>
 </p>
 
 
