@@ -14,6 +14,15 @@ The following applications of Kratos are used:
 - *MeshingApplication* with the *MMG* module
 
 This is a very simple remeshing test, where we remesh a coarse sphere with *MMG* library.
+
+In this problem we remesh using the gradient of the distance function, which is the distance to the plane contained in the sphere center. The function can be seen in the following figure, corresponds with a linear distance and a constant gradient:
+
+<p align="center">
+  <img src="data/distance_function.png" alt="Original." style="width: 450px;"/>
+</p>
+
+With the following result:
+
 <p align="center">
   <img src="data/solution.png" alt="Original." style="width: 600px;"/>
 </p>

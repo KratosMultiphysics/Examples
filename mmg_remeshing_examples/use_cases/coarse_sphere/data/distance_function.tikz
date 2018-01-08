@@ -1,0 +1,54 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\tikzset{myarrow/.style={-{Triangle[length=3mm,width=1mm]}}}
+\tikzset{%
+  >={Latex[width=2mm,length=2mm]},
+  % Specifications for style of nodes:
+            base/.style = {rectangle, draw=black,
+                           minimum width=4cm, minimum height=1cm,
+                           text centered, font=\sffamily},
+            transparent/.style = {rectangle, draw=white,
+                           minimum width=1cm, minimum height=1cm,
+                           text centered, font=\sffamily},
+	  activityStarts/.style = {transparent, minimum width=0.25cm},
+	  AD/.style = {transparent},
+          process/.style = {base, minimum width=2.5cm, fill=white!15,
+                           font=\ttfamily},
+}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+%         grid= major ,
+	  width=1.0\textwidth ,
+	  xlabel style={font=\Large},
+	  xlabel = {x} ,
+	  ylabel style={font=\Large},
+	  ylabel = {Value} ,
+	  xmin = -1, 
+	  xmax = 1,
+	  ymin = -1, 
+	  ymax = 1,
+	  axis lines=middle,
+	  axis line style={myarrow},
+          grid=both,
+          grid style={line width=.1pt, draw=gray!10},
+          major grid style={line width=.2pt,draw=gray!50},
+	  legend style={at={(0.4,0.25)},anchor=south east}
+	  ]
+\addplot[red, thick] expression[domain=-1:1, domain y=-1:1, samples=200] {(x>0? x : -x)}; 
+\addplot[blue, thick, dashed] expression[domain=-1:1, domain y=-1:1, samples=200] {1.0}; 
+\legend{Distance,Distance gradient}
+\end{axis} 
+\end{tikzpicture}
+
+\end{document}
