@@ -14,7 +14,7 @@ The following applications of Kratos are used:
 - *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
-The problem  corresponds with the very known geometry of the [Standford bunny](https://en.wikipedia.org/wiki/Stanford_bunny). 
+The problem  corresponds with the very known geometry of the [Standford's bunny](https://en.wikipedia.org/wiki/Stanford_bunny). 
 <p align="center">
   <img src="data/Stanford_Bunny.png" alt="Standford bunny." style="width: 600px;"/>
 </p>
