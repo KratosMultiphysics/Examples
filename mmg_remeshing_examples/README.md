@@ -44,6 +44,7 @@ The Examples are continously updated and extended
 ## Use Cases
 
 - [Beam 2D](use_cases/beam2D/README.md)
+- [Beam 2D Internal interpolation](use_cases/beam2D_internal_interpolation/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
 - [Coarse sphere](use_cases/coarse_sphere/README.md)
 - [Lamborghini example](use_cases/lamborghini/README.md)
