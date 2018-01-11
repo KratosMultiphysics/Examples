@@ -42,16 +42,10 @@ The corresponding isosurface to the distance:
   <img src="data/isosurface_distance_0.png" alt="Isosurface" style="width: 600px;"/>
 </p>
 
-The color map of the distance:
+The distance and its gradient:
 
 <p align="center">
-  <img src="data/distance.png" alt="Distance" style="width: 600px;"/>
-</p>
-
-In detail:
-
-<p align="center">
-  <img src="data/distance_detail.png" alt="Distance detail" style="width: 600px;"/>
+  <img src="data/bunny_gradient.png" alt="Distance" style="width: 600px;"/>
 </p>
 
 The variation of the anisotropic ratio in the same region:
