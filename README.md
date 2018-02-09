@@ -78,3 +78,18 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
+
+## Chimera techinque
+
+**Validation**
+
+- [Flow over a cylinder RE10](chimera_tecnique/validation/flow_over_cylinder_re10/README.md) 
+- [Flow over a cylinder RE100](chimera_tecnique/validation/flow_over_cylinder_re100/README.md) 
+- [Lid driven cavity](chimera_tecnique/validation/lid_driven_cavity/README.md) 
+
+**Use cases**
+
+- [Missile launch](chimera_tecnique/use_cases/missile_launch/README.md) 
+- [Plate rotating in a flow](chimera_tecnique/use_cases/single_plate_rotating/README.md) 
+- [Two plates rotating in still fluid](chimera_tecnique/use_cases/two_plates_rotating/README.md) 
+- [Stirred tank](chimera_tecnique/use_cases/stirred_tank/README.md) 
