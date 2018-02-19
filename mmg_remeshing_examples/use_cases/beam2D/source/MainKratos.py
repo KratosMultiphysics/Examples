@@ -100,7 +100,7 @@ if solve_problem == True:
 # Delta time
 delta_time = ProjectParameters["problem_data"]["time_step"].GetDouble()
 # Start step
-main_model_part.ProcessInfo[TIME_STEPS] = 0
+main_model_part.ProcessInfo[STEP] = 0
 # Start time
 time = ProjectParameters["problem_data"]["start_time"].GetDouble()
 # End time
@@ -112,7 +112,7 @@ init_step = 1
 # Solving the problem (time integration)
 while(time <= end_time):
     time = time + delta_time
-    main_model_part.ProcessInfo[TIME_STEPS] += 1
+    main_model_part.ProcessInfo[STEP] += 1
     main_model_part.CloneTimeStep(time)
     step = step + 1
     

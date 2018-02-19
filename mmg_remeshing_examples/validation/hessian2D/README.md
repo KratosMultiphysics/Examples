@@ -38,7 +38,7 @@ The results obtained after remeshing can be see in the following figures:
 The color map of the test function:
 
 <p align="center">
-  <img src="data/error_stimation.png" alt="Distance" style="width: 600px;"/>
+  <img src="data/error_estimation.png" alt="Distance" style="width: 600px;"/>
 </p>
 
 The variation of the element size:

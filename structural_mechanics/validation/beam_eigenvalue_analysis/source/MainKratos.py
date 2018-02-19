@@ -147,3 +147,10 @@ if (parallel_type == "OpenMP") or (mpi.rank == 0):
     print(" ")
     print("::[KSM Simulation]:: Analysis -END- ")
     print(" ")
+
+# Postprocessing the output in the terminal:
+print("Computed Eigenvalues:\n", main_model_part.ProcessInfo[EIGENVALUE_VECTOR])
+print("Computed Eigenvectors on Node 1:\n", main_model_part.GetNode(1).GetValue(EIGENVECTOR_MATRIX)) # for node with id 1
+# to get the output on every node (A lot!):
+# for node in main_model_part.Nodes:
+#     print(node.GetValue(EIGENVECTOR_MATRIX))

@@ -14,7 +14,7 @@ The following applications of Kratos are used:
 - *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
-The problem  corresponds with the very known geometry of the [Standford bunny](https://en.wikipedia.org/wiki/Stanford_bunny). 
+The problem  corresponds with the very known geometry of the [Standford's bunny](https://en.wikipedia.org/wiki/Stanford_bunny). 
 <p align="center">
   <img src="data/Stanford_Bunny.png" alt="Standford bunny." style="width: 600px;"/>
 </p>
@@ -42,16 +42,10 @@ The corresponding isosurface to the distance:
   <img src="data/isosurface_distance_0.png" alt="Isosurface" style="width: 600px;"/>
 </p>
 
-The color map of the distance:
+The distance and its gradient:
 
 <p align="center">
-  <img src="data/distance.png" alt="Distance" style="width: 600px;"/>
-</p>
-
-In detail:
-
-<p align="center">
-  <img src="data/distance_detail.png" alt="Distance detail" style="width: 600px;"/>
+  <img src="data/bunny_gradient.png" alt="Distance" style="width: 600px;"/>
 </p>
 
 The variation of the anisotropic ratio in the same region:

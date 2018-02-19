@@ -9,6 +9,7 @@ main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, 3)
 # We add the variables needed 
 main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISTANCE)
 main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISTANCE_GRADIENT)
+main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.NODAL_H)
 main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.NODAL_AREA)
 
 # We import the model main_model_part
