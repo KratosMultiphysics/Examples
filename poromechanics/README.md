@@ -17,6 +17,7 @@ All the examples shown here use the following applications of Kratos:
 
 * ExternalSolversApplication
 * FluidDynamicsApplication
+* ConstitutiveModelsApplication
 * SolidMechanicsApplication
 * PoromechanicsApplication
 
