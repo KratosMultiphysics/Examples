@@ -46,7 +46,7 @@ Open a terminal, go to the source folder of the case and type:
 First create a "run.bat" file inside the source folder of the example. It should contain the path of the installed Kratos libs and the order to run the python script. If Kratos is installed in C:
 
 > set PATH=C:\\KratosInstall;C:\\KratosInstall\\libs;%PATH%
-
+>
 > C:\\KratosInstall\\runkratos MainKratos.py
 
 After that, open a Windows command line, go to the source folder of the case and call the "run.bat" file to run the case:
