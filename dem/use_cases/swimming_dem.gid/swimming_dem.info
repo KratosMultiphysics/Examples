@@ -1,0 +1,48 @@
+ |  /           |             
+ ' /   __| _` | __|  _ \   __|
+ . \  |   (   | |   (   |\__ \ 
+_|\_\_|  \__,_|\__|\___/ ____/
+           Multi-Physics 5.3.0-5f180ee635
+
+     KRATOS |  _ \| ____|  \/  |  _ \ __ _  ___| | __      
+            | | | |  _| | |\/| | |_) / _` |/ __| |/ /      
+            | |_| | |___| |  | |  __/ (_| | (__|   <       
+            |____/|_____|_|  |_|_|   \__,_|\___|_|\_\      
+
+Importing DEMApplication...  done.
+Initializing KratosFluidDynamicsApplication... 
+Initializing KratosIncompressibleFluidApplication... 
+Initializing KratosIncompressibleFluidApplication...Register completed 
+Initializing KratosIncompressibleFluidApplication...variables succesfully registered 
+Initializing KratosIncompressibleFluidApplication...elements succesfully registered 
+Initializing KratosSwimmingDEMApplication... 
+Importing    KratosDEMApplication
+Importing    KratosFluidDynamicsApplication
+Importing    KratosIncompressibleFluidApplication
+Importing    KratosSwimmingDEMApplication
+Running under OpenMP........
+
+  [Reading Nodes    : 21553 nodes read]
+  [Reading Elements : 114518 elements read] [Type: HerschelBulkleyVMS3D]
+  [Reading Conditions : 8312 conditions read] [Type: MonolithicWallCondition3D]
+  [Total Lines Read : 339809]
+Initializing KratosExternalSolversApplication... 
+setting up AMGCL for iterative solve 
+  [Reading Nodes    : 141 nodes read]
+  [Reading Elements : 141 elements read] [Type: SphericSwimmingParticle3D]
+  [Total Lines Read : 606]
+  [Reading Nodes    : 3904 nodes read]
+  [Reading Conditions : 7724 conditions read] [Type: RigidFace3D3N]
+  [Total Lines Read : 15576]
+  [Total Lines Read : 1]
+  [Reading Nodes    : 36 nodes read]
+  [Total Lines Read : 120]
+
+Assigning DEM_D_linear_viscous_Coulomb to Properties 1
+
+Assigning DEM_D_linear_viscous_Coulomb to Properties 2
+          **************************************************
+            Parallelism Info:  MPI number of nodes: 1
+            Parallelism Info:  OMP number of processors: 1
+          **************************************************
+
