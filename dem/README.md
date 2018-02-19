@@ -1,6 +1,15 @@
 # DEM Application Examples
 
-![Main page.](data/main_page.png)
+[<img
+  src="main_data/angle_of_repose2.png?raw=true"
+  width="400"
+  title="Angle of repose test. Finishing.">
+](main_data/angle_of_repose2.png)
+[<img
+  src="main_data/swimming_dem2.png?raw=true"
+  width="400"
+  title="Angle of repose test. DEMs rising.">
+](main_data/swimming_dem2.png)
 
 ## Applications used
 
