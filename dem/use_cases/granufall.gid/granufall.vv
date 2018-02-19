@@ -1,0 +1,37 @@
+BeginZE /home/latorre/CIMNE/kratos/nestle/granufall.gid/granufall.vv
+   x -0.0505481250584125519 0.0889304578304290771
+   y 0.0519835725426673889 -0.039532877504825592
+   z -0.313981980085372925 0.106688492000102997
+   e 0.106684766709804535
+   v -0.0278259440828100592 0.47510706815377074 0.855352125385564377
+   r -0.20462571092471199
+   m -0.914707958698272705 0.323613464832305908 -0.242040202021598816 0 -0.376494675874710083 -0.464803069829940796 0.801379859447479248 0 0.146836280822753906 0.824155509471893311 0.546997964382171631 0 0 0 0 1
+   c 0.000253855192568153143 -0.00084135326324030757 0.103646747767925262
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 0
+   DrawingType 1
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 0
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE /home/latorre/CIMNE/kratos/nestle/granufall.gid/granufall.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+
