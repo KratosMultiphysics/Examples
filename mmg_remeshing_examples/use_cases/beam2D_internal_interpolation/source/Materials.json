@@ -19,7 +19,8 @@
                 "REFERENCE_HARDENING_MODULUS" : 233.0,
                 "INFINITY_HARDENING_MODULUS"  : 100.0,
                 "HARDENING_EXPONENT"          : 100.0,
-                "C10"                         : 40096900000.0
+                "C10"                         : 40096900000.0,
+                "BULK_MODULUS"                : 160.0e9
             },
             "tables"           : {}
         }
