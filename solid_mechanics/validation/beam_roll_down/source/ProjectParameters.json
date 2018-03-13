@@ -1,0 +1,85 @@
+{
+    "problem_data"             : {
+        "problem_name" : "static_beam_bending",
+        "echo_level"   : 1
+    },
+    "model_settings"           : {
+        "model_name"           : "static_beam_bending",
+        "dimension"            : 3,
+        "domain_parts_list"    : ["Parts_Parts_Auto1"],
+        "processes_parts_list" : ["DISPLACEMENT_Displacement_Auto1","ROTATION_Rotation_Auto1","PointMoment3D_Moment_on_points_Auto1"],
+        "input_file_settings"  : {
+            "name" : "static_beam_bending"
+        },
+        "dofs"                 : ["ROTATION"]
+    },
+    "solver_settings"          : {
+        "solver_type" : "solid_mechanics_static_solver",
+        "Parameters"  : {
+            "time_settings"             : {
+                "time_step"  : 1.0,
+                "start_time" : 0.0,
+                "end_time"   : 8
+            },
+            "time_integration_settings" : {
+                "solution_type"      : "Static",
+                "integration_method" : "RotationStatic"
+            },
+            "solving_strategy_settings" : {
+                "line_search"                 : false,
+                "convergence_criterion"       : "Residual_criterion",
+                "variable_relative_tolerance" : 0.0001,
+                "variable_absolute_tolerance" : 1e-9,
+                "residual_relative_tolerance" : 1e-6,
+                "residual_absolute_tolerance" : 1e-9,
+                "max_iteration"               : 10
+            }
+        }
+    },
+    "constraints_process_list" : [{
+        "python_module" : "assign_vector_components_to_nodes_process",
+        "kratos_module" : "KratosMultiphysics.SolidMechanicsApplication",
+        "Parameters"    : {
+            "model_part_name" : "DISPLACEMENT_Displacement_Auto1",
+            "variable_name"   : "DISPLACEMENT",
+            "value"           : [0.0,0.0,0.0],
+            "interval"        : [0.0,"End"]
+        }
+    },{
+        "python_module" : "assign_vector_components_to_nodes_process",
+        "kratos_module" : "KratosMultiphysics.SolidMechanicsApplication",
+        "Parameters"    : {
+            "model_part_name" : "ROTATION_Rotation_Auto1",
+            "variable_name"   : "ROTATION",
+            "value"           : [0.0,0.0,0.0],
+            "interval"        : [0.0,"End"]
+        }
+    }],
+    "loads_process_list"       : [{
+        "python_module" : "assign_modulus_and_direction_to_conditions_process",
+        "kratos_module" : "KratosMultiphysics.SolidMechanicsApplication",
+        "Parameters"    : {
+            "model_part_name" : "PointMoment3D_Moment_on_points_Auto1",
+            "variable_name"   : "POINT_MOMENT",
+            "modulus"         : "3.1416*t",
+            "direction"       : [0.0,0.0,-1.0],
+            "interval"        : [0.0,"End"]
+        }
+    }],
+    "output_configuration"     : {
+        "result_file_configuration" : {
+            "gidpost_flags"       : {
+                "GiDPostMode"           : "GiD_PostBinary",
+                "WriteDeformedMeshFlag" : "WriteDeformed",
+                "WriteConditionsFlag"   : "WriteElementsOnly",
+                "MultiFileFlag"         : "MultipleFiles"
+            },
+            "file_label"          : "step",
+            "output_control_type" : "step",
+            "output_frequency"    : 1,
+            "node_output"         : false,
+            "nodal_results"       : ["DISPLACEMENT","REACTION","ROTATION","TORQUE"],
+            "gauss_point_results" : ["MOMENT","FORCE"]
+        }
+    }
+}
