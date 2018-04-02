@@ -82,7 +82,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyConstraintVectorTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Solid_Displacement-auto-1",
             "variable_name":   "DISPLACEMENT",
             "active":          [true,true,false],
@@ -95,7 +94,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyConstraintVectorTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Solid_Displacement-auto-2",
             "variable_name":   "DISPLACEMENT",
             "active":          [false,true,false],
@@ -108,7 +106,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyPorePressureTableProcess",
         "Parameters":    {
-            "mesh_id":              0,
             "model_part_name":      "Fluid_Pressure-auto-1",
             "variable_name":        "WATER_PRESSURE",
             "is_fixed":             true,
@@ -125,7 +122,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyLoadVectorTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Face_Load-auto-1",
             "variable_name":   "FACE_LOAD",
             "active":          [false,true,false],
@@ -137,7 +133,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyLoadVectorTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Face_Load-auto-2",
             "variable_name":   "FACE_LOAD",
             "active":          [false,true,false],
