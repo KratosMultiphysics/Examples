@@ -80,7 +80,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyConstraintVectorTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Solid_Displacement-auto-2",
             "variable_name":   "DISPLACEMENT",
             "active":          [true,true,false],
@@ -93,7 +92,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyPorePressureTableProcess",
         "Parameters":    {
-            "mesh_id":              0,
             "model_part_name":      "Fluid_Pressure-auto-1",
             "variable_name":        "WATER_PRESSURE",
             "is_fixed":             true,
@@ -110,7 +108,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyLoadScalarTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Normal_Fluid_Flux-auto-1",
             "variable_name":   "NORMAL_FLUID_FLUX",
             "value":           0.0,
@@ -121,7 +118,6 @@
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
         "process_name":  "ApplyLoadScalarTableProcess",
         "Parameters":    {
-            "mesh_id":         0,
             "model_part_name": "Interface_Normal_Fluid_Flux-auto-1",
             "variable_name":   "NORMAL_FLUID_FLUX",
             "value":           -5.0e-4,
