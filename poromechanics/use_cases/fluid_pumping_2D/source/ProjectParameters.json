@@ -79,9 +79,9 @@
         "point_data_configuration":  []
     },
     "constraints_process_list": [{
-        "python_module": "apply_constraint_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyConstraintVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Solid_Displacement-auto-2",
             "variable_name":   "DISPLACEMENT",
@@ -91,9 +91,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_constraint_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyConstraintVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Solid_Displacement-auto-3",
             "variable_name":   "DISPLACEMENT",
@@ -103,9 +103,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_constraint_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyConstraintVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Solid_Displacement-auto-1",
             "variable_name":   "DISPLACEMENT",
@@ -115,9 +115,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_pore_pressure_table_process",
+        "python_module": "apply_scalar_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyPorePressureTableProcess",
+        "process_name":  "ApplyScalarConstraintTableProcess",
         "Parameters":    {
             "model_part_name":      "Fluid_Pressure-auto-1",
             "variable_name":        "WATER_PRESSURE",
@@ -131,9 +131,9 @@
         }
     }],
     "loads_process_list": [{
-        "python_module": "apply_load_scalar_table_process",
+        "python_module": "apply_scalar_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyLoadScalarTableProcess",
+        "process_name":  "ApplyScalarConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Normal_Fluid_Flux-auto-1",
             "variable_name":   "NORMAL_FLUID_FLUX",
@@ -141,9 +141,9 @@
             "table":           0
         }
     },{
-        "python_module": "apply_load_scalar_table_process",
+        "python_module": "apply_scalar_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyLoadScalarTableProcess",
+        "process_name":  "ApplyScalarConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Interface_Normal_Fluid_Flux-auto-1",
             "variable_name":   "NORMAL_FLUID_FLUX",
