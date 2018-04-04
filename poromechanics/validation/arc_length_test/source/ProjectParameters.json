@@ -112,7 +112,7 @@
             "value":                0.0,
             "table":                0,
             "hydrostatic":          false,
-            "gravity_direction":    3,
+            "gravity_direction":    2,
             "reference_coordinate": 0.0,
             "specific_weight":      10000.0
         }
