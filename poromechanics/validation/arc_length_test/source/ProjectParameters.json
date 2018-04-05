@@ -78,9 +78,9 @@
         "point_data_configuration":  []
     },
     "constraints_process_list": [{
-        "python_module": "apply_constraint_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyConstraintVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Solid_Displacement-auto-1",
             "variable_name":   "DISPLACEMENT",
@@ -90,9 +90,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_constraint_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyConstraintVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Solid_Displacement-auto-2",
             "variable_name":   "DISPLACEMENT",
@@ -102,9 +102,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_pore_pressure_table_process",
+        "python_module": "apply_scalar_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyPorePressureTableProcess",
+        "process_name":  "ApplyScalarConstraintTableProcess",
         "Parameters":    {
             "model_part_name":      "Fluid_Pressure-auto-1",
             "variable_name":        "WATER_PRESSURE",
@@ -112,15 +112,15 @@
             "value":                0.0,
             "table":                0,
             "hydrostatic":          false,
-            "gravity_direction":    3,
+            "gravity_direction":    2,
             "reference_coordinate": 0.0,
             "specific_weight":      10000.0
         }
     }],
     "loads_process_list": [{
-        "python_module": "apply_load_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyLoadVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Face_Load-auto-1",
             "variable_name":   "FACE_LOAD",
@@ -129,9 +129,9 @@
             "table":           [0,0,0]
         }
     },{
-        "python_module": "apply_load_vector_table_process",
+        "python_module": "apply_vector_constraint_table_process",
         "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
-        "process_name":  "ApplyLoadVectorTableProcess",
+        "process_name":  "ApplyVectorConstraintTableProcess",
         "Parameters":    {
             "model_part_name": "Face_Load-auto-2",
             "variable_name":   "FACE_LOAD",
