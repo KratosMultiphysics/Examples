@@ -21,9 +21,10 @@
         "echo_level":                         1,
         "clear_storage":                      false,
         "compute_reactions":                  false,
-        "move_mesh_flag":                     true,
+        "move_mesh_flag":                     false,
         "periodic_interface_conditions":      false,
         "reform_dofs_at_each_step":           false,
+        "nodal_smoothing":                    true,
         "block_builder":                      true,
         "solution_type":                      "Quasi-Static",
         "scheme_type":                        "Newmark",
@@ -73,7 +74,7 @@
             "node_output":         false,
             "skin_output":         false,
             "plane_output":        [],
-            "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","FACE_LOAD"],
+            "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","FACE_LOAD","NODAL_CAUCHY_STRESS_TENSOR"],
             "gauss_point_results": ["CAUCHY_STRESS_TENSOR","TOTAL_STRESS_TENSOR"]
         },
         "point_data_configuration":  []
