@@ -19,8 +19,8 @@ import KratosMultiphysics.SolidMechanicsApplication  as KratosSolid
 import KratosMultiphysics.PoromechanicsApplication as KratosPoro
     
 # Parsing the parameters
-parameter_file = open("ProjectParameters.json",'r')
-ProjectParameters = KratosMultiphysics.Parameters( parameter_file.read())
+with open("ProjectParameters.json",'r') as parameter_file:
+    ProjectParameters = KratosMultiphysics.Parameters(parameter_file.read())
 
 # Parallel Configuration
 parallel_type = ProjectParameters["problem_data"]["parallel_type"].GetString()
@@ -65,7 +65,7 @@ solver.ImportModelPart()
 # Add degrees of freedom
 solver.AddDofs()
 
-# Creation of Kratos model
+# Creation of Kratos model (build submodels and submeshes)
 PoroModel = KratosMultiphysics.Model()
 PoroModel.AddModelPart(main_model_part)
 

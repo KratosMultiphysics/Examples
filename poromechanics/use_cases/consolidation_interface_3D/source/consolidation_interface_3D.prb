@@ -97,7 +97,7 @@ HELP: Times the initial radius. In order to use a constant radius, choose the sa
 QUESTION: Reform_Dofs_At_Each_Step#CB#(true,false)
 VALUE: false
 QUESTION: Move_Mesh#CB#(true,false)
-VALUE: true
+VALUE: false
 QUESTION: Block_Builder#CB#(true,false)
 VALUE: true
 QUESTION: Solver_Type#CB#(SkylineLUFactorizationSolver,SuperLUSolver,BICGSTABSolver,AMGCL,Klu,AztecSolver,AmgclMPISolver,MultiLevelSolver)
@@ -150,6 +150,8 @@ QUESTION: Write_Local_Fluid_Flux#CB#(true,false)
 VALUE: false
 QUESTION: Write_Local_Permeability#CB#(true,false)
 VALUE: false
+QUESTION: Nodal_Smoothing#CB#(true,false)
+VALUE: true
 QUESTION: GiD_post_mode#CB#(GiD_PostAscii,GiD_PostAsciiZipped,GiD_PostBinary,GiD_PostHDF5)
 VALUE: GiD_PostBinary
 QUESTION: Write_deformed_mesh#CB#(WriteUndeformed,WriteDeformed)
