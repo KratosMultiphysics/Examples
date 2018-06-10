@@ -5,17 +5,19 @@
         "domain_size":          2,
         "start_time":           0.0,
         "end_time":             2.0,
-        "time_step":            0.02,
+        "echo_level":           1,
         "parallel_type":        "OpenMP",
         "number_of_threads":    1,
         "fracture_propagation": false
     },
     "solver_settings": {
         "solver_type":                        "poromechanics_U_Pw_solver",
+        "model_part_name":                    "PorousDomain",
+        "domain_size":                        2,
+        "time_step":                          0.02,
         "model_import_settings":              {
             "input_type":       "mdpa",
-            "input_filename":   "undrained_soil_column_2D",
-            "input_file_label": 0
+            "input_filename":   "undrained_soil_column_2D"
         },
         "buffer_size":                        2,
         "echo_level":                         1,
