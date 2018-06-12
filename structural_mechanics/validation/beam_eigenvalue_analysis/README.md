@@ -2,7 +2,7 @@
 
 **Author:** Philipp Bucher
 
-**Kratos version:** 5.2
+**Kratos version:** 6.0
 
 **Source files:** [Beam Eigenvalues](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_eigenvalue_analysis/source)
 
