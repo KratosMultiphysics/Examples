@@ -1,21 +1,21 @@
 {
     "problem_data": {
         "problem_name":         "fluid_pumping_2D_fracture",
-        "model_part_name":      "PorousDomain",
-        "domain_size":          2,
         "start_time":           0.0,
         "end_time":             3.0,
-        "time_step":            0.1,
+        "echo_level":           1,
         "parallel_type":        "OpenMP",
-        "number_of_threads":    1,
-        "fracture_propagation": true
+        "number_of_threads":    1
     },
     "solver_settings": {
-        "solver_type":                        "poromechanics_U_Pw_solver",
+        "solver_type":                        "poromechanics_fracture_U_Pw_solver",
+        "model_part_name":                    "PorousDomain",
+        "domain_size":                        2,
+        "start_time":                         0.0,
+        "time_step":                          0.1,
         "model_import_settings":              {
             "input_type":       "mdpa",
-            "input_filename":   "fluid_pumping_2D_fracture",
-            "input_file_label": 0
+            "input_filename":   "fluid_pumping_2D_fracture"
         },
         "buffer_size":                        2,
         "echo_level":                         1,
@@ -26,14 +26,14 @@
         "reform_dofs_at_each_step":           false,
         "nodal_smoothing":                    true,
         "block_builder":                      false,
-        "solution_type":                      "Quasi-Static",
+        "solution_type":                      "quasi_static",
         "scheme_type":                        "Newmark",
         "newmark_beta":                       0.25,
         "newmark_gamma":                      0.5,
         "newmark_theta":                      0.5,
         "rayleigh_m":                         0.0,
         "rayleigh_k":                         0.0,
-        "strategy_type":                      "Newton-Raphson",
+        "strategy_type":                      "newton_raphson",
         "convergence_criterion":              "And_criterion",
         "displacement_relative_tolerance":    1.0E-4,
         "displacement_absolute_tolerance":    1.0E-9,
