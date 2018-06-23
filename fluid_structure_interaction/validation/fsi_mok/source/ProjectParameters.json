@@ -241,8 +241,8 @@
             "parallel_type" : "OpenMP"
         },
         "solver_settings" : {
+            "solver_type"                  : "Partitioned",
             "coupling_scheme"              : "DirichletNeumann",
-            "solver_type"                  : "partitioned_fsi_dirichlet_neumann_solver",
             "nl_tol"                       : 1e-8,
             "nl_max_it"                    : 25,
             "solve_mesh_at_each_iteration" : true,
