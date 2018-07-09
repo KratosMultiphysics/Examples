@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gid version="13.0">
+  <pre>
+    <layer_to_use name="dem"/>
+    <groups>
+      <group id="1" name="bucket" color="#ffaaaaff"/>
+      <group id="2" name="dem" color="#608fbfff"/>
+      <group id="3" name="floor" color="#623d99ff"/>
+      <group id="4" name="-AKGSkinMesh3D" color="#80802aff" state="hidden"/>
+      <group id="6" name="-AKGDEMSkinMesh3D" color="#00ff00ff" state="hidden"/>
+    </groups>
+    <entities_groups>
+      <entities_group name="surfaces">
+        <vector name="entity_ids" length="7" type="integer">4 8 23 26:29</vector>
+        <vector name="entity_num_groups" length="7" type="ushort">1x7</vector>
+        <vector name="entity_groups" length="7" type="ushort">1 1 3 1x4</vector>
+      </entities_group>
+      <entities_group name="volumes">
+        <vector name="entity_ids" length="1" type="integer">1</vector>
+        <vector name="entity_num_groups" length="1" type="ushort">1</vector>
+        <vector name="entity_groups" length="1" type="ushort">2</vector>
+      </entities_group>
+      <entities_group name="nodes">
+        <vector name="entity_ids" length="48064" type="integer">1:48064</vector>
+        <vector name="entity_num_groups" length="48064" type="ushort">1x48064</vector>
+        <vector name="entity_groups" length="48064" type="ushort">3 1x13 2 1 1 2 1 2 1 2x14 1 2x16 1 2 2 1 2 1 2x16 1 2 2 1 2x6 1 2x5 1 2x4 1 2 2 1 2x5 1 2x7 1 2x14 1 2x16 1 2x24 1 2x40 1 1 2x56 1 2 2 1 2x46 1 2x4 1 2x13 1 2x19 1 2 1 2x3 1 2x71 1 2x12 1 2x4 1 2x32 1 2x102 1 2x36 1 2x3 1 1 2x31 1 2x26 1 2x68 1 2x22 1 2x61 1 2x107 1 2x4 1 2x14 1 2x23 1 2x10 1 2x15 1 2x82 1 2x13 1 2x41 1 2x188 1 2x5 1 2x72 1 2x50 1 2x74 1 2x54 1 2x56 1 2x8 1 2x80 1 2x35 1 2x88 1 2x3 1 2x129 1 2x41 1 2x463 1 2x18 1 2x44 1 2 1 2x4 1 2x4 1 2x31 1 2x46 1 2x3 1 2x6 1 2x129 1 2x57 1 2x123 1 2x25 1 2x80 1 2x47 1 2x61 1 2x148 1 2x189 1 2x65 1 2x359 1 2x140 1 2x25 1 2x172 1 2x60 1 2x68 1 2x30 1 2x158 1 2x32 1 2x21 1 2x365 1 2x167 1 2x322 1 2x92 1 2x76 1 2x338 1 2x15 1 2x22 1 2 2 1 2x49 1 2x4 1 2x204 1 2x184 1 2x124 1 2x209 1 2x56 1 2x12 1 2x162 1 2x291 1 2x205 1 2x67 1 2x43 1 2x75 1 2x153 1 2x243 1 2x82 1 2x155 1 2x41 1 2x60 1 2x137 1 2x73 1 2x104 1 2x278 1 2x30 1 2x118 1 2x488 1 2x182 1 2x59 1 2x277 1 2x263 1 2x311 1 2x9 1 2x279 1 2x21 1 2x45 1 2x249 1 2x266 1 2x115 1 2x71 1 2x335 1 2x88 1 2x16 1 2x122 1 2x3 1 2x296 1 2x47 1 2x407 1 2x154 1 2x154 1 2x37 1 2x42 1 2x34 1 2x191 1 2x79 1 2x104 1 2x147 1 2x90 1 2x306 1 2x160 1 2x167 1 2x9 1 2x839 1 2x432 1 2x12 1 2x329 1 2x90 1 2x133 1 2x4 1 2x75 1 2x326 1 2x56 1 2x62 1 2x273 1 2x88 1 2x138 1 2x180 1 2x11 1 2x397 1 2x244 1 2x65 1 2x156 1 2x29 1 2x521 1 2x154 1 2x64 1 2x25 1 2x405 1 2x111 1 2x331 1 2x28 1 2x168 1 2x33 1 2x340 1 2x173 1 2x95 1 2x279 1 2x490 1 2 1 2x236 1 2x6 1 2x218 1 2x172 1 2x74 1 2x76 1 2x270 1 2x83 1 2x40 1 2x282 1 2x18 1 2x320 1 2x38 1 2x660 1 2x119 1 2x87 1 2x191 1 2x122 1 2x185 1 2x310 1 2x116 1 2x46 1 2x661 1 2x80 1 2x248 1 2x55 1 2x207 1 2x81 1 2x274 1 2x17 1 2x314 1 2x53 1 2 1 2x121 1 2x3 1 2x250 1 2x155 1 2x127 1 2x261 1 2x226 1 2x40 1 2x104 1 2x214 1 2x33 1 2x17 1 2x1224 1 2x284 1 2x62 1 2x5 1 2x179 1 2x35 1 2x150 1 2x380 1 2x131 1 2x245 1 2x85 1 2x117 1 2x90 1 2x139 1 2x202 1 2x32 1 2x175 1 2x129 1 2x196 1 2x341 1 2x79 1 2x79 1 2x6 1 2x100 1 2x237 1 2x26 1 2x12 1 2x581 1 2x4 1 2x34 1 2x188 1 2x90 1 2x53 1 2x678 1 2x86 1 2x319 1 2x267 1 2x70 1 2x16 1 2x30 1 2x137 1 2x80 1 2x536 1 2x170 1 2x90 1 2x124 1 2x57 1 2x53 1 2x97 1 2x29 1 2x24 1 2x525 1 2x327 1 2x23 1 2x85 1 2x30 1 2x368 1 2x7 1 2x108 1 2x7 1 2x83 1 2x224 1 2x90 1 2x98 1 2x78 1 2x158 1 2x161 1 2x49 1 2x78 1 2x225 1 2x57 1 2x94 1 2x105 1 2x25 1 2x47 1 2x43 1 2x28 1 2x312 1 2x102 1 2x138 1 2x124 1 2x336 1 2x25 1 2x5 1 2x123 1 2x119 1 2x117 1 2 2 1 2x125 1 2x176 1 2x34 1 2x94 1 2x16 1 2x309 1 2x22 1 2 1 2x216 1 2x66 3 3 2x79 1 2x78 1 1 2x151 1 2x79 1 2x85 1 2x12 1 2x16 1 2x72 1 2x132 1 2x128 1 2x19 1 2x95 1 2x62 1 2x85 1 2x162 1 2x66 1 2x123 1 2x16 1 2x49 1 2x239 1 2x21 1 2x5 1 2x25 1 2x77 1 2x58 1 2x67 1 2x24 1 2x99 1 2x112 1 2x33 1 2x79 1 2x151 1 2 1 2x130 1 2x29 1 1 2x55 1 2x20 1 2x78 1 2x29 1 2x153 1 2x36 1 2x61 1 2x25 1 2x63 1 2x14 1 1 2x71 1 2x21 1 2x65 1 2x91 1 2x69 1 2x82 1 2x17 1 2x111 1 1 2x14 1 2x6 1 2x59 1 2x10 1 2x68 1 2x22 1 2x98 1 2x6 1 2x9 1 2x10 1 2x14 1 2x45 1 2x21 1 2x18 1 2x23 1 2x30 1 2x22 1 2x27 1 2x14 1 2x8 1 2x10 1 2x26 1 2x5 1 2x17 1 2x4 1 2x11 1 2 2 1 2 1 2 1 1 2x5 1x12 3</vector>
+      </entities_group>
+      <entities_group name="elements">
+        <vector name="entity_ids" length="48477" type="integer">1:48477</vector>
+        <vector name="entity_num_groups" length="48477" type="ushort">1x48477</vector>
+        <vector name="entity_groups" length="48477" type="ushort">2x47603 1x776 3 3 1x96</vector>
+      </entities_group>
+    </entities_groups>
+  </pre>
+</gid>

@@ -1,0 +1,37 @@
+BeginZE /home/latorre/CIMNE/kratos/siemens_hpc0/non_uniform_2.gid/non_uniform_2.vv
+   x 0.154992580413818359 1.80078589916229248
+   y 1.45023858547210693 -1.32028603553771973
+   z -1.00475716590881348 0.579601645469665527
+   e 0.193739548325538635
+   v 0.216503828763961792 0.299978256225585938 0.744458854198455811
+   r 0.555805802345275879
+   m -0.288411945104598999 -0.697656214237213135 0.655815720558166504 0 0.957441985607147217 -0.202185839414596558 0.205974787473678589 0 -0.0111029054969549179 0.687311112880706787 0.726278245449066162 0 0 0 0 1
+   c 0.500418186187744141 0.250045239925384521 0.212577760219573975
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 1
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 0
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE /home/latorre/CIMNE/kratos/siemens_hpc0/non_uniform_2.gid/non_uniform_2.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+
