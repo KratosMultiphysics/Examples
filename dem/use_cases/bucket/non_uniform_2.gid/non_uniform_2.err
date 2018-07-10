@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "KratosDEM.py", line 1, in <module>
-    import KratosMultiphysics
-  File "/home/latorre/Kratos/KratosMultiphysics/__init__.py", line 13, in <module>
-    from Kratos import *
-ImportError: dynamic module does not define init function (initKratos)
