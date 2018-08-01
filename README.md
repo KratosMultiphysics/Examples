@@ -69,7 +69,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
 
-## Swimming DEM Fluid Interaction
+## Swimming DEM
 
 **Use cases**
 
