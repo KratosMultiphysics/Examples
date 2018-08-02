@@ -26,7 +26,7 @@ Begin Elements SphericSwimmingParticle3D   //  GUI group identifier: DEMElem0
 End Elements
 
 Begin NodalData RADIUS  // GUI group identifier: DEMElem0 Elementid SwimmingDEMElement
-156 0 0.1
+156 0 0.01
 End NodalData
 
 Begin SubModelPart 1 // GUI conditionid DEM-VelocityIC group identifier: DEMElem0
