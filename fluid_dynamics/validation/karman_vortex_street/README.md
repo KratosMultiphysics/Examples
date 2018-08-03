@@ -9,7 +9,7 @@ This benchmark simulates the time-periodic behaviour of a fluid in a pipe with a
   <img src="data/karman_vortex_street_velocity.gif" alt="Geometry specification and case setup." style="width: 600px;"/>
 </p>
 
-**Source files:** [Beam Non-Linear Cantilever](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/karman_vortex_street/source)
+**Source files:** [Flow over a cylinder](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/karman_vortex_street/source)
 
 The following applications of Kratos are used:
 * FluidDynamicsApplication
