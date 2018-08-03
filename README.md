@@ -13,6 +13,8 @@ Each case should be self-contained: include all input data and relevant scripts 
 Unit tests should *not* be uploaded to this repository. Please put them in the `tests` folder of the corresponding application.
 
 ## Fluid Dynamics
+**Validation**
+- [Flow over cylinder (Karman vortex street)](fluid_dynamics/validation/karman_vortex_street/README.md) 
 
 **Use cases**
 
