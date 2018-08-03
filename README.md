@@ -68,3 +68,17 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
+
+## Swimming DEM
+
+**Use cases**
+
+- [Small Box Eulerian OW](swimming_dem_fluid_interaction/use_cases/Eulerian_Fluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
+- [Small Box Eulerian TW](swimming_dem_fluid_interaction/use_cases/Eulerian_Fluid_Element/Two_Way/Small_Box_Eulerian_TW/README.md)
+- [Small Box Lagrangian OW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
+- [Small Box Lagrangian TW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/Two_Way/Small_Box_Eulerian_TW/README.md)
+
+
+
+
+
