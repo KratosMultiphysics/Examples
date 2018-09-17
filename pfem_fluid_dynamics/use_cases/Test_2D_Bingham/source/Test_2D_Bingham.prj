@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gid version="13.5">
+  <pre>
+    <layer_to_use name="Layer0"/>
+    <groups>
+      <group id="1" name="Parts Auto1" color="#ff00ffff"/>
+      <group id="2" name="Parts Auto2" color="#008000ff"/>
+      <group id="3" name="Velocity Auto1" color="#ffff00ff"/>
+      <group id="4" name="Total" color="#00ffffff" parent_id="3" state="hidden"/>
+    </groups>
+    <entities_groups>
+      <entities_group name="lines">
+        <vector name="entity_ids" length="3" type="integer">1 2 5</vector>
+        <vector name="entity_num_groups" length="3" type="ushort">3x3</vector>
+        <vector name="entity_groups" length="9" type="ushort">2 3 4 2 3 4 2 3 4</vector>
+      </entities_group>
+      <entities_group name="surfaces">
+        <vector name="entity_ids" length="1" type="integer">1</vector>
+        <vector name="entity_num_groups" length="1" type="ushort">1</vector>
+        <vector name="entity_groups" length="1" type="ushort">1</vector>
+      </entities_group>
+      <entities_group name="nodes">
+        <vector name="entity_ids" length="522" type="integer">1:522</vector>
+        <vector name="entity_num_groups" length="522" type="ushort">3x89 4 1x17 4 1x21 4 1x17 4 1x17 4 1x17 4 1x22 4 1x18 4 1x18 4 1x17 4 1x17 4 1x19 4 1x20 4 1x17 4 1x16 4 1x15 4 1x18 4 1x21 4 1x16 4 1x18 4 1x17 4 1x17 4 1x17 4x3 1 4 4 1 4x12</vector>
+        <vector name="entity_groups" length="817" type="ushort">2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 1x18 2 3 4 1x22 2 3 4 1x18 2 3 4 1x18 2 3 4 1x18 2 3 4 1x23 2 3 4 1x19 2 3 4 1x19 2 3 4 1x18 2 3 4 1x18 2 3 4 1x20 2 3 4 1x21 2 3 4 1x18 2 3 4 1x17 2 3 4 1x16 2 3 4 1x19 2 3 4 1x22 2 3 4 1x17 2 3 4 1x19 2 3 4 1x18 2 3 4 1x18 2 3 4 1x18 2 3 4 1 2 3 4 1 2 3 4 1 1 2 3 4 1 2 3 4 1 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1</vector>
+      </entities_group>
+      <entities_group name="elements">
+        <vector name="entity_ids" length="915" type="integer">1:826 843:931</vector>
+        <vector name="entity_num_groups" length="915" type="ushort">1x788 3x127</vector>
+        <vector name="entity_groups" length="1169" type="ushort">1x788 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4 2 3 4</vector>
+      </entities_group>
+    </entities_groups>
+  </pre>
+</gid>
