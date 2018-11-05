@@ -74,7 +74,7 @@
             "nl_max_it": 1,
             "solve_mesh_at_each_iteration": true,
             "coupling_strategy_settings": {
-                "solver_type": "Relaxation"
+                "solver_type": "MVQN"
             },
             "structure_interfaces_list": ["StructureInterface2D_StructureInterface"],
             "fluid_interfaces_list": ["FluidNoSlipInterface2D_FluidInterface"],
