@@ -1,17 +1,19 @@
 {
-    "structure_solver_settings" : {
-        "problem_data"             : {
-            "problem_name"    : "fsi_mok",
-            "model_part_name" : "Structure",
-            "domain_size"     : 2,
-            "parallel_type"   : "OpenMP",
-            "time_step"       : 0.1,
-            "start_time"      : 0.0,
-            "end_time"        : 25.0,
-            "echo_level"      : 0
-        },
-        "solver_settings"          : {
+    "problem_data": {
+        "problem_name": "fsi_interface_test",
+        "parallel_type": "OpenMP",
+        "echo_level": 0,
+        "start_time": 0.0,
+        "end_time": 25.0
+    },
+    "solver_settings": {
+        "solver_type": "partitioned",
+        "coupling_scheme": "dirichlet_neumann",
+        "echo_level": 1,
+        "structure_solver_settings": {
             "solver_type"                        : "Dynamic",
+            "model_part_name"                    : "Structure",
+            "domain_size"                        : 2,
             "echo_level"                         : 0,
             "analysis_type"                      : "non_linear",
             "time_integration_method"            : "implicit",
@@ -22,6 +24,9 @@
             },
             "material_import_settings"           : {
                 "materials_filename" : "StructuralMaterials.json"
+            },
+            "time_stepping"                      : {
+                "time_step" : 0.1
             },
             "line_search"                        : false,
             "convergence_criterion"              : "residual_criterion",
@@ -34,134 +39,80 @@
             "processes_sub_model_part_list"      : ["DISPLACEMENT_FixedDisplacement","StructureInterface2D_StructureInterface"],
             "rotation_dofs"                      : false
         },
-        "constraints_process_list" : [{
+        "fluid_solver_settings":{
+            "model_part_name"             : "FluidModelPart",
+            "domain_size"                 : 2,
+            "solver_type"                 : "Monolithic",
+            "model_import_settings"       : {
+                "input_type"     : "mdpa",
+                "input_filename" : "fsi_mok_Fluid"
+            },
+            "echo_level"                  : 0,
+            "compute_reactions"           : true,
+            "dynamic_tau"                 : 1.0,
+            "oss_switch"                  : 0,
+            "maximum_iterations"          : 20,
+            "relative_velocity_tolerance" : 1e-8,
+            "absolute_velocity_tolerance" : 1e-10,
+            "relative_pressure_tolerance" : 1e-8,
+            "absolute_pressure_tolerance" : 1e-10,
+            "volume_model_part_name"      : "Parts_Fluid",
+            "skin_parts"                  : ["AutomaticInlet2D_Inlet","Outlet2D_Outlet","Slip2D_Slip","NoSlip2D_NoSlip","FluidNoSlipInterface2D_FluidInterface"],
+            "no_skin_parts"               : [],
+            "time_stepping"               : {
+                "automatic_time_step" : false,
+                "time_step"           : 0.1
+            },
+            "time_scheme"                 : "bossak"
+        },
+        "mesh_solver_settings":{
+            "echo_level": 0,
+            "domain_size": 2,
+            "model_part_name": "FluidModelPart",
+            "solver_type": "mesh_solver_structural_similarity"
+        },
+        "coupling_settings":{
+            "nl_tol": 1e-6,
+            "nl_max_it": 25,
+            "solve_mesh_at_each_iteration": true,
+            "coupling_strategy_settings": {
+                "solver_type": "MVQN_recursive",
+                "buffer_size": 10,
+                "abs_cut_off_tol": 1e-8
+            },
+            "fluid_interfaces_list": ["FluidNoSlipInterface2D_FluidInterface"],
+            "structure_interfaces_list": ["StructureInterface2D_StructureInterface"],
+            "mapper_settings" : [{
+                "mapper_face": "unique",
+                "fluid_interface_submodelpart_name": "FluidNoSlipInterface2D_FluidInterface",
+                "structure_interface_submodelpart_name": "StructureInterface2D_StructureInterface"
+            }]
+        }
+	},
+    "processes":{
+        "structure_constraints_process_list" : [{
             "python_module" : "assign_vector_variable_process",
             "kratos_module" : "KratosMultiphysics",
-            "help"          : "This process fixes the selected components of a given vector variable",
-            "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "DISPLACEMENT_FixedDisplacement",
+                "model_part_name" : "Structure.DISPLACEMENT_FixedDisplacement",
                 "variable_name"   : "DISPLACEMENT",
                 "constrained"     : [true,true,true],
                 "value"           : [0.0,0.0,0.0],
                 "interval"        : [0.0,"End"]
             }
         }],
-        "loads_process_list"       : [{
+        "structure_loads_process_list"       : [{
             "python_module" : "python_process",
             "kratos_module" : "KratosMultiphysics",
-            "help"          : "Python processes empty base class which does nothing",
-            "process_name"  : "PythonProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "StructureInterface2D_StructureInterface"
+                "model_part_name" : "Structure.Interface2D_StructureInterface"
             }
         }],
-        "output_configuration"     : {
-            "result_file_configuration" : {
-                "gidpost_flags"       : {
-                    "GiDPostMode"           : "GiD_PostBinary",
-                    "WriteDeformedMeshFlag" : "WriteDeformed",
-                    "WriteConditionsFlag"   : "WriteConditions",
-                    "MultiFileFlag"         : "SingleFile"
-                },
-                "file_label"          : "step",
-                "output_control_type" : "step",
-                "output_frequency"    : 1,
-                "body_output"         : true,
-                "node_output"         : false,
-                "skin_output"         : false,
-                "plane_output"        : [],
-                "nodal_results"       : ["DISPLACEMENT","REACTION","ACCELERATION"],
-                "gauss_point_results" : ["GREEN_LAGRANGE_STRAIN_TENSOR","CAUCHY_STRESS_TENSOR","VON_MISES_STRESS"]
-            },
-            "point_data_configuration"  : []
-        },
-        "restart_options"          : {
-            "SaveRestart"      : false,
-            "RestartFrequency" : 0,
-            "LoadRestart"      : false,
-            "Restart_Step"     : 0
-        },
-        "constraints_data"         : {
-            "incremental_load"         : false,
-            "incremental_displacement" : false
-        },
-        "material_import_settings" : {
-            "materials_filename" : "StructuralMaterials.json"
-        }
-    },
-    "fluid_solver_settings"     : {
-        "problem_data"                     : {
-            "problem_name"    : "fsi_mok",
-            "model_part_name" : "MainModelPart",
-            "domain_size"     : 2,
-            "parallel_type"   : "OpenMP",
-            "echo_level"      : 0,
-            "start_time"      : 0.0,
-            "end_time"        : 25.0
-        },
-        "output_configuration"             : {
-            "result_file_configuration" : {
-                "gidpost_flags"       : {
-                    "GiDPostMode"           : "GiD_PostBinary",
-                    "WriteDeformedMeshFlag" : "WriteDeformed",
-                    "WriteConditionsFlag"   : "WriteConditions",
-                    "MultiFileFlag"         : "SingleFile"
-                },
-                "file_label"          : "time",
-                "output_control_type" : "step",
-                "output_frequency"    : 1,
-                "body_output"         : true,
-                "node_output"         : false,
-                "skin_output"         : false,
-                "plane_output"        : [],
-                "nodal_results"       : ["VELOCITY","PRESSURE","MESH_DISPLACEMENT"],
-                "gauss_point_results" : []
-            },
-            "point_data_configuration"  : []
-        },
-        "restart_options"                  : {
-            "SaveRestart"      : "False",
-            "RestartFrequency" : 0,
-            "LoadRestart"      : "False",
-            "Restart_Step"     : 0
-        },
-        "solver_settings"                  : {
-            "solver_type"                  : "Monolithic",
-            "model_import_settings"        : {
-                "input_type"     : "mdpa",
-                "input_filename" : "fsi_mok_Fluid"
-            },
-            "echo_level"                   : 0,
-            "compute_reactions"            : true,
-            "consider_periodic_conditions" : false,
-            "reform_dofs_at_each_step"     : false,
-            "alpha"                        : -0.3,
-            "dynamic_tau"                  : 0.001,
-            "oss_switch"                   : 0,
-            "maximum_iterations"           : 20,
-            "relative_velocity_tolerance"  : 1e-8,
-            "absolute_velocity_tolerance"  : 1e-10,
-            "relative_pressure_tolerance"  : 1e-8,
-            "absolute_pressure_tolerance"  : 1e-10,
-            "volume_model_part_name"       : "Parts_Fluid",
-            "skin_parts"                   : ["AutomaticInlet2D_Inlet","Outlet2D_Outlet","Slip2D_Slip","NoSlip2D_NoSlip","FluidNoSlipInterface2D_FluidInterface"],
-            "no_skin_parts"                : ["ALEMeshDisplacementBC2D_FluidALEMeshBC"],
-            "time_stepping"                : {
-                "automatic_time_step" : false,
-                "time_step"           : 0.1
-            }
-        },
-        "initial_conditions_process_list"  : [],
-        "boundary_conditions_process_list" : [{
+        "fluid_initial_conditions_process_list"  : [],
+        "fluid_boundary_conditions_process_list" : [{
             "python_module" : "apply_inlet_process",
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-            "help"          : [],
-            "process_name"  : "ApplyInletProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
                 "model_part_name" : "AutomaticInlet2D_Inlet",
                 "variable_name"   : "VELOCITY",
                 "modulus"         : "0.1214*(1-cos(0.1*pi*t))*y*(1-y) if t<10 else 0.2428*y*(1-y)",
@@ -171,10 +122,7 @@
         },{
             "python_module" : "apply_outlet_process",
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-            "help"          : [],
-            "process_name"  : "ApplyOutletProcess",
             "Parameters"    : {
-                "mesh_id"            : 0,
                 "model_part_name"    : "Outlet2D_Outlet",
                 "variable_name"      : "PRESSURE",
                 "constrained"        : true,
@@ -183,29 +131,46 @@
                 "h_top"              : 0.0
             }
         },{
-            "python_module" : "apply_slip_process",
-            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-            "process_name"  : "ApplySlipProcess",
-            "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "Slip2D_Slip"
-            }
-        },{
             "python_module" : "apply_noslip_process",
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-            "process_name"  : "ApplyNoSlipProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
                 "model_part_name" : "NoSlip2D_NoSlip"
             }
         },{
             "python_module" : "assign_vector_variable_process",
             "kratos_module" : "KratosMultiphysics",
-            "help"          : "This process fixes the selected components of a given vector variable",
-            "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "ALEMeshDisplacementBC2D_FluidALEMeshBC",
+                "model_part_name" : "AutomaticInlet2D_Inlet",
+                "variable_name"   : "MESH_DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Outlet2D_Outlet",
+                "variable_name"   : "MESH_DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "NoSlip2D_NoSlip",
+                "variable_name"   : "MESH_DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Slip2D_Slip",
                 "variable_name"   : "MESH_DISPLACEMENT",
                 "constrained"     : [true,true,true],
                 "value"           : [0.0,0.0,0.0],
@@ -214,14 +179,22 @@
         },{
             "python_module" : "python_process",
             "kratos_module" : "KratosMultiphysics",
-            "help"          : "Python processes empty base class which does nothing",
-            "process_name"  : "PythonProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
                 "model_part_name" : "FluidNoSlipInterface2D_FluidInterface"
             }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name": "Slip2D_Slip",
+                "variable_name": "VELOCITY",
+                "constrained": [false,true,true],
+                "value": [null,0.0,null],
+                "interval": [0.0,"End"]
+            }
         }],
-        "gravity"                          : [{
+        "fluid_gravity" : [{
             "python_module" : "assign_vector_by_direction_process",
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignVectorByDirectionProcess",
@@ -234,31 +207,65 @@
                 "direction"       : [0.0,-1.0,0.0]
             }
         }],
-        "auxiliar_process_list"            : []
+        "fluid_auxiliar_process_list" : []
     },
-    "coupling_solver_settings"  : {
-        "problem_data"    : {
-            "parallel_type" : "OpenMP"
-        },
-        "solver_settings" : {
-            "solver_type"                  : "Partitioned",
-            "coupling_scheme"              : "DirichletNeumann",
-            "nl_tol"                       : 1e-8,
-            "nl_max_it"                    : 25,
-            "solve_mesh_at_each_iteration" : true,
-            "coupling_strategy"            : {
-                "solver_type" : "MVQN_recursive",
-                "w_0"         : 0.825,
-                "buffer_size" : 7
-            },
-            "mesh_solver"                  : "mesh_solver_structural_similarity",
-            "structure_interfaces_list"    : ["StructureInterface2D_StructureInterface"],
-            "fluid_interfaces_list"        : ["FluidNoSlipInterface2D_FluidInterface"]
-        },
-        "mapper_settings" : [{
-            "mapper_face"                           : "unique",
-            "fluid_interface_submodelpart_name"     : "FluidNoSlipInterface2D_FluidInterface",
-            "structure_interface_submodelpart_name" : "StructureInterface2D_StructureInterface"
+    "output_processes":{
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "Structure.Parts_Structure",
+                "output_name"            : "fsi_lid_driven_cavity_structure",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "time",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1.0,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","POINT_LOAD"],
+                        "gauss_point_results" : []
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        },{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.Parts_Fluid",
+                "output_name"            : "fsi_lid_driven_cavity_fluid",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "time",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1.0,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["VELOCITY","PRESSURE","MESH_DISPLACEMENT","MESH_VELOCITY","REACTION"],
+                        "gauss_point_results" : []
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
         }]
     }
 }
