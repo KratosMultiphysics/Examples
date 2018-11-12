@@ -6,5 +6,7 @@ import KratosMultiphysics.SolidMechanicsApplication
 
 import MainFluidPFEM
 
-MainFluidPFEM.Solution().Run()
+model = KratosMultiphysics.Model()
+
+MainFluidPFEM.Solution(model).Run()
 
