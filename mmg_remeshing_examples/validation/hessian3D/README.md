@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 6.1-dev
 
 **Source files:** [Hessian 3D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/hessian3D/source)
 
@@ -11,7 +11,6 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
 The problem corresponds with the  example proposed in [reference](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf), translated to 3D. The  objective is to remesh the following unstructured mesh of a domain 1x1x0.1:
