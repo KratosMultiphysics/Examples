@@ -28,7 +28,7 @@ ZeroVector[3] = 0.0
 ZeroVector[4] = 0.0
 ZeroVector[5] = 0.0
 for node in main_model_part.Nodes:
-    node.SetValue(MeshingApplication.MMG_METRIC, ZeroVector)
+    node.SetValue(MeshingApplication.METRIC_TENSOR_3D, ZeroVector)
             
 # We define a metric using the ComputeLevelSetSolMetricProcess
 level_set_param = KratosMultiphysics.Parameters("""

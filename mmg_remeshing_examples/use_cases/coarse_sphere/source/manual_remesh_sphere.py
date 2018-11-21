@@ -52,12 +52,12 @@ for node in main_model_part.Nodes:
     v2v2 = gradient_value[2]*gradient_value[2];
 
     MetricVector[0] = coeff0*(1.0 - v0v0) + coeff1*v0v0
-    MetricVector[1] = coeff0*(    - v0v1) + coeff1*v0v1
-    MetricVector[2] = coeff0*(    - v0v2) + coeff1*v0v2
-    MetricVector[3] = coeff0*(1.0 - v1v1) + coeff1*v1v1
+    MetricVector[1] = coeff0*(1.0 - v1v1) + coeff1*v1v1
+    MetricVector[2] = coeff0*(1.0 - v2v2) + coeff1*v2v2
+    MetricVector[3] = coeff0*(    - v0v1) + coeff1*v0v1
     MetricVector[4] = coeff0*(    - v1v2) + coeff1*v1v2
-    MetricVector[5] = coeff0*(1.0 - v2v2) + coeff1*v2v2
-    node.SetValue(MeshingApplication.MMG_METRIC, MetricVector)
+    MetricVector[5] = coeff0*(    - v0v2) + coeff1*v0v2
+    node.SetValue(MeshingApplication.METRIC_TENSOR_3D, MetricVector)
 
 # We create the remeshing process
 remesh_param = KratosMultiphysics.Parameters("""{ }""")
