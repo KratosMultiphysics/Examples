@@ -78,6 +78,11 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Small Box Lagrangian OW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
 - [Small Box Lagrangian TW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/Two_Way/Small_Box_Eulerian_TW/README.md)
 
+## Particle Mechanics
+
+**Validation**
+
+- [Granular Flow 2D](particle_mechanics/validation/granular_flow_2D/README.md)
 
 
 
