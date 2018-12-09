@@ -12,7 +12,7 @@ This folder contains examples related to the [Particle Mechanics Application](ht
 The examples are continuously updated and extended along with the development of Kratos.
 
 ### Validation
-- Coming soon...
+ - [Granular Flow 2D](validation/granular_flow_2D/README.md)
 
 ### Use Cases
 - Coming soon...
