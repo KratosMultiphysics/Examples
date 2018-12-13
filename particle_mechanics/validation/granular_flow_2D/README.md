@@ -41,3 +41,4 @@ The problem stated above has been solved with a structured mesh with 3 material 
 
 ## References
 - Bui, H. H., Fukagawa, R., Sako, K., & Ohno, S. (2008). Lagrangian meshfree particles method (SPH) for large deformation and failure flows of geomaterial using elastic-plastic soil constitutive model. International Journal for Numerical and Analytical Methods in Geomechanics, 32(12), 1537–1570. https://doi.org/10.1002/nag.688
+- Chandra, B., Larese, A., Iaconeta, I., Rossi, R., Wüchner, R. (2018). Soil-Structure Interaction Simulation of Landslides Impacting a Structure Using an Implicit Material Point Method. *Accepted for publication by Proceeding of the 2nd International Conference on The Material Point Method (MPM2019)*.
