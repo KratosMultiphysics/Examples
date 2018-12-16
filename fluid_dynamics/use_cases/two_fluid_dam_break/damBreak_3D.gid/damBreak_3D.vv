@@ -1,0 +1,37 @@
+BeginZE /home/simon/LRZ Sync+Share/MasterThesis/Benchmarks/TwoFluid_NS/DamBreak/damBreak_3D.gid/damBreak_3D.vv
+   x 0.370593547821044922 3.03559613227844238
+   y 1.78153407573699951 -0.644123196601867676
+   z -3.84283828735351562 2.833221435546875
+   e 1.7799220085144043
+   v 0.14644661545753479 0.353553414344787598 0.853553414344787598
+   r 0.35355338454246521
+   m -0.70710676908493042 -0.5 0.5 0 0.70710676908493042 -0.5 0.5 0 5.5511151231257827e-17 0.70710676908493042 0.70710676908493042 0 0 0 0 1
+   c 1.37618041038513184 0.528200626373291016 0.504808425903320312
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 0
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE /home/simon/LRZ Sync+Share/MasterThesis/Benchmarks/TwoFluid_NS/DamBreak/damBreak_3D.gid/damBreak_3D.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+
