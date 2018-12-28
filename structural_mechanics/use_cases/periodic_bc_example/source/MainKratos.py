@@ -1,7 +1,6 @@
 from __future__ import print_function, absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
 
 import KratosMultiphysics
-import KratosMultiphysics.StructuralMechanicsApplication
 import math
 from KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis import StructuralMechanicsAnalysis
 
@@ -13,13 +12,13 @@ class StructuralMechanicsAnalysisWithCentrifugalForces(StructuralMechanicsAnalys
 
         for node in model_part.Nodes:
 
-            radius_vector = Vector(3)
+            radius_vector = KratosMultiphysics.Vector(3)
             radius_vector[0] = node.X
             radius_vector[1] = node.Y
             radius_vector[2] = 0
             radius = math.sqrt(radius_vector[0]*radius_vector[0] + radius_vector[1]*radius_vector[1] + radius_vector[2]*radius_vector[2])
 
-            normalized_radius_vector = Vector(3)
+            normalized_radius_vector = KratosMultiphysics.Vector(3)
             if(radius!=0):
                 normalized_radius_vector[0] = radius_vector[0]/radius
                 normalized_radius_vector[1] = radius_vector[1]/radius
@@ -31,14 +30,14 @@ class StructuralMechanicsAnalysisWithCentrifugalForces(StructuralMechanicsAnalys
 
             omega = 5.0
 
-            centrigual_acc = Vector(3)
+            centrigual_acc = KratosMultiphysics.Vector(3)
             centrigual_acc = omega*omega * radius * normalized_radius_vector
 
-            node.SetSolutionStepValue(VOLUME_ACCELERATION,0,centrigual_acc)
+            node.SetSolutionStepValue(KratosMultiphysics.VOLUME_ACCELERATION,0,centrigual_acc)
 
     def InitializeSolutionStep(self):
         super(StructuralMechanicsAnalysisWithCentrifugalForces,self).InitializeSolutionStep()
-        ApplyCentrifugalForces(self.model["Structure"])
+        self.ApplyCentrifugalForces(self.model["Structure"])
 
 if __name__ == "__main__":
 
