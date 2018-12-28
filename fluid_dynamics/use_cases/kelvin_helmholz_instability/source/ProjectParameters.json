@@ -1,0 +1,160 @@
+{
+    "problem_data"                     : {
+        "problem_name"    : "kelvin_helmholtz_256_tri",
+        "model_part_name" : "MainModelPart",
+        "domain_size"     : 2,
+        "parallel_type"   : "OpenMP",
+        "echo_level"      : 0,
+        "start_time"      : 0.0,
+        "end_time"        : 3.5
+    },
+    "output_configuration"             : {
+        "result_file_configuration" : {
+            "gidpost_flags"       : {
+                "GiDPostMode"           : "GiD_PostBinary",
+                "WriteDeformedMeshFlag" : "WriteDeformed",
+                "WriteConditionsFlag"   : "WriteConditions",
+                "MultiFileFlag"         : "SingleFile"
+            },
+            "file_label"          : "time",
+            "output_control_type" : "step",
+            "output_frequency"    : 2,
+            "body_output"         : true,
+            "node_output"         : false,
+            "skin_output"         : false,
+            "plane_output"        : [],
+            "nodal_results"       : ["VELOCITY","PRESSURE"],
+            "gauss_point_results" : ["VORTICITY"]
+        },
+        "point_data_configuration"  : []
+    },
+    "restart_options"                  : {
+        "SaveRestart"      : "False",
+        "RestartFrequency" : 0,
+        "LoadRestart"      : "False",
+        "Restart_Step"     : 0
+    },
+    "restart_settings" : {
+        "load_restart"                   : false,
+        "restart_load_file_label"        : "3",
+        "load_restart_files_from_folder" : true,
+        "save_restart"                   : false,
+        "restart_save_frequency"         : 3,
+        "restart_control_type"           : "step",
+        "save_restart_files_in_folder"   : true,
+        "serializer_trace"               : "no_trace"
+    },
+    "solver_settings"                  : {
+        "solver_type"                 : "Monolithic",
+        "model_import_settings"       : {
+            "input_type"     : "mdpa",
+            "input_filename" : "kelvin_helmholtz"
+        },
+        "echo_level"                  : 1,
+        "compute_reactions"           : false,
+        "consider_periodic_conditions": true,
+        "time_scheme"                 : "bossak",
+        "reform_dofs_at_each_step"    : true,
+        "maximum_iterations"          : 10,
+        "relative_velocity_tolerance" : 0.001,
+        "absolute_velocity_tolerance" : 1e-9,
+        "relative_pressure_tolerance" : 0.001,
+        "absolute_pressure_tolerance" : 1e-9,
+        "linear_solver_settings" 	  : {
+                "solver_type" : "AMGCL",
+                "smoother_type":"damped_jacobi",
+                "krylov_type": "gmres",
+                "coarsening_type": "aggregation",
+                "max_iteration": 100,
+                "provide_coordinates": false,
+                "gmres_krylov_space_dimension": 50,
+                "verbosity" : 1,
+                "tolerance": 1e-9,
+                "scaling": false,
+                "block_size": 1,
+                "use_block_matrices_if_possible" : false,
+                "coarse_enough" : 5000 
+        },
+        "volume_model_part_name"      : "Parts_Fluid",
+        "skin_parts"                  : [],
+        "no_skin_parts"               : [],
+        "time_stepping"               : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.002
+        }
+    },
+    "initial_conditions_process_list"  : [],
+    "boundary_conditions_process_list" : [{
+        "python_module" : "assign_scalar_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "process_name"  : "AssignScalarVariableProcess",
+        "Parameters"    : {
+            "mesh_id"         : 0,
+            "model_part_name" : "Parts_Fluid",
+            "variable_name"   : "PRESSURE",
+            "value"           : 0,
+            "constrained"     : false
+        }
+    },{
+        "python_module" : "assign_vector_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "help"          : "This process fixes the selected components of a given vector variable",
+        "process_name"  : "AssignVectorVariableProcess",
+        "Parameters"    : {
+            "mesh_id"         : 0,
+            "model_part_name" : "NoSlip2D_top",
+            "variable_name"   : "VELOCITY",
+            "constrained"     : [false,false,false],
+            "interval"        : [0.0, 0.0],
+            "value"           : [1.0,0.0,0.0]
+        }
+    },{
+        "python_module" : "assign_vector_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "help"          : "This process fixes the selected components of a given vector variable",
+        "process_name"  : "AssignVectorVariableProcess",
+        "Parameters"    : {
+            "mesh_id"         : 0,
+            "model_part_name" : "NoSlip2D_bottom",
+            "variable_name"   : "VELOCITY",
+            "constrained"     : [false,false,false],
+            "interval"        : [0.0, 0.0],
+            "value"           : [-1.0,0.0,0.0]
+        }
+    }],
+    "gravity"                          : [{
+        "python_module" : "assign_vector_by_direction_process",
+        "kratos_module" : "KratosMultiphysics",
+        "process_name"  : "AssignVectorByDirectionProcess",
+        "Parameters"    : {
+            "model_part_name" : "Parts_Fluid",
+            "variable_name"   : "BODY_FORCE",
+            "modulus"         : 0.0,
+            "constrained"     : false,
+            "direction"       : [0.0,-1.0,0.0]
+        }
+    }],
+    "auxiliar_process_list"            : [{
+        "python_module" : "apply_periodic_boundary_condition_process",
+        "kratos_module" : "KratosMultiphysics",
+        "process_name"  : "ApplyPeriodicBoundaryConditionProcess",
+        "Parameters"    : {
+            "computing_model_part_name"   : "",
+            "model_part_name"             : "MainModelPart",
+            "first_model_part_name"       : "NoSlip2D_left",
+            "second_model_part_name"      : "NoSlip2D_right",
+            "interval"                    : [0.0, 1e30],
+            "variable_names"              : ["VELOCITY","PRESSURE"],
+            "transformation_settings"     :{
+                    "translation_settings":{
+                        "dir_of_translation":[1.0,0.0,0.0],
+                        "magnitude":1.0
+                    }
+            },
+           "search_settings":{
+                    "max_results":100,
+                    "tolerance": 1E-2
+           }
+        }
+    }]
+}
