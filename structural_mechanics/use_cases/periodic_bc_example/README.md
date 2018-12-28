@@ -4,7 +4,7 @@
 
 **Kratos version:** Current Head
 
-**Source files:** [Disk subjected to centrifugal forces](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/periodic_bc_example/source)
+**Source files:** [Disk subjected to centrifugal forces](https://github.com/KratosMultiphysics/Examples/tree/periodic_bc_examples/structural_mechanics/use_cases/periodic_bc_example/source)
 
 
 ## Problem definition
