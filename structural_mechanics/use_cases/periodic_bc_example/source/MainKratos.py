@@ -28,7 +28,7 @@ class StructuralMechanicsAnalysisWithCentrifugalForces(StructuralMechanicsAnalys
             else:
                 normalized_radius_vector[0] = 0.0
                 normalized_radius_vector[1] = 0.0
-                normalized_radius_vector[2] = 0.0 
+                normalized_radius_vector[2] = 0.0
 
             omega = 5.0
 
@@ -37,25 +37,9 @@ class StructuralMechanicsAnalysisWithCentrifugalForces(StructuralMechanicsAnalys
 
             node.SetSolutionStepValue(VOLUME_ACCELERATION,0,centrigual_acc)
 
-
-    def RunSolutionLoop(self):
-        """This function executes the solution loop of the AnalysisStage
-        It can be overridden by derived classes
-        """
-        main_model_part = self.model["Structure"]
-
-        while self.time < self.end_time:
-            self.time = self._GetSolver().AdvanceInTime(self.time)
-            Dt = self.project_parameters["solver_settings"]["time_stepping"]["time_step"].GetDouble()            
-            self.time = self._GetSolver().AdvanceInTime(self.time)            
-            self.InitializeSolutionStep()
-            self.ApplyCentrifugalForces(main_model_part)
-            self._GetSolver().Predict()
-            self._GetSolver().SolveSolutionStep()
-            self.FinalizeSolutionStep()
-            self.OutputSolutionStep()
-  
-
+    def InitializeSolutionStep(self):
+        super(StructuralMechanicsAnalysisWithCentrifugalForces,self).InitializeSolutionStep()
+        ApplyCentrifugalForces(self.model["Structure"])
 
 if __name__ == "__main__":
 
@@ -65,4 +49,4 @@ if __name__ == "__main__":
     model = KratosMultiphysics.Model()
     simulation = StructuralMechanicsAnalysisWithCentrifugalForces(model,parameters)
     simulation.Run()
-    
+
