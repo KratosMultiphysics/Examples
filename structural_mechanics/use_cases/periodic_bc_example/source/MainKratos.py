@@ -1,10 +1,9 @@
 from __future__ import print_function, absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
 
 import KratosMultiphysics
-from KratosMultiphysics import *
 import KratosMultiphysics.StructuralMechanicsApplication
 import math
-from structural_mechanics_analysis import StructuralMechanicsAnalysis
+from KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis import StructuralMechanicsAnalysis
 
 class StructuralMechanicsAnalysisWithCentrifugalForces(StructuralMechanicsAnalysis):
     def __init__(self,model,project_parameters):
