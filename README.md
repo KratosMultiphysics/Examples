@@ -72,7 +72,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 **Use cases**
 
-- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/periodic_bc_example/README.md)
+- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
 
 ## Swimming DEM
 
