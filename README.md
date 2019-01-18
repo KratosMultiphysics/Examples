@@ -17,6 +17,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 **Use cases**
 
 - [3D Wind over Barcelona](fluid_dynamics/use_cases/barcelona_wind/README.md) 
+- [Kelvin-Helmholtz instability - periodic boundary conditions](fluid_dynamics/use_cases/kelvin_helmholtz_instability/README.md)
 
 ## Fluid-Structure Interaction (FSI)
 
@@ -68,6 +69,10 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
+
+**Use cases**
+
+- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
 
 ## Swimming DEM
 

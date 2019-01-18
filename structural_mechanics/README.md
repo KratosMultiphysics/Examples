@@ -14,7 +14,7 @@ The Examples are continously updated and extended
 - [Truss Two-Bar-Truss Snapthrough](validation/truss_snap_through/README.md)
 
 ## Use Cases
-
+- [Disk subjected to centrifugal force - periodic boundary conditions](use_cases/periodic_bc_example/README.md)
 
 
 
