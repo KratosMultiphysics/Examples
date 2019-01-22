@@ -4,7 +4,7 @@
 
 **Kratos version:** Current Head
 
-**Source files:** [Kelvin–Helmholtz instability](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/use_cases/kelvin_helmholz_instability/source)
+**Source files:** [Kelvin–Helmholtz instability](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/use_cases/kelvin_helmholtz_instability/source)
 
 
 ## Problem definition
