@@ -4,16 +4,16 @@
         "properties_id"   : 1,
         "Material"        : {
             "constitutive_law" : {
-                "name" : "KratosMultiphysics.StructuralMechanicsApplication.BeamConstitutiveLaw"
+                "name" : "BeamConstitutiveLaw"
             },
             "Variables"        : {
-                "DENSITY"                                                             : 1.0,
-                "YOUNG_MODULUS"                                                       : 1.0,
-                "POISSON_RATIO"                                                       : 0.29,
-                "KratosMultiphysics.StructuralMechanicsApplication.CROSS_AREA"        : 1.0,
-                "KratosMultiphysics.StructuralMechanicsApplication.TORSIONAL_INERTIA" : 1e6,
-                "KratosMultiphysics.StructuralMechanicsApplication.I22"               : 1e6,
-                "KratosMultiphysics.StructuralMechanicsApplication.I33"               : 1.0
+                "DENSITY"           : 1.0,
+                "YOUNG_MODULUS"     : 1.0,
+                "POISSON_RATIO"     : 0.29,
+                "CROSS_AREA"        : 1.0,
+                "TORSIONAL_INERTIA" : 1e6,
+                "I22"               : 1e6,
+                "I33"               : 1.0
             },
             "Tables"           : {}
         }
