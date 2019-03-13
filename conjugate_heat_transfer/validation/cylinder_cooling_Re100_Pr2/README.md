@@ -19,9 +19,9 @@ For the coupled thermal problem, the properties are set such that the difusivity
 * Conductivity (&kappa;): 6.25E-01 _W/m<sup>2</sup>K_
 * Specific heat (c<inf>p</inf>): 1.0E+03 _J/Kg·K_
 and the solid values to
-* Density (&rho;): 4.0 _Kg/m<sup>3</sup>_
+* Density (&rho;): 4.0 _Kg/m<sub>3</sub>_
 * Conductivity (&kappa;): 2.0E+03 _W/m<sup>2</sup>K_
-* Specific heat (c<inf>p</inf>): 2.5E+02 _J/Kg·K_
+* Specific heat (c<sub>p</sub>): 2.5E+02 _J/Kg·K_
 
 The time step is 0.1 seconds, while the total simulation time is 15.0 seconds. 
 
