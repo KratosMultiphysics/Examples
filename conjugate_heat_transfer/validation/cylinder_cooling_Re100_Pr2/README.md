@@ -18,6 +18,7 @@ Concerning the material properties, a Newtonian constitutive law is used in the 
 For the coupled thermal problem, the properties are set such that the difusivity as well as the volumetric heat capacity of both materials is the same. This is achieved by setting the fluid values to
 * Conductivity (&kappa;): 6.25E-01 _W/m<sup>2</sup>K_
 * Specific heat (c<inf>p</inf>): 1.0E+03 _J/Kg·K_
+
 and the solid values to
 * Density (&rho;): 4.0 _Kg/m<sub>3</sub>_
 * Conductivity (&kappa;): 2.0E+03 _W/m<sup>2</sup>K_
