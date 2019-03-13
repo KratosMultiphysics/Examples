@@ -24,6 +24,11 @@
 "CleanIndentationsOption"          : false,
 "RemoveBallsInEmbeddedOption"      : true,
 
+"strategy_parameters"            : {
+            "RemoveBallsInitiallyTouchingWalls" : false,
+            "strategy"                          : "sphere_strategy"
+        },
+
 "DeltaOption"                      : "Absolute",
 "SearchTolerance"                  : 0.0,
 "AmplifiedSearchRadiusExtension"   : 0.0,
