@@ -21,9 +21,9 @@ The time step is 0.1 seconds, while the total simulation time is 45.0 seconds.
 The above stated problem has been solved using an incompressible Navier-Stokes formulation with ASGS stabilization. The mesh is made up of around 6.1K linear triangular elements. The obtained velocity and pressure fields are shown in the animations below. As can be observed, the expected Von Karman vortex street is developed in the downstream region. Also note that if the source files are run, a *.dat file containing the cylinder drag and lift time evolution is generated. The obtained values have very good agreement with the theoretical expected ones.
 
 <p align="center">
-  <img src="data/body_fitted_cylinder_100R_v.gif" alt="Body-fitted 100 Re cylinder velocity field [m/s]." style="width: 600px;"/>
+  <img src="data/body_fitted_cylinder_100Re_v.gif" alt="Body-fitted 100 Re cylinder velocity field [m/s]." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/body_fitted_cylinder_100R_p.gif" alt="Body-fitted 100 Re cylinder pressure field [Pa]." style="width: 600px;"/>
+  <img src="data/body_fitted_cylinder_100Re_p.gif" alt="Body-fitted 100 Re cylinder pressure field [Pa]." style="width: 600px;"/>
 </p>
