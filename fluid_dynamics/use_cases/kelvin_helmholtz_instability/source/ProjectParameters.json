@@ -15,7 +15,6 @@
             "input_filename" : "kelvin_helmholtz"
         },
         "echo_level"                  : 1,
-        "consider_periodic_conditions": true,
         "compute_reactions"           : false,
         "dynamic_tau"                 : 1.0,
         "oss_switch"                  : 0,
@@ -82,7 +81,7 @@
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "NoSlip2D_bot_wall",
+                "model_part_name" : "MainModelPart.NoSlip2D_bot_wall",
                 "variable_name"   : "VELOCITY",
                 "constrained"     : [false,false,false],
                 "interval"        : [0.0, 1e30],
@@ -95,7 +94,7 @@
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "NoSlip2D_top_wall",
+                "model_part_name" : "MainModelPart.NoSlip2D_top_wall",
                 "variable_name"   : "VELOCITY",
                 "constrained"     : [false,false,false],
                 "interval"        : [0.0, 1e30],
@@ -167,6 +166,23 @@
                     },
                     "point_data_configuration"  : []
                 }
+            }
+        }],
+        "vtk_output":[{
+        
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",        
+            "Parameters":{
+                "model_part_name"                    : "MainModelPart",
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_control_type"                : "step",
+                "output_frequency"                   : 1.0,
+                "output_sub_model_parts"             : true,
+                "folder_name"                        : "VTK_Output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["VELOCITY","PRESSURE"]
             }
         }]
 	}
