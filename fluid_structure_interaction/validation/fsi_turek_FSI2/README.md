@@ -16,7 +16,7 @@ This is a 2D simulation of the well-known Turek FSI benchmark. It consists in a 
 
 The problem geometry as well as the boundary conditions are sketched below (image from Turek et. al. (2006). 
 <p align="center">
-  <img src="data/turek_benchmark_geometry.png" alt="Turek benchmark geometry." style="width: 600px;"/>
+  <img src="data/turek_benchmark_geometry.png" alt="Turek benchmark geometry." style="width: 400px;"/>
 </p>
 
 A Newtonian constitutive law is considered in the fluid domain. The fluid characteristic parameters are:
