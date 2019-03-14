@@ -1,16 +1,16 @@
 # FSI lid driven cavity
 
-**Author:** Rubén Zorrilla
+**Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla)
 
-**Kratos version:** 5.2
+**Kratos version:** 7.0
 
 **Source files:** [FSI-Lid driven cavity](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/fsi_lid_driven_cavity/source)
 
 ## Case Specification
 
 This is a 2D FSI simulation of the well-known lid-driven cavity flow benchmark. In this FSI adapted version, the fixed bottom wall is deformable meanwhile the originally constant top velocity is substituted by an oscillatory one. Besides, the inlet is extent to be not only the top corners but a region measuring 0.125 the cavity height. The reference solutions have been taken from  Mok (2001) and Valdés (2007). The following applications of Kratos are used:
-* ALEApplication
 * FSIApplication 
+* MeshMovingApplication
 * FluidDynamicsApplication
 * StructuralMechanicsApplication
 
