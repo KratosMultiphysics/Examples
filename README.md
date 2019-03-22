@@ -25,15 +25,15 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 ## Structural Mechanics
 
+**Use cases**
+- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
+
 **Validation**
 - [Beam Eigenvalue Analysis](structural_mechanics/validation/beam_eigenvalue_analysis/README.md)
 - [Beam Non-Linear Cantilever](structural_mechanics/validation/beam_nonlinear_cantilever/README.md)
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
-
-**Use cases**
-- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
 
 ## Contact Structural Mechanics
 
@@ -43,7 +43,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 ## Conjugate Heat Transfer (CHT)
 
-**Validation Cases**
+**Validation**
 - [Cylinder cooling Re = 100 and Pr = 2](conjugate_heat_transfer/validation/cylinder_cooling_Re100_Pr2/README.md)
 
 ## Fluid-Structure Interaction (FSI)
@@ -55,11 +55,6 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 ## MMG remeshing
 
-**Validation**
-- [Hessian2D](mmg_remeshing_examples/validation/hessian2D/README.md)
-- [Hessian3D](mmg_remeshing_examples/validation/hessian3D/README.md)
-- [Bunny example](mmg_remeshing_examples/validation/bunny/README.md)
-
 **Use Cases**
 - [Beam 2D](mmg_remeshing_examples/use_cases/beam2D/README.md)
 - [Beam 2D Internal interpolation](mmg_remeshing_examples/beam2D_internal_interpolation/README.md)
@@ -70,13 +65,18 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Channel sphere 2D](mmg_remeshing_examples/use_cases/channel_sphere2D/README.md)
 - [Channel sphere 3D](mmg_remeshing_examples/use_cases/channel_sphere3D/README.md)
 
-## Poromechanics
-
 **Validation**
-- [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md) 
+- [Hessian2D](mmg_remeshing_examples/validation/hessian2D/README.md)
+- [Hessian3D](mmg_remeshing_examples/validation/hessian3D/README.md)
+- [Bunny example](mmg_remeshing_examples/validation/bunny/README.md)
+
+## Poromechanics
 
 **Use cases**
 - [Fluid flow in pre-existing fractures network](poromechanics/use_cases/fluid_pumping_2D/README.md)
+
+**Validation**
+- [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md) 
 
 ## Swimming DEM
 
