@@ -15,23 +15,43 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Fluid Dynamics
 
 **Use cases**
-
 - [3D Wind over Barcelona](fluid_dynamics/use_cases/barcelona_wind/README.md) 
 - [Kelvin-Helmholtz instability - periodic boundary conditions](fluid_dynamics/use_cases/kelvin_helmholtz_instability/README.md)
 
-## Fluid-Structure Interaction (FSI)
+**Validation**
+- [Body-fitted 100 Re cylinder](fluid_dynamics/validation/body_fitted_cylinder_100Re/README.md)
+- [Two-fluids dam break scenario](fluid_dynamics/validation/two_fluid_dam_break/README.md)
+- [Two-fluids wave propagation](fluid_dynamics/validation/two_fluid_wave/README.md)
+
+## Structural Mechanics
 
 **Validation**
+- [Beam Eigenvalue Analysis](structural_mechanics/validation/beam_eigenvalue_analysis/README.md)
+- [Beam Non-Linear Cantilever](structural_mechanics/validation/beam_nonlinear_cantilever/README.md)
+- [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
+- [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
+- [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
 
-- [Lid-driven cavity flow benchmark](fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md) 
-- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md)
+**Use cases**
+- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
 
 ## Contact Structural Mechanics
 
 **Validation**
-
 - [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)
 - [Hertz contact benchmark](contact_structural_mechanics/validation/hertz/README.md)
+
+## Conjugate Heat Transfer (CHT)
+
+**Validation Cases**
+- [Cylinder cooling Re = 100 and Pr = 2](conjugate_heat_transfer/validation/cylinder_cooling_Re100_Pr2/README.md)
+
+## Fluid-Structure Interaction (FSI)
+
+**Validation**
+- [FSI lid driven cavity](fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md)
+- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md)
+- [Turek benchmark -FSI2](fluid_structure_interaction/validation/fsi_turek_FSI2/README.md)
 
 ## MMG remeshing
 
@@ -53,31 +73,14 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Poromechanics
 
 **Validation**
-
 - [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md) 
 
 **Use cases**
-
 - [Fluid flow in pre-existing fractures network](poromechanics/use_cases/fluid_pumping_2D/README.md)
-
-## Structural Mechanics
-
-**Validation**
-
-- [Beam Eigenvalue Analysis](structural_mechanics/validation/beam_eigenvalue_analysis/README.md)
-- [Beam Non-Linear Cantilever](structural_mechanics/validation/beam_nonlinear_cantilever/README.md)
-- [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
-- [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
-- [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
-
-**Use cases**
-
-- [Disk subjected to centrifugal force - periodic boundary conditions](structural_mechanics/use_cases/periodic_bc_example/README.md)
 
 ## Swimming DEM
 
 **Use cases**
-
 - [Small Box Eulerian OW](swimming_dem_fluid_interaction/use_cases/Eulerian_Fluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
 - [Small Box Eulerian TW](swimming_dem_fluid_interaction/use_cases/Eulerian_Fluid_Element/Two_Way/Small_Box_Eulerian_TW/README.md)
 - [Small Box Lagrangian OW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
@@ -86,7 +89,6 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Particle Mechanics
 
 **Validation**
-
 - [Granular Flow 2D](particle_mechanics/validation/granular_flow_2D/README.md)
 
 
