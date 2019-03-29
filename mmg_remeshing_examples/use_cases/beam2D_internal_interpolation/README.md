@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 7.1
 
 **Source files:** [Beam 2D Internal interpolation](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/beam2D/source)
 
@@ -11,8 +11,7 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *SolidMechanicsApplication*
-- *ConstitutiveModelsApplication*
+- *StructuralMechanicsApplication*
 - *MeshingApplication* with the *MMG* module
 
 The problem corresponds with a steel cantilever 10x1 and considering as only load self-weight:
@@ -26,18 +25,18 @@ The simulation considers 10 time steps of 0.01s. The problem will be remeshed ea
   <img src="data/original_mesh.png" alt="Mesh0" style="width: 600px;"/>
 </p>
 
-Additionally the following properties have been considered for the **CL** *LargeStrainPlaneStrain2DLaw.VonMisesNeoHookeanPlasticityModel*:
+Additionally the following properties have been considered for the **CL** *SmallStrainIsotropicDamage2DVonMisesVonMises*:
 
 ~~~json
-                "DENSITY"                     : 7850.0,
-                "YOUNG_MODULUS"               : 206900000000.0,
-                "POISSON_RATIO"               : 0.29,
-                "YIELD_STRESS"                : 200.0,
-                "KINEMATIC_HARDENING_MODULUS" : 100.0,
-                "REFERENCE_HARDENING_MODULUS" : 233.0,
-                "INFINITY_HARDENING_MODULUS"  : 100.0,
-                "HARDENING_EXPONENT"          : 100.0,
-                "C10"                         : 40096900000.0
+"Variables": {
+    "YOUNG_MODULUS"                        : 2.06900E+11,
+    "POISSON_RATIO"                        : 2.90000E-01,
+    "THICKNESS"                            : 1.00000,
+    "DENSITY"                              : 7.85000E+03,
+    "YIELD_STRESS"                         : 2.0e3,
+    "SOFTENING_TYPE"                       : 0,
+    "FRACTURE_ENERGY"                      : 1.0e6
+    }
 ~~~
 
 ## Results
@@ -49,7 +48,7 @@ The mesh obtained conrresponds with:
 </p>
 
 
-Having as final result the following plastic strain before remesh:
+Having as final result the following damage before remesh:
 
 <p align="center">
   <img src="data/result.png" alt="Result" style="width: 600px;"/>
