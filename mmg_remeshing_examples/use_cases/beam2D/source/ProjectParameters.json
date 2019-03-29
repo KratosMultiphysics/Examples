@@ -148,7 +148,8 @@
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT","REACTION","VELOCITY","ACCELERATION"],
                 "nodal_data_value_variables"         : [],
                 "element_data_value_variables"       : [],
-                "condition_data_value_variables"     : []
+                "condition_data_value_variables"     : [],
+                "gauss_point_variables"              : []
             }
         }]
     }
