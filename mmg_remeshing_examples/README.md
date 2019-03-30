@@ -33,7 +33,7 @@ Add the following to the main Kratos configure.sh:
 
 # Examples
 
-The Examples are continously updated and extended
+The Examples are continously updated and extended. The last version of MMG checked is 5.4. The current version of Kratos is 7.1-development.
 
 ## Validation
 
