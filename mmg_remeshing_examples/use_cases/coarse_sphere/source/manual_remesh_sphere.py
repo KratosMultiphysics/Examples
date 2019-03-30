@@ -93,7 +93,7 @@ gid_output.ExecuteFinalize()
 
 # Finally we export to VTK
 vtk_settings = KratosMultiphysics.Parameters("""{
-    "model_part_name"                    : "PLEASE_SPECIFY_MODEL_PART_NAME",
+    "model_part_name"                    : "MainModelPart",
     "file_format"                        : "ascii",
     "output_precision"                   : 7,
     "output_control_type"                : "step",
