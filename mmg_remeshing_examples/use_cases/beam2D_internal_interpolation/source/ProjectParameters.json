@@ -104,7 +104,7 @@
                     "interpolation"                    : "Linear"
                 },
                 "echo_level"                        : 0,
-                "debug_mode"                        : false
+                "debug_mode"                        : "VTK"
             }
         }
         ]
