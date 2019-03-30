@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 7.1
 
 **Source files:** [Bunny](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/validation/bunny/source)
 
@@ -11,7 +11,6 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication*
 - *MeshingApplication* with the *MMG* module
 
 The problem  corresponds with the very known geometry of the [Standford's bunny](https://en.wikipedia.org/wiki/Stanford_bunny). 

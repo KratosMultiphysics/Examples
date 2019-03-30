@@ -43,6 +43,7 @@ for node in main_model_part.Nodes:
 # We define a metric using the ComputeLevelSetSolMetricProcess
 mmg_parameters = KratosMultiphysics.Parameters("""
 {
+    "model_part_name"                   : "MainModelPart",
     "initial_remeshing"                 : true,
     "step_frequency"                    : 0,
     "minimal_size"                      : 3.0,
@@ -89,3 +90,23 @@ gid_output.ExecuteInitializeSolutionStep()
 gid_output.PrintOutput()
 gid_output.ExecuteFinalizeSolutionStep()
 gid_output.ExecuteFinalize()
+
+# Finally we export to VTK
+vtk_settings = KratosMultiphysics.Parameters("""{
+    "model_part_name"                    : "PLEASE_SPECIFY_MODEL_PART_NAME",
+    "file_format"                        : "ascii",
+    "output_precision"                   : 7,
+    "output_control_type"                : "step",
+    "output_frequency"                   : 1.0,
+    "output_sub_model_parts"             : false,
+    "save_output_files_in_folder"        : false,
+    "nodal_solution_step_data_variables" : ["DISTANCE","DISTANCE_GRADIENT"],
+    "nodal_data_value_variables"         : ["ANISOTROPIC_RATIO"],
+    "nodal_flag"                         : ["BLOCKED"],
+    "element_data_value_variables"       : [],
+    "condition_data_value_variables"     : [],
+    "gauss_point_variables"              : []
+}""")
+
+vtk_io = KratosMultiphysics.VtkOutput(main_model_part, vtk_settings)
+vtk_io.PrintOutput()
