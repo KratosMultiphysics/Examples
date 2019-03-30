@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 6.1-dev
+**Kratos version:** 7.1
 
 **Source files:** [Coarse sphere](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/coarse_sphere/source)
 

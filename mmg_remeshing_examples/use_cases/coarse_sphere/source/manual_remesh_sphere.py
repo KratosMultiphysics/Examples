@@ -5,10 +5,11 @@ import KratosMultiphysics
 import KratosMultiphysics.MeshingApplication as MeshingApplication
 
 # We create the model part
-main_model_part = KratosMultiphysics.ModelPart("MainModelPart")
+current_model = KratosMultiphysics.Model()
+main_model_part = current_model.CreateModelPart("MainModelPart")
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, 3)
 
-# We add the variables needed 
+# We add the variables needed
 main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISTANCE)
 main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.NODAL_H)
 
@@ -16,13 +17,13 @@ main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.NODAL_H)
 KratosMultiphysics.ModelPartIO("coarse_sphere").ReadModelPart(main_model_part)
 
 # We know that the gradient is unitary and in X direction
-UnityVector = KratosMultiphysics.Vector(3) 
+UnityVector = KratosMultiphysics.Vector(3)
 UnityVector[0] = 1.0
 UnityVector[1] = 0.0
 UnityVector[2] = 0.0
 
 # We set to zero the metric
-MetricVector = KratosMultiphysics.Vector(6) 
+MetricVector = KratosMultiphysics.Vector(6)
 
 for node in main_model_part.Nodes:
     # Calculate the element size
@@ -76,8 +77,8 @@ gid_output = GiDOutputProcess(main_model_part,
                                         "WriteDeformedMeshFlag": "WriteUndeformed",
                                         "WriteConditionsFlag": "WriteConditions",
                                         "MultiFileFlag": "SingleFile"
-                                    },        
-                                    "nodal_results"       : []
+                                    },
+                                    "nodal_results"       : ["DISTANCE"]
                                 }
                             }
                             """)
@@ -88,4 +89,23 @@ gid_output.ExecuteBeforeSolutionLoop()
 gid_output.ExecuteInitializeSolutionStep()
 gid_output.PrintOutput()
 gid_output.ExecuteFinalizeSolutionStep()
-gid_output.ExecuteFinalize()   
+gid_output.ExecuteFinalize()
+
+# Finally we export to VTK
+vtk_settings = KratosMultiphysics.Parameters("""{
+    "model_part_name"                    : "PLEASE_SPECIFY_MODEL_PART_NAME",
+    "file_format"                        : "ascii",
+    "output_precision"                   : 7,
+    "output_control_type"                : "step",
+    "output_frequency"                   : 1.0,
+    "output_sub_model_parts"             : false,
+    "save_output_files_in_folder"        : false,
+    "nodal_solution_step_data_variables" : ["DISTANCE"],
+    "nodal_data_value_variables"         : [],
+    "element_data_value_variables"       : [],
+    "condition_data_value_variables"     : [],
+    "gauss_point_variables"              : []
+}""")
+
+vtk_io = KratosMultiphysics.VtkOutput(main_model_part, vtk_settings)
+vtk_io.PrintOutput()
