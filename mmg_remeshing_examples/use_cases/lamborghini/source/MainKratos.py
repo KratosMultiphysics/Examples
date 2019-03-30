@@ -1,158 +1,114 @@
 from __future__ import print_function, absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
 
-from KratosMultiphysics import *
-from KratosMultiphysics.FluidDynamicsApplication import *
-from KratosMultiphysics.ExternalSolversApplication import *
-from KratosMultiphysics.MeshingApplication import *
+import KratosMultiphysics
+import KratosMultiphysics.MeshingApplication as MeshingApplication
 
-######################################################################################
-######################################################################################
-######################################################################################
-##PARSING THE PARAMETERS
-#import define_output
+import os
 
-parameter_file = open("ProjectParameters.json",'r')
-ProjectParameters = Parameters( parameter_file.read())
+# We create the model part
+current_model = KratosMultiphysics.Model()
+main_model_part = current_model.CreateModelPart("MainModelPart")
+main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, 3)
+main_model_part.ProcessInfo.SetValue(KratosMultiphysics.TIME, 0.0)
+main_model_part.ProcessInfo.SetValue(KratosMultiphysics.DELTA_TIME, 1.0)
+#main_model_part.ProcessInfo.SetValue(KratosMultiphysics.STEP, 1)
 
-parallel_type = ProjectParameters["problem_data"]["parallel_type"].GetString()
+# We add the variables needed
+main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISTANCE)
+main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISTANCE_GRADIENT)
 
-## Import KratosMPI if needed
-if (parallel_type == "MPI"):
-    import KratosMultiphysics.mpi as KratosMPI
+# We import the model main_model_part
+file_path = os.path.dirname(os.path.realpath(__file__))
+KratosMultiphysics.ModelPartIO(file_path + "/lamborgini_small").ReadModelPart(main_model_part)
 
-## Fluid model part definition
-main_model_part = ModelPart(ProjectParameters["problem_data"]["model_part_name"].GetString())
-main_model_part.ProcessInfo.SetValue(DOMAIN_SIZE, ProjectParameters["problem_data"]["domain_size"].GetInt())
+# We calculate the gradient of the distance variable
+find_nodal_h = KratosMultiphysics.FindNodalHNonHistoricalProcess(main_model_part)
+find_nodal_h.Execute()
+KratosMultiphysics.VariableUtils().SetNonHistoricalVariable(KratosMultiphysics.NODAL_AREA, 0.0, main_model_part.Nodes)
+local_gradient = KratosMultiphysics.ComputeNodalGradientProcess(main_model_part, KratosMultiphysics.DISTANCE, KratosMultiphysics.DISTANCE_GRADIENT, KratosMultiphysics.NODAL_AREA)
+local_gradient.Execute()
 
-###TODO replace this "model" for real one once available
-Model = {ProjectParameters["problem_data"]["model_part_name"].GetString() : main_model_part}
+# We set to zero the metric
+ZeroVector = KratosMultiphysics.Vector(6)
+ZeroVector[0] = 0.0
+ZeroVector[1] = 0.0
+ZeroVector[2] = 0.0
+ZeroVector[3] = 0.0
+ZeroVector[4] = 0.0
+ZeroVector[5] = 0.0
 
-## Solver construction
-import python_solvers_wrapper_fluid
-solver = python_solvers_wrapper_fluid.CreateSolver(main_model_part, ProjectParameters)
+for node in main_model_part.Nodes:
+    node.SetValue(MeshingApplication.METRIC_TENSOR_3D, ZeroVector)
 
-solver.AddVariables()
+# We define a metric using the ComputeLevelSetSolMetricProcess
+mmg_parameters = KratosMultiphysics.Parameters("""
+{
+    "model_part_name"                   : "MainModelPart",
+    "step_frequency"                    : 0,
+    "initial_remeshing"                 : true,
+    "automatic_remesh"                  : true,
+    "automatic_remesh_parameters"       :{
+        "automatic_remesh_type"            : "Ratio",
+        "min_size_ratio"                   : 3.0,
+        "max_size_ratio"                   : 6.0,
+        "refer_type"                       : "Mean"
+    },
+    "anisotropy_remeshing"              : true,
+    "anisotropy_parameters":{
+        "hmin_over_hmax_anisotropic_ratio" : 0.15,
+        "interpolation"                    : "Linear"
+    },
+    "echo_level"                        : 3
+}
+""")
 
-## Read the model - note that SetBufferSize is done here
-solver.ImportModelPart()
+from mmg_process import MmgProcess
+process = MmgProcess(current_model, mmg_parameters)
+process.ExecuteInitialize()
+process.ExecuteInitializeSolutionStep()
+process.ExecuteFinalizeSolutionStep()
 
-## Add AddDofs
-solver.AddDofs()
+# Finally we export to GiD
+gid_parameters = KratosMultiphysics.Parameters("""
+{
+    "result_file_configuration" : {
+        "gidpost_flags": {
+            "GiDPostMode": "GiD_PostBinary",
+            "WriteDeformedMeshFlag": "WriteUndeformed",
+            "WriteConditionsFlag"  : "WriteConditions",
+            "MultiFileFlag"        : "SingleFile"
+        },
+        "nodal_results"               : ["DISTANCE","DISTANCE_GRADIENT"],
+        "nodal_nonhistorical_results" : ["ANISOTROPIC_RATIO"]
+    }
+}
+""")
 
-## Initialize GiD  I/O
-if (parallel_type == "OpenMP"):
-    from gid_output_process import GiDOutputProcess
-    gid_output = GiDOutputProcess(solver.GetComputingModelPart(),
-                                  ProjectParameters["problem_data"]["problem_name"].GetString() ,
-                                  ProjectParameters["output_configuration"])
-elif (parallel_type == "MPI"):
-    from gid_output_process_mpi import GiDOutputProcessMPI
-    gid_output = GiDOutputProcessMPI(solver.GetComputingModelPart(),
-                                     ProjectParameters["problem_data"]["problem_name"].GetString() ,
-                                     ProjectParameters["output_configuration"])
+from gid_output_process import GiDOutputProcess
+gid_output = GiDOutputProcess(main_model_part, "gid_output", gid_parameters)
 
 gid_output.ExecuteInitialize()
-
-##here all of the allocation of the strategies etc is done
-solver.Initialize()
-
-##TODO: replace MODEL for the Kratos one ASAP
-## Get the list of the skin submodel parts in the object Model
-for i in range(ProjectParameters["solver_settings"]["skin_parts"].size()):
-    skin_part_name = ProjectParameters["solver_settings"]["skin_parts"][i].GetString()
-    Model.update({skin_part_name: main_model_part.GetSubModelPart(skin_part_name)})
-
-#~ ## Get the list of the no-skin submodel parts in the object Model
-#~ for i in range(ProjectParameters["solver_settings"]["no_skin_parts"].size()):
-    #~ no_skin_part_name = ProjectParameters["solver_settings"]["no_skin_parts"][i].GetString()
-    #~ Model.update({no_skin_part_name: main_model_part.GetSubModelPart(no_skin_part_name)})
-
-## Get the list of the initial conditions submodel parts in the object Model
-for i in range(ProjectParameters["initial_conditions_process_list"].size()):
-    initial_cond_part_name = ProjectParameters["initial_conditions_process_list"][i]["Parameters"]["model_part_name"].GetString()
-    Model.update({initial_cond_part_name: main_model_part.GetSubModelPart(initial_cond_part_name)})
-
-## Get the gravity submodel part in the object Model
-for i in range(ProjectParameters["gravity"].size()):
-    gravity_part_name = ProjectParameters["gravity"][i]["Parameters"]["model_part_name"].GetString()
-    Model.update({gravity_part_name: main_model_part.GetSubModelPart(gravity_part_name)})
-
-## Remeshing processes construction
-import process_factory
-if (ProjectParameters.Has("mmg") == True):
-    remeshing_processes = process_factory.KratosProcessFactory(Model).ConstructListOfProcesses(ProjectParameters["mmg"])
-
-    ## Remeshing processes initialization
-    for process in remeshing_processes:
-        process.ExecuteInitialize()
-        
-# "list_of_processes" contains all the processes already constructed (boundary conditions, initial conditions and gravity)
-# Note 1: gravity is firstly constructed. Outlet process might need its information.
-# Note 2: conditions are constructed before BCs. Otherwise, they may overwrite the BCs information.
-
-list_of_processes = process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["gravity"] )
-list_of_processes += process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["initial_conditions_process_list"] )
-list_of_processes += process_factory.KratosProcessFactory(Model).ConstructListOfProcesses( ProjectParameters["boundary_conditions_process_list"] )
-
-## Processes initialization
-for process in list_of_processes:
-    process.ExecuteInitialize()
-
-if (ProjectParameters.Has("mmg") == True):
-    for process in remeshing_processes:
-        list_of_processes += process_factory.KratosProcessFactory(Model).ConstructListOfProcesses(ProjectParameters["mmg"])
-
-#TODO: think if there is a better way to do this
-fluid_model_part = solver.GetComputingModelPart()
-
-## Stepping and time settings
-Dt = ProjectParameters["problem_data"]["time_step"].GetDouble()
-end_time = ProjectParameters["problem_data"]["end_time"].GetDouble()
-
-time = 0.0
-step = 0
-out = 0.0
-
 gid_output.ExecuteBeforeSolutionLoop()
-
-for process in list_of_processes:
-    process.ExecuteBeforeSolutionLoop()
-
-while(time <= end_time):
-    time = time + Dt
-    step = step + 1
-    main_model_part.CloneTimeStep(time)
-
-    if (parallel_type == "OpenMP") or (KratosMPI.mpi.rank == 0):
-        print("STEP = ", step)
-        print("TIME = ", time)
-
-    if(step >= 3):
-        for process in list_of_processes:
-            process.ExecuteInitializeSolutionStep()
-
-        gid_output.ExecuteInitializeSolutionStep()
-
-        #solver.Solve()
-
-        for process in list_of_processes:
-            process.ExecuteFinalizeSolutionStep()
-
-        gid_output.ExecuteFinalizeSolutionStep()
-
-        #TODO: decide if it shall be done only when output is processed or not
-        for process in list_of_processes:
-            process.ExecuteBeforeOutputStep()
-
-        if gid_output.IsOutputStep():
-            gid_output.PrintOutput()
-
-        for process in list_of_processes:
-            process.ExecuteAfterOutputStep()
-
-        out = out + Dt
-
-for process in list_of_processes:
-    process.ExecuteFinalize()
-
+gid_output.ExecuteInitializeSolutionStep()
+gid_output.PrintOutput()
+gid_output.ExecuteFinalizeSolutionStep()
 gid_output.ExecuteFinalize()
+
+# Finally we export to VTK
+vtk_settings = KratosMultiphysics.Parameters("""{
+    "model_part_name"                    : "MainModelPart",
+    "file_format"                        : "ascii",
+    "output_precision"                   : 7,
+    "output_control_type"                : "step",
+    "output_frequency"                   : 1.0,
+    "output_sub_model_parts"             : false,
+    "save_output_files_in_folder"        : false,
+    "nodal_solution_step_data_variables" : ["DISTANCE","DISTANCE_GRADIENT"],
+    "nodal_data_value_variables"         : ["ANISOTROPIC_RATIO"],
+    "element_data_value_variables"       : [],
+    "condition_data_value_variables"     : [],
+    "gauss_point_variables"              : []
+}""")
+
+vtk_io = KratosMultiphysics.VtkOutput(main_model_part, vtk_settings)
+vtk_io.PrintOutput()
