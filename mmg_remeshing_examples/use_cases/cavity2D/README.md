@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 7.1
 
 **Source files:** [Cavity](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/cavity2D/source)
 
