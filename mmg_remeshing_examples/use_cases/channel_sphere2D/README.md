@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 7.1
 
 **Source files:** [Channel sphere 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/channel_sphere2D/source)
 
@@ -11,7 +11,7 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication* with the *MMG* module
+- *FluidDynamicsApplication* 
 - *MeshingApplication* with the *MMG* module
 
 Adaptative remeshing of 2D fluid channel with sphere using Hessian of velocity as metric measure. It consists in a channel 3x1, a sphere of 0.5 diameter and with a velocity of 1 m/s in the inlet an zero pressure in the outlet. The total time of simulation is *5s* with a time step of *0.01s*. The remeshing is performed each 20 steps.
