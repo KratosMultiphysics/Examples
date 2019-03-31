@@ -28,7 +28,7 @@
         "no_skin_parts"                : [],
         "formulation": {
             "element_type": "embedded_navier_stokes",
-            "dynamic_tau": 1.0e-3
+            "dynamic_tau": 1.0
         },
         "time_stepping"               : {
             "automatic_time_step" : false,
