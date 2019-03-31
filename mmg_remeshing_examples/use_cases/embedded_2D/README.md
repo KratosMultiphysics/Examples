@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** 5.2
+**Kratos version:** 7.1
 
 **Source files:** [Embedded sphere 2D](https://github.com/KratosMultiphysics/Examples/tree/master/mmg_remeshing_examples/use_cases/embedded_2D/source)
 
@@ -11,10 +11,10 @@
 In this test case, 
 
 The following applications of Kratos are used:
-- *FluidDynamicsApplication* with the *MMG* module
+- *FluidDynamicsApplication* 
 - *MeshingApplication* with the *MMG* module
 
-Adaptative anisotropic remeshing of 2D fluid channel with sphere using as level set the distance function. The problem is solved using an embedded formulation. It consists in a channel 5x1, a sphere of 0.3 m diameter and with a velocity of 1 m/s in the inlet an zero pressure in the outlet. The total time of simulation is *10s* with a time step of *0.1s*. 
+Adaptative anisotropic remeshing of 2D fluid channel with sphere using as level set the distance function. It consists in a channel 5x1, a sphere of 0.3 m diameter.
 
 The remeshing is before start the simulation, where we start with a very refined mesh of 40000 nodes and it is simplified to a mesh of just 2500 nodes, centered around the sphere of interest.
 
@@ -32,18 +32,6 @@ The mesh corresponding after remesh:
 
 <p align="center">
   <img src="data/mesh1.png" alt="Mesh1" style="width: 600px;"/>
-</p>
-
-## Results
-
-The results obtained corresponds with the following:
-
-<p align="center">
-  <img src="data/velocity.gif" alt="Solution" style="width: 600px;"/>
-</p>
-
-<p align="center">
-  <img src="data/pressure.gif" alt="Solution" style="width: 600px;"/>
 </p>
 
 ## References
