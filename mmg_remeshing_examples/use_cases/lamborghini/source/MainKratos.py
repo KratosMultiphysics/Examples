@@ -62,7 +62,7 @@ mmg_parameters = KratosMultiphysics.Parameters("""
 }
 """)
 
-from mmg_process import MmgProcess
+from KratosMultiphysics.MeshingApplication.mmg_process import MmgProcess
 process = MmgProcess(current_model, mmg_parameters)
 process.ExecuteInitialize()
 process.ExecuteInitializeSolutionStep()
