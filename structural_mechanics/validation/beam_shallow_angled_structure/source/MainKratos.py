@@ -47,7 +47,7 @@ solver.AddDofs()
 output_post  = ProjectParameters.Has("output_configuration")
 if (output_post == True):
     if (parallel_type == "OpenMP"):
-        from gid_output_process import GiDOutputProcess
+        from KratosMultiphysics.gid_output_process import GiDOutputProcess
         gid_output = GiDOutputProcess(solver.GetComputingModelPart(),
                                       ProjectParameters["problem_data"]["problem_name"].GetString() ,
                                       ProjectParameters["output_configuration"])
@@ -132,9 +132,9 @@ while(time <= end_time):
 
     if (output_post == True):
         gid_output.ExecuteInitializeSolutionStep()
-        
-    ApplyLoad(-98196.0, main_model_part.GetSubModelPart("PointLoad2D_neumann"), time)   
-   
+
+    ApplyLoad(-98196.0, main_model_part.GetSubModelPart("PointLoad2D_neumann"), time)
+
     solver.Solve()
 
     for process in list_of_processes:

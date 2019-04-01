@@ -56,7 +56,7 @@ for i in range(2):
     MmgProcess.Execute()
 
     # Finally we export to GiD
-    from gid_output_process import GiDOutputProcess
+    from KratosMultiphysics.gid_output_process import GiDOutputProcess
     gid_output = GiDOutputProcess(main_model_part,
                                 "gid_output_" + str(i),
                                 KratosMultiphysics.Parameters("""

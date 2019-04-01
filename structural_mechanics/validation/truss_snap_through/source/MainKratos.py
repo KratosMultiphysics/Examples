@@ -47,7 +47,7 @@ solver.AddDofs()
 output_post  = ProjectParameters.Has("output_configuration")
 if (output_post == True):
     if (parallel_type == "OpenMP"):
-        from gid_output_process import GiDOutputProcess
+        from KratosMultiphysics.gid_output_process import GiDOutputProcess
         gid_output = GiDOutputProcess(solver.GetComputingModelPart(),
                                       ProjectParameters["problem_data"]["problem_name"].GetString() ,
                                       ProjectParameters["output_configuration"])

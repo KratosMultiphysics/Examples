@@ -81,7 +81,7 @@ gid_parameters = KratosMultiphysics.Parameters("""
 }
 """)
 
-from gid_output_process import GiDOutputProcess
+from KratosMultiphysics.gid_output_process import GiDOutputProcess
 gid_output = GiDOutputProcess(main_model_part, "gid_output", gid_parameters)
 
 gid_output.ExecuteInitialize()
