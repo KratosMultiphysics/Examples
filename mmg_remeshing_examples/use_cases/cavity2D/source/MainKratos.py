@@ -4,20 +4,20 @@ import KratosMultiphysics
 # Importing Kratos
 import KratosMultiphysics
 import KratosMultiphysics.MeshingApplication
-from KratosMultiphysics.FluidDynamicsApplication.adaptative_remeshing_fluid_dynamics_analysis import AdaptativeRemeshingFluidDynamicsAnalysis
+from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 
 import sys
 import time
 
-class AdaptativeRemeshingFluidDynamicsAnalysisWithFlush(AdaptativeRemeshingFluidDynamicsAnalysis):
+class FluidDynamicsAnalysisWithFlush(FluidDynamicsAnalysis):
 
     def __init__(self,model,project_parameters,flush_frequency=10.0):
-        super(AdaptativeRemeshingFluidDynamicsAnalysisWithFlush,self).__init__(model,project_parameters)
+        super(FluidDynamicsAnalysisWithFlush,self).__init__(model,project_parameters)
         self.flush_frequency = flush_frequency
         self.last_flush = time.time()
 
     def FinalizeSolutionStep(self):
-        super(AdaptativeRemeshingFluidDynamicsAnalysisWithFlush,self).FinalizeSolutionStep()
+        super(FluidDynamicsAnalysisWithFlush,self).FinalizeSolutionStep()
 
         if self.parallel_type == "OpenMP":
             now = time.time()
@@ -31,5 +31,5 @@ if __name__ == "__main__":
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
     model = KratosMultiphysics.Model()
-    simulation = AdaptativeRemeshingFluidDynamicsAnalysisWithFlush(model,parameters)
+    simulation = FluidDynamicsAnalysisWithFlush(model,parameters)
     simulation.Run()
