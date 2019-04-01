@@ -96,7 +96,7 @@
         "initial_remeshing_process" :[
         {
             "python_module" : "mmg_process",
-            "kratos_module" : "KratosMultiphysics",
+            "kratos_module" : "KratosMultiphysics.MeshingApplication",
             "help"          : "This process automatically remesh using MMG library",
             "process_name"  : "MmgProcess",
             "Parameters"    : {
