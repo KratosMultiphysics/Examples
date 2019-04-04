@@ -29,9 +29,6 @@
         },
         "convergence_criterion"              : "adaptative_remesh_criteria",
         "max_iteration"                      : 2,
-        "linear_solver_settings"             : {
-                "solver_type": "SuperLUSolver"
-        },
         "problem_domain_sub_model_part_list" : ["Parts_Parts_Auto1","Parts_Parts_Auto2"],
         "processes_sub_model_part_list"      : ["Contact_Part","Parts_Parts_Auto1","Parts_Parts_Auto2","DISPLACEMENT_Displacement_Auto1","IMPOSE_DISP_Auto1"]
     },
@@ -42,7 +39,7 @@
         "process_name"          : "AssignVectorVariableProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "DISPLACEMENT_Displacement_Auto1",
+            "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
             "variable_name"   : "DISPLACEMENT",
             "constrained"     : [true,true,true],
             "value"           : [0.0,0.0,0.0]
@@ -54,7 +51,7 @@
         "process_name"          : "AssignVectorVariableProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "IMPOSE_DISP_Auto1",
+            "model_part_name" : "Structure.IMPOSE_DISP_Auto1",
             "variable_name"   : "DISPLACEMENT",
             "constrained"     : [true,true,true],
             "value"           : [0.0,-0.01,0.0]
@@ -80,26 +77,58 @@
         }
     }
     ],
-    "output_configuration"     : {
-        "result_file_configuration" : {
-            "gidpost_flags"       : {
-                "GiDPostMode"           : "GiD_PostBinary",
-                "WriteDeformedMeshFlag" : "WriteUndeformed",
-                "WriteConditionsFlag"   : "WriteConditions",
-                "MultiFileFlag"         : "SingleFile"
-            },
-            "file_label"          : "step",
-            "output_control_type" : "step",
-            "output_frequency"    : 1,
-            "body_output"         : true,
-            "node_output"         : false,
-            "skin_output"         : false,
-            "plane_output"        : [],
-            "nodal_results"       : ["DISPLACEMENT","REACTION","WEIGHTED_GAP"],
-            "nodal_nonhistorical_results": ["NORMAL","NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE","CONTACT_PRESSURE"],
-            "nodal_flags_results": ["ACTIVE","SLAVE"],
-            "gauss_point_results" : []
-        },
-        "point_data_configuration"  : []
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "Structure.computing_domain",
+                "output_name"            : "contact_spr",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "step",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["DISPLACEMENT","REACTION","WEIGHTED_GAP"],
+                        "nodal_nonhistorical_results": ["NORMAL","NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE","CONTACT_PRESSURE"],
+                        "nodal_flags_results": ["ACTIVE","SLAVE"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure.computing_domain",
+                "output_control_type"                : "step",
+                "output_frequency"                   : 1,
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "folder_name"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","REACTION","WEIGHTED_GAP"],
+                "nodal_data_value_variables"         : ["NORMAL","NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE","CONTACT_PRESSURE"],
+                "element_data_value_variables"       : [],
+                "condition_data_value_variables"     : [],
+                "gauss_point_variables"              : []
+            }
+        }]
     }
 }
