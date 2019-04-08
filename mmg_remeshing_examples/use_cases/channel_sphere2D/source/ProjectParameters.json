@@ -88,7 +88,7 @@
                 "automatic_remesh"                 : true,
                 "automatic_remesh_parameters"      :{
                     "automatic_remesh_type"            : "Ratio",
-                    "min_size_ratio"                   : 0.05,
+                    "min_size_ratio"                   : 0.5,
                     "max_size_ratio"                   : 100.0,
                     "refer_type"                       : "Mean"
                 },
