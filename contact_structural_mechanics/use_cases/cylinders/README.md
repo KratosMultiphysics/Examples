@@ -11,6 +11,14 @@
 
 ## Results
 
+### Vertical movement
+![](data/cylinders_vertical.gif)
+
+### Horizontal movement (I)
+![](data/horizontal_movement_1.gif)
+
+### Horizontal movement (II)
+![](data/horizontal_movement_2.gif)
 
 ## References
 
