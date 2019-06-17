@@ -91,6 +91,10 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 **Validation**
 - [Granular Flow 2D](particle_mechanics/validation/granular_flow_2D/README.md)
 
+## PFEM2
 
-
-
+**Use cases**
+- [Dam break](pfem2/use_cases/dam_break/README.md)
+- [No Newtonian 2D](pfem2/use_cases/no_newtonian_2d/README.md)
+- [No Newtonian 3D](pfem2/use_cases/no_newtonian_3d/README.md)
+- [Rayleigh](pfem2/use_cases/rayleigh/README.md)
