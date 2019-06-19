@@ -55,6 +55,8 @@ for i in range(2):
     MmgProcess = MeshingApplication.MmgProcess3D(main_model_part, remesh_param)
     MmgProcess.Execute()
 
+    find_nodal_h.Execute()
+
     # Finally we export to GiD
     from KratosMultiphysics.gid_output_process import GiDOutputProcess
     gid_output = GiDOutputProcess(main_model_part,
