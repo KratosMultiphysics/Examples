@@ -90,7 +90,7 @@ vtk_settings = KratosMultiphysics.Parameters("""{
     "save_output_files_in_folder"        : false,
     "nodal_solution_step_data_variables" : ["DISTANCE"],
     "nodal_data_value_variables"         : ["NODAL_H"],
-    "nodal_flag"                         : [],
+    "nodal_flags"                        : [],
     "element_data_value_variables"       : [],
     "condition_data_value_variables"     : [],
     "gauss_point_variables"              : []
