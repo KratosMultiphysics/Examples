@@ -1,7 +1,6 @@
 {
     "problem_data"             : {
         "problem_name"    : "contact_spr",
-        "model_part_name" : "Structure",
         "parallel_type"   : "OpenMP",
         "start_time"      : 0.0,
         "end_time"        : 1.0,
