@@ -38,7 +38,7 @@ for i in range(2):
         "maximal_size"                      : 1.0,
         "enforce_current"                   : false,
         "anisotropy_remeshing"              : true,
-        "anisotropy_parameters":{
+        "enforced_anisotropy_parameters":{
             "reference_variable_name"          : "DISTANCE",
             "hmin_over_hmax_anisotropic_ratio" : 0.15,
             "boundary_layer_max_distance"      : 1.0,
