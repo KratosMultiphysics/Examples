@@ -44,8 +44,8 @@ metric_param = KratosMultiphysics.Parameters(
     }
 }"""
 )
-local_gradient = MeshingApplication.ComputeHessianSolMetricProcess2D(main_model_part, KratosMultiphysics.DISTANCE, metric_param)
-local_gradient.Execute()
+local_hessian = MeshingApplication.ComputeHessianSolMetricProcess2D(main_model_part, KratosMultiphysics.DISTANCE, metric_param)
+local_hessian.Execute()
 
 # We create the remeshing process
 remesh_param = KratosMultiphysics.Parameters("""{ }""")
@@ -53,6 +53,7 @@ MmgProcess = MeshingApplication.MmgProcess2D(main_model_part, remesh_param)
 MmgProcess.Execute()
 
 find_nodal_h.Execute()
+local_hessian.Execute()
 
 # Finally we export to GiD
 from KratosMultiphysics.gid_output_process import GiDOutputProcess
@@ -68,7 +69,7 @@ gid_output = GiDOutputProcess(main_model_part,
                                         "MultiFileFlag": "SingleFile"
                                     },
                                     "nodal_results"               : ["DISTANCE"],
-                                    "nodal_nonhistorical_results" : ["NODAL_H"]
+                                    "nodal_nonhistorical_results" : ["NODAL_H","METRIC_TENSOR_2D"]
                                 }
                             }
                             """)
@@ -91,7 +92,7 @@ vtk_settings = KratosMultiphysics.Parameters("""{
     "output_sub_model_parts"             : false,
     "save_output_files_in_folder"        : false,
     "nodal_solution_step_data_variables" : ["DISTANCE"],
-    "nodal_data_value_variables"         : ["NODAL_H"],
+    "nodal_data_value_variables"         : ["NODAL_H","METRIC_TENSOR_2D"],
     "nodal_flags"                        : [],
     "element_data_value_variables"       : [],
     "condition_data_value_variables"     : [],
