@@ -16,7 +16,10 @@ main_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.NODAL_AREA)
 # We import the model main_model_part
 KratosMultiphysics.ModelPartIO("3D_hessian_test").ReadModelPart(main_model_part)
 
-for i in range(2):
+iterations = 2
+for i in range(iterations):
+    main_model_part.ProcessInfo.SetValue(KratosMultiphysics.STEP, i)
+
     # Calculate NODAL_H
     find_nodal_h = KratosMultiphysics.FindNodalHNonHistoricalProcess(main_model_part)
     find_nodal_h.Execute()
@@ -26,6 +29,7 @@ for i in range(2):
         node.SetSolutionStepValue(KratosMultiphysics.DISTANCE, 0, math.tanh(-100.0 * (node.Y - 0.5 - 0.25 * math.sin(2*math.pi*node.X))) + math.tanh(100.0 * (node.Y - node.X)))
 
     # We calculate the gardient of the distance variable
+    KratosMultiphysics.VariableUtils().SetNonHistoricalVariableToZero(MeshingApplication.METRIC_TENSOR_3D, main_model_part.Nodes)
     minimal_size = 0.01/float(i + 1)
     metric_param = KratosMultiphysics.Parameters(
     """{
@@ -38,7 +42,7 @@ for i in range(2):
         "maximal_size"                      : 1.0,
         "enforce_current"                   : false,
         "anisotropy_remeshing"              : true,
-        "anisotropy_parameters":{
+        "enforced_anisotropy_parameters":{
             "reference_variable_name"          : "DISTANCE",
             "hmin_over_hmax_anisotropic_ratio" : 0.15,
             "boundary_layer_max_distance"      : 1.0,
@@ -47,8 +51,8 @@ for i in range(2):
     }"""
     )
     metric_param["minimal_size"].SetDouble(minimal_size)
-    local_gradient = MeshingApplication.ComputeHessianSolMetricProcess3D(main_model_part, KratosMultiphysics.DISTANCE, metric_param)
-    local_gradient.Execute()
+    local_hessian = MeshingApplication.ComputeHessianSolMetricProcess3D(main_model_part, KratosMultiphysics.DISTANCE, metric_param)
+    local_hessian.Execute()
 
     # We create the remeshing process
     remesh_param = KratosMultiphysics.Parameters("""{ }""")
