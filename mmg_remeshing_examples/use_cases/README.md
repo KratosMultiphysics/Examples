@@ -12,3 +12,4 @@ This folder contains the use cases:
 - [Embedded2D](embedded_2D/README.md)
 - [Channel sphere 2D](channel_sphere2D/README.md)
 - [Channel sphere 3D](channel_sphere3D/README.md)
+- [Isosurface box](test_box/README.md)
