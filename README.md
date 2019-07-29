@@ -64,6 +64,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Embedded2D](mmg_remeshing_examples/use_cases/embedded_2D/README.md)
 - [Channel sphere 2D](mmg_remeshing_examples/use_cases/channel_sphere2D/README.md)
 - [Channel sphere 3D](mmg_remeshing_examples/use_cases/channel_sphere3D/README.md)
+- [Isosurface box](mmg_remeshing_examples/use_cases/test_box/README.md)
 
 **Validation**
 - [Hessian2D](mmg_remeshing_examples/validation/hessian2D/README.md)
