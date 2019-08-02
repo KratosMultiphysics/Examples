@@ -51,6 +51,7 @@ The Examples are continously updated and extended. The last version of MMG check
 - [Embedded2D](use_cases/embedded_2D/README.md)
 - [Channel sphere 2D](use_cases/channel_sphere2D/README.md)
 - [Channel sphere 3D](use_cases/channel_sphere3D/README.md)
+- [Isosurface box](use_cases/test_box/README.md)
 
 
 
