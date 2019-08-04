@@ -3,7 +3,7 @@
         "problem_name"    : "double_arch",
         "parallel_type"   : "OpenMP",
         "start_time"      : 0.0,
-        "end_time"        : 1.0,
+        "end_time"        : 0.260,
         "echo_level"      : 0
     },
     "solver_settings"          : {
@@ -25,7 +25,7 @@
             "ensure_contact"                          : true
         },
         "time_stepping"                      : {
-            "time_step" : 0.00005
+            "time_step" : 0.0005
         },
         "convergence_criterion"              : "contact_mixed_criterion",
         "displacement_relative_tolerance"    : 0.0001,
@@ -74,18 +74,7 @@
                 "model_part_name"             : "Structure",
                 "assume_master_slave"         : {"0":["Parts_Parts_Auto1"]},
                 "contact_model_part"          : {"0":["CONTACT_Contact_Auto1"]},
-                "contact_type"                : "FrictionlessComponents",
-                "integration_order"           : 3,
-                "search_parameters" : {
-                    "search_factor"               : 1.0,
-                    "type_search"                 : "InRadius",
-                    "active_check_factor"         : 5.0e-2
-                },
-                "advance_ALM_parameters" : {
-                    "stiffness_factor"            : 10.0,
-                    "penalty_scale_factor"        : 1.0,
-                    "max_gap_factor"              : 5.0e-9
-                }
+                "contact_type"                : "FrictionlessComponents"
             }
         }]
     },
@@ -107,7 +96,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "step",
-                        "output_frequency"    : 1.0,
+                        "output_frequency"    : 10.0,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -129,10 +118,10 @@
             "Parameters"    : {
                 "model_part_name"                    : "Structure.computing_domain",
                 "output_control_type"                : "step",
-                "output_frequency"                   : 1,
+                "output_frequency"                   : 10,
                 "file_format"                        : "ascii",
                 "output_precision"                   : 7,
-                "output_sub_model_parts"             : true,
+                "output_sub_model_parts"             : false,
                 "folder_name"                        : "vtk_output",
                 "save_output_files_in_folder"        : true,
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
