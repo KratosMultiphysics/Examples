@@ -20,8 +20,7 @@
             "materials_filename" : "StructuralMaterials.json"
         },
         "contact_settings":{
-            "mortar_type"                        : "ALMContactFrictionlessComponents",
-            "ensure_contact"                     : true
+            "mortar_type"                        : "ALMContactFrictionlessComponents"
         },
         "time_stepping"                      : {
             "time_step" : 1.1e0
@@ -44,7 +43,7 @@
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "DISPLACEMENT_Displacement_Auto1",
+                "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
                 "variable_name"   : "DISPLACEMENT",
                 "constrained"     : [true,true,true],
                 "value"           : [0.0,0.0,0.0],
@@ -57,7 +56,7 @@
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "SurfaceLoad3D_Load_on_surfaces_Auto1",
+                "model_part_name" : "Structure.SurfaceLoad3D_Load_on_surfaces_Auto1",
                 "variable_name"   : "DISPLACEMENT",
                 "constrained"     : [true,true,false],
                 "value"           : [0.0,0.0,0.0],
@@ -74,16 +73,13 @@
                 "assume_master_slave"         : {"0":["Parts_Parts_Auto1"]},
                 "contact_model_part"          : {"0":["CONTACT_Contact_Auto1"]},
                 "contact_type"                : "FrictionlessComponents",
-                "integration_order"           : 3,
                 "search_parameters" : {
                     "search_factor"               : 4.0,
-                    "type_search"                 : "InRadius",
+                    "type_search"                 : "in_radius",
                     "active_check_factor"         : 1.0e0
                 },
                 "advance_ALM_parameters" : {
-                    "stiffness_factor"            : 10.0,
-                    "penalty_scale_factor"        : 1.0,
-                    "max_gap_factor"              : 5.0e-9
+                    "stiffness_factor"            : 10.0
                 }
             }
         }],
@@ -95,7 +91,7 @@
             "process_name"  : "AssignVectorByDirectionToConditionProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "SurfaceLoad3D_Load_on_surfaces_Auto1",
+                "model_part_name" : "Structure.SurfaceLoad3D_Load_on_surfaces_Auto1",
                 "variable_name"   : "SURFACE_LOAD",
                 "modulus"         : 5.0e5,
                 "direction"       : [0.0,0.0,-1.0],
@@ -127,10 +123,37 @@
                         "skin_output"         : false,
                         "plane_output"        : [],
                         "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
-                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE"],
-                        "nodal_flags_results": ["ACTIVE","SLAVE","SLIP"],
+                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                        "nodal_flags_results": ["ACTIVE","MASTER","SLAVE"],
                         "gauss_point_results" : ["VON_MISES_STRESS","PK2_STRESS_TENSOR"]
                     },
-                    "point_data_configuration"  : []}}}]
+                    "point_data_configuration"  : []
+                }
+            }
+        }],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure.computing_domain",
+                "output_control_type"                : "step",
+                "output_frequency"                   : 1,
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : true,
+                "folder_name"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
+                "nodal_data_value_variables"         : ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                "nodal_flags"                        : ["ACTIVE","MASTER","SLAVE"],
+                "element_data_value_variables"       : [],
+                "element_flags"                      : [],
+                "condition_data_value_variables"     : [],
+                "condition_flags"                    : [],
+                "gauss_point_variables"              : ["VON_MISES_STRESS"]
+            }
+        }]
     }
 }
