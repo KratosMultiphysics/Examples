@@ -37,9 +37,13 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 ## Contact Structural Mechanics
 
+**Use Cases**
+- [Cylinders](contact_structural_mechanics/use_cases/cylinders/README.md)
+- [Ironing with die](contact_structural_mechanics/use_cases/ironing_with_die_3D/README.md)
+
 **Validation**
 - [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)
-- [Hertz contact benchmark](contact_structural_mechanics/validation/hertz/README.md)
+- [Hertz benchmark](contact_structural_mechanics/validation/hertz/README.md)
 
 ## Conjugate Heat Transfer (CHT)
 
