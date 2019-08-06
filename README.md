@@ -41,6 +41,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Cylinders](contact_structural_mechanics/use_cases/cylinders/README.md)
 - [Ironing with die](contact_structural_mechanics/use_cases/ironing_with_die_3D/README.md)
 - [Shallow ironing](contact_structural_mechanics/use_cases/shallow_ironing_3D/README.md)
+- [Cylinder in ring](contact_structural_mechanics/use_cases/in_ring/README.md)
 
 
 **Validation**
