@@ -8,7 +8,7 @@
 
 ## Problem definition
 
-The problem consists on a [tensile test](https://en.wikipedia.org/wiki/Tensile_testing).  Three different meshes have been created, in order to validate the computation of the internal energy dissipation, whcih depends on the element length.
+The problem consists on a [tensile test](https://en.wikipedia.org/wiki/Tensile_testing).  Three different meshes have been created, in order to validate the computation of the internal energy dissipation, which depends on the element length.
 
 - The hexahedra mesh:
 
