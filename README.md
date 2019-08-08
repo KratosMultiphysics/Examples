@@ -47,6 +47,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 **Validation**
 - [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)
 - [Hertz benchmark](contact_structural_mechanics/validation/hertz/README.md)
+- [Full Hertz benchmark](contact_structural_mechanics/validation/hertz_full/README.md)
 
 ## Conjugate Heat Transfer (CHT)
 

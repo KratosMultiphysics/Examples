@@ -2,7 +2,7 @@
 
 **Author:** Vicente Mataix Ferrándiz
 
-**Kratos version:** Development branch. **Expected 5.3**
+**Kratos version:** Current head
 
 **Source files:** [Hertz](https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation/hertz/source)
 
