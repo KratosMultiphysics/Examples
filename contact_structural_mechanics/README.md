@@ -17,6 +17,7 @@ The Examples are continously updated and extended
 - [Ironing with die](use_cases/ironing_with_die_3D/README.md)
 - [Shallow ironing](use_cases/shallow_ironing_3D/README.md)
 - [Cylinder in ring](use_cases/in_ring/README.md)
+- [Tooth model](use_cases/tooth_model/README.md)
 
 
 

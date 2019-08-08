@@ -6,3 +6,4 @@ This folder contains the use cases:
 - [Ironing with die](ironing_with_die_3D/README.md)
 - [Shallow ironing](shallow_ironing_3D/README.md)
 - [Cylinder in ring](in_ring/README.md)
+- [Tooth model](tooth_model/README.md)
