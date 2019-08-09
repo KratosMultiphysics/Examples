@@ -7,3 +7,4 @@ This folder contains the use cases:
 - [Shallow ironing](shallow_ironing_3D/README.md)
 - [Cylinder in ring](in_ring/README.md)
 - [Tooth model](tooth_model/README.md)
+- [Arc block](arc_block/README.md)
