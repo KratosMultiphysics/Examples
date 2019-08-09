@@ -16,9 +16,9 @@ The problem consists in an arc and a block. The arc is pressed againts the block
   <img src="data/mesh.png" alt="Mesh1" style="width: 600px;"/>
 </p>
 
-The displacement imposed is uy = t, with t = [0.0, 1.0]
+The displacement imposed is uy = t, with t = [0.0, 1.0] for the two first cases,  t = [0.0, 1.775] for the rigid arc
 
-Two different combinations of materials has been tested:
+Three different combinations of materials has been tested:
 
 - *Rigid block*:
 	- Arc:
@@ -38,7 +38,17 @@ Two different combinations of materials has been tested:
 		- HyperElastic3DLaw (*Neo-Hookean*)
 		- E: 68.96e5
 		- &nu; 0.32
-
+		
+- *Deformable block-Rigid arc*:
+	- Arc:
+		- HyperElastic3DLaw (*Neo-Hookean*)
+		- E: 68.96e9
+		- &nu; 0.32
+	- Block:
+		- HyperElastic3DLaw (*Neo-Hookean*)
+		- E: 68.96e5
+		- &nu; 0.32
+		
 ## Results
 
 ### Rigid block
@@ -48,6 +58,11 @@ Two different combinations of materials has been tested:
 ### Deformable block
 
 ![](data/animation_deformable.gif)
+
+### Deformable block-rigid arc
+
+![](data/animation_deformable_rigid_arc.gif)
+
 
 ## References
 
