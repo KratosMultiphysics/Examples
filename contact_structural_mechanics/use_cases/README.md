@@ -8,3 +8,4 @@ This folder contains the use cases:
 - [Cylinder in ring](in_ring/README.md)
 - [Tooth model](tooth_model/README.md)
 - [Arc block](arc_block/README.md)
+- [Gears](gears/README.md)

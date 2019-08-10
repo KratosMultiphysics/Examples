@@ -44,6 +44,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Cylinder in ring](contact_structural_mechanics/use_cases/in_ring/README.md)
 - [Tooth model](contact_structural_mechanics/use_cases/tooth_model/README.md)
 - [Arc block](contact_structural_mechanics/use_cases/arc_block/README.md)
+- [Gears](contact_structural_mechanics/use_cases/gears/README.md)
 
 **Validation**
 - [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)
