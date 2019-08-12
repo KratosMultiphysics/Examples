@@ -12,20 +12,20 @@ The problem consists in a cylinder inside a ring. The idea of this example is to
 
 ## Results
 
-- t= 0.0s:
+- t= 0.0 s:
 ![](data/t=0-0000.png)
 
-- t = 0.95375 s:
-![](data/t=0-95375.png)
+- t = 0.99 s:
+![](data/t=0-99.png)
 
-- t = 1.9075 s:
-![](data/t=1-9075.png)
+- t = 1.98 s:
+![](data/t=1-98.png)
 
-- t = 2.86125s:
-![](data/t=2-86125.png)
+- t = 2.97 s:
+![](data/t=2-97.png)
 
-- t = 3.815:
-![](data/t=3-815.png)
+- t = 3.96 s:
+![](data/t=3-96.png)
 
 - Animated:
 ![](data/animation.gif)
