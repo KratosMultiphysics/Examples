@@ -4,18 +4,12 @@
         "properties_id"   : 1,
         "Material"        : {
             "constitutive_law" : {
-                "name"              : "SmallStrainIsotropicPlasticityFactory",
-                "yield_surface"     : "VonMises",
-                "plastic_potential" : "VonMises"
+                "name"              : "LinearElastic3DLaw"
             },
             "Variables"        : {
-                "DENSITY"                   : 7850.0,
-                "YOUNG_MODULUS"             : 210e9,
-                "POISSON_RATIO"             : 0.29,
-                "FRACTURE_ENERGY"           : 1.0e18,
-                "YIELD_STRESS_COMPRESSION"  : 375.0e6,
-                "YIELD_STRESS_TENSION"      : 375.0e6,
-                "HARDENING_CURVE"           : 3
+                "DENSITY"                             : 7850.0,
+                "YOUNG_MODULUS"                       : 210e9,
+                "POISSON_RATIO"                       : 0.29
             },
             "Tables"           : {}
         }
@@ -24,18 +18,36 @@
         "properties_id"   : 2,
         "Material"        : {
             "constitutive_law" : {
+                "name"              : "LinearElastic3DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"                             : 7850.0,
+                "YOUNG_MODULUS"                       : 210e9,
+                "POISSON_RATIO"                       : 0.29
+            },
+            "Tables"           : {}
+        }
+    },{
+        "model_part_name" : "Contact_Detail",
+        "properties_id"   : 3,
+        "Material"        : {
+            "constitutive_law" : {
                 "name"              : "SmallStrainIsotropicPlasticityFactory",
+                "name1"              : "SmallStrainJ2Plasticity3DLaw",
+                "name0"              : "LinearElastic3DLaw",
                 "yield_surface"     : "VonMises",
                 "plastic_potential" : "VonMises"
             },
             "Variables"        : {
-                "DENSITY"                   : 7850.0,
-                "YOUNG_MODULUS"             : 210e9,
-                "POISSON_RATIO"             : 0.29,
-                "FRACTURE_ENERGY"           : 1.0e18,
-                "YIELD_STRESS_COMPRESSION"  : 375.0e6,
-                "YIELD_STRESS_TENSION"      : 375.0e6,
-                "HARDENING_CURVE"           : 3
+                "DENSITY"                             : 7850.0,
+                "YOUNG_MODULUS"                       : 210e9,
+                "POISSON_RATIO"                       : 0.29,
+                "FRACTURE_ENERGY"                     : 1.0e8,
+                "YIELD_STRESS"                        : 525.0e6,
+                "EXPONENTIAL_SATURATION_YIELD_STRESS" : 525.0e6,
+                "ISOTROPIC_HARDENING_MODULUS"         : 0.0,
+                "HARDENING_EXPONENT"                  : 1.0,
+                "HARDENING_CURVE"                     : 3
             },
             "Tables"           : {}
         }

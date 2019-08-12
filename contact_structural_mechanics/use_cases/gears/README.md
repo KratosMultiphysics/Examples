@@ -23,14 +23,28 @@ Two different combinations of materials has been tested:
 - *Linear elastic*:
 	- Gear1:
 		- LinearElastic3DLaw
-		- E: 68.96e8
-		- &nu; 0.32
+		- E: 210e9
+		- &nu; 0.29
 	- Gear2:
 		- LinearElastic3DLaw
-		- E: 68.96e7
-		- &nu; 0.32
+		- E: 210e9
+		- &nu; 0.29
 - *Elastic-plastic*:
-	**TODO**
+	- Gear1:
+		- LinearElastic3DLaw
+		- E: 210e9
+		- &nu; 0.29
+	- Gear2:
+		- LinearElastic3DLaw
+		- E: 210e9
+		- &nu; 0.29
+	- Contact zone (elastic-perfectly plastic):
+		- SmallStrainIsotropicPlasticityVonMisesVonMises
+		- E: 210e9
+		- &nu; 0.29
+		- Fracture energy: 1.0e8
+		- Yield stress: 525MPa
+		- Hardening curve: 3
 		
 ## Results
 
@@ -63,7 +77,36 @@ Two different combinations of materials has been tested:
 
 ### Elastic-plastic
 
-**TODO**
+- **Displacement**:
+
+	- *General*:
+<p align="center">
+  <img src="data/plastic_disp.gif" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+	- *Detail*:
+<p align="center">
+  <img src="data/detail_plastic_disp.gif" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+- **VM**:
+
+	- *General*:
+<p align="center">
+  <img src="data/plastic_vm.gif" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+	- *Detail*:
+<p align="center">
+  <img src="data/detail_plastic_vm.gif" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+- **Plastic dissipation**:
+
+	- *Detail*:
+<p align="center">
+  <img src="data/detail_plastic_dissipation.gif" alt="Mesh1" style="width: 600px;"/>
+</p>
 
 ## References
 

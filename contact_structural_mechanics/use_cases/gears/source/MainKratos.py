@@ -10,8 +10,8 @@ from ContactStructuralMechanicsAnalysis to do modifications
 
 if __name__ == "__main__":
 
-    #with open("ProjectParameters.json",'r') as parameter_file:
-    with open("ProjectParameters_linear.json",'r') as parameter_file:
+    with open("ProjectParameters.json",'r') as parameter_file:
+    #with open("ProjectParameters_linear.json",'r') as parameter_file:
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
     model = KratosMultiphysics.Model()

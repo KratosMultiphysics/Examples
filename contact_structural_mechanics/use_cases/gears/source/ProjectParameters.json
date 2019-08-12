@@ -2,8 +2,8 @@
     "problem_data"             : {
         "problem_name"    : "gears",
         "parallel_type"   : "OpenMP",
-        "start_time"      : 0.0,
-        "end_time"        : 1.0,
+        "start_time"      : 5.0e-2,
+        "end_time"        : 2.475e-1,
         "echo_level"      : 0
     },
     "solver_settings"          : {
@@ -24,9 +24,9 @@
         "displacement_absolute_tolerance"    : 1e-9,
         "residual_relative_tolerance"        : 0.0001,
         "residual_absolute_tolerance"        : 1e-9,
-        "max_iteration"                      : 25,
+        "max_iteration"                      : 10,
         "problem_domain_sub_model_part_list" : ["Parts_Gear1","Parts_Gear2"],
-        "processes_sub_model_part_list"      : ["Structure","DISPLACEMENT_Disp1","DISPLACEMENT_Disp2","SkinModelPart1","SkinModelPart2"],
+        "processes_sub_model_part_list"      : ["Structure","DISPLACEMENT_Disp1","DISPLACEMENT_Disp2","SkinModelPart1","SkinModelPart2","Contact_Detail"],
         "contact_settings"                   : {
             "mortar_type"                             : "ALMContactFrictionlessComponents"
         },
@@ -34,12 +34,8 @@
             "time_step_intervals" :
             {
                 "first" : {
-                    "interval"  : [0.0, 0.3999999999],
-                    "time_step" : 0.01
-                },
-                "second" : {
-                    "interval"  : [0.4, "End"],
-                    "time_step" : 0.005
+                    "interval"  : [0.0, "End"],
+                    "time_step" : 2.5e-3
                 }
             }
         }
@@ -68,11 +64,12 @@
                 "model_part_name" : "Structure.DISPLACEMENT_Disp2",
                 "variable_name"   : "DISPLACEMENT",
                 "constrained"     : [true,true,true],
-                "value"           : ["((x**2+y**2)**(0.5))*cos(atan2(y,x)-0.0025*t) - x","((x**2+y**2)**(0.5))*sin(atan2(y,x)-0.0025*t) - y",0.0],
+                "value"           : ["((x**2+y**2)**(0.5))*cos(atan2(y,x)-2.0e-3*t) - x","((x**2+y**2)**(0.5))*sin(atan2(y,x)-2.0e-3*t) - y",0.0],
                 "interval"        : [0.0,"End"]
             }
         }],
         "loads_process_list"   : [],
+        "other_process_list"   : [],
         "contact_process_list" : [{
                 "python_module" : "alm_contact_process",
                 "kratos_module" : "KratosMultiphysics.ContactStructuralMechanicsApplication",
@@ -83,10 +80,11 @@
                     "assume_master_slave"         : {"0":["SkinModelPart2"]},
                     "contact_model_part"          : {"0":["SkinModelPart1","SkinModelPart2"]},
                     "contact_type"                : "FrictionlessComponents",
-                    "search_parameters"           : {
-                        "database_step_update"    : 1,
-                        "search_factor"           : 3.5,
-                        "active_check_factor"     : 1.0e-2
+                    "search_parameters"             : {
+                        "type_search"                         : "in_radius_with_obb",
+                        "search_factor"                       : 3.5,
+                        "active_check_factor"                 : 1.0e-4,
+                        "database_step_update"                : 1
                     }
                 }
             }
@@ -119,7 +117,7 @@
                         "nodal_results"       : ["DISPLACEMENT","VOLUME_ACCELERATION","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
                         "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
                         "nodal_flags_results"        : ["ACTIVE","MASTER","SLAVE"],
-                        "gauss_point_results"        : ["VON_MISES_STRESS"]
+                        "gauss_point_results"        : ["VON_MISES_STRESS","PLASTIC_DISSIPATION"]
                     },
                     "point_data_configuration"  : []
                 }
@@ -146,7 +144,7 @@
                 "element_flags"                      : [],
                 "condition_data_value_variables"     : [],
                 "condition_flags"                    : [],
-                "gauss_point_variables"              : ["VON_MISES_STRESS"]
+                "gauss_point_variables"              : ["VON_MISES_STRESS","PLASTIC_DISSIPATION"]
             }
         }]
     }
