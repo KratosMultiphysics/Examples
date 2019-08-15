@@ -24,6 +24,7 @@ The problem geometry as well as the boundary conditions are sketched below.
 We consider a hyper-elastic half-ring composed of two materials (external 190mm and inner 170mm diameters) and a hyper-elastic base of length 250mm and height 50mm, see Figure. A vertical displacement of -90mm is imposed at each end of the half-ring and the base of the base is recessed. Two variables of interest are considered mainly: the displacement of the middle of the half-ring as a function of the loading pitch (60 steps of loading from the contact is used, ie about 1.16 mm per loading step) and the contact pressure.
 
 On the other hand, an hyper elastic Neo-Hookean constitutive law is considered in both materials. The structure characteristic parameters are for the first ring:
+
 - Elastic modulus (E):   3.0E+08 _Pa_
 - Poisson ratio (&nu;): 0.3 
 And for the second:
