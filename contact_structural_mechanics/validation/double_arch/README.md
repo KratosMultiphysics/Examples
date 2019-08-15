@@ -39,8 +39,16 @@ The time step is *0.0005* seconds, while the total simulation time is *0.2* seco
 ## Results
 The problem stated above has been solved using an unstructured mesh of tetrahedron. The resulting deformation can be seen in the following image.
 
+- Structured (hexa) mesh:
+
 <p align="center">
   <img src="data/result.gif" alt="Solution" style="width: 600px;"/>
+</p>
+
+- Unstructured (tetra) mesh:
+
+<p align="center">
+  <img src="data/result_tetra.gif" alt="Solution" style="width: 600px;"/>
 </p>
 
 As well as the comparation with the reference solution (we have a deviation from the reference solution for the last steps, where we have a larger deformation and finally a stabilization of the deformation):
