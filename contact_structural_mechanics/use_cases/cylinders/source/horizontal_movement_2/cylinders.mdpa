@@ -2300,7 +2300,7 @@ Begin Nodes
 End Nodes
 
 
-Begin Elements SmallDisplacementElement3D4N// GUI group identifier: Parts Auto1
+Begin Elements TotalLagrangianElement3D4N// GUI group identifier: Parts Auto1
         1          0       1056       1069       1078        946 
         2          0       1852       1863       1874       1875 
         3          0       1384       1403       1369       1319 

@@ -8,6 +8,25 @@
 
 ## Case Specification
 
+The problem consists in three different meshes with threee different movements.
+
+- *Vertical movement mesh*:
+
+<p align="center">
+  <img src="data/vertical_movement.png" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+- *Horizontal movement (I) mesh*:
+
+<p align="center">
+  <img src="data/horizontal_movement_1.png" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+- *Horizontal movement (II) mesh*:
+
+<p align="center">
+  <img src="data/horizontal_movement_2.png" alt="Mesh1" style="width: 600px;"/>
+</p>
 
 ## Results
 
