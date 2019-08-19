@@ -24,7 +24,7 @@
         },
         "contact_settings":
         {
-            "mortar_type"                    : "ALMContactFrictionless"
+            "mortar_type"                    : "ALMContactFrictionlessComponents"
         },
         "convergence_criterion"              : "adaptative_remesh_criteria",
         "compute_error_settings" : {
@@ -76,7 +76,7 @@
             "contact_model_part"          : {
                                                 "0" : ["Contact_Part"]
                                             },
-            "contact_type"                : "Frictionless",
+            "contact_type"                : "FrictionlessComponents",
             "assume_master_slave"         : {
                                                 "0" : ["Parts_Parts_Auto1"]
                                             }
