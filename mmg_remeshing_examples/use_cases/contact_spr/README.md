@@ -17,7 +17,7 @@ The following applications of Kratos are used:
 
 ## Case Specification
 
-The problem consists in a simple patch test in plane strain. The beam is remeshed considering a SPR error.
+The problem consists in a simple patch test in plane strain. The problem is remeshed considering a SPR error.
 
 *The original mesh*:
 
