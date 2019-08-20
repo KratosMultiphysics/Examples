@@ -1,0 +1,213 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "fluid_domain",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 3.0
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
+                "output_name"            : "fluid_domain",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "time",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1.0,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["VELOCITY","PRESSURE","DISTANCE","MESH_VELOCITY","EMBEDDED_WET_VELOCITY"],
+                        "gauss_point_results" : []
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        },{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "VirtualModelPart",
+                "output_name"            : "virtual_fluid_domain",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "step",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1.0,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["MESH_VELOCITY","MESH_DISPLACEMENT"],
+                        "gauss_point_results" : []
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }]
+    },
+    "solver_settings"  : {
+        "model_part_name"             : "FluidModelPart",
+        "domain_size"                 : 2,
+        "solver_type"                 : "Embedded",
+        "model_import_settings"       : {
+            "input_type"     : "mdpa",
+            "input_filename" : "fluid_domain"
+        },
+        "distance_modification_settings": {
+            "distance_threshold": 1e-4,
+            "check_at_each_time_step": true
+        },
+        "echo_level"                  : 1,
+        "compute_reactions"           : false,
+        "maximum_iterations"          : 10,
+        "relative_velocity_tolerance" : 1e-4,
+        "absolute_velocity_tolerance" : 1e-6,
+        "relative_pressure_tolerance" : 1e-4,
+        "absolute_pressure_tolerance" : 1e-6,
+        "volume_model_part_name"      : "Parts_Fluid",
+        "skin_parts"                  : ["NoSlip2D_Left","NoSlip2D_Top","NoSlip2D_Bottom","NoSlip2D_Right"],
+        "no_skin_parts"               : [],
+        "time_stepping"               : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.05
+        },
+        "formulation": {
+            "element_type": "embedded_symbolic_navier_stokes",
+            "is_slip": false,
+            "penalty_coefficient": 10.0,
+            "dynamic_tau": 1.0
+        },
+        "fm_ale_settings": {
+            "fm_ale_step_frequency": 1,
+            "mesh_movement": "implicit",
+            "fm_ale_solver_settings": {
+                "structure_model_part_name": "CylinderModelPart",
+                "virtual_model_part_name": "VirtualModelPart",
+                "linear_solver_settings": {
+                    "solver_type": "cg",
+                    "tolerance": 1.0e-8,
+                    "max_iteration": 1000
+                },
+                "embedded_nodal_variable_settings": {
+                    "gradient_penalty_coefficient": 1.0e-5,
+                    "linear_solver_settings": {
+                        "preconditioner_type": "amg",
+                        "solver_type": "amgcl",
+                        "smoother_type": "ilu0",
+                        "krylov_type": "cg",
+                        "max_iteration": 1000,
+                        "verbosity": 0,
+                        "tolerance": 1e-8,
+                        "scaling": false,
+                        "block_size": 1,
+                        "use_block_matrices_if_possible": true
+                    }
+                }
+            }
+        }
+    },
+    "processes"        : {
+        "initial_conditions_process_list"  : [],
+        "boundary_conditions_process_list" : [{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Left"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Top"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Bottom"
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Left",
+                "variable_name": "MESH_DISPLACEMENT",
+                "value": [0.0, 0.0, 0.0],
+                "constrained": [true, false, true],
+                "interval": [0.0, "End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Top",
+                "variable_name": "MESH_DISPLACEMENT",
+                "value": [0.0, 0.0, 0.0],
+                "constrained": [false, true, true],
+                "interval": [0.0, "End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Bottom",
+                "variable_name": "MESH_DISPLACEMENT",
+                "value": [0.0, 0.0, 0.0],
+                "constrained": [false, true, true],
+                "interval": [0.0, "End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Right",
+                "variable_name": "MESH_DISPLACEMENT",
+                "value": [0.0, 0.0, 0.0],
+                "constrained": [true, false, true],
+                "interval": [0.0, "End"]
+            }
+        }],
+        "gravity"                          : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Parts_Fluid",
+                "variable_name"   : "BODY_FORCE",
+                "modulus"         : 0.0,
+                "constrained"     : false,
+                "direction"       : [0.0,-1.0,0.0]
+            }
+        }],
+        "auxiliar_process_list"            : [{
+            "python_module": "apply_embedded_postprocess_process",
+            "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name": "ApplyEmbeddedPostprocessrocess",
+            "Parameters": {
+                "model_part_name": "FluidModelPart.Parts_Fluid"
+            }
+        }]
+    }
+}
