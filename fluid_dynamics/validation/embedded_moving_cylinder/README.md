@@ -12,7 +12,7 @@ This is a 2D embedded CFD simulation of a moving cylinder inside a channel. The 
 The problem geometry consists in a 2.2 x 0.44 m channel inside which a moving cylinder is placed. The cylinder is assumed to be a rigid body and the initial coordinates of its center are (1.1,0.22) m while its radius is 0.1 m. The trajectory of the cylinder center point is described by the equation below.
 
 <p align="center">
-  <img src="data/eq_cylinder_center.png" alt="Moving cylinder center coordinates [m]." style="width: 200px;"/>
+  <img src="data/eq_cylinder_center.png" alt="Moving cylinder center coordinates [m]." style="width: 100px;"/>
 </p>
 
 The cylinder as well as the channel walls are considered to be no-slip. The pressure is fixed to zero along the right edge. Initially, the fluid is at rest. Note that there is no inlet wall. Thus, the fluid flow is only induced by the movement of the rigid cylinder.
@@ -29,9 +29,9 @@ The above stated problem has been solved using an embedded Navier-Stokes formula
 The mesh is similar to the reference publication one and is made up of around 10.2K linear triangular elements. The obtained velocity and pressure fields are shown in the animations below. As can be observed, the cylinder movement induces the fluid movement in the channel. By inspecting the reference results, it can be said that they are really similar to the obtained ones. Note that two output files are generated, one is the common output from the fluid solver and the other one shows the mesh displacement and velocity in the virtual mesh of the FM-ALE algorithm.
 
 <p align="center">
-  <img src="data/body_fitted_cylinder_100Re_v.gif" alt="Body-fitted 100 Re cylinder velocity field [m/s]." style="width: 600px;"/>
+  <img src="data/embedded_moving_cylinder_wet_v.gif" alt="Embedded moving cylinder velocity field [m/s]." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/body_fitted_cylinder_100Re_p.gif" alt="Body-fitted 100 Re cylinder pressure field [Pa]." style="width: 600px;"/>
+  <img src="data/embedded_moving_cylinder_p.gif" alt="Embedded moving cylinder pressure field [Pa]." style="width: 600px;"/>
 </p>
