@@ -50,6 +50,7 @@ The Examples are continously updated and extended. The last version of MMG check
 - [Contact 2D Hessian](use_cases/contact_hessian/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
 - [Coarse sphere](use_cases/coarse_sphere/README.md)
+- [Level-set demisphere-plane](use_cases/level_set_demisphere_plane/README.md)
 - [Lamborghini example](use_cases/lamborghini/README.md)
 - [Embedded2D](use_cases/embedded_2D/README.md)
 - [Channel sphere 2D](use_cases/channel_sphere2D/README.md)
