@@ -44,7 +44,10 @@ The Examples are continously updated and extended. The last version of MMG check
 ## Use Cases
 
 - [Beam 2D](use_cases/beam2D/README.md)
+- [Beam 2D SPR](use_cases/beam_spr/README.md)
 - [Beam 2D Internal interpolation](use_cases/beam2D_internal_interpolation/README.md)
+- [Contact 2D SPR](use_cases/contact_spr/README.md)
+- [Contact 2D Hessian](use_cases/contact_hessian/README.md)
 - [Cavity 2D](use_cases/cavity2D/README.md)
 - [Coarse sphere](use_cases/coarse_sphere/README.md)
 - [Lamborghini example](use_cases/lamborghini/README.md)

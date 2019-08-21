@@ -3,8 +3,8 @@
         "problem_name"    : "contact_hessian",
         "parallel_type"   : "OpenMP",
         "start_time"      : 0.0,
-        "end_time"        : 1.5,
-        "echo_level"      : 0
+        "end_time"        : 2.0,
+        "echo_level"      : 1
     },
     "solver_settings"          : {
         "model_part_name"                    : "Structure",
@@ -83,6 +83,7 @@
             "process_name"          : "ContactRemeshMmgProcess",
             "Parameters"            : {
                 "model_part_name"                  : "Structure",
+                "consider_strain_energy"           : false,
                 "hessian_strategy_parameters"              :{
                     "interpolation_error"              : 0.004
                 },
@@ -97,7 +98,8 @@
                 "initial_step"                     : 2,
                 "step_frequency"                   : 2,
                 "enforce_current"                  : false,
-                "echo_level"                       : 3
+                "echo_level"                       : 0,
+                "debug_mode"                       : ""
             }
         }
         ]
@@ -129,7 +131,7 @@
                         "nodal_results"       : ["DISPLACEMENT","REACTION","WEIGHTED_GAP","NORMAL"],
                         "nodal_nonhistorical_results": ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE"],
                         "nodal_flags_results": ["ACTIVE","SLAVE","CONTACT"],
-                        "gauss_point_results" : ["VON_MISES_STRESS"]
+                        "gauss_point_results" : ["VON_MISES_STRESS","STRAIN_ENERGY"]
                     },
                     "point_data_configuration"  : []
                 }
@@ -154,7 +156,7 @@
                 "nodal_flags"                        : ["ACTIVE","SLAVE","MASTER","CONTACT"],
                 "element_data_value_variables"       : [],
                 "condition_data_value_variables"     : [],
-                "gauss_point_variables"              : ["VON_MISES_STRESS"]
+                "gauss_point_variables"              : ["VON_MISES_STRESS","STRAIN_ENERGY"]
             }
         }]
     }

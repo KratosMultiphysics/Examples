@@ -6,6 +6,7 @@ This folder contains the use cases:
 - [Beam 2D SPR](beam_spr/README.md)
 - [Beam 2D Internal interpolation](beam2D_internal_interpolation/README.md)
 - [Contact 2D SPR](contact_spr/README.md)
+- [Contact 2D Hessian](contact_hessian/README.md)
 - [Cavity 2D](cavity2D/README.md)
 - [Coarse sphere](coarse_sphere/README.md)
 - [Lamborghini example](lamborghini/README.md)
