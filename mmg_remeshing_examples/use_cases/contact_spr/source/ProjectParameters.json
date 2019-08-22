@@ -24,7 +24,7 @@
         },
         "contact_settings":
         {
-            "mortar_type"                    : "ALMContactFrictionless"
+            "mortar_type"                    : "ALMContactFrictionlessComponents"
         },
         "convergence_criterion"              : "adaptative_remesh_criteria",
         "compute_error_settings" : {
@@ -34,55 +34,55 @@
         {
             "echo_level"           : 0
         },
-        "max_iteration"                      : 10,
-        "problem_domain_sub_model_part_list" : ["Parts_Parts_Auto1","Parts_Parts_Auto2"],
-        "processes_sub_model_part_list"      : ["Contact_Part","Parts_Parts_Auto1","Parts_Parts_Auto2","DISPLACEMENT_Displacement_Auto1","IMPOSE_DISP_Auto1"]
+        "max_iteration"                      : 10
     },
-    "constraints_process_list" : [{
-        "python_module"   : "assign_vector_variable_process",
-        "kratos_module" : "KratosMultiphysics",
-        "help"                  : "This process fixes the selected components of a given vector variable",
-        "process_name"          : "AssignVectorVariableProcess",
-        "Parameters"            : {
-            "mesh_id"         : 0,
-            "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
-            "variable_name"   : "DISPLACEMENT",
-            "constrained"     : [true,true,true],
-            "value"           : [0.0,0.0,0.0]
+    "processes" : {
+        "constraints_process_list" : [{
+            "python_module"   : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"                  : "This process fixes the selected components of a given vector variable",
+            "process_name"          : "AssignVectorVariableProcess",
+            "Parameters"            : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },{
+            "python_module"   : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"                  : "This process fixes the selected components of a given vector variable",
+            "process_name"          : "AssignVectorVariableProcess",
+            "Parameters"            : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.IMPOSE_DISP_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,-0.01,0.0]
+            }
         }
-    },{
-        "python_module"   : "assign_vector_variable_process",
-        "kratos_module" : "KratosMultiphysics",
-        "help"                  : "This process fixes the selected components of a given vector variable",
-        "process_name"          : "AssignVectorVariableProcess",
-        "Parameters"            : {
-            "mesh_id"         : 0,
-            "model_part_name" : "Structure.IMPOSE_DISP_Auto1",
-            "variable_name"   : "DISPLACEMENT",
-            "constrained"     : [true,true,true],
-            "value"           : [0.0,-0.01,0.0]
+        ],
+        "loads_process_list"       : [],
+        "contact_process_list" :[
+        {
+            "python_module"   : "alm_contact_process",
+            "kratos_module"   : "KratosMultiphysics.ContactStructuralMechanicsApplication",
+            "help"                  : "",
+            "process_name"          : "ALMContactProcess",
+            "Parameters"            : {
+                "model_part_name"             : "Structure",
+                "contact_model_part"          : {
+                                                    "0" : ["Contact_Part_1","Contact_Part_2"]
+                                                },
+                "contact_type"                : "FrictionlessComponents",
+                "assume_master_slave"         : {
+                                                    "0" : ["Contact_Part_1"]
+                                                }
+            }
         }
-    }
-    ],
-    "loads_process_list"       : [],
-    "contact_process_list" :[
-    {
-        "python_module"   : "alm_contact_process",
-        "kratos_module"   : "KratosMultiphysics.ContactStructuralMechanicsApplication",
-        "help"                  : "",
-        "process_name"          : "ALMContactProcess",
-        "Parameters"            : {
-            "model_part_name"             : "Structure",
-            "contact_model_part"          : {
-                                                "0" : ["Contact_Part"]
-                                            },
-            "contact_type"                : "Frictionless",
-            "assume_master_slave"         : {
-                                                "0" : ["Parts_Parts_Auto1"]
-                                            }
-        }
-    }
-    ],
+        ]
+    },
     "output_processes" : {
         "gid_output" : [{
             "python_module" : "gid_output_process",
@@ -108,7 +108,7 @@
                         "skin_output"         : false,
                         "plane_output"        : [],
                         "nodal_results"       : ["DISPLACEMENT","REACTION","WEIGHTED_GAP","NORMAL"],
-                        "nodal_nonhistorical_results": ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE","CONTACT_PRESSURE"],
+                        "nodal_nonhistorical_results": ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE"],
                         "nodal_flags_results": ["ACTIVE","SLAVE","CONTACT"],
                         "gauss_point_results" : ["ERROR_INTEGRATION_POINT"]
                     },
@@ -131,7 +131,7 @@
                 "folder_name"                        : "vtk_output",
                 "save_output_files_in_folder"        : true,
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT","REACTION","WEIGHTED_GAP","NORMAL"],
-                "nodal_data_value_variables"         : ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE","CONTACT_PRESSURE"],
+                "nodal_data_value_variables"         : ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE"],
                 "nodal_flags"                        : ["ACTIVE","SLAVE","MASTER","CONTACT"],
                 "element_data_value_variables"       : [],
                 "condition_data_value_variables"     : [],
