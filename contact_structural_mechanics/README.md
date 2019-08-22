@@ -17,6 +17,7 @@ The Examples are continously updated and extended
 - [Cylinders](use_cases/cylinders/README.md)
 - [Ironing with die](use_cases/ironing_with_die_3D/README.md)
 - [Cylinder in ring](use_cases/in_ring/README.md)
+- [Hyperelastic tubes contacting](use_cases/hyperelastic_tubes//README.md)
 - [Tooth model](use_cases/tooth_model/README.md)
 - [Arc block](use_cases/arc_block/README.md)
 - [Gears](use_cases/gears/README.md)

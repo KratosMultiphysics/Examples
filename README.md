@@ -41,6 +41,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Cylinders](contact_structural_mechanics/use_cases/cylinders/README.md)
 - [Ironing with die](contact_structural_mechanics/use_cases/ironing_with_die_3D/README.md)
 - [Cylinder in ring](contact_structural_mechanics/use_cases/in_ring/README.md)
+- [Hyperelastic tubes contacting](contact_structural_mechanics/use_cases/hyperelastic_tubes//README.md)
 - [Tooth model](contact_structural_mechanics/use_cases/tooth_model/README.md)
 - [Arc block](contact_structural_mechanics/use_cases/arc_block/README.md)
 - [Gears](contact_structural_mechanics/use_cases/gears/README.md)
