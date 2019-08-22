@@ -116,6 +116,13 @@ The evolution and reduction of the error can be appretiated in the following rem
 
 - Step 10:
 
+*The resulting mesh*:
+
+<p align="center">
+  <img src="data/mesh3.png" alt="Mesh1" style="width: 600px;"/>
+</p>
+
+
 *Displacement*:
 
 <p align="center">
