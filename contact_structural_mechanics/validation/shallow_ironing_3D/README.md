@@ -45,4 +45,4 @@ The displacement evolution is:
 
 ## References
 
-- An unconstrained integral approximation of large sliding frictional contact between deformable solids. Poulios, Konstantinos
+- [Poulios, Konstantinos] An unconstrained integral approximation of large sliding frictional contact between deformable solids.
