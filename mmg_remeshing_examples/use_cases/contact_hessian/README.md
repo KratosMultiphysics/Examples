@@ -17,7 +17,7 @@ The following applications of Kratos are used:
 
 ## Case Specification
 
-The problem consists in a simple patch test in plane strain. The problem is remeshed considering an Hessian metric. The metric intersects the contact pressure, VM stress and additionally the strain energy. We will evaluare 4 steps, and we will perform the remesh each 2 steps. We will compare the solution between taking into account the strain energy and without it. As the initial mesh is very coarse it doesn't provide much information, but in the later steps we can see as the mesh is refined arround critics points.
+The problem consists in a simple patch test in plane strain. The problem is remeshed considering an Hessian metric. The metric intersects the contact pressure, VM stress and additionally the strain energy. We will evaluate 4 steps, and we will perform the remesh each 2 steps. We will compare the solution between taking into account the strain energy and without it. As the initial mesh is very coarse it doesn't provide much information, but in the later steps we can see as the mesh is refined arround critics points.
 
 *The original mesh*:
 
