@@ -48,8 +48,7 @@ level_set_param = KratosMultiphysics.Parameters("""
                             "anisotropy_parameters":
                             {
                                 "hmin_over_hmax_anisotropic_ratio"      : 0.1,
-                                "boundary_layer_max_distance"           : 1.0,
-                                "interpolation"                         : "Exponential"
+                                "boundary_layer_max_distance"           : 1.0
                             }
                         }
                         """)
