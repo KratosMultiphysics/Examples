@@ -88,21 +88,14 @@
                 "automatic_remesh"                 : true,
                 "automatic_remesh_parameters"      :{
                     "automatic_remesh_type"            : "Ratio",
-                    "min_size_ratio"                   : 0.5,
-                    "max_size_ratio"                   : 100.0,
+                    "min_size_ratio"                   : 0.05,
+                    "max_size_ratio"                   : 10.0,
                     "refer_type"                       : "Mean"
                 },
                 "initial_remeshing"                : false,
                 "step_frequency"                   : 20,
                 "enforce_current"                   : false,
                 "save_external_files"               : false,
-                "anisotropy_remeshing"              : true,
-                "anisotropy_parameters":{
-                    "hmin_over_hmax_anisotropic_ratio" : 0.1,
-                    "boundary_layer_max_distance"      : 1.0,
-                    "boundary_layer_min_size_ratio"    : 1.0,
-                    "interpolation"                    : "Linear"
-                },
                 "echo_level"                        : 3
             }
         }
@@ -151,7 +144,7 @@
                 "output_frequency"                   : 1,
                 "file_format"                        : "ascii",
                 "output_precision"                   : 7,
-                "output_sub_model_parts"             : true,
+                "output_sub_model_parts"             : false,
                 "folder_name"                        : "vtk_output",
                 "save_output_files_in_folder"        : true,
                 "nodal_solution_step_data_variables" : ["VELOCITY","PRESSURE"],
