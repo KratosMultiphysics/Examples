@@ -49,14 +49,9 @@ mmg_parameters = KratosMultiphysics.Parameters("""
     "automatic_remesh"                  : true,
     "automatic_remesh_parameters"       :{
         "automatic_remesh_type"            : "Ratio",
-        "min_size_ratio"                   : 3.0,
-        "max_size_ratio"                   : 6.0,
+        "min_size_ratio"                   : 1.0,
+        "max_size_ratio"                   : 10.0,
         "refer_type"                       : "Mean"
-    },
-    "anisotropy_remeshing"              : true,
-    "anisotropy_parameters":{
-        "hmin_over_hmax_anisotropic_ratio" : 0.15,
-        "interpolation"                    : "Linear"
     },
     "echo_level"                        : 3
 }
@@ -79,7 +74,7 @@ gid_parameters = KratosMultiphysics.Parameters("""
             "MultiFileFlag"        : "SingleFile"
         },
         "nodal_results"               : ["DISTANCE","DISTANCE_GRADIENT"],
-        "nodal_nonhistorical_results" : ["ANISOTROPIC_RATIO"]
+        "nodal_nonhistorical_results" : ["NODAL_H"]
     }
 }
 """)
@@ -104,7 +99,7 @@ vtk_settings = KratosMultiphysics.Parameters("""{
     "output_sub_model_parts"             : false,
     "save_output_files_in_folder"        : false,
     "nodal_solution_step_data_variables" : ["DISTANCE","DISTANCE_GRADIENT"],
-    "nodal_data_value_variables"         : ["ANISOTROPIC_RATIO"],
+    "nodal_data_value_variables"         : ["NODAL_H"],
     "element_data_value_variables"       : [],
     "condition_data_value_variables"     : [],
     "gauss_point_variables"              : []
