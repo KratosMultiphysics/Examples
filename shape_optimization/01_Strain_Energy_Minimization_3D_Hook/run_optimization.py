@@ -2,16 +2,17 @@
 from __future__ import print_function, absolute_import, division
 
 # Import Kratos core and apps
-from KratosMultiphysics import *
-from KratosMultiphysics.ShapeOptimizationApplication import *
-import optimizer_factory # from ShapeOptimizationApplication
+import KratosMultiphysics as KM
+
+# Additional imports
+from KratosMultiphysics.ShapeOptimizationApplication import optimizer_factory
 
 # Read parameters
 with open("optimization_parameters.json",'r') as parameter_file:
-    parameters = Parameters(parameter_file.read())
+    parameters = KM.Parameters(parameter_file.read())
 
 # Defining the model_part
-model = Model()
+model = KM.Model()
 
 # Create optimizer and perform optimization
 optimizer = optimizer_factory.CreateOptimizer(parameters["optimization_settings"], model)

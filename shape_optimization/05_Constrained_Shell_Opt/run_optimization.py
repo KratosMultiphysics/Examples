@@ -2,15 +2,15 @@
 from __future__ import print_function, absolute_import, division
 
 # Import Kratos core and apps
-from KratosMultiphysics import *
-from KratosMultiphysics.ShapeOptimizationApplication import *
+import KratosMultiphysics as KM
 
 # Additional imports
-from analyzer_base import AnalyzerBaseClass
+from KratosMultiphysics.ShapeOptimizationApplication import optimizer_factory
+from KratosMultiphysics.ShapeOptimizationApplication.analyzer_base import AnalyzerBaseClass
 
 # Read parameters
 with open("optimization_parameters.json",'r') as parameter_file:
-    parameters = Parameters(parameter_file.read())
+    parameters = KM.Parameters(parameter_file.read())
 
 # Definition of external analyzer
 class CustomAnalyzer(AnalyzerBaseClass):
@@ -47,9 +47,8 @@ class CustomAnalyzer(AnalyzerBaseClass):
             communicator.reportGradient("y_position_1048", gradient)
 
 
-model = Model()
+model = KM.Model()
 
 # Create optimizer and perform optimization
-import optimizer_factory
 optimizer = optimizer_factory.CreateOptimizer(parameters["optimization_settings"], model, CustomAnalyzer())
 optimizer.Optimize()
