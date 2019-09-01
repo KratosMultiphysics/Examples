@@ -73,6 +73,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Contact 2D SPR](mmg_remeshing_examples/use_cases/contact_spr/README.md)
 - [Contact 2D Hessian](mmg_remeshing_examples/use_cases/contact_hessian/README.md)
 - [Contact Hertz Hessian 2D](mmg_remeshing_examples/use_cases/hertz_hessian/README.md)
+- [Contacting cylinders 3D](mmg_remeshing_examples/use_cases/contacting_cylinders/README.md)
 - [Cavity 2D](mmg_remeshing_examples/use_cases/cavity2D/README.md)
 - [Coarse sphere](mmg_remeshing_examples/use_cases/coarse_sphere/README.md)
 - [Level-set demisphere-plane](mmg_remeshing_examples/use_cases/level_set_demisphere_plane/README.md)
