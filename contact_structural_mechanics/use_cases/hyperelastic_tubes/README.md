@@ -8,7 +8,7 @@
 
 ## Case Specification
 
-The problem consists in two cylinders with hyperelastic behaviour, We impose a vertical displacement in the upper cylinder. The two cylinders become into contact and deal with self-contact in the inner ring of the upper cylinder.
+The problem consists in two cylinders with hyperelastic behaviour. We impose a vertical displacement in the upper cylinder. The two cylinders become into contact and deal with self-contact in the inner ring of the upper cylinder.
 
 <p align="center">
   <img src="data/mesh.png" alt="Mesh1" style="width: 600px;"/>
