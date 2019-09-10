@@ -3,7 +3,7 @@ from __future__ import print_function, absolute_import, division #makes KratosMu
 import KratosMultiphysics
 import KratosMultiphysics.FSIApplication
 
-from fsi_analysis import FSIAnalysis
+from KratosMultiphysics.FSIApplication.fsi_analysis import FSIAnalysis
 
 import sys
 import time
