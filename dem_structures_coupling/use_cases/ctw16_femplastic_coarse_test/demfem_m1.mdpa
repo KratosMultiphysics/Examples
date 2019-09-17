@@ -4,12 +4,14 @@ End ModelPartData
 
 Begin Table 1 TIME SIGMA_Z_neg
 0 0
-1.0E-2 -5.0e8
+2.0e-3 -1.0e8
+1.0E-2 -1.8e8
 End Table
 
 Begin Table 2 TIME SIGMA_Z_pos
 0 0
-1.0E-2 5.0e8
+2.0e-3 1.0e8
+1.0E-2 1.8e8
 End Table
 
 Begin Properties 0
