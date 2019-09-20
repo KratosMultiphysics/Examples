@@ -96,7 +96,7 @@ vtk_settings = KratosMultiphysics.Parameters("""{
     "nodal_flags"                        : [],
     "element_data_value_variables"       : [],
     "condition_data_value_variables"     : [],
-    "gauss_point_variables"              : []
+    "gauss_point_variables_extrapolated_to_nodes"              : []
 }""")
 
 vtk_io = KratosMultiphysics.VtkOutput(main_model_part, vtk_settings)

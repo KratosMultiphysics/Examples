@@ -103,7 +103,7 @@ for i in range(iterations):
         "nodal_flags"                        : [],
         "element_data_value_variables"       : [],
         "condition_data_value_variables"     : [],
-        "gauss_point_variables"              : []
+        "gauss_point_variables_extrapolated_to_nodes"              : []
     }""")
 
     vtk_settings["custom_name_prefix"].SetString("ITER_" + str(i) + "_")
