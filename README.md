@@ -45,6 +45,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Tooth model](contact_structural_mechanics/use_cases/tooth_model/README.md)
 - [Arc block](contact_structural_mechanics/use_cases/arc_block/README.md)
 - [Gears](contact_structural_mechanics/use_cases/gears/README.md)
+- [Self-contact](contact_structural_mechanics/use_cases/self_contact/README.md)
 
 **Validation**
 - [Double arch contact benchmark](contact_structural_mechanics/validation/double_arch/README.md)

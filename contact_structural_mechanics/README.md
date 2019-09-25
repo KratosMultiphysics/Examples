@@ -21,6 +21,7 @@ The Examples are continously updated and extended
 - [Tooth model](use_cases/tooth_model/README.md)
 - [Arc block](use_cases/arc_block/README.md)
 - [Gears](use_cases/gears/README.md)
+- [Self-contact](use_cases/self_contact/README.md)
 
 
 

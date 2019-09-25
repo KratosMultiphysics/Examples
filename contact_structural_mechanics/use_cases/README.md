@@ -9,3 +9,4 @@ This folder contains the use cases:
 - [Tooth model](tooth_model/README.md)
 - [Arc block](arc_block/README.md)
 - [Gears](gears/README.md)
+- [Self-contact](self_contact/README.md)
