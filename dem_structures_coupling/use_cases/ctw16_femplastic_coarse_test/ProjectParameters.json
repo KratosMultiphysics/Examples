@@ -85,7 +85,7 @@
                 "model_part_name" : "Structure.SurfacePressure3D_lateral_pressure",
                 "variable_name"   : "POSITIVE_FACE_PRESSURE",
                 "value"           : "5e10*t",
-                "interval"        : [0.0,0.002]
+                "interval"        : [0.0,0.00125]
             }
         },{
             "python_module" : "assign_scalar_variable_to_conditions_process",
@@ -93,8 +93,8 @@
             "Parameters"    : {
                 "model_part_name" : "Structure.SurfacePressure3D_lateral_pressure",
                 "variable_name"   : "POSITIVE_FACE_PRESSURE",
-                "value"           : "1.0e8+1.0e10*(t-0.002)",
-                "interval"        : [0.002,"End"]
+                "value"           : "6.25e7+1.0e10*(t-0.00125)",
+                "interval"        : [0.00125,"End"]
             }
         }],
         "list_other_processes"     : []
