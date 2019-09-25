@@ -71,7 +71,7 @@
     },
     "output_processes" : {
         "body_output_process" : [{
-            "python_module" : "mpm_gid_output_process",
+            "python_module" : "particle_gid_output_process",
             "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
             "process_name"  : "ParticleMPMGiDOutputProcess",
             "help"          : "This process writes postprocessing files for GiD",
