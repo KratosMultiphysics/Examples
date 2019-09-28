@@ -52,6 +52,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Hertz benchmark](contact_structural_mechanics/validation/hertz/README.md)
 - [Full Hertz benchmark](contact_structural_mechanics/validation/hertz_full/README.md)
 - [Shallow ironing](contact_structural_mechanics/validation/shallow_ironing_3D/README.md)
+- [Press fit](contact_structural_mechanics/validation/press_fit/README.md)
 
 ## Conjugate Heat Transfer (CHT)
 

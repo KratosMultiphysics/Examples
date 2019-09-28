@@ -6,3 +6,4 @@ This folder contains the validation cases:
 - [Hertz benchmark](hertz/README.md)
 - [Full Hertz benchmark](hertz_full/README.md)
 - [Shallow ironing](shallow_ironing_3D/README.md)
+- [Press fit](press_fit/README.md)

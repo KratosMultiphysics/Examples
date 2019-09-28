@@ -11,6 +11,7 @@ The Examples are continously updated and extended
 - [Hertz benchmark](validation/hertz/README.md)
 - [Full Hertz benchmark](validation/hertz_full/README.md)
 - [Shallow ironing](validation/shallow_ironing_3D/README.md)
+- [Press fit](validation/press_fit/README.md)
 
 ## Use Cases
 
