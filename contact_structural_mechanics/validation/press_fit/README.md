@@ -45,7 +45,7 @@ Additionally a 3D setup is also evaluated, extruding 250 mm, but this one cannot
 Comparing the results with the reference (slightly higher than in the reference):
 
 <p align="center">
-  <img src="data/solution.png" alt="Mesh1" style="width: 600px;"/>
+  <img src="data/solution_2d.png" alt="Mesh1" style="width: 600px;"/>
 </p>
 
 The frictional stress evolution is:
@@ -53,6 +53,13 @@ The frictional stress evolution is:
 ![](data/animation_2d.gif)
 
 ### Custom setup (3D):
+
+The reaction in the base support most wetern points is:
+
+<p align="center">
+  <img src="data/solution_3d.png" alt="Mesh1" style="width: 600px;"/>
+</p>
+
 
 The frictional stress evolution is:
 
