@@ -71,7 +71,7 @@ class Channel:
         plt.xlabel(r"$y^+$")
         plt.ylabel(r"$u^+$")
         plt.title(r"Velocity Variation at $Re_\tau=%0.0f$" % (self.Re_tau))
-        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_u_plus.pdf", bbox_inches="tight")
+        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_u_plus.png", bbox_inches="tight")
 
     def plot_turbulent_kinetic_energy(self):
         plt.figure(figsize=(12,9))
@@ -95,7 +95,7 @@ class Channel:
         plt.xlabel(r"$y^+$")
         plt.ylabel(r"$k^+$")
         plt.title(r"Turbulent Kinetic Energy Variation at $Re_\tau=%0.0f$" % (self.Re_tau))
-        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_k_plus.pdf", bbox_inches="tight")
+        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_k_plus.png", bbox_inches="tight")
 
     def plot_stresses(self):
         plt.figure(figsize=(12,9))
@@ -133,7 +133,7 @@ class Channel:
         plt.ylabel(r"$y^+$")
         plt.xlabel("Stress")
         plt.title(r"Stress Variation at $Re_\tau=%0.0f$" % (self.Re_tau))
-        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_stress.pdf", bbox_inches="tight")
+        plt.savefig("plots/full_channel_re_tau_" + str(int(self.Re_tau)) + "_stress.png", bbox_inches="tight")
 
 def channel_590():
     channel = Channel(590.0, 1e-2, 2.0, 12.0)
