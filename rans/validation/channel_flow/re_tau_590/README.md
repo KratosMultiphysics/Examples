@@ -9,7 +9,7 @@
 ## Case Specification
 This is a steady 2D channel flow problem with material parameters which corresponds to flow Re<sub>&tau;</sub>=590.
 
-The geometry is 6.28 x 2 m channel with matching grids in the inlet and outlet. A boundary layer mesh is applied to top and bottom boundaries. For the CFD problem, top and bottom boundaries are considered as walls, but wall functions are used to model the near wall reagions, rather than resolving them. Since periodic conditions are used to avoid solving for the entry region of the flow, a body force is applied to whole domain which is calculated based on Re<sub>&tau;</sub>.
+The geometry is 6.28 x 2 m channel with matching grids in the inlet and outlet. A boundary layer mesh is applied to top and bottom boundaries. For the CFD problem, top and bottom boundaries are considered as walls, but wall functions are used to model the near wall regions, rather than resolving them. Since periodic conditions are used to avoid solving for the entry region of the flow, a body force is applied to whole domain which is calculated based on Re<sub>&tau;</sub>.
 
 ### Material Properties
 * Density (&rho;): 1.0 _Kgm<sup>-3</sup>_
