@@ -19,13 +19,12 @@ The geometry is 6.28 x 2 m channel with matching grids in the inlet and outlet. 
 
 ## Results
 The plots hereafter illustrates variation of different non-dimensioned quantities along the line at x = 3.14 _m_ in the domain.
-
 <p align="center">
-  <img src="plots/full_channel_re_tau_590_u_plus.png" alt="Cylinder cooling Re = 100 and Pr = 2 velocity field [m/s]." style="width: 600px;"/>
-</p>
-<p align="center">
-  <img src="plots/full_channel_re_tau_590_k_plus.png" alt="Cylinder cooling Re = 100 and Pr = 2 velocity field [m/s]." style="width: 600px;"/>
+<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
+<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
+<img src="plots/full_channel_re_tau_590_stress.png" alt="Stress variation" style="width: 421px;"/>
 </p>
 
 ## References
-Wang, Zimeng & Colin, Fabrice & Le, Guigao & Zhang, Junfeng. (2017). Counter-Extrapolation Method for Conjugate Heat and Mass Transfer with Interfacial Discontinuity. International Journal of Numerical Methods for Heat and Fluid Flow. 27. 2231-2258. 10.1108/HFF-10-2016-0422. [Link to the publication](https://www.researchgate.net/publication/311681538_Counter-Extrapolation_Method_for_Conjugate_Heat_and_Mass_Transfer_with_Interfacial_Discontinuity)
+Moser, Kim & Mansour (1998). DNS of Turbulent Channel Flow up to Re_tau=590, (Physics of Fluids, vol 11, pg 943-945 doi:10.1063/1.869966) [Link to the publication](https://aip.scitation.org/doi/10.1063/1.869966)
+
