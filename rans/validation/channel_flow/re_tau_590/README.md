@@ -20,9 +20,9 @@ The geometry is 6.28 x 2 m channel with matching grids in the inlet and outlet. 
 ## Results
 The plots hereafter illustrates variation of different non-dimensioned quantities along the line at x = 3.14 _m_ in the domain.
 <p align="center">
-<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
-<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
-<img src="plots/full_channel_re_tau_590_stress.png" alt="Stress variation" style="width: 421px;"/>
+<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 100px;"/>
+<img src="plots/full_channel_re_tau_590_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 100px;"/>
+<img src="plots/full_channel_re_tau_590_stress.png" alt="Stress variation" style="width: 100px;"/>
 </p>
 
 ## References
