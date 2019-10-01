@@ -30,3 +30,4 @@ The plots hereafter illustrates variation of different non-dimensioned quantitie
 ## References
 Sergio Hoyas and Javier Jimenez, (2008). Reynolds number effects on the Reynolds-stress budgets in turbulent channels, (Physics of Fluids, Vol. 20, pg 101511 doi:10.1063/1.3005862) [Link to the publication](https://aip.scitation.org/doi/10.1063/1.3005862)
 
+[DNS Data](https://torroja.dmt.upm.es/channels/data/statistics/)

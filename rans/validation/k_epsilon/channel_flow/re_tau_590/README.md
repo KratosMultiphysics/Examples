@@ -30,3 +30,4 @@ The plots hereafter illustrates variation of different non-dimensioned quantitie
 ## References
 Moser, Kim & Mansour (1998). DNS of Turbulent Channel Flow up to Re_tau=590, (Physics of Fluids, vol 11, pg 943-945 doi:10.1063/1.869966) [Link to the publication](https://aip.scitation.org/doi/10.1063/1.869966)
 
+[DNS Data](https://torroja.dmt.upm.es/channels/data/statistics/)
