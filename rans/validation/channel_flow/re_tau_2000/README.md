@@ -19,11 +19,13 @@ The geometry is 6.28 x 2 m channel with matching grids in the inlet and outlet. 
 
 ## Results
 The plots hereafter illustrates variation of different non-dimensioned quantities along the line at x = 3.14 _m_ in the domain.
-<p align="center">
-<img src="plots/full_channel_re_tau_2000_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
-<img src="plots/full_channel_re_tau_2000_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/>
-<img src="plots/full_channel_re_tau_2000_stress.png" alt="Stress variation" style="width: 421px;"/>
-</p>
+<table style="width:100%">
+  <tr>
+    <th> <img src="plots/full_channel_re_tau_2000_u_plus.png" alt="Velocity variation" style="width: 400px;"/> </th>
+    <th> <img src="plots/full_channel_re_tau_2000_k_plus.png" alt="Turbulent kinetic energy variation" style="width: 400px;"/> </th>
+    <th> <img src="plots/full_channel_re_tau_2000_stress.png" alt="Stress variation" style="width: 421px;"/> </th>
+  </tr>
+</table>
 
 ## References
 Sergio Hoyas and Javier Jimenez, (2008). Reynolds number effects on the Reynolds-stress budgets in turbulent channels, (Physics of Fluids, Vol. 20, pg 101511 doi:10.1063/1.3005862) [Link to the publication](https://aip.scitation.org/doi/10.1063/1.3005862)
