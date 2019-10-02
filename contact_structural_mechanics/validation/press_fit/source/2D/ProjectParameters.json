@@ -23,15 +23,11 @@
             "time_step_intervals" : {
                 "0" : {
                     "interval"  : [0.0, 0.36],
-                    "time_step" : 5.0e-3
+                    "time_step" : 1.0e-3
                 },
                 "1" : {
-                    "interval"  : [0.36, 0.83],
+                    "interval"  : [0.36, "End"],
                     "time_step" : 5.0e-4
-                },
-                "2" : {
-                    "interval"  : [0.83, "End"],
-                    "time_step" : 1.0e-4
                 }
             }
         },
