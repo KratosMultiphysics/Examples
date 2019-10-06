@@ -133,10 +133,10 @@
                         "node_output"         : false,
                         "skin_output"         : false,
                         "plane_output"        : [],
-                    "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP","WEIGHTED_SLIP"],
-                    "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE","TANGENT_XI","TANGENT_ETA"],
-                    "nodal_flags_results": ["ACTIVE","SLAVE","SLIP"],
-                    "gauss_point_results" : ["VON_MISES_STRESS","PK2_STRESS_TENSOR"]
+                        "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP","WEIGHTED_SLIP"],
+                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE","TANGENT_XI","TANGENT_ETA"],
+                        "nodal_flags_results": ["ACTIVE","SLAVE","SLIP"],
+                        "gauss_point_results" : ["VON_MISES_STRESS","PK2_STRESS_TENSOR"]
                 },
                 "point_data_configuration"  : []
                 }
