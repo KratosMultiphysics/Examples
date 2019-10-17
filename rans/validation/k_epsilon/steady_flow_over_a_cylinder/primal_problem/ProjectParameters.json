@@ -1,0 +1,362 @@
+{
+    "problem_data": {
+        "domain_size": 2,
+        "problem_name": "cylinder_test",
+        "start_time": 0.0,
+        "model_part_name": "MainModelPart",
+        "end_time": 1.0,
+        "echo_level": 0,
+        "parallel_type": "OpenMP"
+    },
+    "output_processes": {},
+    "solver_settings": {
+        "solver_type": "Monolithic",
+        "model_import_settings": {
+            "input_type": "mdpa",
+            "input_filename": "geometry"
+        },
+        "maximum_iterations": 50000,
+        "dynamic_tau": 1.00,
+        "oss_switch": 0,
+        "echo_level": 0,
+        "consider_periodic_conditions": false,
+        "compute_reactions": true,
+        "reform_dofs_at_each_step": true,
+        "relative_velocity_tolerance": 1e-6,
+        "absolute_velocity_tolerance": 1e-8,
+        "relative_pressure_tolerance": 1e-6,
+        "absolute_pressure_tolerance": 1e-8,
+        "time_stepping": {
+            "automatic_time_step": false,
+            "CFL_number": 1,
+            "minimum_delta_time": 1e-4,
+            "maximum_delta_time": 0.01,
+            "time_step": 1.0
+        },
+        "time_scheme" : "steady",
+        "alpha":1.0,
+        "linear_solver_settings": {
+            "solver_type": "EigenSolversApplication.sparse_lu"
+        },
+        "volume_model_part_name": "Parts_fluid",
+        "skin_parts": [
+            "AutomaticInlet2D_inlet",
+            "Outlet2D_outlet",
+            "NoSlip2D_wall",
+            "NoSlip2D_cylinder"
+        ],
+        "no_skin_parts": [],
+        "turbulence_model_solver_settings": {
+            "model_type": "k_epsilon",
+            "velocity_pressure_relaxation_factor": 0.2,
+            "auxiliar_process_list": [
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name" : "ApplyKTurbulentIntensityInletProcess",
+                    "Parameters": {
+                        "model_part_name"     : "MainModelPart.AutomaticInlet2D_inlet",
+                        "turbulent_intensity" : 0.05,
+                        "echo_level"          : 0,
+                        "is_fixed"            : true,
+                        "min_k_value"         : 1e-18
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name" : "ApplyEpsilonTurbulentMixingLengthInletProcess",
+                    "Parameters": {
+                        "model_part_name"     : "MainModelPart.AutomaticInlet2D_inlet",
+                        "turbulent_mixing_length" : 2.0,
+                        "echo_level"              : 0,
+                        "is_fixed"                : true
+                    }
+                },
+                {
+                    "python_module": "process_factory",
+                    "kratos_module": "KratosMultiphysics",
+                    "process_name": "ApplyConstantScalarValueProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart.NoSlip2D_wall",
+                        "variable_name": "RANS_Y_PLUS",
+                        "value": 12.0
+                    }
+                },
+                {
+                    "python_module": "process_factory",
+                    "kratos_module": "KratosMultiphysics",
+                    "process_name": "ApplyConstantScalarValueProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart.NoSlip2D_cylinder",
+                        "variable_name": "RANS_Y_PLUS",
+                        "value": 12.0
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "NutKEpsilonHighReCalculationProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart",
+                        "echo_level": 0
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "ApplyNutYPlusWallFunctionProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart.NoSlip2D_wall",
+                        "echo_level": 0
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "ApplyNutYPlusWallFunctionProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart.NoSlip2D_cylinder",
+                        "echo_level": 0
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "CheckScalarBoundsProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart",
+                        "variable_name": "TURBULENT_KINETIC_ENERGY"
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "CheckScalarBoundsProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart",
+                        "variable_name": "TURBULENT_ENERGY_DISSIPATION_RATE"
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "CheckScalarBoundsProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart",
+                        "variable_name": "TURBULENT_VISCOSITY"
+                    }
+                },
+                {
+                    "python_module": "apply_custom_process",
+                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "process_name": "ClipScalarVariableProcess",
+                    "Parameters": {
+                        "model_part_name": "MainModelPart",
+                        "variable_name": "TURBULENT_VISCOSITY",
+                        "echo_level": 1,
+                        "min_value": 1e-18,
+                        "max_value": 1e+30
+                    }
+                }
+            ],
+            "mesh_moving": false,
+            "echo_level": 0,
+            "turbulent_viscosity_min": 1e-18,
+            "turbulent_viscosity_max": 1e+2,
+            "model_settings": {
+                "scheme_settings": {
+                    "scheme_type": "steady",
+                    "alpha_bossak": 1.0
+                },
+                "echo_level": 0,
+                "turbulent_kinetic_energy_settings": {
+                    "is_periodic": false,
+                    "relative_tolerance": 5e-4,
+                    "absolute_tolerance": 1e-5,
+                    "max_iterations":100,
+                    "echo_level": 2,
+                    "relaxation_factor": 0.8,
+                    "linear_solver_settings": {
+                        "solver_type": "EigenSolversApplication.sparse_lu"
+                    }
+                },
+                "turbulent_energy_dissipation_rate_settings": {
+                    "is_periodic": false,
+                    "relative_tolerance": 5e-4,
+                    "absolute_tolerance": 1e-5,
+                    "max_iterations": 100,
+                    "echo_level": 2,
+                    "relaxation_factor": 0.2,
+                    "linear_solver_settings": {
+                        "solver_type": "EigenSolversApplication.sparse_lu"
+                    }
+                },
+                "flow_parameters": {
+                    "ramp_up_time": 1.0
+                },
+                "coupling_settings": {
+                    "relative_tolerance": 1e-3,
+                    "absolute_tolerance": 1e-5,
+                    "max_iterations": 100,
+                    "echo_level": 2
+                }
+            }
+        }
+    },
+    "processes": {
+        "initial_conditions_process_list": [
+            {
+                "python_module": "initialization_from_hdf5_process",
+                "kratos_module": "KratosMultiphysics.HDF5Application",
+                "Parameters": {
+                    "model_part_name": "MainModelPart",
+                    "file_settings" : {
+                        "file_name" : "../averaged_vms_solution-1.00.h5"
+                    },
+                    "nodal_solution_step_data_settings":{
+                        "list_of_variables" : [
+                            "VELOCITY",
+                            "PRESSURE"
+                        ]
+                    }
+                }
+            },
+            {
+                "python_module": "apply_custom_process",
+                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "process_name" : "ApplyKTurbulentIntensityInletProcess",
+                "Parameters": {
+                    "model_part_name"     : "MainModelPart",
+                    "turbulent_intensity" : 0.05,
+                    "echo_level"          : 0,
+                    "is_fixed"            : false,
+                    "min_k_value"         : 1e-18
+                }
+            },
+            {
+                "python_module": "apply_custom_process",
+                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "process_name" : "ApplyEpsilonTurbulentMixingLengthInletProcess",
+                "Parameters": {
+                    "model_part_name"     : "MainModelPart",
+                    "turbulent_mixing_length" : 2.0,
+                    "echo_level"              : 0,
+                    "is_fixed"                : false
+                }
+            },
+            {
+                "python_module": "process_factory",
+                "kratos_module": "KratosMultiphysics",
+                "process_name" : "ApplyConstantScalarValueProcess",
+                "Parameters": {
+                    "model_part_name"     : "MainModelPart",
+                    "variable_name"       : "KINEMATIC_VISCOSITY",
+                    "value"               : 1e-5
+                }
+            }
+        ],
+        "boundary_conditions_process_list": [
+            {
+                "python_module": "impose_parabolic_inlet_process",
+                "process_name": "ImposeParabolicInletProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "MainModelPart.AutomaticInlet2D_inlet"
+                }
+            },
+            {
+                "python_module": "assign_scalar_variable_process",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "ApplyOutletProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "MainModelPart.Outlet2D_outlet",
+                    "variable_name": "PRESSURE",
+                    "value": 0
+                }
+            },
+            {
+                "python_module": "apply_slip_process",
+                "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "MainModelPart.NoSlip2D_wall"
+                }
+            },
+            {
+                "python_module": "apply_slip_process",
+                "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "MainModelPart.NoSlip2D_cylinder"
+                }
+            }
+        ],
+        "auxiliar_process_list": [
+            {
+                "python_module": "compute_body_fitted_drag_process",
+                "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
+                "process_name": "ComputeBodyFittedDragProcess",
+                "Parameters": {
+                    "model_part_name": "MainModelPart.NoSlip2D_cylinder",
+                    "interval": [
+                        0.0,
+                        1e30
+                    ],
+                    "write_drag_output_file": true,
+                    "print_drag_to_screen": false,
+                    "print_format": "30.25e"
+                }
+            },
+            {
+                "python_module": "single_mesh_temporal_output_process",
+                "kratos_module": "KratosMultiphysics.HDF5Application",
+                "Parameters": {
+                    "model_part_name": "MainModelPart",
+                    "file_settings": {
+                        "file_access_mode": "truncate",
+                        "echo_level": 1,
+                        "file_name": "hdf5_output/<model_part_name>-<time>.h5",
+                        "time_format": "0.2f"
+                    },
+                    "nodal_solution_step_data_settings": {
+                        "list_of_variables": [
+                            "VELOCITY",
+                            "PRESSURE",
+                            "ACCELERATION",
+                            "REACTION",
+                            "TURBULENT_KINETIC_ENERGY",
+                            "TURBULENT_ENERGY_DISSIPATION_RATE",
+                            "KINEMATIC_VISCOSITY",
+                            "TURBULENT_VISCOSITY",
+                            "VISCOSITY"
+                        ]
+                    },
+                    "output_time_settings": {
+                        "time_frequency": 0.2,
+                        "step_frequency": 1
+                    }
+                }
+            }
+        ],
+        "gravity": [
+            {
+                "python_module": "process_factory",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "ApplyConstantVectorValueProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "MainModelPart.Parts_fluid",
+                    "variable_name": "BODY_FORCE",
+                    "modulus": 0.0,
+                    "direction": [
+                        0.0,
+                        -1.0,
+                        0.0
+                    ]
+                }
+            }
+        ]
+    }
+}
