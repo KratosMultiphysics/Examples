@@ -15,7 +15,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Fluid Dynamics
 
 **Use cases**
-- [3D Wind over Barcelona](fluid_dynamics/use_cases/barcelona_wind/README.md) 
+- [3D Wind over Barcelona](fluid_dynamics/use_cases/barcelona_wind/README.md)
 - [Kelvin-Helmholtz instability - periodic boundary conditions](fluid_dynamics/use_cases/kelvin_helmholtz_instability/README.md)
 
 **Validation**
@@ -34,6 +34,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Shallow-angled Structure](structural_mechanics/validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
+- [Two-Dimensional Circular Truss-Arch Snapthrough](structural_mechanics/validation/two_dimensional_circular_truss_arch_snapthrough/README.md)
 
 ## Contact Structural Mechanics
 
@@ -96,7 +97,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Fluid flow in pre-existing fractures network](poromechanics/use_cases/fluid_pumping_2D/README.md)
 
 **Validation**
-- [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md) 
+- [Undrained soil column 2D test](poromechanics/validation/undrained_soil_column_2D/README.md)
 
 ## Swimming DEM
 
