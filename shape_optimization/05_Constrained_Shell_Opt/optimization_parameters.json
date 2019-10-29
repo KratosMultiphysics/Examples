@@ -33,8 +33,8 @@
         "objectives" : [{
             "identifier" : "eigenfrequency",
             "type"       : "maximization",
-            "use_kratos" : true,
-            "kratos_response_settings":{
+            "analyzer" : "kratos",
+            "response_settings":{
                 "response_type"          : "eigenfrequency",
                 "primal_settings"        : "primal_parameters_eigenfrequency.json",
                 "gradient_mode"          : "semi_analytic",
@@ -47,8 +47,8 @@
             "identifier" : "strain_energy",
             "type"       : "=",
             "reference"  : "initial_value",
-            "use_kratos" : true,
-            "kratos_response_settings":{
+            "analyzer" : "kratos",
+            "response_settings":{
                 "response_type"          : "strain_energy",
                 "primal_settings"        : "primal_parameters.json",
                 "gradient_mode"          : "semi_analytic",
