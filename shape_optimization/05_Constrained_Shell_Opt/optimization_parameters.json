@@ -61,7 +61,7 @@
             "type"       : ">",
             "reference"  : "specified_value",
             "reference_value" : 10,
-            "use_kratos" : false,
+            "analyzer" : "external",
             "project_gradient_on_surface_normals" : false
         },
         {
@@ -69,7 +69,7 @@
             "type"       : ">",
             "reference"  : "specified_value",
             "reference_value" : 10,
-            "use_kratos" : false,
+            "analyzer" : "external",
             "project_gradient_on_surface_normals" : false
         },
         {
@@ -77,8 +77,8 @@
             "type"       : "<",
             "reference"  : "specified_value",
             "reference_value" : 2355000,
-            "use_kratos" : true,
-            "kratos_response_settings":{
+            "analyzer" : "kratos",
+            "response_settings":{
                 "response_type"          : "mass",
                 "material_import_settings" :{
                     "materials_filename": "materials_2D.json"

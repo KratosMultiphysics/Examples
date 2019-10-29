@@ -36,7 +36,7 @@
             "mesh_motion" : {
                 "apply_mesh_solver" : true,
                 "solver_settings" : {
-                    "solver_type": "mesh_solver_structural_similarity",
+                    "solver_type": "structural_similarity",
                     "model_part_name"    : "3D_Hook",
                     "model_import_settings"              : {
                         "input_type"     : "use_input_model_part"

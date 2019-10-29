@@ -29,8 +29,6 @@
             "tolerance": 1e-6,
             "echo_level": 1
         },
-        "problem_domain_sub_model_part_list" : ["Parts_solid"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_disp_fix","DISPLACEMENT_disp_slide"],
         "rotation_dofs"                      : true
     },
     "processes": {

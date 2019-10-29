@@ -28,9 +28,7 @@
             "tolerance": 1e-6,
             "echo_level": 1
         },
-            "problem_domain_sub_model_part_list" : ["structure"],
-            "processes_sub_model_part_list"      : ["DISPLACEMENT_fixed_support"],
-            "rotation_dofs"                      : false
+        "rotation_dofs"                      : false
     },
     "processes": {
         "constraints_process_list" : [{
