@@ -33,8 +33,6 @@
             "scaling"     : false,
             "verbosity"   : 0
         },
-        "problem_domain_sub_model_part_list" : ["Parts_solid"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_disp_fix","DISPLACEMENT_disp_slide","PointLoad3D_load"],
         "rotation_dofs"                      : true
     },
     "processes" : {

@@ -29,10 +29,8 @@
         "residual_absolute_tolerance"        : 1e-9,
         "max_iteration"                      : 10,
         "linear_solver_settings"             : {
-            "solver_type" : "eigen_pardiso_lu"
+            "solver_type" : "ExternalSolversApplication.super_lu"
         },
-        "problem_domain_sub_model_part_list" : ["Parts_solid"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_disp_fix","DISPLACEMENT_disp_slide","PointLoad3D_load"],
         "rotation_dofs"                      : true
     },
     "processes": {

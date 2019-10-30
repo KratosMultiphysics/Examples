@@ -39,8 +39,6 @@
             "scaling"             : false,
             "verbosity"           : 1
         },
-        "problem_domain_sub_model_part_list" : ["Parts_solid"],
-        "processes_sub_model_part_list"      : ["support","SurfacePressure3D_load"],
         "rotation_dofs"                      : false
     },
     "processes": {
