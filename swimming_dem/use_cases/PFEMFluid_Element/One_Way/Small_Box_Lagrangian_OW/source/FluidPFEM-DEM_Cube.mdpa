@@ -2354,7 +2354,7 @@ Begin Nodes
 End Nodes
 
 
-Begin Elements TwoStepUpdatedLagrangianVPFluidElement3D// GUI group identifier: Fluid
+Begin Elements TwoStepUpdatedLagrangianVPFluidDEMcouplingElement3D// GUI group identifier: Fluid
         1          1       2071       1947       2016       1894
         2          1       1057        934        806       1049
         3          1       1947       2016       1894       1906
