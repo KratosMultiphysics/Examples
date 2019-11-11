@@ -16,7 +16,7 @@
                 "Parameters": {
                     "model_part_name": "FluidModelPart",
                     "output_control_type": "step",
-                    "output_frequency": 1,
+                    "output_step_interval": 1,
                     "file_format": "ascii",
                     "output_precision": 7,
                     "output_sub_model_parts": false,
@@ -370,7 +370,7 @@
                     "number_of_sampling_points": 1000,
                     "output_file_name": "line_outputs/x=-3.12h",
                     "output_step_control_variable_name": "STEP",
-                    "output_frequency": 1
+                    "output_step_interval": 1
                 }
             },
             {
@@ -397,7 +397,7 @@
                     "number_of_sampling_points": 1000,
                     "output_file_name": "line_outputs/x=4h",
                     "output_step_control_variable_name": "STEP",
-                    "output_frequency": 1
+                    "output_step_interval": 1
                 }
             },
             {
@@ -424,7 +424,7 @@
                     "number_of_sampling_points": 1000,
                     "output_file_name": "line_outputs/x=6h",
                     "output_step_control_variable_name": "STEP",
-                    "output_frequency": 1
+                    "output_step_interval": 1
                 }
             }
         ]

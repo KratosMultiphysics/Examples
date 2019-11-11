@@ -345,6 +345,88 @@
                 }
             }
         ],
-        "auxiliar_process_list": []
+        "auxiliar_process_list": [
+            {
+                "python_module": "apply_custom_process",
+                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "process_name": "LineOutputProcess",
+                "Parameters": {
+                    "model_part_name": "FluidModelPart",
+                    "variable_names_list": [
+                        "VELOCITY",
+                        "TURBULENT_KINETIC_ENERGY"
+                    ],
+                    "historical_value": true,
+                    "start_point": [
+                        -0.030576,
+                        0.0098,
+                        0.0
+                    ],
+                    "end_point": [
+                        -0.030576,
+                        0.0588,
+                        0.0
+                    ],
+                    "number_of_sampling_points": 1000,
+                    "output_file_name": "line_outputs/x=-3.12h",
+                    "output_step_control_variable_name": "STEP",
+                    "output_step_interval": 1
+                }
+            },
+            {
+                "python_module": "apply_custom_process",
+                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "process_name": "LineOutputProcess",
+                "Parameters": {
+                    "model_part_name": "FluidModelPart",
+                    "variable_names_list": [
+                        "VELOCITY",
+                        "TURBULENT_KINETIC_ENERGY"
+                    ],
+                    "historical_value": true,
+                    "start_point": [
+                        0.0392,
+                        0.0,
+                        0.0
+                    ],
+                    "end_point": [
+                        0.0392,
+                        0.0588,
+                        0.0
+                    ],
+                    "number_of_sampling_points": 1000,
+                    "output_file_name": "line_outputs/x=4h",
+                    "output_step_control_variable_name": "STEP",
+                    "output_step_interval": 1
+                }
+            },
+            {
+                "python_module": "apply_custom_process",
+                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "process_name": "LineOutputProcess",
+                "Parameters": {
+                    "model_part_name": "FluidModelPart",
+                    "variable_names_list": [
+                        "VELOCITY",
+                        "TURBULENT_KINETIC_ENERGY"
+                    ],
+                    "historical_value": true,
+                    "start_point": [
+                        0.0588,
+                        0.0,
+                        0.0
+                    ],
+                    "end_point": [
+                        0.0588,
+                        0.0588,
+                        0.0
+                    ],
+                    "number_of_sampling_points": 1000,
+                    "output_file_name": "line_outputs/x=6h",
+                    "output_step_control_variable_name": "STEP",
+                    "output_step_interval": 1
+                }
+            }
+        ]
     }
 }
