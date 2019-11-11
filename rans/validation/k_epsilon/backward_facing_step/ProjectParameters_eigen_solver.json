@@ -16,7 +16,7 @@
                 "Parameters": {
                     "model_part_name": "FluidModelPart",
                     "output_control_type": "step",
-                    "output_step_interval": 1,
+                    "output_frequency": 1,
                     "file_format": "ascii",
                     "output_precision": 7,
                     "output_sub_model_parts": false,
