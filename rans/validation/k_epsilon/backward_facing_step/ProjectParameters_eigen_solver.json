@@ -50,10 +50,10 @@
         "compute_reactions": false,
         "consider_periodic_conditions": false,
         "maximum_iterations": 1000,
-        "relative_velocity_tolerance": 0.007,
-        "absolute_velocity_tolerance": 1e-5,
-        "relative_pressure_tolerance": 0.007,
-        "absolute_pressure_tolerance": 1e-5,
+        "relative_velocity_tolerance": 1e-4,
+        "absolute_velocity_tolerance": 1e-6,
+        "relative_pressure_tolerance": 1e-4,
+        "absolute_pressure_tolerance": 1e-6,
         "velocity_relaxation": 0.5,
         "pressure_relaxation": 0.5,
         "alpha": 1.0,
@@ -191,7 +191,8 @@
                     "relative_tolerance": 1e-3,
                     "absolute_tolerance": 1e-8,
                     "max_iterations": 200,
-                    "echo_level": 2
+                    "echo_level": 2,
+                    "number_of_parent_solve_iterations": 5
                 }
             }
         }
