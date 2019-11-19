@@ -1,4 +1,4 @@
-# Reynolds Averaged Navier Stokes Examples (RANSModellingApplication)
+# Reynolds Averaged Navier Stokes Examples (RANSApplication)
 
 ## Validation Cases
 - [Channel flow Re<sub>&tau;</sub> = 590](channel_flow/re_tau_590/README.md)

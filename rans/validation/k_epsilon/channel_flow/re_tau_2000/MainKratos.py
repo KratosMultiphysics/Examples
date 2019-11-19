@@ -2,7 +2,7 @@ from __future__ import print_function, absolute_import, division  #makes KratosM
 
 import KratosMultiphysics
 from KratosMultiphysics.kratos_utilities import CheckIfApplicationsAvailable
-from KratosMultiphysics.RANSModellingApplication.periodic_fluid_dynamics_analysis import PeriodicFluidDynamicsAnalysis
+from KratosMultiphysics.RANSApplication.periodic_fluid_dynamics_analysis import PeriodicFluidDynamicsAnalysis
 
 if __name__ == "__main__":
     if (CheckIfApplicationsAvailable("EigenSolversApplication")):

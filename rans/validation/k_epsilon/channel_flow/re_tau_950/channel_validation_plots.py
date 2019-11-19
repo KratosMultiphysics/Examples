@@ -64,7 +64,7 @@ class Channel:
         plt.semilogx(y_plus,
                      u_plus,
                      "g--",
-                     label=r"RANSModellingApplication $k-\epsilon$ high $Re$")
+                     label=r"RANSApplication $k-\epsilon$ high $Re$")
 
         plt.grid(True)
         plt.legend(loc="upper left")
@@ -88,7 +88,7 @@ class Channel:
         plt.plot(y_plus,
                  k_plus,
                  "g--",
-                 label=r"RANSModellingApplication $k-\epsilon$ high $Re$")
+                 label=r"RANSApplication $k-\epsilon$ high $Re$")
 
         plt.grid(True)
         plt.legend(loc="upper right")

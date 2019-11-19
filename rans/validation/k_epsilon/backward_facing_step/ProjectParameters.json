@@ -96,7 +96,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "NutKEpsilonHighReCalculationProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -105,7 +105,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "NutYPlusWallFunctionProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart.NoSlip2D_wall",
@@ -114,7 +114,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -123,7 +123,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -132,7 +132,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -141,7 +141,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "ClipScalarVariableProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -154,6 +154,8 @@
             ],
             "mesh_moving": false,
             "echo_level": 0,
+            "turbulent_viscosity_min": 1e-18,
+            "turbulent_viscosity_max": 1e+2,
             "model_settings": {
                 "scheme_settings": {
                     "scheme_type": "steady",
@@ -198,7 +200,7 @@
         "initial_conditions_process_list": [
             {
                 "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "kratos_module": "KratosMultiphysics.RANSApplication",
                 "process_name": "ApplyFlagProcess",
                 "Parameters": {
                     "model_part_name": "FluidModelPart.NoSlip2D_wall",
@@ -308,8 +310,8 @@
             },
             {
                 "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
-                "process_name": "KTurbulentIntensityInletProcess",
+                "kratos_module": "KratosMultiphysics.RANSApplication",
+                "process_name": "ApplyKTurbulentIntensityInletProcess",
                 "Parameters": {
                     "model_part_name": "FluidModelPart.AutomaticInlet2D_inlet",
                     "turbulent_intensity": 6.1e-4
@@ -317,8 +319,8 @@
             },
             {
                 "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
-                "process_name": "EpsilonTurbulentMixingLengthInletProcess",
+                "kratos_module": "KratosMultiphysics.RANSApplication",
+                "process_name": "ApplyEpsilonTurbulentMixingLengthInletProcess",
                 "Parameters": {
                     "model_part_name": "FluidModelPart.AutomaticInlet2D_inlet",
                     "turbulent_mixing_length": 0.0588
@@ -343,88 +345,6 @@
                 }
             }
         ],
-        "auxiliar_process_list": [
-            {
-                "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
-                "process_name": "LineOutputProcess",
-                "Parameters": {
-                    "model_part_name": "FluidModelPart",
-                    "variable_names_list": [
-                        "VELOCITY",
-                        "TURBULENT_KINETIC_ENERGY"
-                    ],
-                    "historical_value": true,
-                    "start_point": [
-                        -0.030576,
-                        0.0098,
-                        0.0
-                    ],
-                    "end_point": [
-                        -0.030576,
-                        0.0588,
-                        0.0
-                    ],
-                    "number_of_sampling_points": 1000,
-                    "output_file_name": "line_outputs/x=-3.12h",
-                    "output_step_control_variable_name": "STEP",
-                    "output_step_interval": 1
-                }
-            },
-            {
-                "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
-                "process_name": "LineOutputProcess",
-                "Parameters": {
-                    "model_part_name": "FluidModelPart",
-                    "variable_names_list": [
-                        "VELOCITY",
-                        "TURBULENT_KINETIC_ENERGY"
-                    ],
-                    "historical_value": true,
-                    "start_point": [
-                        0.0392,
-                        0.0,
-                        0.0
-                    ],
-                    "end_point": [
-                        0.0392,
-                        0.0588,
-                        0.0
-                    ],
-                    "number_of_sampling_points": 1000,
-                    "output_file_name": "line_outputs/x=4h",
-                    "output_step_control_variable_name": "STEP",
-                    "output_step_interval": 1
-                }
-            },
-            {
-                "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
-                "process_name": "LineOutputProcess",
-                "Parameters": {
-                    "model_part_name": "FluidModelPart",
-                    "variable_names_list": [
-                        "VELOCITY",
-                        "TURBULENT_KINETIC_ENERGY"
-                    ],
-                    "historical_value": true,
-                    "start_point": [
-                        0.0588,
-                        0.0,
-                        0.0
-                    ],
-                    "end_point": [
-                        0.0588,
-                        0.0588,
-                        0.0
-                    ],
-                    "number_of_sampling_points": 1000,
-                    "output_file_name": "line_outputs/x=6h",
-                    "output_step_control_variable_name": "STEP",
-                    "output_step_interval": 1
-                }
-            }
-        ]
+        "auxiliar_process_list": []
     }
 }

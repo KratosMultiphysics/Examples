@@ -46,7 +46,7 @@ def plot_kratos_velocity(filename, y_offset):
     plt.plot(
         data[:, 4] / ref_velocity, (data[:, 2] - y_offset) / 9.8e-3,
         "--",
-        label=r"RANSModellingApplication $k-\epsilon$ high $Re$")
+        label=r"RANSApplication $k-\epsilon$ high $Re$")
 
 def plot_jovic_turbulent_kinetic_energy(table_id):
     x_h_values = [0, 0, 0, 0, -3.12, 4.0, 6.0, 10.0, 15.0, 19.0]
@@ -67,7 +67,7 @@ def plot_kratos_turbulent_kinetic_energy(filename, y_offset):
     plt.plot(
         data[:, 7] / ref_velocity**2, (data[:, 2] - y_offset) / 9.8e-3,
         "--",
-        label=r"RANSModellingApplication $k-\epsilon$ high $Re$")
+        label=r"RANSApplication $k-\epsilon$ high $Re$")
 
 if __name__ == "__main__":
     plt.figure(figsize=(12, 9))

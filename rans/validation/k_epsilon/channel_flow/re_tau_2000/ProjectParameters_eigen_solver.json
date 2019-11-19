@@ -93,7 +93,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "NutKEpsilonHighReCalculationProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -102,7 +102,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "NutYPlusWallFunctionProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart.NoSlip2D_wall",
@@ -111,7 +111,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -120,7 +120,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -129,7 +129,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "CheckScalarBoundsProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -138,7 +138,7 @@
                 },
                 {
                     "python_module": "cpp_process_factory",
-                    "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                    "kratos_module": "KratosMultiphysics.RANSApplication",
                     "process_name": "ClipScalarVariableProcess",
                     "Parameters": {
                         "model_part_name": "FluidModelPart",
@@ -195,7 +195,7 @@
         "initial_conditions_process_list": [
             {
                 "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "kratos_module": "KratosMultiphysics.RANSApplication",
                 "process_name": "ApplyFlagProcess",
                 "Parameters": {
                     "model_part_name": "FluidModelPart.NoSlip2D_wall",
@@ -276,7 +276,7 @@
         "boundary_conditions_process_list": [
             {
                 "python_module": "cpp_process_factory",
-                "kratos_module": "KratosMultiphysics.RANSModellingApplication",
+                "kratos_module": "KratosMultiphysics.RANSApplication",
                 "process_name": "ApplyExactNodalPeriodicConditionProcess",
                 "Parameters": {
                     "base_model_part_name": "FluidModelPart",
