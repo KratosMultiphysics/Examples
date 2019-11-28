@@ -4,7 +4,7 @@
 
 **Kratos version:** Current Head
 
-**Source files:** [Tensile test](https://github.com/KratosMultiphysics/Examples/tree/periodic_bc_examples/structural_mechanics/use_cases/tensile_test_example/source)
+**Source files:** [Tensile test](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/tensile_test_example/source)
 
 ## Problem definition
 
