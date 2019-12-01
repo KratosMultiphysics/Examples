@@ -67,5 +67,5 @@ The frictional stress evolution is:
 
 ## References
 
--[Fischer, Kathrin A.,Wriggers, Peter] Mortar based frictional contact formulation for higher order interpolations using the moving friction cone
+- [Fischer, Kathrin A.,Wriggers, Peter] Mortar based frictional contact formulation for higher order interpolations using the moving friction cone
 - [A.P.C. Dias] High-order mortar-based element applied to nonlinear analysis of structural contact mechanics
