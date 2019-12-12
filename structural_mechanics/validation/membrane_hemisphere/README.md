@@ -40,6 +40,6 @@ _Eigenmodes 1,3,4,6,8,10,11,13,22,31,33,56_
 
 
 ## References
-1. G. De Nayer, A. Apostolatos, J.N. Wood, K.U. Bletzinger, R. Wüchner, M. Breuer
-Numerical studies on the instantaneous fluid–structure interaction of an air-inflated flexible membrane in turbulent flow
+1. G. De Nayer, A. Apostolatos, J.N. Wood, K.U. Bletzinger, R. Wüchner, M. Breuer,
+Numerical studies on the instantaneous fluid–structure interaction of an air-inflated flexible membrane in turbulent flow,
 Journal of Fluids and Structures 82 (2018) 577–609
