@@ -22,7 +22,7 @@ The solution of a dynamic simulation is plotted against an experimentally obtain
 _Compare KRATOS displacements of the top node to [1]_
 
 
-Additioanlly the _EigenSolversApplication_ is used to analyse the first 56 eigenmodes of the hemisphere. The results again agree with [1] and are plotted in the next figure.
+Additionally the _EigenSolversApplication_ is used to analyse the first 56 eigenmodes of the hemisphere. The results again agree with [1] and are plotted in the next figure.
 
 ![Eigenmodes](data/eigen.png)
 _Eigenmodes 1,3,4,6,8,10,11,13,22,31,33,56_
