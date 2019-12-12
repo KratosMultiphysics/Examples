@@ -35,6 +35,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Beam Roll Up](structural_mechanics/validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](structural_mechanics/validation/truss_snap_through/README.md)
 - [Two-Dimensional Circular Truss-Arch Snapthrough](structural_mechanics/validation/two_dimensional_circular_truss_arch_snapthrough/README.md)
+- [Membrane Hemisphere Verification and Eigenvalue Computation](structural_mechanics/validation/membrane_hemisphere/README.md)
 
 ## Contact Structural Mechanics
 

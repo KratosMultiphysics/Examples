@@ -1,0 +1,84 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "hemissphere",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 1,
+        "start_time"    : 0.0,
+        "end_time"      : 1.0
+    },
+    "solver_settings"  : {
+        "solver_type"                     : "eigen_value",
+        "model_part_name"                    : "Structure",
+        "domain_size"                        : 3,
+        "echo_level"                         : 1,
+        "use_computing_model_part"           : false,
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "hemissphere"
+        },
+        "material_import_settings"           : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"                      : {
+            "time_step" : 1.1
+        },
+        "eigensolver_settings"               : {
+            "solver_type"           : "eigen_eigensystem",
+            "max_iteration"         : 1000,
+            "tolerance"             : 1e-5,
+            "number_of_eigenvalues" : 56,
+            "echo_level"            : 2
+        },
+        "rotation_dofs"                      : false
+    },
+    "processes"        : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.DISPLACEMENT_dirichlet",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_scalar_variable_to_conditions_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.SurfacePressure3D_strcuture",
+                "variable_name"   : "POSITIVE_FACE_PRESSURE",
+                "value"           : 43,
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "list_other_processes"     : [{
+            "python_module" : "project_vector_on_surface_process",
+            "kratos_module" : "StructuralMechanicsApplication",
+            "Parameters"    : {
+                "model_part_name"  : "Structure",
+                "echo_level"      : 1,
+                "projection_type"        : "radial",
+                "global_direction" : [0,0,1],
+                "variable_name"    : "LOCAL_PRESTRESS_AXIS_1"
+
+            }
+        },{
+            "python_module" : "postprocess_eigenvalues_process",
+            "kratos_module" : "KratosMultiphysics.StructuralMechanicsApplication",
+            "help"          : "This process postprocces the eigen values for GiD",
+            "process_name"  : "PostProcessEigenvaluesProcess",
+            "Parameters"    : {
+                "result_file_name" : "test_eigenvalue",
+                "animation_steps"  : 20,
+                "label_type"       : "frequency",
+                "file_format"                   : "vtk"
+            }
+        }]
+    },
+    "output_processes" : {
+        "gid_output" : [],
+        "vtk_output" : []
+    }
+}

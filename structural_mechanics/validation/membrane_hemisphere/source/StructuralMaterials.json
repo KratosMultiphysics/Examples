@@ -1,0 +1,19 @@
+{
+    "properties" : [{
+        "model_part_name" : "Structure.Parts_strcuture",
+        "properties_id"   : 1,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "LinearElasticPlaneStress2DLaw"
+            },
+            "Variables"        : {
+                "THICKNESS"                : 1.65e-4,
+                "PRESTRESS_VECTOR"         : [7794.5,7794.5,0],
+                "DENSITY"                  : 1050.0,
+                "YOUNG_MODULUS"            : 7e5,
+                "POISSON_RATIO"            : 0.45
+            },
+            "Tables"           : {}
+        }
+    }]
+}
