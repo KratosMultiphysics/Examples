@@ -14,7 +14,7 @@
         "analysis_type"                      : "non_linear",
         "model_import_settings"              : {
             "input_type"       : "mdpa",
-            "input_filename"   : "double_arch",
+            "input_filename"   : "double_arch_hexa",
             "input_file_label" : 0
         },
         "material_import_settings"           : {
@@ -27,7 +27,7 @@
         "time_stepping"                      : {
             "time_step" : 0.0005
         },
-        "convergence_criterion"              : "contact_mixed_criterion",
+        "convergence_criterion"              : "contact_residual_criterion",
         "displacement_relative_tolerance"    : 0.0001,
         "displacement_absolute_tolerance"    : 1e-9,
         "residual_relative_tolerance"        : 0.0001,
