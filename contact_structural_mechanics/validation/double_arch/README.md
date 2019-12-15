@@ -34,9 +34,12 @@ For the support material:
 - Elastic modulus (E):  1.0E+11 _Pa_
 - Poisson ratio (&nu;): 0.3
 
-The time step is *0.0005* seconds, while the total simulation time is *0.2* seconds. With an increment of the imposed displacement wual to *0.4t*.
+The time step is *0.0005* seconds, while the total simulation time is *0.2* seconds. With an increment of the imposed displacement wual to *0.4t*. For the frictional case the friction coefficient considered is 0.5.
 
 ## Results
+
+### Frictionless
+
 The problem stated above has been solved using an unstructured mesh of tetrahedron. The resulting deformation can be seen in the following image.
 
 - Structured (hexa) mesh:
@@ -54,7 +57,19 @@ The problem stated above has been solved using an unstructured mesh of tetrahedr
 As well as the comparation with the reference solution (we have a deviation from the reference solution for the last steps, where we have a larger deformation and finally a stabilization of the deformation):
 
 <p align="center">
-  <img src="data/comparation_reference.png" alt="Vertical  displacement comparison." style="width: 600px;"/>
+  <img src="data/solution_frictionless.png" alt="Vertical  displacement comparison." style="width: 600px;"/>
+</p>
+
+### Frictional
+
+The solution for the frictional case can be seen in the following animation, and the compared solution with the literature references.
+
+<p align="center">
+  <img src="data/result_frictional.gif" alt="Solution" style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/solution_frictional.png" alt="Vertical  displacement comparison." style="width: 600px;"/>
 </p>
 
 ## References
