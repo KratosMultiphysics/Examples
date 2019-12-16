@@ -38,13 +38,13 @@
         }],
         "constraints" : [
             {
-                "identifier" : "mesh_packaging",
+                "identifier" : "mesh_based_packaging",
                 "type"       : "<=",
                 "reference"  : "specified_value",
                 "reference_value" : 0,
                 "analyzer"   : "kratos",
                 "response_settings":{
-                    "response_type" : "mesh_packaging",
+                    "response_type" : "mesh_based_packaging",
                     "model_part_name"       : "3D_Shell",
                     "packaging_model_part_name"       : "sphere",
                     "packaging_model_import_settings" : {
