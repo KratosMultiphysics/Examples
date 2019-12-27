@@ -15,8 +15,11 @@
         "start_time":                         0.0,
         "time_step":                          0.1,
         "model_import_settings":              {
-            "input_type":       "mdpa",
-            "input_filename":   "fluid_pumping_2D_fracture"
+            "input_type":    "mdpa",
+            "input_filename":    "fluid_pumping_2D_fracture"
+        },
+        "material_import_settings": {
+            "materials_filename":    "PoroMaterials.json"
         },
         "buffer_size":                        2,
         "echo_level":                         1,

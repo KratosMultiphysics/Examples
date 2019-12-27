@@ -15,8 +15,11 @@
         "start_time":                         0.0,
         "time_step":                          1.0,
         "model_import_settings":              {
-            "input_type":       "mdpa",
-            "input_filename":   "arc_length_test"
+            "input_type":    "mdpa",
+            "input_filename":    "arc_length_test"
+        },
+        "material_import_settings": {
+            "materials_filename":    "PoroMaterials.json"
         },
         "buffer_size":                        2,
         "echo_level":                         1,
