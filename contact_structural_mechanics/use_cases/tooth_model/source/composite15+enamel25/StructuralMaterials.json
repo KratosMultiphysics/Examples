@@ -1,7 +1,7 @@
 {
     "properties": [
     {
-            "model_part_name": "Parts_composite",
+            "model_part_name": "Structure.Parts_composite",
             "properties_id": 1,
             "Material": {
                     "name": "Material",
@@ -16,7 +16,7 @@
                     "Tables": {}
             }
     },{
-            "model_part_name": "Parts_esmalte",
+            "model_part_name": "Structure.Parts_esmalte",
             "properties_id": 2,
             "Material": {
                     "name": "Material",
@@ -32,7 +32,7 @@
             }
     },
     {
-            "model_part_name": "Parts_press",
+            "model_part_name": "Structure.Parts_press",
             "properties_id": 3,
             "Material": {
                     "name": "Material",

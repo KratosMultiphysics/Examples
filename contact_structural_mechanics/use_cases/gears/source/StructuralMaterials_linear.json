@@ -1,6 +1,6 @@
 {
     "properties" : [{
-        "model_part_name" : "Parts_Gear1",
+        "model_part_name" : "Structure.Parts_Gear1",
         "properties_id"   : 1,
         "Material"        : {
             "constitutive_law" : {
@@ -14,7 +14,7 @@
             "Tables"           : {}
         }
     },{
-        "model_part_name" : "Parts_Gear2",
+        "model_part_name" : "Structure.Parts_Gear2",
         "properties_id"   : 2,
         "Material"        : {
             "constitutive_law" : {
