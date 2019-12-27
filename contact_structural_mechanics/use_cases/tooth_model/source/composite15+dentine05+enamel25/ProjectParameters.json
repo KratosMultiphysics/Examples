@@ -24,13 +24,7 @@
             "mortar_type"                        : "ALMContactFrictionlessComponents"
         },
         "time_stepping"                      : {
-            "time_step_intervals" :
-            {
-                "first" : {
-                    "interval"  : [0.0, "End"],
-                    "time_step" : 0.0025
-                }
-            }
+            "time_step" : 0.0025
         },
         "convergence_criterion"              : "contact_residual_criterion",
         "displacement_relative_tolerance"    : 0.0001,

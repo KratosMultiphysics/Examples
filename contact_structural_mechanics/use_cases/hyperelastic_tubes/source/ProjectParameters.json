@@ -20,24 +20,16 @@
             "materials_filename" : "StructuralMaterials.json"
         },
         "time_stepping"                      : {
-            "time_step_intervals" : {
-                "first_interval" : {
-                    "interval"  : [0.0, 1.65],
-                    "time_step" : 5.0e-2
-                },
-                "second_interval" : {
-                    "interval"  : [1.65, 3.05],
-                    "time_step" : 2.5e-2
-                },
-                "third_interval" : {
-                    "interval"  : [3.05, 4.055],
-                    "time_step" : 1.0e-2
-                },
-                "fourth_interval" : {
-                    "interval"  : [4.055, "End"],
-                    "time_step" : 2.5e-3
-                }
-            }
+            "time_step_table" : [
+                [0.0, 5.0e-2],
+                [1.64999999, 5.0e-2],
+                [1.65, 0.025],
+                [3.04999999, 0.025],
+                [3.05, 0.01],
+                [4.0549999, 0.01],
+                [4.055, 0.0025],
+                [4.1, 0.0025]
+            ]
         },
         "convergence_criterion"           : "contact_residual_criterion",
         "displacement_relative_tolerance" : 0.0001,
