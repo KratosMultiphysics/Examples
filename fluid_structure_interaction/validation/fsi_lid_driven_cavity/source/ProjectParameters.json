@@ -114,8 +114,7 @@
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
             "process_name"  : "ApplyOutletProcess",
             "Parameters"    : {
-                "mesh_id"            : 0,
-                "model_part_name"    : "Outlet2D_Outlet",
+                "model_part_name"    : "FluidModelPart.Outlet2D_Outlet",
                 "variable_name"      : "PRESSURE",
                 "constrained"        : true,
                 "value"              : 0.0,
@@ -127,16 +126,14 @@
             "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
             "process_name"  : "ApplyNoSlipProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "NoSlip2D_NoSlip"
+                "model_part_name" : "FluidModelPart.NoSlip2D_NoSlip"
             }
         },{
             "python_module" : "assign_vector_variable_process",
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "VelocityConstraints2D_Inlet",
+                "model_part_name" : "FluidModelPart.VelocityConstraints2D_Inlet",
                 "variable_name"   : "VELOCITY",
                 "constrained"     : [true,true,true],
                 "value"           : ["(1-cos(0.4*pi*t))*((y-0.875)/0.125)",0.0,0.0],
@@ -147,8 +144,7 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "ALEMeshDisplacementBC2D_ALEMeshBCx",
+                "model_part_name" : "FluidModelPart.ALEMeshDisplacementBC2D_ALEMeshBCx",
                 "variable_name"   : "MESH_DISPLACEMENT",
                 "constrained"     : [true,false,true],
                 "value"           : [0.0,0.0,0.0],
@@ -159,20 +155,11 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "ALEMeshDisplacementBC2D_ALEMeshBCy",
+                "model_part_name" : "FluidModelPart.ALEMeshDisplacementBC2D_ALEMeshBCy",
                 "variable_name"   : "MESH_DISPLACEMENT",
                 "constrained"     : [false,true,true],
                 "value"           : [0.0,0.0,0.0],
                 "interval"        : [0.0,"End"]
-            }
-        },{
-            "python_module" : "python_process",
-            "kratos_module" : "KratosMultiphysics",
-            "process_name"  : "PythonProcess",
-            "Parameters"    : {
-                "mesh_id"         : 0,
-                "model_part_name" : "FluidNoSlipInterface2D_FluidInterface"
             }
         }],
         "fluid_gravity" : [{
@@ -181,7 +168,7 @@
             "process_name"  : "AssignVectorByDirectionProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "Parts_Fluid",
+                "model_part_name" : "FluidModelPart.Parts_Fluid",
                 "variable_name"   : "BODY_FORCE",
                 "modulus"         : 0.0,
                 "constrained"     : false,
@@ -196,7 +183,7 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "GiDOutputProcess",
             "Parameters"    : {
-                "model_part_name"        : "Parts_Structure",
+                "model_part_name"        : "Structure.Parts_Structure",
                 "output_name"            : "fsi_lid_driven_cavity_structure",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
@@ -224,7 +211,7 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "GiDOutputProcess",
             "Parameters"    : {
-                "model_part_name"        : "Parts_Fluid",
+                "model_part_name"        : "FluidModelPart.Parts_Fluid",
                 "output_name"            : "fsi_lid_driven_cavity_fluid",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
