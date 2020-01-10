@@ -14,11 +14,11 @@ In this example we solve the Mok benchmark test. The problem geometry, material 
 The problem stated above has been solved with a structured mesh with 4x100 divisions composed by linear quadrilateral total Lagrangian elements in the structural domain. In the fluid domain, a mesh composed by around 215k linear triangular elements has been used. The obtained velocity and pressure fields, together with the level set zero isosurface representing the deformed geometry, are shown below. Besides, a comparisons with literature reference solutions as wall as body fitted solver solution are depicted as well.
 
 <p align="center">
-  <img src="data/data/embedded_fsi_mok_velocity.gif" alt="Obtained velocity field." style="width: 600px;"/>
+  <img src="data/embedded_fsi_mok_velocity.gif" alt="Obtained velocity field." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/embedded_fsi_mok_pressure.png" alt="Obtained pressure field." style="width: 600px;"/>
+  <img src="data/embedded_fsi_mok_pressure.gif" alt="Obtained pressure field." style="width: 600px;"/>
 </p>
 
 <p align="center">
