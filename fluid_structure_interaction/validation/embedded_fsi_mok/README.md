@@ -4,7 +4,7 @@
 
 **Kratos version:** 7.0
 
-**Source files:** [FSI-Mok](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/embedded_fsi_mok/source)
+**Source files:** [Embedded FSI-Mok](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/embedded_fsi_mok/source)
 
 ## Case Specification
 
