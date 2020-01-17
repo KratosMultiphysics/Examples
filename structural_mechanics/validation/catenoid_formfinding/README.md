@@ -7,7 +7,7 @@
 **Source files:** [Membrane Catenoid](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/catenoid_formfinding/source)
 
 ## Case Specification
-An isotropic pre-stressed catenoid with membrane elements is used to perform form-finding using KRATOS (StructuralMechanicsApplication)
+An isotropic pre-stressed catenoid with membrane elements is used to perform form-finding using KRATOS (StructuralMechanicsApplication).
 
 <img src="data/catenoid_setup.png" width="750">
 
