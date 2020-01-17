@@ -1,4 +1,4 @@
-# orm-finding for a four ooint sail membrane
+# Form-finding for a four point sail membrane
 
 **Author:** Klaus B. Sautter
 
