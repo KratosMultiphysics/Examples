@@ -20,32 +20,17 @@
             "materials_filename" : "StructuralMaterials.json"
         },
         "convergence_criterion"              : "contact_residual_criterion",
-        "displacement_relative_tolerance"    : 1.0e-4,
+        "displacement_relative_tolerance"    : 0.0001,
         "displacement_absolute_tolerance"    : 1e-9,
-        "residual_relative_tolerance"        : 1.0e-4,
+        "residual_relative_tolerance"        : 0.0001,
         "residual_absolute_tolerance"        : 1e-9,
-        "displacement_relative_tolerance"    : 1.0e-4,
         "max_iteration"                      : 20,
         "time_stepping"                      : {
-            "time_step_table" : [
-                [0.0, 5.0e-2],
-                [1.199999, 5.0e-2],
-                [1.2, 1.0e-2],
-                [3.5999, 1.0e-2],
-                [3.6, 2.5e-3],
-                [4.09999, 2.5e-3],
-                [4.1, 5.0e-3],
-                [4.62999, 5.0e-3],
-                [4.63, 2.5e-3],
-                [4.899999, 2.5e-3],
-                [4.9, 5.0e-3],
-                [12.1, 5.0e-3]
-            ]
+            "time_step" : 0.025
         },
         "contact_settings":{
-            "mortar_type"                                              : "ALMContactFrictional",
-            "frictional_stick_contact_displacement_relative_tolerance" : 1.0e-4,
-            "frictional_slip_contact_displacement_relative_tolerance"  : 1.0e-4
+            "mortar_type"                             : "ALMContactFrictionlessComponents",
+            "ensure_contact"                          : true
         }
     },
     "processes" : {
@@ -111,16 +96,9 @@
                     "model_part_name"             : "Structure",
                     "assume_master_slave"         : {"0":["Parts_Parts_Auto1"]},
                     "contact_model_part"          : {"0":["CONTACT_Contact_Auto1"]},
-                    "contact_type"                : "Frictional",
-                    "tangent_factor"              : 2.5e-2,
-                    "operator_threshold"          : 0.0,
-                    "slip_step_reset_frequency"   : 25,
-                    "search_parameters"           : {
-                        "search_factor"                       : 2.25,
-                        "active_check_factor"                 : 0.0045
-                    },
+                    "contact_type"                : "FrictionlessComponents",
                     "advance_ALM_parameters" : {
-                        "stiffness_factor"            : 1.0e-1
+                        "stiffness_factor"            : 10.0
                     }
                 }
             }]
@@ -142,15 +120,15 @@
                             "MultiFileFlag"         : "SingleFile"
                         },
                         "file_label"          : "step",
-                        "output_control_type" : "time",
-                        "output_frequency"    : 0.05,
+                        "output_control_type" : "step",
+                        "output_frequency"    : 20.0,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
                         "plane_output"        : [],
-                        "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP","WEIGHTED_SLIP"],
-                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE","TANGENT_XI","TANGENT_ETA"],
-                        "nodal_flags_results": ["ACTIVE","SLAVE","SLIP"],
+                        "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
+                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                        "nodal_flags_results": ["ACTIVE","MASTER","SLAVE"],
                         "gauss_point_results" : ["VON_MISES_STRESS","PK2_STRESS_TENSOR"]
                     },
                     "point_data_configuration"  : []
@@ -164,21 +142,21 @@
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
                 "model_part_name"                    : "Structure",
-                "output_control_type"                : "time",
-                "output_frequency"                   : 0.05,
+                "output_control_type"                : "step",
+                "output_frequency"                   : 20,
                 "file_format"                        : "ascii",
                 "output_precision"                   : 7,
                 "output_sub_model_parts"             : false,
                 "folder_name"                        : "vtk_output",
                 "save_output_files_in_folder"        : true,
-                "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP","WEIGHTED_SLIP"],
-                "nodal_data_value_variables"         : ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE","TANGENT_XI","TANGENT_ETA"],
-                "nodal_flags"                        : ["ACTIVE","MASTER","SLAVE","SLIP"],
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
+                "nodal_data_value_variables"         : ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                "nodal_flags"                        : ["ACTIVE","MASTER","SLAVE"],
                 "element_data_value_variables"       : [],
                 "element_flags"                      : [],
                 "condition_data_value_variables"     : [],
                 "condition_flags"                    : [],
-                "gauss_point_variables_extrapolated_to_nodes" : ["VON_MISES_STRESS","PK2_STRESS_VECTOR"]
+                "gauss_point_variables_extrapolated_to_nodes" : ["VON_MISES_STRESS"]
             }
         }]
     }
