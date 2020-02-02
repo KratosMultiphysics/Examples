@@ -36,6 +36,10 @@ Comparing the results with the reference:
   <img src="data/solution_frictionless.png" alt="Mesh1" style="width: 600px;"/>
 </p>
 
+<p align="center">
+  <img src="data/solution_frictional.png" alt="Mesh1" style="width: 600px;"/>
+</p>
+
 
 ### Custom setup:
 
