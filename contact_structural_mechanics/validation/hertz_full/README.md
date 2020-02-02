@@ -27,7 +27,7 @@ The mesh:
 
 We consider the a sphere of 12.2474 *meters* of diameter with a load of 1.0e3 *Pa*.
 
-The structure characteristic parameters are for the sphere (the plane is rigid):
+The structure characteristic parameters are for the spheres:
 - Elastic modulus upper body (E1):  1.0E+08 _Pa_
 - Poisson ratio  upper body(&nu;1): 0.29
 - Elastic modulus lower body (E2):  1.0E+06 _Pa_
