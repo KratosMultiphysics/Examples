@@ -180,7 +180,7 @@
                 "element_flags"                      : [],
                 "condition_data_value_variables"     : [],
                 "condition_flags"                    : [],
-                "gauss_point_variables_extrapolated_to_nodes" : ["VON_MISES_STRESS","PK2_STRESS_VECTOR"]
+                "gauss_point_variables_extrapolated_to_nodes" : ["VON_MISES_STRESS"]
             }
         }]
     }
