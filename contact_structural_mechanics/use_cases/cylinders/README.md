@@ -37,7 +37,12 @@ The problem consists in three different meshes with three different movements.
 ![](data/horizontal_movement_1.gif)
 
 ### Horizontal movement (II)
+
+#### Frictionless
 ![](data/horizontal_movement_2.gif)
+
+#### Frictional (μ=1)
+![](data/horizontal_movement_2_frictional.gif)
 
 ## References
 
