@@ -4,7 +4,7 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 1.8
+        "end_time"      : 2.5
     },
     "solver_settings"  : {
         "solver_type"                        : "Dynamic",
@@ -19,15 +19,22 @@
         "material_import_settings"           : {
             "materials_filename" : "StructuralMaterials.json"
         },
-        "time_stepping"                      : {
-            "time_step" : 2.5e-3
+        "time_stepping"  : {
+			"time_step_table" : [
+                [0.0, 4.0e-2],
+                [1.8799999, 4.0e-2],
+                [1.88, 1.0e-5],
+                [1.9099999, 1.0e-5],
+				[1.91, 4.0e-2],
+                [2.5, 4.0e-2]
+            ]
         },
         "convergence_criterion"              : "contact_residual_criterion",
         "displacement_relative_tolerance"    : 0.0001,
         "displacement_absolute_tolerance"    : 1e-9,
         "residual_relative_tolerance"        : 0.0001,
         "residual_absolute_tolerance"        : 1e-9,
-        "max_iteration"                      : 10,
+        "max_iteration"                      : 20,
         "contact_settings"                   : {
             "mortar_type" : "ALMContactFrictional"
         }
@@ -66,7 +73,17 @@
                 "assume_master_slave" : {
                     "0" : ["CONTACT_Contact_slave_Auto1"]
                 },
-                "contact_type"        : "Frictional"
+                "contact_type"        : "Frictional",
+				"tangent_factor"              : 2.5e-2,
+				"operator_threshold"          : 0.0,
+				"slip_step_reset_frequency"   : 1,
+				"search_parameters"           : {
+					"search_factor"                       : 3.5,
+					"active_check_factor"                 : 0.0025
+				},
+				"advance_ALM_parameters" : {
+					"stiffness_factor"            : 1.0e0
+				}
             }
         }],
         "loads_process_list"       : [],
@@ -90,8 +107,8 @@
                             "MultiFileFlag"         : "SingleFile"
                         },
                         "file_label"          : "step",
-                        "output_control_type" : "step",
-                        "output_frequency"    : 20,
+                        "output_control_type" : "time",
+                        "output_frequency"    : 0.05,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -112,8 +129,8 @@
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
                 "model_part_name"                    : "Structure",
-                "output_control_type"                : "step",
-                "output_frequency"                   : 20,
+                "output_control_type"                : "time",
+                "output_frequency"                   : 0.05,
                 "file_format"                        : "ascii",
                 "output_precision"                   : 7,
                 "output_sub_model_parts"             : false,
