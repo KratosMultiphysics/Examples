@@ -75,6 +75,9 @@
             "input_type"     : "mdpa",
             "input_filename" : "fluid_domain"
         },
+        "material_import_settings": {
+            "materials_filename": "FluidMaterials.json"
+        },
         "distance_modification_settings": {
             "distance_threshold": 1e-4,
             "check_at_each_time_step": true

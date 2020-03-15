@@ -14,6 +14,9 @@
             "input_type"     : "mdpa",
             "input_filename" : "wave_2D"
         },
+        "material_import_settings": {
+            "materials_filename": "FluidMaterials.json"
+        },
 		"maximum_iterations"			: 5,
     	"echo_level"					: 0,
     	"time_order"					: 2,
@@ -58,7 +61,7 @@
         	"python_module" : "apply_outlet_process",
         	"kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
         	"Parameters"    : {
-            	"model_part_name"    : "Outlet2D_Outlet",
+            	"model_part_name"    : "FluidModelPart.Outlet2D_Outlet",
             	"variable_name"      : "PRESSURE",
             	"constrained"        : true,
             	"value"              : 0.0,
@@ -70,7 +73,7 @@
         	"kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
         	"process_name"  : "ApplySlipProcess",
         	"Parameters"    : {
-            	"model_part_name" : "Slip2D"
+            	"model_part_name" : "FluidModelPart.Slip2D"
         	}
     	}],
     	"gravity"                          : [{
@@ -78,7 +81,7 @@
         	"kratos_module" : "KratosMultiphysics",
         	"process_name"  : "AssignVectorByDirectionProcess",
         	"Parameters"    : {
-            	"model_part_name" : "Parts_Fluid",
+            	"model_part_name" : "FluidModelPart.Parts_Fluid",
             	"variable_name"   : "BODY_FORCE",
             	"modulus"         : 9.81,
             	"constrained"     : false,
@@ -90,7 +93,7 @@
         	"kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
         	"process_name"  : "ApplyDistanceModificationProcess",
         	"Parameters"    : {
-            	"model_part_name"                        : "Parts_Fluid",
+            	"model_part_name"                        : "FluidModelPart.Parts_Fluid",
             	"distance_threshold"                     : 0.0000001,
             	"check_at_each_time_step"                : false,
             	"avoid_almost_empty_elements"            : true,

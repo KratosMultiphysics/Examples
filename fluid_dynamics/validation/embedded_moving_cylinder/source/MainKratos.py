@@ -30,7 +30,7 @@ class FluidDynamicsAnalysisWithFlush(FluidDynamicsAnalysis):
         cylinder_model_part = self.model.CreateModelPart('CylinderModelPart')
         cylinder_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.VELOCITY)
         cylinder_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.DISPLACEMENT)
-        KratosMultiphysics.ModelPartIO('cylinder', KratosMultiphysics.ModelPartIO.READ).ReadModelPart(cylinder_model_part)
+        KratosMultiphysics.ModelPartIO('cylinder', KratosMultiphysics.ModelPartIO.READ | KratosMultiphysics.ModelPartIO.SKIP_TIMER).ReadModelPart(cylinder_model_part)
 
     def ApplyBoundaryConditions(self):
         # Clone the cylinder solution step data

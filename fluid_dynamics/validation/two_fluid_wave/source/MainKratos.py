@@ -3,7 +3,7 @@ from __future__ import print_function, absolute_import, division #makes KratosMu
 import KratosMultiphysics
 import KratosMultiphysics.FluidDynamicsApplication
 
-from fluid_dynamics_analysis import FluidDynamicsAnalysis
+from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 from math import pi, cos
 
 import sys

@@ -3,7 +3,7 @@ from __future__ import print_function, absolute_import, division #makes KratosMu
 import KratosMultiphysics
 import KratosMultiphysics.FluidDynamicsApplication
 
-from fluid_dynamics_analysis import FluidDynamicsAnalysis
+from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 
 import sys
 import time
@@ -22,6 +22,8 @@ class FluidDynamicsAnalysisWithFlush(FluidDynamicsAnalysis):
     # Negative distance value represent water
     # Positive values represent the air-filled volume
     def ModifyInitialGeometry(self):
+        super(FluidDynamicsAnalysisWithFlush,self).ModifyInitialGeometry()
+
         L = 0.614   		# Half length of water body
         H = 0.550   		# Height of the water body
         OffsetX = 2.606		# Position of the center of the water body
