@@ -4,7 +4,7 @@
         "properties_id"   : 2,
         "Material"        : {
             "constitutive_law" : {
-                "name" : "KratosMultiphysics.StructuralMechanicsApplication.LinearElasticPlaneStress2DLaw"
+                "name" : "LinearElasticPlaneStress2DLaw"
             },
             "Variables"        : {
                 "DENSITY"       : 500.0,
