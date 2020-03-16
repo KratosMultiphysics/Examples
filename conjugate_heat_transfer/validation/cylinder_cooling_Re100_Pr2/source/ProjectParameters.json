@@ -101,8 +101,8 @@
         "coupling_settings"            : {
             "max_iteration"                  : 10,
             "temperature_relative_tolerance" : 1e-5,
-            "fluid_interfaces_list"          : ["FluidThermalInterface2D_Fluid_Interface"],
-            "solid_interfaces_list"          : ["SolidThermalInterface2D_Solid_Interface"]
+            "fluid_interfaces_list"          : ["FluidModelPart.FluidThermalInterface2D_Fluid_Interface"],
+            "solid_interfaces_list"          : ["ThermalModelPart.SolidThermalInterface2D_Solid_Interface"]
         }
     },
     "output_processes" : {
@@ -266,7 +266,7 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignScalarVariableProcess",
             "Parameters"    : {
-                "model_part_name" : "Parts_Solid",
+                "model_part_name" : "ThermalModelPart.Parts_Solid",
                 "variable_name"   : "HEAT_FLUX",
                 "value"           : 0.0,
                 "constrained"     : false
