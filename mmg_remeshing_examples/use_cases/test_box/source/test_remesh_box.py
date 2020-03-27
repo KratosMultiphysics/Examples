@@ -5,6 +5,9 @@ from __future__ import print_function, absolute_import, division #makes KratosMu
 import KratosMultiphysics
 import KratosMultiphysics.MeshingApplication as MeshingApplication
 
+from KratosMultiphysics.gid_output_process import GiDOutputProcess
+from KratosMultiphysics.vtk_output_process import VtkOutputProcess
+
 # Import os
 import os
 
@@ -124,7 +127,6 @@ mmg_parameters["filename"].SetString(file_path + "/" + mmg_parameters["filename"
 mmg_process = MeshingApplication.MmgProcess3D(main_model_part, mmg_parameters)
 
 # Finally we export to GiD
-from gid_output_process import GiDOutputProcess
 gid_output = GiDOutputProcess(main_model_part,
                             "gid_output_not_remeshed",
                             KratosMultiphysics.Parameters("""
@@ -152,7 +154,6 @@ gid_output.ExecuteFinalizeSolutionStep()
 gid_output.ExecuteFinalize()
 
 # Finally we export to VTK
-from vtk_output_process import VtkOutputProcess
 vtk_output_process = VtkOutputProcess(current_model,
                             KratosMultiphysics.Parameters("""{
                                     "save_output_files_in_folder"        : false,
@@ -177,7 +178,6 @@ mmg_process.Execute()
 
 # Finally we export to GiD
 main_model_part.ProcessInfo.SetValue(KratosMultiphysics.STEP, 2)
-from gid_output_process import GiDOutputProcess
 gid_output = GiDOutputProcess(main_model_part,
                             "gid_output_remeshed",
                             KratosMultiphysics.Parameters("""
@@ -205,7 +205,6 @@ gid_output.ExecuteFinalizeSolutionStep()
 gid_output.ExecuteFinalize()
 
 # Finally we export to VTK
-from vtk_output_process import VtkOutputProcess
 vtk_output_process = VtkOutputProcess(current_model,
                             KratosMultiphysics.Parameters("""{
                                     "save_output_files_in_folder"        : false,
