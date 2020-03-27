@@ -14,7 +14,7 @@
         "analysis_type"                      : "non_linear",
         "model_import_settings"              : {
             "input_type"       : "mdpa",
-            "input_filename"   : "",
+            "input_filename"   : "composite15+enamel25",
             "input_file_label" : 0
         },
         "material_import_settings" :{
