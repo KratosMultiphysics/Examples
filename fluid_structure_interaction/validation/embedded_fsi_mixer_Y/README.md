@@ -17,13 +17,17 @@ The fluid domain is meshed with a 45 and 540 radial and perimeter subdivisions Q
 The obtained velocity and pressure fields, together with the level set zero isosurface representing the deformed geometry, are shown below.
 
 <p align="center">
+<figure>
   <img src="data/embedded_fsi_mixer_Y_v.gif" alt="Velocity field and level set isosurface." style="width: 600px;"/>
-  <figcaption>""Velocity field and level set isosurface."</figcaption>
+  <figcaption>Velocity field and level set isosurface.</figcaption>
+</figure>
 </p>
 
 <p align="center">
+<figure>
   <img src="data/embedded_fsi_mixer_Y_p.gif" alt="Pressure field and level set isosurface." style="width: 600px;"/>
-  <center><figcaption>"Pressure field and level set isosurface."</figcaption></center>
+  <figcaption>Pressure field and level set isosurface.</figcaption>
+</figure>
 </p>
 
 ## References
