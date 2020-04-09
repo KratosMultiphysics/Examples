@@ -18,12 +18,12 @@ The obtained velocity and pressure fields, together with the level set zero isos
 
 <p align="center">
   <img src="data/embedded_fsi_mixer_Y_v.gif" alt="Velocity field and level set isosurface." style="width: 600px;"/>
-  <figcaption>"{{"Velocity field and level set isosurface.}}"</figcaption>
+  <figcaption>""Velocity field and level set isosurface."</figcaption>
 </p>
 
 <p align="center">
   <img src="data/embedded_fsi_mixer_Y_p.gif" alt="Pressure field and level set isosurface." style="width: 600px;"/>
-  <figcaption>"{{Pressure field and level set isosurface.}}"</figcaption>
+  <center><figcaption>"Pressure field and level set isosurface."</figcaption></center>
 </p>
 
 ## References
