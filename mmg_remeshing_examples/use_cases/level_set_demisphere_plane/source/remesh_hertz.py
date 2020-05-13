@@ -18,13 +18,13 @@ KratosMultiphysics.ModelPartIO("hertz_2d").ReadModelPart(main_model_part)
 
 for node in main_model_part.Nodes:
     relative_x = node.X
-    relative_y = node.Y +1.0
+    relative_y = node.Y + 1.0
     # Calculate the gap
     if relative_y > 0:
-        node.SetSolutionStepValue(KratosMultiphysics.DISTANCE, node.Y + 1.0)
+        node.SetSolutionStepValue(KratosMultiphysics.DISTANCE, relative_y)
     else:
-        theta = math.acos(relative_x)
-        node.SetSolutionStepValue(KratosMultiphysics.DISTANCE, relative_y + 1.0 - math.sin(theta))
+        theta = math.acos(abs(relative_x)) + math.pi/2
+        node.SetSolutionStepValue(KratosMultiphysics.DISTANCE, abs(relative_y) + math.sin(theta))
 
 # We calculate the gardient of the distance variable
 find_nodal_h = KratosMultiphysics.FindNodalHNonHistoricalProcess(main_model_part)
