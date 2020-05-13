@@ -1,21 +1,3 @@
-% This file was created by matlab2tikz.
-%
-%The latest updates can be retrieved from
-%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
-%where you can also make suggestions and rate matlab2tikz.
-%
-\documentclass[tikz]{standalone}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{pgfplots}
-\usepackage{grffile}
-\pgfplotsset{compat=newest}
-\usetikzlibrary{plotmarks}
-\usetikzlibrary{arrows.meta}
-\usepgfplotslibrary{patchplots}
-\usepackage{amsmath}
-
-\begin{document}
 \definecolor{mycolor1}{rgb}{1.00000,0.00000,1.00000}%
 %
 \begin{tikzpicture}
@@ -154,28 +136,27 @@ legend style={legend cell align=left, align=left, legend plot pos=left, draw=bla
 1.14	10006990\\
 1.32	2272305\\
 };
-\addlegendentry{Sim. Coarsed}
+\addlegendentry{Sim. Coarse}
 
 \addplot [color=blue, mark=o, mark options={solid, blue}]
   table[row sep=crcr]{%
-0	13750460\\
-0.094565999999997	13731240\\
-0.189105999999999	13673060\\
-0.283591999999999	13574360\\
-0.378	13432410\\
-0.472308999999999	13243180\\
-0.566499999999998	13001100\\
-0.660558999999999	13553960\\
-0.754477999999999	12355660\\
-0.848265999999999	11876440\\
-0.941958999999997	11473430\\
-1.035328	10865960\\
-1.128221	14193950\\
-1.221126	8938746\\
-1.313665	5341714\\
+0.	1.62858247750016e7 \\
+0.094565999999997	1.624356227507673e7 \\
+0.189131999999994	1.6116347814484665e7 \\
+0.283697999999991	1.59016012775817e7 \\
+0.378263999999988	1.5596285984001009e7 \\
+0.472829999999985	1.5196008334268067e7 \\
+0.567395999999982	1.4690661768122047e7 \\
+0.661961999999979	1.4067258652054664e7 \\
+0.756527999999976	1.3316359661763482e7 \\
+0.851093999999973	1.2407169854162924e7 \\
+0.94565999999997	1.1306147027066875e7 \\
+1.040225999999967	9.953311812642833e6 \\
+1.134791999999964	8.209135706348872e6 \\
+1.229357999999961	5.749801484978621e6 \\
+1.323923999999958	0.0 \\
 };
 \addlegendentry{Sim. Refined}
 
 \end{axis}
 \end{tikzpicture}%
-\end{document}

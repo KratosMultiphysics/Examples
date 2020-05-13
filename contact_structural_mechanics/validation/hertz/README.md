@@ -40,7 +40,7 @@ The problem stated above has been solved using an structured mesh of hexahedron.
   <img src="data/displacement.png" alt="Solution" style="width: 600px;"/>
 </p>
 
-As well as the comparation with the reference solution. For the displacement we got a very good agreement with the analytical solution in both cases, in the case of the contact preassure we got a better approach with in the coarser case. A very  antiintuitive conlcusion we can extract from this result, for contact problems a finer mesh doesn't mean necessarily a better result:
+As well as the comparation with the reference solution. For the displacement we got a very good agreement with the analytical solution in both cases, in the case of the contact preassure we got a better approach  in the finer case.
 
 <p align="center">
   <img src="data/hertz1.png" alt="Vertical  displacement comparison." style="width: 600px;"/>

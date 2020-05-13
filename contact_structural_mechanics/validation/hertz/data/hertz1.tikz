@@ -1,21 +1,3 @@
-% This file was created by matlab2tikz.
-%
-%The latest updates can be retrieved from
-%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
-%where you can also make suggestions and rate matlab2tikz.
-%
-\documentclass[tikz]{standalone}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{pgfplots}
-\usepackage{grffile}
-\pgfplotsset{compat=newest}
-\usetikzlibrary{plotmarks}
-\usetikzlibrary{arrows.meta}
-\usepgfplotslibrary{patchplots}
-\usepackage{amsmath}
-
-\begin{document}
 \definecolor{mycolor1}{rgb}{1.00000,0.00000,1.00000}%
 %
 \begin{tikzpicture}
@@ -154,28 +136,27 @@ legend style={legend cell align=left, align=left, legend plot pos=left, draw=bla
 1.14	-0.11191949\\
 1.32	-0.1509772\\
 };
-\addlegendentry{Sim. Coarsed}
+\addlegendentry{Sim. Coarse}
 
 \addplot [color=blue, mark=o, mark options={solid, blue}]
   table[row sep=crcr]{%
-0	-2.68e-16\\
-0.094565999999997	-0.00079686037\\
-0.189105999999999	-0.0031857719\\
-0.283591999999999	-0.0071616587\\
-0.378	-0.012716094\\
-0.472308999999999	-0.01983735\\
-0.566499999999998	-0.028510472\\
-0.660558999999999	-0.038717359\\
-0.754477999999999	-0.05043688\\
-0.848265999999999	-0.06364502\\
-0.941958999999997	-0.078314058\\
-1.035328	-0.094415575\\
-1.128221	-0.11191925\\
-1.221126	-0.13078846\\
-1.313665	-0.15098573\\
+0.0	0.0
+0.094565999999997	-0.0003636307984865787 \\
+0.189131999999994	-0.0029960373775109704 \\
+0.283697999999991	-0.006730946766078518 \\
+0.378263999999988	-0.011777391438474307 \\
+0.472829999999985	-0.018038923088040622 \\
+0.567395999999982	-0.026387701339291362 \\
+0.661961999999979	-0.03559130717163208 \\
+0.756527999999976	-0.04692577807049404 \\
+0.851093999999973	-0.05942929714889923 \\
+0.94565999999997	-0.07341590719805802 \\
+1.040225999999967	-0.08821245097937946 \\
+1.134791999999964	-0.10492418702940491 \\
+1.229357999999961	-0.12317141827758461 \\
+1.323923999999958	-0.14317999489262173 \\
 };
 \addlegendentry{Sim. Refined}
 
 \end{axis}
 \end{tikzpicture}%
-\end{document}

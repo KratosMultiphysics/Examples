@@ -1,21 +1,3 @@
-% This file was created by matlab2tikz.
-%
-%The latest updates can be retrieved from
-%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
-%where you can also make suggestions and rate matlab2tikz.
-%
-\documentclass[tikz]{standalone}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{pgfplots}
-\usepackage{grffile}
-\pgfplotsset{compat=newest}
-\usetikzlibrary{plotmarks}
-\usetikzlibrary{arrows.meta}
-\usepgfplotslibrary{patchplots}
-\usepackage{amsmath}
-
-\begin{document}
 \definecolor{mycolor1}{rgb}{1.00000,0.00000,1.00000}%
 %
 \begin{tikzpicture}
@@ -29,7 +11,7 @@ xmin=0,
 xmax=1.37984072394409,
 xlabel style={font=\color{white!15!black}},
 xlabel={x [m]},
-ymin=0.05,
+ymin=0.0,
 ymax=0.1,
 ylabel style={font=\color{white!15!black}},
 ylabel={Error displacement from analytical solution},
@@ -48,27 +30,25 @@ legend style={legend cell align=left, align=left, legend plot pos=left, draw=bla
 1.14	0.0547266557602341\\
 1.32	0.0612248388888889\\
 };
-\addlegendentry{Sim. Coarsed}
+\addlegendentry{Sim. Coarse}
 
 \addplot [color=blue, mark=o, mark options={solid, blue}]
   table[row sep=crcr]{%
-0.094565999999997	0.0913299953912432\\
-0.189105999999999	0.0910583126021071\\
-0.283591999999999	0.0906102409581192\\
-0.378	0.0899687134710675\\
-0.472308999999999	0.0891184506262049\\
-0.566499999999998	0.0880490672516551\\
-0.660558999999999	0.0867418685501603\\
-0.754477999999999	0.0851729370328797\\
-0.848265999999999	0.0832886908875142\\
-0.941958999999997	0.0809849078059163\\
-1.035328	0.0787768684014092\\
-1.128221	0.0768627017917079\\
-1.221126	0.0742178674356624\\
-1.313665	0.071545327582899\\
+0.189131999999994	0.02579623 \\
+0.283697999999991	0.02425362 \\
+0.378263999999988	0.00809855 \\
+0.472829999999985	0.01180088 \\
+0.567395999999982	0.00385948 \\
+0.661961999999979	0.00523219 \\
+0.756527999999976	0.00416567 \\
+0.851093999999973	0.00482270 \\
+0.94565999999997	0.00545823 \\
+1.040225999999967	0.00156825 \\
+1.134791999999964	0.00210009 \\
+1.229357999999961	0.00184704 \\
+1.323923999999958	0.00046093 \\
 };
 \addlegendentry{Sim. Refined}
 
 \end{axis}
 \end{tikzpicture}%
-\end{document}
