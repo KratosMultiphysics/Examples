@@ -30,7 +30,7 @@ The problem can be run with four different algorithms:
 
 Apart from the scheduling, which may be synchronous or asynchronous, similar settings are employed. We refer, for example, to: number of samples estimation, number of indices estimation, maximum number of iterations, tolerance, confidence, etc. Such settings can be observed in the corresponding configuration file of each algorithm, located inside the `problem_settings` folder.
 
-Each `SimulationScenario` class can be found inside each algorithm folder, together with the bash file `run_with_pycompss.sh`.
+To run the examples, the user should go inside the folder-algorithm of interest and run the `run_mc/mlmc_Kratos.py` Python file. In case one wants to use PyCOMPSs, the user should execute `sh run_with_pycompss.sh` from inside the folder of interest.
 
 ## Results
 
