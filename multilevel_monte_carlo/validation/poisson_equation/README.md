@@ -23,6 +23,8 @@ where ![domain], ![forcing] and ![rand-variable-distribution], i.e. ![rand-varia
 
 We want to highlight that in the `SimulationScenario` class we added the `EvaluateQuantityOfInterest(self)` function with respect to the `AnalysisStage` base class. This function computes the QoI, given the results of the analysis. In addition, we see `ModifyInitialProperties(self)` modifies the property `KratosMultiphysics.HEAT_FLUX` of our PDE. Such class can be found inside each algorithm folder.
 
+The bash files `run_with_pycompss.sh` are located inside each algorithm folder.
+
 The problem can be run with four different algorithms:
 
 * Synchronous Monte Carlo (SMC),
@@ -36,6 +38,10 @@ Apart from the scheduling, which may be synchronous or asynchronous, similar set
 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
 For this reason, we report the graph dependencies of SMC and of AMC.
+
+SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/mlmc/add-examples/multilevel_monte_carlo/validation/poisson_equation/source/SMC_graph.PNG)
+AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/mlmc/add-examples/multilevel_monte_carlo/validation/poisson_equation/source/AMC_graph.PNG)
+
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
 
 [diffusion-eq]: https://latex.codecogs.com/svg.latex?\nabla\cdot(K\nabla~u)=\varepsilon~f\qquad~u\in\Omega
