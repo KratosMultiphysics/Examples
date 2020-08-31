@@ -21,10 +21,6 @@ where ![domain], ![forcing] and ![rand-variable-distribution], i.e. ![rand-varia
 
 ![qoi] .
 
-We want to highlight that in the `SimulationScenario` class we added the `EvaluateQuantityOfInterest(self)` function with respect to the `AnalysisStage` base class. This function computes the QoI, given the results of the analysis. In addition, we see `ModifyInitialProperties(self)` modifies the property `KratosMultiphysics.HEAT_FLUX` of our PDE. Such class can be found inside each algorithm folder.
-
-The bash files `run_with_pycompss.sh` are located inside each algorithm folder.
-
 The problem can be run with four different algorithms:
 
 * Synchronous Monte Carlo (SMC),
@@ -33,6 +29,8 @@ The problem can be run with four different algorithms:
 * Asynchronous Multilevel Monte Carlo (AMLMC).
 
 Apart from the scheduling, which may be synchronous or asynchronous, similar settings are employed. We refer, for example, to: number of samples estimation, number of indices estimation, maximum number of iterations, tolerance, confidence, etc. Such settings can be observed in the corresponding configuration file of each algorithm, located inside the `problem_settings` folder.
+
+Each `SimulationScenario` class can be found inside each algorithm folder, together with the bash file `run_with_pycompss.sh`.
 
 ## Results
 
