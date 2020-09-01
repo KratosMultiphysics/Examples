@@ -35,15 +35,15 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 ## Results
 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
-For this reason, we report the graph dependencies of SMC and of AMC.
+For this reason, we report the graph dependencies of SMC and of AMC, which show the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
 SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/SMC_graph.PNG)
 AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/AMC_graph.PNG)
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
 
-[diffusion-eq]: https://latex.codecogs.com/svg.latex?\nabla\cdot(K\nabla~u)=\varepsilon~f\qquad~u\in\Omega
-[boundary-cond]: https://latex.codecogs.com/svg.latex?u=0\qquad~u\in\partial(\Omega)
+[diffusion-eq]: https://latex.codecogs.com/svg.latex?\nabla\cdot(K\nabla~u)=\varepsilon~f~,~u\in\Omega
+[boundary-cond]: https://latex.codecogs.com/svg.latex?u=0~,~u\in\partial\Omega
 [domain]: https://latex.codecogs.com/svg.latex?\Omega=[0,1]^{2}
 [rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\varepsilon\sim~Beta(2,6)
 [qoi]:  https://latex.codecogs.com/svg.latex?QoI=\int_{\Omega}u(x,y)dx~dy
