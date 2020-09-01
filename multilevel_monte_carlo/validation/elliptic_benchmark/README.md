@@ -8,7 +8,7 @@
 
 **PyCOMPSs version:** 2.7
 
-**Source files:** Synchronous Monte Carlo, Asynchronous Monte Carlo, Synchronous Multilevel Monte Carlo, Asynchronous Multilevel Monte Carlo
+**Source files:** [Synchronous Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/synchronous_monte_carlo), [Asynchronous Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/asynchronous_monte_carlo), [Synchronous Multilevel Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/synchronous_multilevel_monte_carlo), [Asynchronous Multilevel Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/asynchronous_multilevel_monte_carlo)
 
 ## Case Specification
 Let's consider the stationary heat equation with a varying heat flux, a square two-dimensional domain and Dirichlet boundary conditions. The problem reads as:
@@ -37,8 +37,8 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
 For this reason, we report the graph dependencies of SMC and of AMC.
 
-SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/poisson_equation/results/SMC_graph.PNG)
-AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/poisson_equation/results/AMC_graph.PNG)
+SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/SMC_graph.PNG)
+AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/AMC_graph.PNG)
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
 
