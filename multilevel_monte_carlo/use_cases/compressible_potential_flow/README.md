@@ -22,7 +22,7 @@ The problem can be run with four different algorithms:
 
 and by default AMC and AMLMC are selected. If one is interested in running SMC or SMLMC, it is needed to select `asynchronous = false` in the solver wrapper settings.
 
-The Quantities of Interest of the problem are the lift coefficient and the pressure coefficient. However, statistical convergence is assessed for the lift coefficient.
+The Quantities of Interest of the problem are the lift coefficient and the pressure coefficient. Statistical convergence is assessed for the lift coefficient.
 
 Similar settings are employed for Monte Carlo and Multilevel Monte Carlo. We refer, for example, to: deterministic number of samples estimation, deterministic number of indices estimation, maximum number of iterations, tolerance, confidence, etc. Such settings can be observed in the corresponding configuration file of each algorithm, located inside the `problem_settings` folder.
 
