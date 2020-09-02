@@ -14,7 +14,7 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
     - constraint 2  &nbsp; : &nbsp; strain energy of tip &le; initial value for load case 2
     - constraint 3  &nbsp; : &nbsp; mesh based packaging &le; specified value (use of bounding mesh)  
 
-        <img src="images/3D_Hook_Constraints.png" width="1200" height="685">    
+        <img src="images/3D_Hook_Constraints.svg" height="500">    
 
 - Filter Radius &nbsp; &nbsp; : &nbsp; 25.0
 
@@ -29,7 +29,7 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
 - The below plots show the evolution of objective function (i.e. mass) and the constraints over number of iterations.
 - Packaging response has an increasing value because more and more nodes are bounded by the constraint.
 
-    <img src="images/3D_Hook_GridSpecAnnotatedPlot.png" width="1200" height="615">
+    <img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="550">
     
   
 - Below is the evolution of the geometry during mass minimization subject to above mentioned constraints.
