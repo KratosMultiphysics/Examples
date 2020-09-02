@@ -54,7 +54,6 @@ class SimulationScenario(FluidDynamicsAnalysis):
                 qoi_list.append(node.GetSolutionStepValue(KratosMultiphysics.PRESSURE)) # add pressure
         print("[SCREENING] Total number of QoI:",len(qoi_list))
 
-        stop
         return qoi_list
 
     """
