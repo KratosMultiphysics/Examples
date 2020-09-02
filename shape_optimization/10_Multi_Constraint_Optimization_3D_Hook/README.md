@@ -34,5 +34,5 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
   
 - Below is the evolution of the geometry during mass minimization subject to above mentioned constraints.
 
-    <img src="images/3D_Hook_MultiConstraint.gif" width="1200" height="720">
+    <img src="images/3D_Hook_MC.gif" width="1200" height="720">
 
