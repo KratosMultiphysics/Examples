@@ -1,4 +1,4 @@
-# Fluid dynamics problem
+# Fluid dynamics building problem
 
 **Author:** [Riccardo Tosi](https://github.com/riccardotosi)
 
@@ -31,7 +31,7 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 ## Results
 
 The velocity field evolution for the problem is shown next.
-![cpf_pressurecoeff](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/data/cpf_pressure.png)
+![velocity](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/use_cases/fluid_dynamics_building/data/velocity.gif)
 
 The power sums and the h-statistics of both the drag force and the pressure field can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/source/power_sums_outputs).
 
