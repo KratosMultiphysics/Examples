@@ -35,7 +35,10 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 ## Results
 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
-For this reason, we report the graph dependencies of SMC and of AMC, which show the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
+
+Concerning statistical accuracy, the QoI we obtain is consistent with literature results [Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466].
+
+We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
 SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/SMC_graph.PNG)
 AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/AMC_graph.PNG)
