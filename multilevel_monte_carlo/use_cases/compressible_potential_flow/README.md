@@ -34,6 +34,7 @@ The pressure coefficient for the problem is shown next.
 ![cpf_pressurecoeff](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/data/cpf_pressure.png)
 
 The power sums and the h-statistics of both the lift coefficient and the pressure coefficient can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/source/power_sums_outputs).
+The lift coefficient expected value is consistent with literature results [M. Davari, R. Rossi, P. Dadvand, I. López, R. W. (2019). A cut finite element method for the solution of the full-potential equation with an embedded wake. Comput Mech, 63(5), 821–833. https://doi.org/https://doi.org/10.1007/s00466-018-1624-3].
 
 
 [angle-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\alpha\sim~\mathcal{N}(5.0,0.05)
