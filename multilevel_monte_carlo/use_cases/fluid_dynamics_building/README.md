@@ -26,7 +26,7 @@ The Quantities of Interest of the problem are the drag force and the pressure fi
 
 Similar settings are employed for Monte Carlo and Multilevel Monte Carlo. We refer, for example, to: deterministic number of samples estimation, deterministic number of indices estimation, maximum number of iterations, tolerance, confidence, etc. Such settings can be observed in the corresponding configuration file of each algorithm, located inside the `problem_settings` folder.
 
-To run the examples, the user should go inside the folder-algorithm of interest and run the `run_mc/mlmc_Kratos.py` Python file. In case one wants to use PyCOMPSs, the user should execute `run_runcompss.sh` from inside the folder of interest.
+To run the examples, the user should go inside the folder-algorithm of interest and run the `run_mc/mlmc_Kratos.py` Python file. In case one wants to use PyCOMPSs, the user should execute `run_runcompss.sh` from inside the source folder.
 
 ## Results
 
@@ -36,5 +36,5 @@ The velocity field evolution for the problem is shown next.
 The power sums and the h-statistics of both the drag force and the pressure field can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/source/power_sums_outputs).
 
 
-[vel-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\u\sim~\mathcal{N}(10.0,0.1)
-[power-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?M_{\infty}\sim~\mathcal{N}(0.12,0.012)
+[vel-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?u\sim~\mathcal{N}(10.0,0.1)
+[power-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\alpha\sim~\mathcal{N}(0.12,0.012)
