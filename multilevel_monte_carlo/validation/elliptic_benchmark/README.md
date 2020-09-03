@@ -8,7 +8,7 @@
 
 **PyCOMPSs version:** 2.7
 
-**Source files:** [Synchronous Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/synchronous_monte_carlo), [Asynchronous Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/asynchronous_monte_carlo), [Synchronous Multilevel Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/synchronous_multilevel_monte_carlo), [Asynchronous Multilevel Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/validation/elliptic_benchmark/asynchronous_multilevel_monte_carlo)
+**Source files:** [Synchronous Monte Carlo](synchronous_monte_carlo), [Asynchronous Monte Carlo](asynchronous_monte_carlo), [Synchronous Multilevel Monte Carlo](synchronous_multilevel_monte_carlo), [Asynchronous Multilevel Monte Carlo](asynchronous_multilevel_monte_carlo)
 
 ## Case Specification
 Let's consider the stationary heat equation with a varying heat flux, a square two-dimensional domain and Dirichlet boundary conditions. The problem reads as:
@@ -40,8 +40,8 @@ Concerning statistical accuracy, the QoI we obtain is consistent with literature
 
 We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
-SMC: ![SMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/SMC_graph.PNG)
-AMC: ![AMC graph](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/validation/elliptic_benchmark/results/AMC_graph.PNG)
+SMC: ![SMC graph](results/SMC_graph.PNG)
+AMC: ![AMC graph](results/AMC_graph.PNG)
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
 
