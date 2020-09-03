@@ -8,7 +8,7 @@
 
 **PyCOMPSs version:** 2.7
 
-**Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/source)
+**Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
 ## Case Specification
 We solve the [compressible potential flow problem](https://github.com/KratosMultiphysics/Kratos/blob/master/applications/CompressiblePotentialFlowApplication/python_scripts/potential_flow_analysis.py) around an airfoil NACA0012. The problem is characterized by stochastic angle of attack ![angle-rand-variable-distribution] and stochastic Mach number ![mach-rand-variable-distribution].
@@ -31,7 +31,7 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 ## Results
 
 The pressure coefficient for the problem is shown next.
-![cpf_pressurecoeff](https://github.com/KratosMultiphysics/Examples/blob/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/data/cpf_pressure.png)
+![cpf_pressurecoeff](data/cpf_pressure.png)
 
 The power sums and the h-statistics of both the lift coefficient and the pressure coefficient can be found [here](https://github.com/KratosMultiphysics/Examples/tree/master/multilevel_monte_carlo/use_cases/compressible_potential_flow/source/power_sums_outputs).
 The lift coefficient expected value is consistent with literature results [M. Davari, R. Rossi, P. Dadvand, I. López, R. W. (2019). A cut finite element method for the solution of the full-potential equation with an embedded wake. Comput Mech, 63(5), 821–833. https://doi.org/https://doi.org/10.1007/s00466-018-1624-3].
