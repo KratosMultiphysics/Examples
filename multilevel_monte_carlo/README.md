@@ -7,3 +7,5 @@
 ## Validation Cases
 - [Elliptic benchmark](validation/elliptic_benchmark)
 
+## Remarks
+- In case running with `PyCOMPSs` gives errors, try to replace relative paths with absolute paths, as a first attempt to fix the issue.
