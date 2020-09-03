@@ -36,6 +36,8 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
 
+![Temperature](results/poisson.png)
+
 Concerning statistical accuracy, the QoI we obtain is consistent with literature results [Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
 
 We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
