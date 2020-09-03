@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-# commented commands
-# -g -t \
-
+path_to_folder=$(pwd)
 runcompss \
-    -g \
     --lang=python \
     --python_interpreter=python3 \
-    --pythonpath=/home/riccardo/src/exaqute-applications/xMC_compressible_potential_flow \
-    ./run_mlmc_Kratos.py problem_settings/parameters_xmc_asynchronous_mlmc_potentialFlow.json
+    --pythonpath=$path_to_folder \
+    ./run_mc_Kratos.py problem_settings/parameters_xmc_asynchronous_mc_potentialFlow.json
