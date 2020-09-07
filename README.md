@@ -130,4 +130,4 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Fluid dynamics building problem](multilevel_monte_carlo/use_cases/fluid_dynamics_building)
 
 **Validation Cases**
-- [Elliptic benchmark](master/multilevel_monte_carlo/validation/elliptic_benchmark)
+- [Elliptic benchmark](multilevel_monte_carlo/validation/elliptic_benchmark)
