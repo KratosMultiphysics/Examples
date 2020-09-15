@@ -5,34 +5,42 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
 
 **Kratos version**: 9.0
 
+----------------------------------------------------------------------------------
 ## Optimization Problem
+
 - Objective
     - Minimize mass
 
 - Constraints
-    - constraint 1  &nbsp; : &nbsp; strain energy of main &le; initial value for load case 1
-    - constraint 2  &nbsp; : &nbsp; strain energy of tip &le; initial value for load case 2
-    - constraint 3  &nbsp; : &nbsp; mesh based packaging &le; specified value (use of bounding mesh)  
+    1. strain energy of main load (LC1) &le; initial value
+    2. strain energy of tip load (LC2) &le; initial value
+    3. no penetration of packaging (bounding) mesh
 
-        <img src="images/3D_Hook_Constraints.svg" height="500">    
+    <p align="center">
+      <img src="images/3D_Hook_Constraints.svg" height="500">
+    </p>
 
-- Filter Radius &nbsp; &nbsp; : &nbsp; 25.0
+- Filter Radius : 25.0
 
-- Mesh motion &nbsp; : &nbsp; YES 
-
+- Mesh motion : YES 
+----------------------------------------------------------------------------------
 ## Optimization algorithm
-- type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; gradient_projection
-- number of steps &nbsp;: &nbsp; 20 &nbsp;
-- step size &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; 3.0
-
+- type : gradient_projection
+- number of steps : 20
+- step size : 3.0
+----------------------------------------------------------------------------------
 ## Results
-- The below plots show the evolution of objective function (i.e. mass) and the constraints over number of iterations.
-- Packaging response has an increasing value because more and more nodes are bounded by the constraint.
+- Shape Evolution
+  - The below image shows the result of evolution of objective function (i.e. mass) over time
 
-    <img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="550">
+    <p align="center">
+      <img src="images/3D_Hook_Result.gif" height="500">
+    </p>  
     
-  
-- Below is the evolution of the geometry during mass minimization subject to above mentioned constraints.
+- Convergence Plots
+  - The below plots show the evolution of objective function (i.e. mass) and the constraints over number of iterations.  
+*Note*: Packaging response has an increasing value because more and more nodes are bounded by the constraint.   
+<img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="400">
+----------------------------------------------------------------------------------
 
-    <img src="images/3D_Hook_MC.gif" width="1200" height="720">
 
