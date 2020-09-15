@@ -39,8 +39,8 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
     
 - Convergence Plots
   - The below plots show the evolution of objective function (i.e. mass) and the constraints over number of iterations.  
-*Note*: Packaging response has an increasing value because more and more nodes are bounded by the constraint.   
-<img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="400">
-----------------------------------------------------------------------------------
+*Note: Packaging response has an increasing value because more and more nodes are bounded by the constraint.*
 
-
+<p align="center">
+  <img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="500">
+</p>  
