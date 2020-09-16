@@ -1,46 +1,47 @@
 # Optimization of a Solid Hook
-Optimization of a solid 3D Hook subjected to multiple constraints. 
+Optimization of a solid 3D Hook subjected to multiple constraints.
 
-**Author**: Armin Geiser  
+> **Author**: Armin Geiser
+>
+> **Kratos version**: 9.0
 
-**Kratos version**: 9.0
-
-----------------------------------------------------------------------------------
 ## Optimization Problem
 
-- Objective
-    - Minimize mass
+### Objective
+- Minimize mass
+### Constraints
+1. Strain energy of main load (LC1) &le; initial value
+2. Strain energy of tip load (LC2) &le; initial value
+3. No penetration of packaging (bounding) mesh
 
-- Constraints
-    1. strain energy of main load (LC1) &le; initial value
-    2. strain energy of tip load (LC2) &le; initial value
-    3. no penetration of packaging (bounding) mesh
+<p align="center">
+  <img src="images/hook_opt_setup.png" height="500">
+</p>
 
-    <p align="center">
-      <img src="images/3D_Hook_Constraints.svg" height="500">
-    </p>
+## Optimization settings
 
-- Filter Radius : 25.0
+- Algorithm type : `gradient_projection`
+- Number of steps : `20`
+- Step size : `3.0`
+- Filter radius : `25.0`
+- Mesh motion : `True`
 
-- Mesh motion : YES 
-----------------------------------------------------------------------------------
-## Optimization algorithm
-- type : gradient_projection
-- number of steps : 20
-- step size : 3.0
-----------------------------------------------------------------------------------
 ## Results
-- Shape Evolution
-  - The below image shows the result of evolution of objective function (i.e. mass) over time
 
-    <p align="center">
-      <img src="images/3D_Hook_Result.gif" height="500">
-    </p>  
-    
-- Convergence Plots
-  - The below plots show the evolution of objective function (i.e. mass) and the constraints over number of iterations.  
-*Note: Packaging response has an increasing value because more and more nodes are bounded by the constraint.*
+### Shape Evolution
+The below image shows the shape of the hook during the optimization iterations.
+It can be seen how the cross section evolves towards an I-beam shape. This allows to minimize the mass is while satisfying the mechanical constraints. The shape evolution is bounded by the packaging geometry on the right side.
+The color plot in the cross section shows how the internal nodes are moved by the mesh motion solver according to the shape update of the surface.
+
+<p align="center">
+    <img src="images/hook_iso_mesh_color_white.gif" height="500">
+</p>
+
+### Convergence
+The below plots show the evolution of objective function (i.e. mass) and the constraints over the optimization iterations.
 
 <p align="center">
   <img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="500">
-</p>  
+</p>
+
+***Note:** The packaging response has an increasing value because more and more nodes are bounded by the constraint.*
