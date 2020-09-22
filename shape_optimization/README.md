@@ -6,7 +6,7 @@ They are realized using the **ShapeOptimizationApplication**
 
 #### Main Examples
 - [Multi Constraint Optimization 3D Hook](10_Multi_Constraint_Optimization_3D_Hook)
-- [Shape Update Response Optimization - Stanford Bunny](11_Shape_Update_Maximization_Stanford_Bunny)
+- [Shape Update Response Optimization - Stanford Bunny](11_Shape_Update_Optimization_Stanford_Bunny)
 - [Strain Energy Minimization - 3D Shell](02_Strain_Energy_Minimization_3D_Shell)
 
 #### Other Examples
