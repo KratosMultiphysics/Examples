@@ -1,5 +1,7 @@
+from matplotlib.ticker import TickHelper
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 plt.style.use('seaborn')
 
 history = "Optimization_Results"
@@ -75,8 +77,13 @@ axs_list = [plot_f, plot_c1, plot_c2, plot_c3, plot_stp]
 for plot, ax in zip(plots, axs_list):
     for column_name in plot["column_names"]:
         ax.plot(df[column_name], label=column_name)
-    ax.legend()
-    ax.set_title(plot["name"])
+    ax.legend(fontsize=11)
+    ax.set_title(plot["name"], fontsize=18)
+    ax.tick_params(axis='x', labelsize=16)
+    ax.tick_params(axis='y', labelsize=16)
+    ax.xaxis.set_major_locator(ticker.MultipleLocator(4))   # tick_spacing is 4
+    if plot['name'] == 'mass':
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
 plt.tight_layout()
 plt.show()

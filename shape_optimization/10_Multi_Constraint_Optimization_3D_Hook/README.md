@@ -41,7 +41,14 @@ The color plot in the cross section shows how the internal nodes are moved by th
 The below plots show the evolution of objective function (i.e. mass) and the constraints over the optimization iterations.
 
 <p align="center">
-  <img src="images/3D_Hook_GridSpecAnnotatedPlot.svg" height="500">
+  <img src="images/3DHook_ConvergencePlots.svg" height="500">
 </p>
+
+| Response function        | Improvements/violations    |       Remark       |
+| ------------------------ | :------------------------- | :----------------: |
+| mass                     | improvement: `17.6%`       |         -          |
+| strain energy: main load | violation: `0.1%`          |         -          |
+| strain energy: tip load  | violation: `0.05%`         |         -          |
+| packaging: bounding mesh | max nodal violation: `2.0` | `75%` of step size |
 
 ***Note:** The packaging response has an increasing value because more and more nodes are bounded by the constraint.*
