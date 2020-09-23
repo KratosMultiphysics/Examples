@@ -122,3 +122,10 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [No Newtonian 2D](pfem2/use_cases/no_newtonian_2d/README.md)
 - [No Newtonian 3D](pfem2/use_cases/no_newtonian_3d/README.md)
 - [Rayleigh](pfem2/use_cases/rayleigh/README.md)
+
+## Shape Optimization
+
+**Use cases**
+- [Multi Constraint Optimization 3D Hook](shape_optimization/10_Multi_Constraint_Optimization_3D_Hook)
+- [Shape Update Response Optimization - Stanford Bunny](shape_optimization/11_Shape_Update_Optimization_Stanford_Bunny)
+- [Strain Energy Minimization - 3D Shell](shape_optimization/02_Strain_Energy_Minimization_3D_Shell)
