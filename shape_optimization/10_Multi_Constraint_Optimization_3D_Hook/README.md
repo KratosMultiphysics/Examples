@@ -40,12 +40,13 @@ The color plot in the cross section shows how the internal nodes are moved by th
 ### Convergence
 The below plots show the evolution of objective function (i.e. mass) and the constraints over the optimization iterations.
 
-<img src="images/3DHook_ConvergencePlots.svg" height="500">
+<p align="center">
+  <img src="images/3DHook_ConvergencePlots.svg" height="500">
+</p>
 
-
-| Objective     | Improvement   |
-| ------------- | ------------- |
-| mass          | `17.6%`       |
+| Objective | Improvement |
+| --------- | ----------- |
+| mass      | `17.6%`     |
 
 | Constraint               | Violation                  |       Remark       |
 | ------------------------ | -------------------------- | :----------------: |
