@@ -6,11 +6,9 @@ Shape update of a wrapping surface to generate a smooth representation of a comp
 > **Kratos version**: 9.0
 
 ## Optimization Problem
-The shape update optimization is carried out for two distinct wrapping surfaces: Large sphere and Small sphere
 
 ### Objective
-- Large sphere: shape_update minimization 
-- Small sphere: shape_update maximization
+- Shape update maximization
 
 ### Constraints
 - No penetration of packaging (bounding) mesh (*standford bunny*)
@@ -29,15 +27,15 @@ The shape update optimization is carried out for two distinct wrapping surfaces:
 ## Results
 
 ### Shape Evolution
-The below image shows the evolution (shape) of the wrapping surface during the optimization iterations.
+The below image shows the evolution (shape) of the wrapping surface during the optimization iterations. Although the small details like the ears of the bunny are not captured, the mesh quality is not compromised during shape update.
 
 <p align="center">
-    <img src="images/bunny_results.gif" width="1000">
+    <img src="images/bunny_results_smallSphere.gif" height="400">
 </p>
 
-In the case of large sphere, the object (bunny) is wrapped almost completely, but, around the ears of the bunny the mesh has high aspect ratio resulting in poor quality. In small sphere case, the mesh quality is not compromised , however,  small details such as the ears are not captured by the wrapping surface.
+When using a small sphere the surface *grows* in order to wrap around the object. Alternatively, a large sphere can be used and with minor modifications in the [`optimization_parameters.json`](shrink) the surface can be made to *shrink* and wrap around the bunny object. 
 
   <p align="center">
-    <img src="images/bunny_results_limitations.png" width="1000">
+    <img src="images/bunny_results_largeSphere.gif" height="500">
   </p>
 
