@@ -78,9 +78,9 @@ for plot, ax in zip(plots, axs_list):
     for column_name in plot["column_names"]:
         ax.plot(df[column_name], label=column_name)
     ax.legend(fontsize=11)
-    ax.set_title(plot["name"], fontsize=18)
-    ax.tick_params(axis='x', labelsize=16)
-    ax.tick_params(axis='y', labelsize=16)
+    ax.set_title(plot["name"], fontsize=12)
+    ax.tick_params(axis='x', labelsize=12)
+    ax.tick_params(axis='y', labelsize=12)
     ax.xaxis.set_major_locator(ticker.MultipleLocator(4))   # tick_spacing is 4
     if plot['name'] == 'mass':
         ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
