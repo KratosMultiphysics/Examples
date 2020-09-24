@@ -1,5 +1,6 @@
-# Shape Optimization
-Shape update of a wrapping surface to generate a smooth representation of a complex object, which in this example is a Stanford bunny.
+# Smooth surface wrapping
+
+A pure geometric optimization problem of a wrapping surface smoothly arround a complex object, which in this example is a Stanford bunny.
 
 > **Author**: Armin Geiser
 >
@@ -11,7 +12,7 @@ Shape update of a wrapping surface to generate a smooth representation of a comp
 - Shape update maximization
 
 ### Constraints
-- No penetration of packaging (bounding) mesh (*standford bunny*)
+- No penetration of packaging - bounding mesh (*Standford bunny*)
 
   <p align="center">
     <img src="images/bunny_opt_setup.png" height="500">
@@ -27,13 +28,16 @@ Shape update of a wrapping surface to generate a smooth representation of a comp
 ## Results
 
 ### Shape Evolution
-The below image shows the evolution (shape) of the wrapping surface during the optimization iterations. Although the small details like the ears of the bunny are not captured, the mesh quality is not compromised during shape update.
+The below image shows the shape evolution of the wrapping surface during the optimization iterations. The small sphere *grows* inside the bounding geoemtry. Using the relatively large filter radius, a verx smooth local optimum is found. Details smaller than the filter radius (e.g. the ears) are not captured.
 
 <p align="center">
     <img src="images/bunny_results_smallSphere.gif" height="400">
 </p>
 
-When using a small sphere the surface *grows* in order to wrap around the object. Alternatively, a large sphere can be used and with minor modifications in the [`optimization_parameters.json`](shrink) the surface can be made to *shrink* and wrap around the bunny object. 
+
+## Alternative problem setup
+
+The bounding geoemtry of the Stanford bunny can be approached (wrapped) from the opposite site as well. For such a *shrinking* optimization we start from a small sphere. Compared to the example described above, the starting geometry is exchanged, the feasible side for the bounding geometry is switched and the objective is swtiched as well - see the setup in the [shrink folder](shrink) for details.
 
   <p align="center">
     <img src="images/bunny_results_largeSphere.gif" height="500">
