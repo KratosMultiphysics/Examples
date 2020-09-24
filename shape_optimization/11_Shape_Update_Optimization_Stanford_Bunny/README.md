@@ -37,7 +37,7 @@ The below image shows the shape evolution of the wrapping surface during the opt
 
 ## Alternative problem setup
 
-The bounding geoemtry of the Stanford bunny can be approached (wrapped) from the opposite site as well. For such a *shrinking* optimization we start from a small sphere. Compared to the example described above, the starting geometry is exchanged, the feasible side for the bounding geometry is switched and the objective is swtiched as well - see the setup in the [shrink folder](shrink) for details.
+The bounding geoemtry of the Stanford bunny can be approached (wrapped) from the opposite site as well. For such a *shrinking* optimization we start from a large sphere. Compared to the example described above, the starting geometry is exchanged, the feasible side for the bounding geometry is switched and the objective is swtiched as well - see the setup in the [shrink folder](shrink) for details.
 
   <p align="center">
     <img src="images/bunny_results_largeSphere.gif" height="500">
