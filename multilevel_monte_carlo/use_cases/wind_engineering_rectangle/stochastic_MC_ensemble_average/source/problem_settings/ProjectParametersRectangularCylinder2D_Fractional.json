@@ -1,0 +1,181 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "rectangular_cylinder",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 300.0,
+        "perturbation"  : {
+            "type"      : "correlated",
+            "intensity" : 0.1
+        }
+    },
+    "solver_settings"  : {
+        "model_part_name"             : "MainModelPart",
+        "domain_size"                 : 2,
+        "solver_type"                 : "FractionalStep",
+        "model_import_settings"       : {
+            "input_type"     : "mdpa",
+            "input_filename" : "problem_settings/RectangularCylinder2D_25k"
+        },
+        "compute_reactions"        : true,
+        "maximum_velocity_iterations"       : 3,
+        "maximum_pressure_iterations"       : 3,
+        "velocity_tolerance": 1e-6,
+        "pressure_tolerance": 1e-3,
+        "reform_dofs_at_each_step" : false,
+        "echo_level"               : 0,
+        "dynamic_tau"              : 1.0,
+        "pressure_linear_solver_settings"   : {
+            "solver_type"         : "amgcl",
+            "max_iteration"       : 400,
+            "tolerance"           : 1e-3,
+            "provide_coordinates" : false,
+            "smoother_type"       : "damped_jacobi",
+            "krylov_type"         : "cg",
+            "coarsening_type"     : "ruge_stuben",
+            "scaling"             : false,
+            "verbosity"           : 0
+        },
+        "velocity_linear_solver_settings"   : {
+            "solver_type"         : "amgcl",
+            "max_iteration"       : 400,
+            "tolerance"           : 1e-7,
+            "provide_coordinates" : false,
+            "smoother_type"       : "ilu0",
+            "krylov_type"         : "lgmres",
+            "coarsening_type"     : "aggregation",
+            "scaling"             : false,
+            "verbosity"           : 1
+        },
+        "volume_model_part_name"      : "Parts_Parts_Auto1",
+        "skin_parts"                  : ["AutomaticInlet2D_Automatic_inlet_velocity_Auto1","Outlet2D_Outlet_pressure_Auto1","Slip2D","NoSlip2D_No_Slip_Auto1"],
+        "no_skin_parts"               : [],
+        "time_stepping"               : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.02
+        }
+    },
+    "processes"        : {
+        "initial_conditions_process_list" : [{
+            "python_module" : "kratos_perturbation_process",
+            "Parameters"    : {
+                "model_part_name" : "MainModelPart.Parts_Parts_Auto1",
+                "correlated_noise_generator" : {
+                    "dimension" : 2,
+                    "grid_dimensions" : [275,150],
+                    "correlated_length" : 0.1,
+                    "grid_shape" : 50
+                },
+                "lx": 276.0,
+                "lz": 151.0,
+                "x0": -75.0,
+                "z0": -75.0,
+                "seed": 9000,
+                "mapper_parameters" : {
+                    "mapper_type": "nearest_neighbor",
+                    "echo_level" : 3,
+                    "search_radius" : 0.1
+                },
+                "poisson_parameters" : {
+                    "problem_data" : {
+                        "model_part_name" : "MainModelPart",
+                        "domain_size"     : 2,
+                        "penalty_coefficient" : 1.0,
+                        "load_velocity_field" : "average_velocity_field_RectangularCylinder_300.0.dat",
+                        "structure_model_part" : "NoSlip2D_No_Slip_Auto1"
+                    },
+                    "solver_settings": {
+                        "model_part_name" : "MainModelPart",
+                        "domain_size" : 2,
+                        "model_import_settings": {
+                            "input_type": "mdpa",
+                            "input_filename": "problem_settings/RectangularCylinder2D_25k"
+                        },
+                        "material_import_settings"           : {
+                            "materials_filename" : "problem_settings/materials_poisson_rectangle_2d.json"
+                        },
+                        "problem_domain_sub_model_part_list": ["Parts_Parts_Auto1"],
+                        "processes_sub_model_part_list": ["AutomaticInlet2D_Automatic_inlet_velocity_Auto1","Outlet2D_Outlet_pressure_Auto1","Slip2D","NoSlip2D_No_Slip_Auto1"],
+                        "auxiliary_variables_list" : []
+                    },
+                    "processes" : {
+                        "constraints_process_list" : [{
+                            "python_module" : "assign_scalar_variable_process",
+                            "kratos_module" : "KratosMultiphysics",
+                            "Parameters"    : {
+                                "model_part_name" : "MainModelPart.Outlet2D_Outlet_pressure_Auto1",
+                                "variable_name"   : "TEMPERATURE",
+                                "constrained"     : true,
+                                "value"           : 0.0,
+                                "interval"        : [0.0,"End"]
+                            }
+                        }]
+                    }
+                }
+            }
+        }],
+        "boundary_conditions_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "MainModelPart.AutomaticInlet2D_Automatic_inlet_velocity_Auto1",
+                "variable_name"   : "VELOCITY",
+                "value"           : [2.0, 0.0, 0.0],
+                "constrained"     : [true, true,true]
+            }
+        },{
+            "python_module" : "apply_outlet_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name"    : "MainModelPart.Outlet2D_Outlet_pressure_Auto1",
+                "variable_name"      : "PRESSURE",
+                "constrained"        : true,
+                "value"              : 0.0,
+                "hydrostatic_outlet" : false,
+                "h_top"              : 0.0
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "MainModelPart.NoSlip2D_No_Slip_Auto1"
+            }
+        },{
+            "python_module" : "apply_slip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplySlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "MainModelPart.Slip2D"
+            }
+        }],
+        "gravity"                          : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "MainModelPart.Parts_Parts_Auto1",
+                "variable_name"   : "BODY_FORCE",
+                "modulus"         : 0.0,
+                "constrained"     : false,
+                "direction"       : [0.0,-1.0,0.0]
+            }
+        }],
+        "auxiliar_process_list"            : [{
+                "python_module" : "compute_body_fitted_drag_and_moment_process",
+                "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+                "process_name"  : "ComputeBodyFittedDragAndMomentProcess",
+                "Parameters"    : {
+                    "model_part_name"        : "MainModelPart.NoSlip2D_No_Slip_Auto1",
+                    "write_drag_output_file" : true,
+                    "print_drag_to_screen"   : false,
+                    "output_file_settings" :{
+                        "file_name":  "drag_time_series",
+                        "folder_name": "drag"
+                    },
+                    "reference_point"        : [2.5,0.0,0.0],
+                    "interval"               : [0.0,"End"]
+                }
+        }]
+    }
+}
