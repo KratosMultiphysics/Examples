@@ -21,7 +21,7 @@ A bead optimization problem to minimize the strain energy of a plate.
 ## Optimization settings
 - Algorithm type : `bead_optimization`
 - Number of steps : `300`
-- Step size : `0.3`
+- Step size : `0.15`
 - Filter radius : `0.075`
 - Mesh motion : `False`
 
