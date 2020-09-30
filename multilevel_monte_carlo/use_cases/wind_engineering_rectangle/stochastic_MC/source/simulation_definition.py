@@ -14,9 +14,6 @@ from KratosMultiphysics.FluidDynamicsApplication import check_and_prepare_model_
 # Avoid printing of Kratos informations
 KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING)
 
-# Avoid printing of Kratos informations
-KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING)
-
 
 class SimulationScenario(FluidDynamicsAnalysisProblemZero):
     def __init__(self,input_model,input_parameters,sample):
@@ -25,7 +22,7 @@ class SimulationScenario(FluidDynamicsAnalysisProblemZero):
         self.interest_model_part = "MainModelPart.NoSlip2D_No_Slip_Auto1"
         self.number_instances_time_power_sums = 0
         self.IsVelocityFieldPerturbed = False
-        self.washout_time_coefficient = 140.0/input_parameters["problem_data"]["end_time"].GetDouble() # set absolute washout time / parameters input
+        self.washout_time_coefficient = 0.1/input_parameters["problem_data"]["end_time"].GetDouble() # set absolute washout time / parameters input
         print("[SCREENING] washout coefficient simulation scenario",self.washout_time_coefficient)
         self.filename = "filename"
         super(SimulationScenario,self).__init__(input_model,input_parameters)
@@ -132,30 +129,30 @@ class SimulationScenario(FluidDynamicsAnalysisProblemZero):
                 # update power sums of drag force x and base moment z
                 self.moment_estimator_array[0][0][0] = self.moment_estimator_array[0][0][0] + self.current_force_x
                 self.moment_estimator_array[0][1][0] = self.moment_estimator_array[0][1][0] + self.current_force_x**2
-                self.moment_estimator_array[0][2][0] = self.moment_estimator_array[0][0][0] + self.current_force_x**3
-                self.moment_estimator_array[0][3][0] = self.moment_estimator_array[0][1][0] + self.current_force_x**4
-                self.moment_estimator_array[0][4][0] = self.moment_estimator_array[0][0][0] + self.current_force_x**5
-                self.moment_estimator_array[0][5][0] = self.moment_estimator_array[0][1][0] + self.current_force_x**6
-                self.moment_estimator_array[0][6][0] = self.moment_estimator_array[0][0][0] + self.current_force_x**7
-                self.moment_estimator_array[0][7][0] = self.moment_estimator_array[0][1][0] + self.current_force_x**8
-                self.moment_estimator_array[0][8][0] = self.moment_estimator_array[0][0][0] + self.current_force_x**9
-                self.moment_estimator_array[0][9][0] = self.moment_estimator_array[0][1][0] + self.current_force_x**10
+                self.moment_estimator_array[0][2][0] = self.moment_estimator_array[0][2][0] + self.current_force_x**3
+                self.moment_estimator_array[0][3][0] = self.moment_estimator_array[0][3][0] + self.current_force_x**4
+                self.moment_estimator_array[0][4][0] = self.moment_estimator_array[0][4][0] + self.current_force_x**5
+                self.moment_estimator_array[0][5][0] = self.moment_estimator_array[0][5][0] + self.current_force_x**6
+                self.moment_estimator_array[0][6][0] = self.moment_estimator_array[0][6][0] + self.current_force_x**7
+                self.moment_estimator_array[0][7][0] = self.moment_estimator_array[0][7][0] + self.current_force_x**8
+                self.moment_estimator_array[0][8][0] = self.moment_estimator_array[0][8][0] + self.current_force_x**9
+                self.moment_estimator_array[0][9][0] = self.moment_estimator_array[0][9][0] + self.current_force_x**10
                 self.moment_estimator_array[1][0][0] = self.moment_estimator_array[1][0][0] + self.current_moment_z
                 self.moment_estimator_array[1][1][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**2
-                self.moment_estimator_array[1][2][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**3
-                self.moment_estimator_array[1][3][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**4
-                self.moment_estimator_array[1][4][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**5
-                self.moment_estimator_array[1][5][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**6
-                self.moment_estimator_array[1][6][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**7
-                self.moment_estimator_array[1][7][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**8
-                self.moment_estimator_array[1][8][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**9
-                self.moment_estimator_array[1][9][0] = self.moment_estimator_array[1][1][0] + self.current_moment_z**10
+                self.moment_estimator_array[1][2][0] = self.moment_estimator_array[1][2][0] + self.current_moment_z**3
+                self.moment_estimator_array[1][3][0] = self.moment_estimator_array[1][3][0] + self.current_moment_z**4
+                self.moment_estimator_array[1][4][0] = self.moment_estimator_array[1][4][0] + self.current_moment_z**5
+                self.moment_estimator_array[1][5][0] = self.moment_estimator_array[1][5][0] + self.current_moment_z**6
+                self.moment_estimator_array[1][6][0] = self.moment_estimator_array[1][6][0] + self.current_moment_z**7
+                self.moment_estimator_array[1][7][0] = self.moment_estimator_array[1][7][0] + self.current_moment_z**8
+                self.moment_estimator_array[1][8][0] = self.moment_estimator_array[1][8][0] + self.current_moment_z**9
+                self.moment_estimator_array[1][9][0] = self.moment_estimator_array[1][9][0] + self.current_moment_z**10
                 if (self.mapping is True):
                     # mapping from current model part of interest to reference model part the pressure
                     mapping_parameters = KratosMultiphysics.Parameters("""{
                         "mapper_type": "nearest_element",
-                        "interface_submodel_part_origin": "Drag_structure",
-                        "interface_submodel_part_destination": "Drag_structure",
+                        "interface_submodel_part_origin": "MainModelPart.NoSlip2D_No_Slip_Auto1",
+                        "interface_submodel_part_destination": "MainModelPart.NoSlip2D_No_Slip_Auto1",
                         "echo_level" : 3
                         }""")
                     mapper = KratosMultiphysics.MappingApplication.MapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("MainModelPart"),mapping_parameters)
@@ -243,8 +240,8 @@ class SimulationScenario(FluidDynamicsAnalysisProblemZero):
         # map from current model part of interest to reference model part
         mapping_parameters = KratosMultiphysics.Parameters("""{
             "mapper_type": "nearest_element",
-            "interface_submodel_part_origin": "Drag_structure",
-            "interface_submodel_part_destination": "Drag_structure",
+            "interface_submodel_part_origin": "MainModelPart.NoSlip2D_No_Slip_Auto1",
+            "interface_submodel_part_destination": "MainModelPart.NoSlip2D_No_Slip_Auto1",
             "echo_level" : 3
             }""")
         mapper = KratosMultiphysics.MappingApplication.MapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("MainModelPart"),mapping_parameters)
