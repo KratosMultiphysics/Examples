@@ -14,7 +14,7 @@ Unconstrained strain energy minimization of a 3D Shell
 - no constraints
 
   <p align="center">
-    <img src="images/3DShell_setup.svg" width="800">
+    <img src="images/3DshellOpt_setup.png" width="800">
   </p>
 
 ## Optimization settings
@@ -30,6 +30,13 @@ Unconstrained strain energy minimization of a 3D Shell
 The below image shows the evolution (shape) of the 3D Shell during the optimization iterations.
 
 <p align="center">
-    <img src="images/3DShell_results.gif" width="800">
+    <img src="images/3DshellOpt_results.gif" width="800">
+</p>
+
+### Convergence
+The below plots shows the evolution of the objective function (i.e. strain energy) over the bead optimization iterations.
+
+<p align="center">
+    <img src="images/3DshellOpt_plot.svg" height="650">
 </p>
 
