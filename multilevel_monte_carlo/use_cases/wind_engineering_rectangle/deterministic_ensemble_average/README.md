@@ -1,6 +1,6 @@
 # Deterministic wind engineering rectangle problem with ensemble average approach
 
-**Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc)
+**Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc) and [Brendan Keith](https://brendankeith.github.io/)
 
 **Kratos version:** 8.0
 
