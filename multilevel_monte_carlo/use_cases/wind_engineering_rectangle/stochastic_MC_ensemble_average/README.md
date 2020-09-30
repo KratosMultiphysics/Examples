@@ -1,4 +1,4 @@
-# Deterministic wind engineering rectangle problem
+# Stochastic wind engineering rectangle problem with ensemble average approach
 
 **Author:** [Riccardo Tosi](https://github.com/riccardotosi)
 
