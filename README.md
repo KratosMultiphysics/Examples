@@ -129,9 +129,9 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Compressible potential flow problem](multilevel_monte_carlo/use_cases/compressible_potential_flow/README.md)
 - [Fluid dynamics building problem](multilevel_monte_carlo/use_cases/fluid_dynamics_building)
 - [Wind engineering rectangle problem](multilevel_monte_carlo/use_cases/wind_engineering_rectangle)
-    - [Deterministic wind engineering rectangle problem](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/deterministic_ensemble_average)
+    - [Deterministic wind engineering rectangle problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/deterministic_ensemble_average)
     - [Stochastic wind engineering rectangle problem](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/stochastic_MC)
-    - [Stochastic wind engineering rectangle problem - with ensemble average](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/stochastic_MC_ensemble_average)
+    - [Stochastic wind engineering rectangle problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/stochastic_MC_ensemble_average)
 
 **Validation Cases**
 - [Elliptic benchmark](multilevel_monte_carlo/validation/elliptic_benchmark)
