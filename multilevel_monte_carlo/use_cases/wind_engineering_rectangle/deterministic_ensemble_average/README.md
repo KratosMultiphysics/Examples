@@ -1,6 +1,6 @@
 # Deterministic wind engineering rectangle problem
 
-**Author:** [Riccardo Tosi](https://github.com/riccardotosi)
+**Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc)
 
 **Kratos version:** 8.0
 
