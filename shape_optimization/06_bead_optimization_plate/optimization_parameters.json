@@ -60,7 +60,7 @@
             "min_inner_iterations": 3,
             "inner_iteration_tolerance": 1e-3,
             "line_search": {
-                "step_size": 0.3
+                "step_size": 0.15
             }
         },
         "output": {

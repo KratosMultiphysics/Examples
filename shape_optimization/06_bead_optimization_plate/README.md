@@ -15,7 +15,7 @@ A bead optimization problem to minimize the strain energy of a plate.
 - No constraints
 
   <p align="center">
-    <img src="images/beadOpt_setup.png" height="500">
+    <img src="images/beadOpt_SetupwithBC.png" width="800">
   </p>
 
 ## Optimization settings
@@ -28,11 +28,15 @@ A bead optimization problem to minimize the strain energy of a plate.
 ## Results
 
 ### Shape Evolution
-The below image shows the shape evolution of the plate during the bead optimization iterations.
+The below images shows the shape evolution of the plate during the bead optimization iterations.
 
 <p align="center">
-    <img src="images/beadOpt_results.gif" height="400">
+    <img src="images/beadOpt_result.gif" width="800">
 </p>
+
+|                alpha                 |              Z shape_change 2D               |              Z shape_change 3D               |
+| :----------------------------------: | :------------------------------------------: | :------------------------------------------: |
+| <img src="images/beadOpt_alpha.png"> | <img src="images/beadOpt_shapechange2D.png"> | <img src="images/beadOpt_shapechange3D.png"> |
 
 ### Convergence
 The below plots shows the evolution of the objective function (i.e. strain energy) over the bead optimization iterations.
