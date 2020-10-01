@@ -8,3 +8,5 @@ This folder contains the use cases:
     - [Deterministic wind engineering rectangle problem with ensemble average approach](wind_engineering_rectangle/deterministic_ensemble_average)
     - [Stochastic wind engineering rectangle problem](wind_engineering_rectangle/stochastic_MC)
     - [Stochastic wind engineering rectangle problem with ensemble average approach](wind_engineering_rectangle/stochastic_MC_ensemble_average)
+- [Wind engineering CAARC problem](wind_engineering_CAARC)
+    - [Deterministic wind engineering CAARC problem with ensemble average approach](wind_engineering_CAARC/deterministic_ensemble_average)
