@@ -28,7 +28,7 @@ A bead optimization problem to minimize the strain energy of a plate.
 ## Results
 
 ### Shape Evolution
-The below images shows the shape evolution of the plate during the bead optimization iterations. In the table further below, a comparison with manual solutions shows that the bead pattern obtained from the optimized solutions perform better. 
+The below images shows the shape evolution of the bead pattern on a plate during the optimization iterations. In the table further below, a comparison with manual solutions shows that the bead pattern obtained from the optimized solutions perform better. 
 
 <p align="center">
     <img src="images/beadOpt_result.gif" width="800">
