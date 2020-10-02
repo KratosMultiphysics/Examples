@@ -12,7 +12,7 @@ A bead optimization problem to minimize the strain energy of a square plate - su
 - Minimize strain energy
 
   <p align="center">
-    <img src="images/beadOpt_SetupwithBC.png" width="800">
+    <img src="images/beadOpt_SetupwithBC.png">
   </p>
 
 ## Optimization settings
