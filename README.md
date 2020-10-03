@@ -141,7 +141,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Shape Optimization
 
 **Use cases**
-- [Multi Constraint Optimization 3D Hook](shape_optimization/10_Multi_Constraint_Optimization_3D_Hook)
-- [Smooth Surface Wrapping - Stanford Bunny](shape_optimization/11_Shape_Update_Optimization_Stanford_Bunny)
-- [Strain Energy Minimization - 3D Shell](shape_optimization/02_Strain_Energy_Minimization_3D_Shell)
-- [Bead Optimization Plate](shape_optimization/06_bead_optimization_plate)
+- [Multi Constraint Optimization 3D Hook](shape_optimization/use_cases/10_Multi_Constraint_Optimization_3D_Hook)
+- [Smooth Surface Wrapping - Stanford Bunny](shape_optimization/use_cases/11_Shape_Update_Optimization_Stanford_Bunny)
+- [Strain Energy Minimization - 3D Shell](shape_optimization/use_cases/02_Strain_Energy_Minimization_3D_Shell)
+- [Bead Optimization Plate](shape_optimization/use_cases/06_bead_optimization_plate)
