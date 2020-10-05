@@ -31,8 +31,12 @@ To run the examples, the user should go inside the source folder and run the `ru
 ## Results
 
 The velocity and pressure fields evolution of the problem are shown next.
-![velocity](data/velocity_withbuilding.gif)
-![pressure](data/pressure_withbuilding.gif)
+<p align="center">
+  <img src="data/velocity_withbuilding.gif" alt="velocity" style="width: 600px;"/>
+</p>
+<p align="center">
+  <img src="data/pressure_withbuilding.gif" alt="pressure" style="width: 600px;"/>
+</p>
 
 An example of power sums and h-statistics of both time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
 
