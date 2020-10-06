@@ -1,4 +1,3 @@
-from matplotlib.ticker import TickHelper
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -48,24 +47,6 @@ path = f"{history}/optimization_log.csv"
 
 df = pd.read_csv(path, delimiter=",")
 df.columns = [x.strip() for x in df.columns]
-
-"""
-fig, axs = plt.subplots(1, len(plots), figsize=(18, 6))
-
-for plot, ax in zip(plots, axs):
-    for column_name in plot["column_names"]:
-        ax.plot(df[column_name], label=column_name)
-    ax.legend()
-    ax.set_title(plot["name"])
-
-
-fig, axs = plt.subplots(2, 3)
-axs_list = [axs[0][0], axs[0][1], axs[0][2], axs[1][0], axs[1][1]]
-for plot, ax in zip(plots, axs_list):
-    for column_name in plot["column_names"]:
-        ax.plot(df[column_name], label=column_name)
-    ax.legend()
-    ax.set_title(plot["name"])"""
 
 grid = plt.GridSpec(2, 3)
 plot_f = plt.subplot(grid[:, 0])
