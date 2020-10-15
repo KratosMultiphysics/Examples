@@ -24,7 +24,7 @@
         "qoiEstimator": ["xmc.momentEstimator.MomentEstimator"],
         "combinedEstimator": ["xmc.momentEstimator.CombinedMomentEstimator"],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
-        "estimatorBatchSize": 1
+        "eventGroupSize": 1
     },
     "monteCarloSamplerInputDictionary": {
         "assemblersForError": [[1]],

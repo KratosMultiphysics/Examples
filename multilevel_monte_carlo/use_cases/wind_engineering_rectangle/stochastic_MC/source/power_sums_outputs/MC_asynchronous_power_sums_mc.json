@@ -219,7 +219,7 @@
           "xmc.momentEstimator.MomentEstimator"
         ],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
-        "estimatorBatchSize": 160
+        "eventGroupSize": 160
       },
       "monteCarloSamplerInputDict": {
         "assemblersForError": [
