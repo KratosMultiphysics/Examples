@@ -18,7 +18,7 @@ class FluidDynamicsAnalysisMC(FluidDynamicsAnalysis):
         self.interest_model_part = "FluidModelPart.NoSlip3D_structure"
         # add required nodal variables and END_TIME in process info
         self._GetSolver().main_model_part.ProcessInfo.SetValue(KratosMultiphysics.END_TIME,self.project_parameters["problem_data"]["end_time"].GetDouble())
-        self.burnin_time_coefficient = 0.01/project_parameters["problem_data"]["end_time"].GetDouble()
+        self.burnin_time_coefficient = 30.0/project_parameters["problem_data"]["end_time"].GetDouble()
         print("[SCREENING] burn-in time coefficient fluid dynamics analysis = Tbt / T =",self.burnin_time_coefficient)
 
     def Initialize(self):

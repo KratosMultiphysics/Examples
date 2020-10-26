@@ -4,7 +4,7 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 0.06,
+        "end_time"      : 50.0,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
