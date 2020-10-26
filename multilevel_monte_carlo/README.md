@@ -8,7 +8,8 @@
     - [Stochastic wind engineering rectangle problem](use_cases/wind_engineering_rectangle/stochastic_MC)
     - [Stochastic wind engineering rectangle problem with ensemble average approach](use_cases/wind_engineering_rectangle/stochastic_MC_ensemble_average)
 - [Wind engineering CAARC problem](use_cases/wind_engineering_CAARC)
-    - [Deterministic wind engineering CAARC problem with ensemble average approach](use_cases/wind_engineering_CAARC/deterministic_ensemble_average)
+    - [Steady inlet wind engineering CAARC problem with ensemble average approach](use_cases/wind_engineering_CAARC/deterministic_steady_inlet_ensemble_average)
+    - [Turbulent inlet wind engineering CAARC problem with ensemble average approach](use_cases/wind_engineering_CAARC/deterministic_turbulent_inlet_ensemble_average)
 
 ## Validation Cases
 - [Elliptic benchmark](validation/elliptic_benchmark)
