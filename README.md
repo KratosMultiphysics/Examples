@@ -123,7 +123,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [No Newtonian 3D](pfem2/use_cases/no_newtonian_3d/README.md)
 - [Rayleigh](pfem2/use_cases/rayleigh/README.md)
 
-## Multilevel Monte Carlo Application Examples
+## Multilevel Monte Carlo
 
 **Use Cases**
 - [Compressible potential flow problem](multilevel_monte_carlo/use_cases/compressible_potential_flow/README.md)
@@ -147,7 +147,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Strain Energy Minimization - 3D Shell](shape_optimization/use_cases/02_Strain_Energy_Minimization_3D_Shell)
 - [Bead Optimization Plate](shape_optimization/use_cases/06_bead_optimization_plate)
 
-## Convection Diffusion Application Examples
+## Convection Diffusion
 **Validation**
 - [Convection gaussian hill problem](convection_diffusion/validation/gaussian_hill_explicit)
 - [Convection-Diffusion gaussian hill problem](convection_diffusion/validation/gaussian_hill_with_diffusion_explicit)
