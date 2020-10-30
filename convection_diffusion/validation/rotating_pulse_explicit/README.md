@@ -13,7 +13,7 @@ This example is taken from [Donea, J., & Huerta, A. (2003). Finite Element Metho
 
 Citing [Donea, J., & Huerta, A. (2003). Finite Element Methods for Flow Problems. Section 5.6.2] this problem requires *accurate transport of the unknown and boundary layers appear in the solution due to the Dirichlet boundary conditions. Therefore, high-order time-stepping schemes and stabilized formulations are needed in order to obtain an accurate solution*.
 
-The problem can be run with four different stabilizations:
+The problem is solved exploiting the **Runge-Kutta 4 time integration explicit method**, and it can be run with four different stabilizations:
 * quasi-static algebraic subgrid scale (QSASGS)
 * quasi-static orthogonal subgrid scale (QSOSS)
 * dynamic algebraic subgrid scale (DASGS)

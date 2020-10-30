@@ -12,7 +12,7 @@ This example is taken from [Donea, J., & Huerta, A. (2003). Finite Element Metho
 <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial \phi}{\partial t} %2B v \cdot  \nabla \phi %2B \phi \nabla \cdot v - \nabla \cdot k \nabla \phi = f">,
 where specific initial conditions are set. We refer to the above reference for further details.
 
-The problem can be run with four different stabilizations:
+The problem is solved exploiting the **Runge-Kutta 4 time integration explicit method**, and it can be run with four different stabilizations:
 * quasi-static algebraic subgrid scale (QSASGS)
 * quasi-static orthogonal subgrid scale (QSOSS)
 * dynamic algebraic subgrid scale (DASGS)
