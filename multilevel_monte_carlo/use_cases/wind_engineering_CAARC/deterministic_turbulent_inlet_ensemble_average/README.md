@@ -35,6 +35,9 @@ The velocity and pressure fields evolution of the problem are shown next.
 <p align="center">
   <img src="data/velocity.gif" alt="velocity" style="width: 600px;"/>
 </p>
+<p align="center">
+  <img src="data/velocity.png" alt="velocity" style="width: 650px;"/>
+</p>
 
 An example of power sums and h-statistics of both time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
 
