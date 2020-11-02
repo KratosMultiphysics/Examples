@@ -11,7 +11,7 @@
 **Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
 ## Case Specification
-We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) of a fluid passing through a bluff body. The problem is characterized by stochastic wind inlet velocity, which follows a power law. Uncertainty is provided by the mean velocity ![vel-rand-variable-distribution] and a exponent of the law ![power-rand-variable-distribution].
+We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) of a fluid passing through a bluff body. The problem is characterized by stochastic wind inlet velocity, which follows a power law. Uncertainty is provided by the mean velocity <img src="https://render.githubusercontent.com/render/math?math=u\sim\mathcal{N}(10.0,0.1)"> and a exponent of the law <img src="https://render.githubusercontent.com/render/math?math=\alpha\sim\mathcal{N}(0.12,0.012)">.
 
 The problem can be run with four different algorithms:
 
@@ -34,7 +34,3 @@ The velocity field evolution for the problem is shown next.
 ![velocity](data/velocity.gif)
 
 The power sums and the h-statistics of both the drag force and the pressure field can be found [here](source/power_sums_outputs).
-
-
-[vel-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?u\sim~\mathcal{N}(10.0,0.1)
-[power-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\alpha\sim~\mathcal{N}(0.12,0.012)
