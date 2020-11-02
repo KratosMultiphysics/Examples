@@ -11,7 +11,7 @@
 **Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
 ## Case Specification
-We solve the [compressible potential flow problem](https://github.com/KratosMultiphysics/Kratos/blob/master/applications/CompressiblePotentialFlowApplication/python_scripts/potential_flow_analysis.py) around an airfoil NACA0012. The problem is characterized by stochastic angle of attack ![angle-rand-variable-distribution] and stochastic Mach number ![mach-rand-variable-distribution].
+We solve the [compressible potential flow problem](https://github.com/KratosMultiphysics/Kratos/blob/master/applications/CompressiblePotentialFlowApplication/python_scripts/potential_flow_analysis.py) around an airfoil NACA0012. The problem is characterized by stochastic angle of attack <img src="https://render.githubusercontent.com/render/math?math=\alpha\sim\mathcal{N}(5.0,0.05)"> and stochastic Mach number <img src="https://render.githubusercontent.com/render/math?math=M_{\infty}\sim\mathcal{N}(0.3,0.003)">.
 
 The problem can be run with four different algorithms:
 
@@ -35,7 +35,3 @@ The pressure coefficient for the problem is shown next.
 
 The power sums and the h-statistics of both the lift coefficient and the pressure coefficient can be found [here](source/power_sums_outputs).
 The lift coefficient expected value is consistent with literature results [M. Davari, R. Rossi, P. Dadvand, I. López, R. W. (2019). A cut finite element method for the solution of the full-potential equation with an embedded wake. Comput Mech, 63(5), 821–833. https://doi.org/https://doi.org/10.1007/s00466-018-1624-3].
-
-
-[angle-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\alpha\sim~\mathcal{N}(5.0,0.05)
-[mach-rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?M_{\infty}\sim~\mathcal{N}(0.3,0.003)

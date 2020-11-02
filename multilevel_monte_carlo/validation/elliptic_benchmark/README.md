@@ -13,13 +13,14 @@
 ## Case Specification
 Let's consider the stationary heat equation with a varying heat flux, a square two-dimensional domain and Dirichlet boundary conditions. The problem reads as:
 
-![diffusion-eq]
+<img src="https://render.githubusercontent.com/render/math?math=\left\{\begin{matrix}
+\nabla \cdot k \nabla \phi = \varepsilon f \ , \quad \phi \in \Omega\\
+\phi = 0 \ , \quad \phi \in \partial \Omega
+\end{matrix}\right.">
 
-![boundary-cond] ,
+where <img src="https://render.githubusercontent.com/render/math?math=\Omega=[0,1]\times[0,1]">, <img src="https://render.githubusercontent.com/render/math?math=f=-432(x^2+y^2-x-y)"> and <img src="https://render.githubusercontent.com/render/math?math=\varepsilon \sim \beta(2,6)">, i.e. <img src="https://render.githubusercontent.com/render/math?math=\varepsilon"> follows a beta distribution. The thermal diffusivity is <img src="https://render.githubusercontent.com/render/math?math=k=1"> for simplicity. The Quantity of Interest (QoI) we are interested in is the integral over the whole domain of the temperature, meaning:
 
-where ![domain], ![forcing] and ![rand-variable-distribution], i.e. ![rand-variable-symbol] follows a beta distribution. The thermal diffusivity is ![thermal-diffusivity-value] for simplicity. The Quantity of Interest (QoI) we are interested in is the integral over the whole domain of the temperature, meaning:
-
-![qoi] .
+<img src="https://render.githubusercontent.com/render/math?math=QoI=\int_{\Omega}\phi(x,y)dxdy \,.">
 
 The problem can be run with four different algorithms:
 
@@ -46,13 +47,3 @@ SMC: ![SMC graph](results/SMC_graph.PNG)
 AMC: ![AMC graph](results/AMC_graph.PNG)
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
-
-[diffusion-eq]: https://latex.codecogs.com/svg.latex?\nabla\cdot(K\nabla~u)=\varepsilon~f~,~u\in\Omega
-[boundary-cond]: https://latex.codecogs.com/svg.latex?u=0~,~u\in\partial\Omega
-[domain]: https://latex.codecogs.com/svg.latex?\Omega=[0,1]^{2}
-[rand-variable-distribution]:  https://latex.codecogs.com/svg.latex?\varepsilon\sim~Beta(2,6)
-[qoi]:  https://latex.codecogs.com/svg.latex?QoI=\int_{\Omega}u(x,y)dx~dy
-[forcing]:  https://latex.codecogs.com/svg.latex?f=-432(x^2+y^2-x-y)
-[rand-variable-symbol]:  https://latex.codecogs.com/svg.latex?\varepsilon
-[thermal-diffusivity-value]:  https://latex.codecogs.com/svg.latex?K=1
-[temperature-symbol]: https://latex.codecogs.com/svg.latex?u
