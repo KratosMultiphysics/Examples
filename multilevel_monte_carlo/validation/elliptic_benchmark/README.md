@@ -13,10 +13,8 @@
 ## Case Specification
 Let's consider the stationary heat equation with a varying heat flux, a square two-dimensional domain and Dirichlet boundary conditions. The problem reads as:
 
-<img src="https://render.githubusercontent.com/render/math?math=\left\{\begin{matrix}
-\nabla \cdot k \nabla \phi = \varepsilon f \ , \quad \phi \in \Omega\\
-\phi = 0 \ , \quad \phi \in \partial \Omega
-\end{matrix}\right.">
+* <img src="https://render.githubusercontent.com/render/math?math=\nabla \cdot k \nabla \phi = \varepsilon f \ , \quad \phi \in \Omega">
+* <img src="https://render.githubusercontent.com/render/math?math=\phi = 0 \ , \quad \phi \in \partial \Omega">
 
 where <img src="https://render.githubusercontent.com/render/math?math=\Omega=[0,1]\times[0,1]">, <img src="https://render.githubusercontent.com/render/math?math=f=-432(x^2+y^2-x-y)"> and <img src="https://render.githubusercontent.com/render/math?math=\varepsilon \sim \beta(2,6)">, i.e. <img src="https://render.githubusercontent.com/render/math?math=\varepsilon"> follows a beta distribution. The thermal diffusivity is <img src="https://render.githubusercontent.com/render/math?math=k=1"> for simplicity. The Quantity of Interest (QoI) we are interested in is the integral over the whole domain of the temperature, meaning:
 
