@@ -1,5 +1,3 @@
-from __future__ import print_function, absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
-
 import KratosMultiphysics
 import KratosMultiphysics.StructuralMechanicsApplication as StructuralMechanics
 
@@ -10,7 +8,7 @@ class StructuralMechanicsAnalysisWithEigenPostProcessing(StructuralMechanicsAnal
     It also shows how the "StructuralMechanicsAnalysis" can be customized by deriving from it
     """
     def Finalize(self):
-        super(StructuralMechanicsAnalysisWithEigenPostProcessing,self).Finalize()
+        super().Finalize()
         main_model_part_name = self.project_parameters["solver_settings"]["model_part_name"].GetString()
         main_model_part = self.model[main_model_part_name]
         # Postprocessing the output in the terminal:
@@ -28,5 +26,3 @@ if __name__ == "__main__":
     model = KratosMultiphysics.Model()
     simulation = StructuralMechanicsAnalysisWithEigenPostProcessing(model,parameters)
     simulation.Run()
-
-
