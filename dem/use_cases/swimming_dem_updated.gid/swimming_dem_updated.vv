@@ -1,0 +1,37 @@
+BeginZE /home/farrufat/Examples/dem/use_cases/swimming_dem_updated.gid/swimming_dem_updated.vv
+   x -0.156329169869422913 0.473841071128845215
+   y 0.731697380542755127 -0.438392400741577148
+   z -1.93813180923461914 1.16670322418212891
+   e 0.517472505569458008
+   v 0.564521610736846924 0.0684932991862297058 0.0933611840009689331
+   r 0.81725621223449707
+   m 0.973184704780578613 -0.0752681270241737366 0.217361956834793091 0 0.22993190586566925 0.345198124647140503 -0.909928321838378906 0 -0.00654433807358145714 0.935506820678710938 0.353248089551925659 0 0 0 0 1
+   c 0.169472485780715942 0.00125000008847564459 0.385714292526245117
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector -135.550003051757812 -143.147994995117188 23.7798004150390625 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE /home/farrufat/Examples/dem/use_cases/swimming_dem_updated.gid/swimming_dem_updated.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+

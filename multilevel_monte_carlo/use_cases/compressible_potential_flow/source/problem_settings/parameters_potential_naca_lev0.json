@@ -1,0 +1,79 @@
+{
+    "problem_data"         : {
+        "problem_name"  : "body_fitted_ellipse",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 1.0
+    },
+    "solver_settings"      : {
+        "model_part_name"        : "model",
+        "domain_size"            : 2,
+        "solver_type"            : "potential_flow",
+        "model_import_settings"  : {
+            "input_type"     : "mdpa",
+            "input_filename" : "problem_settings/naca0012Mesh4"
+        },
+        "formulation"  : {
+            "element_type": "compressible"
+        },
+        "maximum_iterations"     : 50,
+        "echo_level"             : 0,
+        "volume_model_part_name" : "Parts_Parts_Auto1",
+        "skin_parts"             : ["PotentialWallCondition2D_Far_field_Auto1","Body2D_UpperSurface","Body2D_LowerSurface"],
+        "no_skin_parts"          : ["Wake2D_Wake_Auto1"],
+        "reference_chord"      : 1.0,
+        "relative_tolerance"      : 1e-9,
+        "absolute_tolerance"      : 1e-9,
+        "linear_solver_settings": {
+            "solver_type": "amgcl",
+            "max_iteration": 400,
+            "gmres_krylov_space_dimension": 100,
+            "smoother_type":"ilu0",
+            "coarsening_type":"ruge_stuben",
+            "coarse_enough" : 5000,
+            "krylov_type": "lgmres",
+            "tolerance": 1e-9,
+            "verbosity": 1,
+            "scaling": false
+        }
+    },
+    "processes"            : {
+        "initial_conditions_process_list"  : [],
+        "boundary_conditions_process_list" : [
+            {
+            "python_module" : "apply_far_field_process",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "Parameters"    : {
+                "model_part_name"   : "model.PotentialWallCondition2D_Far_field_Auto1",
+                "angle_of_attack": 0.0,
+                "mach_infinity" : 0.3
+            }
+        },{
+            "python_module" : "define_wake_process_2d",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "Parameters"    : {
+                "model_part_name" : "model.Body2D_Body",
+                "echo_level"      : 0,
+                "epsilon"         : 1e-9
+            }
+        },{
+            "python_module" : "compute_lift_process",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "Parameters"    : {
+                "model_part_name" : "model.Body2D_Body"
+            }
+        }],
+        "auxiliar_process_list"            : [{
+            "python_module" : "compute_nodal_value_process",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "Parameters"    : {
+                "model_part_name" : "model.Parts_Parts_Auto1",
+                "elemental_variables_list_to_project" : ["PRESSURE_COEFFICIENT"]
+            }
+        }]
+    }
+}
+
+
+

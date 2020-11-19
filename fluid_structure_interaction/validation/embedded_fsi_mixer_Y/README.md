@@ -31,4 +31,4 @@ The obtained velocity and pressure fields, together with the level set zero isos
 </p>
 
 ## References
-(references not available yet)
+R. Zorrilla, R. Rossi, R. Wüchner and E. Oñate, An embedded Finite Element framework for the resolution of strongly coupled Fluid–Structure Interaction problems. Application to volumetric and membrane-like structures, Computer Methods in Applied Mechanics and Engineering (368), [10.1016/j.cma.2020.113179](https://doi.org/10.1016/j.cma.2020.113179)
