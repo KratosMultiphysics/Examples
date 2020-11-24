@@ -1,25 +1,18 @@
-from __future__ import absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
-
-# Importing the Kratos Library
-import KratosMultiphysics
-
-# Import applications
-import KratosMultiphysics.FluidDynamicsApplication
-from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
-import KratosMultiphysics.kratos_utilities as kratos_utilities
-
-# Avoid printing of Kratos informations
-#KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING) # avoid printing of Kratos things
-
-# Import packages
+# Import Python libraries
 import numpy as np
 import time
 import os
 
+# Import Kratos
+import KratosMultiphysics
+import KratosMultiphysics.FluidDynamicsApplication
+from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
+import KratosMultiphysics.kratos_utilities as kratos_utilities
+
 class FluidDynamicsAnalysisProblemZero(FluidDynamicsAnalysis):
 
     def __init__(self,model,project_parameters):
-        super(FluidDynamicsAnalysisProblemZero,self).__init__(model,project_parameters)
+        super().__init__(model,project_parameters)
 
 if __name__ == "__main__":
     from sys import argv
