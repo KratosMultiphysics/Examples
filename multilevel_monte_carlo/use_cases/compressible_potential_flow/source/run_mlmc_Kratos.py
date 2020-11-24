@@ -1,5 +1,4 @@
-import KratosMultiphysics
-
+# Import Python libraries
 import sys
 sys.dont_write_bytecode = True
 import os
@@ -7,10 +6,11 @@ import json
 import time
 import pickle
 
+# Import Kratos, XMC, PyCOMPSs API
+import KratosMultiphysics
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-
-from exaqute.ExaquteTaskPyCOMPSs import *   # to execute with runcompss
+from exaqute.ExaquteTaskLocal import *
 
 if __name__ == "__main__":
 
