@@ -1,20 +1,20 @@
+# Import Python libraries
 import sys
 sys.dont_write_bytecode = True
 import os
 import json
 import time
+import pickle
 
+# Import XMC
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
 
+# Import PyCOMPSs
 from exaqute.ExaquteTaskPyCOMPSs import *   # to execute with runcompss
 
+# Import Kratos
 import KratosMultiphysics
-# Import cpickle to pickle the serializer
-try:
-    import cpickle as pickle  # Use cPickle on Python 2.7 #TODO remove as Python 2 is not supported
-except ImportError:
-    import pickle
 
 if __name__ == "__main__":
 
