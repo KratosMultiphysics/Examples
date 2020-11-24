@@ -1,47 +1,35 @@
-from __future__ import absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
-
 # Importing the Kratos Library
 import KratosMultiphysics
-
-# Import applications
-import KratosMultiphysics.MultilevelMonteCarloApplication as KratosMLMC
 import KratosMultiphysics.FluidDynamicsApplication
 from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 import KratosMultiphysics.MappingApplication
-import KratosMultiphysics.MeshingApplication as KratosMeshing
 
 # Avoid printing of Kratos informations
 KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING)
 
 class SimulationScenario(FluidDynamicsAnalysis):
     def __init__(self,input_model,input_parameters,sample):
+        super().__init__(input_model,input_parameters)
         self.sample = sample
         self.mapping = False
         self.interest_model_part = "MainModelPart.NoSlip2D_structure"
-        super(SimulationScenario,self).__init__(input_model,input_parameters)
 
-    """
-    function introducing the stochasticity in the right hand side
-    input:  self: an instance of the class
-    """
     def ModifyInitialProperties(self):
+        """
+        function introducing the stochasticity in the right hand side
+        input:  self: an instance of the class
+        """
+        super().ModifyInitialProperties()
         '''Introduce here the stochasticity in the inlet velocity'''
         self.project_parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["modulus"][0].SetDouble(self.sample[1])
         self.project_parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["modulus"][1].SetDouble(self.sample[2])
-        super(SimulationScenario,self).ModifyInitialProperties()
 
-    """
-    function evaluating the QoI of the problem
-    input:  self: an instance of the class
-    """
     def EvaluateQuantityOfInterest(self):
+        """
+        function evaluating the QoI of the problem
+        input:  self: an instance of the class
+        """
         qoi_list = []
-        # set reference coordinates
-        self.reference_point = KratosMultiphysics.Vector(3)
-        self.reference_point[0] = 21.0
-        self.reference_point[1] = 0.0
-        self.reference_point[2] = 0.0
-
         # compute drag force
         drag_force_vector = KratosMultiphysics.FluidDynamicsApplication.DragUtilities().CalculateBodyFittedDrag(self.model.GetModelPart(self.interest_model_part))
         qoi_list.append(drag_force_vector[0]) # add drag force
@@ -56,11 +44,11 @@ class SimulationScenario(FluidDynamicsAnalysis):
 
         return qoi_list
 
-    """
-    function mapping the pressure field on reference model
-    input:  self: an instance of the class
-    """
     def MappingAndEvaluateQuantityOfInterest(self):
+        """
+        function mapping the pressure field on reference model
+        input:  self: an instance of the class
+        """
         print("[SCREENING] Start Mapping")
         # map from current model part of interest to reference model part
         mapping_parameters = KratosMultiphysics.Parameters("""{

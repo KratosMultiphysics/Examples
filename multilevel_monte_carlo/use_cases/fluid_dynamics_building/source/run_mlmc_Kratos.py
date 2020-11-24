@@ -1,5 +1,4 @@
-import KratosMultiphysics
-
+# Import Python libraries
 import sys
 sys.dont_write_bytecode = True
 import os
@@ -7,10 +6,11 @@ import json
 import time
 import pickle
 
+# Import Kratos, XMC, PyCOMPSs API
+import KratosMultiphysics
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-
-from exaqute.ExaquteTaskPyCOMPSs import *   # to execute with runcompss
+from exaqute.ExaquteTaskLocal import *
 
 if __name__ == "__main__":
 
@@ -22,10 +22,6 @@ if __name__ == "__main__":
     # read parameters
     with open(parametersPath,'r') as parameter_file:
             parameters = json.load(parameter_file)
-
-    # add path of the problem folder to python path
-    problem_id = parameters["solverWrapperInputDictionary"]["problemId"]
-    sys.path.append(os.path.join("..","xmc","classDefs_solverWrapper","problemDefs_KratosMultiphysics",problem_id))
 
     # SampleGenerator
     samplerInputDictionary = parameters["samplerInputDictionary"]

@@ -4,11 +4,12 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 300,
+        "end_time"      : 10,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
-        }
+        },
+        "burnin_time"   : 1
     },
     "output_processes" : {
         "gid_output" : [{
@@ -35,7 +36,7 @@
                         "skin_output"         : false,
                         "plane_output"        : [],
                         "nodal_results"       : ["VELOCITY","PRESSURE","REACTION"],
-                        "nodal_nonhistorical_results" : ["VELOCITY_WEIGHTED","PRESSURE_WEIGHTED"],
+                        "nodal_nonhistorical_results" : ["AVERAGED_VELOCITY","AVERAGED_PRESSURE"],
                         "gauss_point_results" : []
                     },
                     "point_data_configuration"  : []
@@ -92,6 +93,7 @@
     "processes"        : {
         "initial_conditions_process_list" : [{
             "python_module" : "kratos_perturbation_process",
+            "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
             "Parameters"    : {
                 "model_part_name" : "MainModelPart.Parts_Parts_Auto1",
                 "correlated_noise_generator" : {
@@ -195,20 +197,67 @@
             }
         }],
         "auxiliar_process_list"            : [{
-                "python_module" : "compute_body_fitted_drag_and_moment_process",
+                "python_module" : "compute_body_fitted_drag_process",
                 "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-                "process_name"  : "ComputeBodyFittedDragAndMomentProcess",
+                "process_name"  : "ComputeBodyFittedDragProcess",
                 "Parameters"    : {
                     "model_part_name"        : "MainModelPart.NoSlip2D_No_Slip_Auto1",
                     "write_drag_output_file" : true,
                     "print_drag_to_screen"   : false,
                     "output_file_settings" :{
-                        "file_name":  "drag_time_series",
-                        "folder_name": "drag"
+                        "file_name":   "drag_time_series",
+                        "output_path": "drag"
                     },
-                    "reference_point"        : [2.5,0.0,0.0],
                     "interval"               : [0.0,"End"]
                 }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "MainModelPart.NoSlip2D_No_Slip_Auto1",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "PRESSURE"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_PRESSURE"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "MainModelPart",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "VELOCITY"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_VELOCITY"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
         }]
     }
 }

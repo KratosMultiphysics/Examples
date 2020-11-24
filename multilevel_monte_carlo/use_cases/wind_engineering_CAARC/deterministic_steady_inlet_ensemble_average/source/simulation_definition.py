@@ -1,8 +1,8 @@
-# Import python libraries
+# Import Python libraries
 import os
 import numpy as np
 
-# Importing the Kratos Library
+# Import Kratos
 import KratosMultiphysics
 import KratosMultiphysics.MultilevelMonteCarloApplication
 import KratosMultiphysics.MappingApplication
@@ -12,38 +12,39 @@ from FluidDynamicsAnalysisMC import FluidDynamicsAnalysisMC
 from KratosMultiphysics.FluidDynamicsApplication import check_and_prepare_model_process_fluid
 
 # Avoid printing of Kratos informations
-KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING)
+# KratosMultiphysics.Logger.GetDefaultOutput().SetSeverity(KratosMultiphysics.Logger.Severity.WARNING)
 
 
 class SimulationScenario(FluidDynamicsAnalysisMC):
     def __init__(self,input_model,input_parameters,sample):
-        super(SimulationScenario,self).__init__(input_model,input_parameters)
+        super().__init__(input_model,input_parameters)
         self.sample = sample
         self.mapping = False
         self.interest_model_part = "FluidModelPart.NoSlip3D_structure"
         self.number_instances_time_power_sums = 0
         self.IsVelocityFieldPerturbed = False
         self.filename = "filename"
-        print("[SCREENING] burn-in coefficient simulation scenario",self.burnin_time_coefficient)
 
     def ModifyInitialProperties(self):
         """
         function changing print to file settings
         input:  self: an instance of the class
         """
-        super(SimulationScenario,self).ModifyInitialProperties()
+        super().ModifyInitialProperties()
         # add capability of saving force time series
-        filename = self.filename
+        raw_path, raw_filename = os.path.split(self.filename)
         self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["write_drag_output_file"].SetBool(True)
-        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["file_name"].SetString(filename)
-        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["folder_name"].SetString("")
+        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["file_name"].SetString(raw_filename)
+        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["output_path"].SetString(raw_path)
+        if (self.project_parameters["problem_data"]["perturbation"]["type"].GetString() == "correlated"):
+            self.project_parameters["processes"]["initial_conditions_process_list"][0]["Parameters"]["seed"].SetInt(self.sample[0])
 
     def ApplyBoundaryConditions(self):
         """
         function introducing the stochasticity in the problem
         input:  self: an instance of the class
         """
-        super(SimulationScenario,self).ApplyBoundaryConditions()
+        super().ApplyBoundaryConditions()
         if (self.IsVelocityFieldPerturbed is False) and (self.project_parameters["problem_data"]["perturbation"]["type"].GetString() == "uncorrelated"):
             np.random.seed(self.sample[0])
             print("[SCREENING] perturbing the domain:","Yes")
@@ -87,25 +88,25 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
         function initializing moment estimator array
         input:  self: an instance of the class
         """
-        super(SimulationScenario,self).Initialize()
+        super().Initialize()
         # compute neighbour elements required for current boundary conditions and not automatically run due to remeshing
         self.ComputeNeighbourElements()
         # initialize moment estimator array for each qoi to build time power sums
-        self.moment_estimator_array = [[[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0]] for _ in range (0,2)] # +2 is for drag force x and base moment z
+        self.moment_estimator_array = [[[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0],[0.0]] for _ in range (0,1)] # +1 is for drag force x
         if (self.mapping is True):
             power_sums_parameters = KratosMultiphysics.Parameters("""{
                 "reference_variable_name": "PRESSURE"
                 }""")
             self.power_sums_process_mapping = KratosMultiphysics.MultilevelMonteCarloApplication.PowerSumsStatistics(self.mapping_reference_model.GetModelPart(self.interest_model_part),power_sums_parameters)
             self.power_sums_process_mapping.ExecuteInitialize()
-            print("[SCREENING] number nodes of submodelpart + drag force x + base moment z:",self.mapping_reference_model.GetModelPart(self.interest_model_part).NumberOfNodes()+2) # +2 is for drag coefficient and base moment z
+            print("[SCREENING] number nodes of submodelpart + drag force x:",self.mapping_reference_model.GetModelPart(self.interest_model_part).NumberOfNodes()+1) # +1 is for drag force x
         else:
             power_sums_parameters = KratosMultiphysics.Parameters("""{
                 "reference_variable_name": "PRESSURE"
                 }""")
             self.power_sums_process = KratosMultiphysics.MultilevelMonteCarloApplication.PowerSumsStatistics(self.model.GetModelPart(self.interest_model_part),power_sums_parameters)
             self.power_sums_process.ExecuteInitialize()
-            print("[SCREENING] number nodes of submodelpart + drag + base moment z:",self.model.GetModelPart(self.interest_model_part).NumberOfNodes()+2) # +2 is for drag coefficient and base moment z
+            print("[SCREENING] number nodes of submodelpart + drag force x:",self.model.GetModelPart(self.interest_model_part).NumberOfNodes()+1) # +1 is for drag force x
         print("[SCREENING] mapping flag:",self.mapping)
 
     def FinalizeSolutionStep(self):
@@ -113,15 +114,15 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
         function applying mapping if required and updating moment estimator array
         input:  self: an instance of the class
         """
-        super(SimulationScenario,self).FinalizeSolutionStep()
+        super().FinalizeSolutionStep()
         # run if current index is index of interest
         if (self.is_current_index_maximum_index is True):
             # avoid burn-in time
             if (self.model.GetModelPart(self.interest_model_part).ProcessInfo.GetPreviousTimeStepInfo().GetValue(KratosMultiphysics.TIME) >= \
-                self.burnin_time_coefficient*self.model.GetModelPart(self.interest_model_part).ProcessInfo.GetValue(KratosMultiphysics.END_TIME)):
+                self.project_parameters["problem_data"]["burnin_time"].GetDouble()):
                 # update number of contributions to time power sums
                 self.number_instances_time_power_sums = self.number_instances_time_power_sums + 1
-                # update power sums of drag force x and base moment z
+                # update power sums of drag force x
                 self.moment_estimator_array[0][0][0] = self.moment_estimator_array[0][0][0] + self.current_drag_force_x
                 self.moment_estimator_array[0][1][0] = self.moment_estimator_array[0][1][0] + self.current_drag_force_x**2
                 self.moment_estimator_array[0][2][0] = self.moment_estimator_array[0][2][0] + self.current_drag_force_x**3
@@ -132,16 +133,6 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
                 self.moment_estimator_array[0][7][0] = self.moment_estimator_array[0][7][0] + self.current_drag_force_x**8
                 self.moment_estimator_array[0][8][0] = self.moment_estimator_array[0][8][0] + self.current_drag_force_x**9
                 self.moment_estimator_array[0][9][0] = self.moment_estimator_array[0][9][0] + self.current_drag_force_x**10
-                self.moment_estimator_array[1][0][0] = self.moment_estimator_array[1][0][0] + self.current_base_moment_z
-                self.moment_estimator_array[1][1][0] = self.moment_estimator_array[1][1][0] + self.current_base_moment_z**2
-                self.moment_estimator_array[1][2][0] = self.moment_estimator_array[1][2][0] + self.current_base_moment_z**3
-                self.moment_estimator_array[1][3][0] = self.moment_estimator_array[1][3][0] + self.current_base_moment_z**4
-                self.moment_estimator_array[1][4][0] = self.moment_estimator_array[1][4][0] + self.current_base_moment_z**5
-                self.moment_estimator_array[1][5][0] = self.moment_estimator_array[1][5][0] + self.current_base_moment_z**6
-                self.moment_estimator_array[1][6][0] = self.moment_estimator_array[1][6][0] + self.current_base_moment_z**7
-                self.moment_estimator_array[1][7][0] = self.moment_estimator_array[1][7][0] + self.current_base_moment_z**8
-                self.moment_estimator_array[1][8][0] = self.moment_estimator_array[1][8][0] + self.current_base_moment_z**9
-                self.moment_estimator_array[1][9][0] = self.moment_estimator_array[1][9][0] + self.current_base_moment_z**10
                 if (self.mapping is True):
                     # mapping from current model part of interest to reference model part the pressure
                     mapping_parameters = KratosMultiphysics.Parameters("""{
@@ -171,21 +162,17 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
             qoi_list = []
             # append time average drag coefficient
             qoi_list.append(self.mean_drag_force_x)
-            # append time averaged base moment_z
-            qoi_list.append(self.mean_base_moment_z)
             # append time average pressure
             if (self.mapping is not True):
                 for node in self.model.GetModelPart(self.interest_model_part).Nodes:
-                    qoi_list.append(node.GetValue(KratosMultiphysics.ExaquteSandboxApplication.PRESSURE_WEIGHTED))
+                    qoi_list.append(node.GetValue(KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE))
             elif (self.mapping is True):
                 for node in self.mapping_reference_model.GetModelPart(self.interest_model_part).Nodes:
-                    qoi_list.append(node.GetValue(KratosMultiphysics.ExaquteSandboxApplication.PRESSURE_WEIGHTED))
+                    qoi_list.append(node.GetValue(KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE))
             # append number of contributions to the power sums list
             self.moment_estimator_array[0].append(self.number_instances_time_power_sums) # drag force x
-            self.moment_estimator_array[1].append(self.number_instances_time_power_sums) # base moment z
-            # append drag force x and base moment z time series power sums
+            # append drag force x time series power sums
             qoi_list.append(self.moment_estimator_array[0]) # drag force x
-            qoi_list.append(self.moment_estimator_array[1]) # base moment z
             # append pressure time series power sums
             if (self.mapping is True):
                 for node in self.mapping_reference_model.GetModelPart(self.interest_model_part).Nodes:
@@ -203,7 +190,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
                     power_sums = [[S1],[S2],[S3],[S4],[S5],[S6],[S7],[S8],[S9],[S10],M]
                     qoi_list.append(power_sums)
                 assert (len(qoi_list) == \
-                    2*(self.mapping_reference_model.GetModelPart(self.interest_model_part).NumberOfNodes()+2)) # +2 is for drag coefficient and base moment z
+                    2*(self.mapping_reference_model.GetModelPart(self.interest_model_part).NumberOfNodes()+1)) # +1 is for drag force x
             else:
                 for node in self.model.GetModelPart(self.interest_model_part).Nodes:
                     S1 = node.GetValue(KratosMultiphysics.MultilevelMonteCarloApplication.POWER_SUM_1)
@@ -220,7 +207,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
                     power_sums = [[S1],[S2],[S3],[S4],[S5],[S6],[S7],[S8],[S9],[S10],M]
                     qoi_list.append(power_sums)
                 assert (len(qoi_list) \
-                    == 2*(self.model.GetModelPart(self.interest_model_part).NumberOfNodes()+2)) # +2 is for drag force x and base moment z
+                    == 2*(self.model.GetModelPart(self.interest_model_part).NumberOfNodes()+1)) # +1 is for drag force x
         else:
             print("[SCREENING] computing qoi current index:",self.is_current_index_maximum_index)
             qoi_list = None
@@ -240,8 +227,8 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
             "echo_level" : 3
             }""")
         mapper = KratosMultiphysics.MappingApplication.MapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)
-        mapper.Map(KratosMultiphysics.ExaquteSandboxApplication.PRESSURE_WEIGHTED, \
-            KratosMultiphysics.ExaquteSandboxApplication.PRESSURE_WEIGHTED,        \
+        mapper.Map(KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE, \
+            KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE,        \
             KratosMultiphysics.MappingApplication.Mapper.FROM_NON_HISTORICAL |     \
             KratosMultiphysics.MappingApplication.Mapper.TO_NON_HISTORICAL)
         # evaluate qoi

@@ -4,11 +4,12 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 50.0,
+        "end_time"      : 25.0,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
-        }
+        },
+        "burnin_time"   : 10.0
     },
     "output_processes" : {
         "gid_output" : [{
@@ -34,7 +35,7 @@
                         "node_output"         : false,
                         "skin_output"         : false,
                         "nodal_results"       : ["VELOCITY","PRESSURE"],
-                        "nodal_nonhistorical_results" : ["VELOCITY_WEIGHTED","PRESSURE_WEIGHTED","TEMPERATURE"],
+                        "nodal_nonhistorical_results" : ["AVERAGED_VELOCITY","AVERAGED_PRESSURE","TEMPERATURE"],
                         "gauss_point_results" : ["VORTICITY_MAGNITUDE","VORTICITY"]
                     },
                     "point_data_configuration"  : []
@@ -99,6 +100,7 @@
     "processes"        : {
         "initial_conditions_process_list"  : [{
             "python_module" : "kratos_perturbation_process",
+	    "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
             "Parameters"    : {
                 "model_part_name" : "FluidModelPart.Parts_fluid",
                 "correlated_noise_generator" : {
@@ -144,7 +146,7 @@
                                         "node_output"         : false,
                                         "skin_output"         : false,
                                         "plane_output"        : [],
-                                        "nodal_results"       : ["TEMPERATURE","VELOCITY","HEAT_FLUX","VELOCITY_LAPLACIAN","FACE_HEAT_FLUX","VELOCITY_LAPLACIAN_RATE","DIVERGENCE"],
+                                        "nodal_results"       : ["TEMPERATURE","VELOCITY"],
                                         "nodal_nonhistorical_results" : [],
                                         "gauss_point_results" : []
                                     },
@@ -273,20 +275,67 @@
             }
         }],
         "auxiliar_process_list"            : [{
-                "python_module" : "compute_body_fitted_drag_and_moment_process",
+                "python_module" : "compute_body_fitted_drag_process",
                 "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-                "process_name"  : "ComputeBodyFittedDragAndMomentProcess",
+                "process_name"  : "ComputeBodyFittedDragProcess",
                 "Parameters"    : {
                     "model_part_name"        : "FluidModelPart.NoSlip3D_structure",
                     "write_drag_output_file" : true,
-		    "output_file_settings" :{
+        		    "output_file_settings" :{
                         "file_name":  "drag_time_series",
-                        "folder_name": "drag"
+                        "output_path": "drag"
                     },
                     "print_drag_to_screen"   : false,
-                    "reference_point"        : [0.0,0.0,0.0],
                     "interval"               : [0.0,"End"]
                 }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "FluidModelPart.NoSlip3D_structure",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "PRESSURE"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_PRESSURE"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "FluidModelPart",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "VELOCITY"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_VELOCITY"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
         }]
     }
 }

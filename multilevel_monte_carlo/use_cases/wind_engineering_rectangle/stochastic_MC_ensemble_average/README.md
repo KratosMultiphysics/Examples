@@ -2,7 +2,7 @@
 
 **Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc) and [Brendan Keith](https://brendankeith.github.io/)
 
-**Kratos version:** 8.0
+**Kratos version:** 8.1
 
 **XMC version:** 2.0
 

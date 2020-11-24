@@ -1,8 +1,10 @@
+# Import Python libraries
 import sys
 sys.dont_write_bytecode = True
 import os
 import json
 
+# Import XMC
 import xmc
 
 if __name__ == "__main__":
@@ -88,36 +90,3 @@ if __name__ == "__main__":
         algo.runAsynchronousXMC()
     else:
         algo.runXMC()
-
-    ########################################################################################################################################################################################################
-    ########################################################################################################################################################################################################
-    ########################################################################################################################################################################################################
-
-    # from xmc.distributedEnvironmentFramework import *
-    # import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-
-    # # writing to file a dictionary
-    # qoi_dict = {}
-    # for qoi_counter in range (parameters["solverWrapperInputDictionary"]["numberQoI"]):
-    #     qoi_dict[qoi_counter] = {index: {} for index in range (len(algo.monteCarloSampler.indices))}
-    #     for index in range (len(algo.monteCarloSampler.indices)):
-    #         algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter] = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter])
-    #         sample_counter = algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._sampleCounter
-    #         S1 = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[0][0])
-    #         S2 = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][0])
-    #         h1 = get_value_from_remote(mdccm.computeCentralMomentsOrderOneDimensionZero(S1,sample_counter))
-    #         h2 = get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionZero(S1,S2,sample_counter))
-    #         qoi_dict[qoi_counter][index] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "h1": h1, "h2": h2}
-    # for qoi_counter in range (parameters["solverWrapperInputDictionary"]["numberQoI"],parameters["solverWrapperInputDictionary"]["numberQoI"]+parameters["solverWrapperInputDictionary"]["numberCombinedQoi"]):
-    #         qoi_dict[qoi_counter] = {index: {} for index in range (len(algo.monteCarloSampler.indices))}
-    #         for index in range (len(algo.monteCarloSampler.indices)):
-    #             algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter] = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter])
-    #             sample_counter = algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._sampleCounter
-    #             S1 = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[0][0])
-    #             S2 = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][0])
-    #             h1 = get_value_from_remote(mdccm.computeCentralMomentsOrderOneDimensionZero(S1,sample_counter))
-    #             h2 = get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionZeroBiased(S1,S2,sample_counter))
-    #             qoi_dict[qoi_counter][index] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "h1": h1, "h2": h2}
-
-    # with open('MC_asynchronous_power_sums.json', 'w') as f:
-    #     json.dump(qoi_dict, f, indent=2)
