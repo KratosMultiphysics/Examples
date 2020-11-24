@@ -46,7 +46,7 @@
     },
     "randomGeneratorInputDictionary": {
         "generator": "xmc.methodDefs_randomGeneratorWrapper.generator.returnUniformAndTwoNormal",
-        "parameters": [0,4294967295,40.0,0.4,0.1,0.001]
+        "parameters": [0,429496729,40.0,0.4,0.1,0.001]
     },
     "samplerInputDictionary": {
         "randomGenerator": "xmc.randomGeneratorWrapper.RandomGeneratorWrapper",
@@ -56,12 +56,12 @@
     "solverWrapperInputDictionary": {
         "adaptiveRefinementJumpToFinestLevel": false,
         "asynchronous": true,
-        "fakeRandomVariable": [null,40.0,0.1],
+        "fakeRandomVariable": [0,40.0,0.1],
         "index": [],
         "mappingOutputQuantities": false,
         "numberContributionsPerInstance": 1,
-        "numberQoI": 18738,
-        "numberCombinedQoi": 18738,
+        "numberQoI": 18737,
+        "numberCombinedQoi": 18737,
         "outputBatchSize": 1041,
         "parameters": null,
         "printToFile": true,
