@@ -162,6 +162,7 @@
         }],
         "boundary_conditions_process_list" : [{
             "python_module" : "steady_wind_kratos_inlet_process",
+            "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
             "Parameters"    : {
                 "inlet_model_part_name" : "FluidModelPart.AutomaticInlet3D_inlet/Flow",
                 "y0": -432.0,
