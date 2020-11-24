@@ -31,7 +31,7 @@ To run the examples, the user should go inside the source folder and run the `ru
 
 ## Results
 
-The velocity and pressure fields evolution of the problem are shown next.
+The velocity field of the problem are shown next.
 <p align="center">
   <img src="data/velocity.gif" alt="velocity" style="width: 600px;"/>
 </p>
