@@ -4,12 +4,12 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 0.2,
+        "end_time"      : 10,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
         },
-        "burnin_time"   : 0.1
+        "burnin_time"   : 1
     },
     "output_processes" : {
         "gid_output" : [{
