@@ -59,7 +59,7 @@ if __name__ == "__main__":
     if len(argv) == 2: # ProjectParameters is being passed from outside
         parameter_file_name = argv[1]
     else: # using default name
-        parameter_file_name = "problem_settings/ProblemZeroParametersVMS.json"
+        parameter_file_name = "problem_settings/ProjectParametersRectangularCylinder2D_Fractional.json"
 
     with open(parameter_file_name,'r') as parameter_file:
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
