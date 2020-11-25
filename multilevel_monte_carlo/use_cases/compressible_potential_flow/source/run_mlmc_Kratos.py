@@ -8,6 +8,7 @@ import pickle
 
 # Import Kratos, XMC, PyCOMPSs API
 import KratosMultiphysics
+import KratosMultiphysics.MultilevelMonteCarloApplication
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
 from exaqute.ExaquteTaskLocal import *

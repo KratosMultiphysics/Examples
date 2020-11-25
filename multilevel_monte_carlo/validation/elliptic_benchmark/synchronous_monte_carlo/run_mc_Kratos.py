@@ -4,7 +4,9 @@ sys.dont_write_bytecode = True
 import os
 import json
 
-# Import XMC
+# Import Kratos, XMC
+import KratosMultiphysics
+import KratosMultiphysics.MultilevelMonteCarloApplication
 import xmc
 
 if __name__ == "__main__":
