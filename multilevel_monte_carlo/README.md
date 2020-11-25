@@ -16,3 +16,4 @@
 
 ## Remarks
 - In case running with `PyCOMPSs` gives errors, try to replace relative paths with absolute paths, as first attempt to fix the issue.
+- This example make use of some external libraries that are not comptaible with the Kratos Binaries. In order to try this example is necessary to compile Kratos on your own machine
