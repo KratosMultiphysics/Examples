@@ -10,6 +10,8 @@
 
 **Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
+**Applications dependencies:** `CompressiblePotentialFlowApplication`, `MappingApplication`, `MeshingApplication`, `MultilevelMonteCarloApplication`
+
 ## Case Specification
 We solve the [compressible potential flow problem](https://github.com/KratosMultiphysics/Kratos/blob/master/applications/CompressiblePotentialFlowApplication/python_scripts/potential_flow_analysis.py) around an airfoil NACA0012. The problem is characterized by stochastic angle of attack <img src="https://render.githubusercontent.com/render/math?math=\alpha\sim\mathcal{N}(5.0,0.05)"> and stochastic Mach number <img src="https://render.githubusercontent.com/render/math?math=M_{\infty}\sim\mathcal{N}(0.3,0.003)">.
 
