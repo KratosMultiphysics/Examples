@@ -10,6 +10,8 @@
 
 **Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
+**Applications dependencies:** `FluidDynamicsApplication`, `MappingApplication`, `MeshingApplication`, `MultilevelMonteCarloApplication`
+
 ## Case Specification
 We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) of a fluid passing through a bluff body. The problem is characterized by stochastic wind inlet velocity, which follows a power law. Uncertainty is provided by the mean velocity <img src="https://render.githubusercontent.com/render/math?math=u\sim\mathcal{N}(10.0,0.1)"> and a exponent of the law <img src="https://render.githubusercontent.com/render/math?math=\alpha\sim\mathcal{N}(0.12,0.012)">.
 
