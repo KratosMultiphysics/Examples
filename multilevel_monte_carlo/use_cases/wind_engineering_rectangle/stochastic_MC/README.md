@@ -10,6 +10,8 @@
 
 **Source files:** [Asynchronous and Synchronous Monte Carlo](source)
 
+**Applications dependencies:** `ConvectionDiffusionApplication`, `ExaquteSandboxApplication`, `FluidDynamicsApplication`, `MappingApplication`, `MeshingApplication`, `MultilevelMonteCarloApplication`, `StatisticsApplication`
+
 ## Case Specification
 We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) of a fluid passing through a bluff body. The problem is characterized by uniform and stochastic wind inlet velocity. The wind inlet velocity follows the following probability density function <img src="https://render.githubusercontent.com/render/math?math=u_{inlet}\sim\mathcal{N}(2.0,0.02)">.
 
