@@ -26,7 +26,7 @@ The Quantities of Interest of the problem are the drag force, the base moment an
 
 All settings can be observed in the corresponding configuration file of the algorithm, located inside the `problem_settings` folder.
 
-To run the examples, the user should go inside the source folder and run the `run_xmc_mc.py` Python file. In case one wants to use PyCOMPSs, the user should execute `run.sh` from inside the source folder.
+To run the examples, the user should go inside the source folder and run the `run_mc_Kratos.py` Python file. In case one wants to use PyCOMPSs, the user should execute `run.sh` from inside the source folder.
 
 ## Results
 
