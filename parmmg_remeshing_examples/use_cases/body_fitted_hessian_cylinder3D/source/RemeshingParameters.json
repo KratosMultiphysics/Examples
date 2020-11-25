@@ -1,0 +1,32 @@
+{
+    "number_of_iterations"    : 4,
+    "perform_mapping_between_steps"    : false,
+    "mapping_parameters" :         {
+        "mapper_type": "nearest_element",
+        "interface_submodel_part_origin": "Parts_Fluid",
+        "interface_submodel_part_destination": "Parts_Fluid",
+        "search_radius" : 0.001,
+        "echo_level" : 0
+    },
+    "variables_to_remesh" : ["VELOCITY"],
+    "start_time_control_value"             : 5.0,
+    "metric_parameters" :         {
+        "minimal_size"                        : 0.000000001,
+        "maximal_size"                        : 1000.0,
+        "enforce_current"                     : false,
+        "hessian_strategy_parameters":
+        {
+            "non_historical_metric_variable"  : true,
+            "estimate_interpolation_error"    : false,
+            "interpolation_error"             : 0.2
+        },
+        "anisotropy_remeshing"                : true
+    },
+    "parmmg_parameters" :          {
+        "discretization_type"              : "STANDARD",
+        "save_external_files"              : false,
+        "initialize_entities"              : false,
+        "preserve_flags"                   : false,
+        "echo_level"                       : 2
+    }
+}
