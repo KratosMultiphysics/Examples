@@ -11,7 +11,7 @@ This folder contains examples related to  the remeshig process implemented in *K
 
 >  You should have received a copy of the GNU Lesser General Public  License and of the GNU General Public License along with mmg (in files COPYING.LESSER and COPYING). If not, [see the license description](http://www.gnu.org/licenses/). Please read their terms carefully and  use this copy of the mmg distribution only if you accept them.
 
-They are realized using the __MeshingApplication__ using the *MMG* library. For that pourpose download the library *MMG*:
+They are done using the __MeshingApplication__ using the *MMG* library. For that purpose download the library *MMG*:
 
 [MMG Download](http://www.mmgtools.org/mmg-remesher-downloads)
 
@@ -19,17 +19,7 @@ or with:
 
 	git clone https://github.com/MmgTools/mmg.git
 
-Add the following to the main Kratos configure.sh: 
-
-	-DINCLUDE_MMG=ON                                                                  \
-	-DMMG_INCLUDE_DIR="installation_directory/mmg/include/"\
-	-DMMG2D_INCLUDE_DIR="installation_directory/mmg/include/mmg/mmg2d/"\
-	-DMMG3D_INCLUDE_DIR="installation_directory/mmg/include/mmg/mmg3d/"\
-	-DMMGS_INCLUDE_DIR="installation_directory/mmg/include/mmg/mmgs/"\
-	-DMMG_LIBRARY="installation_directory/mmg/lib/libmmg.a"     \
-	-DMMG2D_LIBRARY="installation_directory/mmg/lib/libmmg2d.a" \
-	-DMMG3D_LIBRARY="installation_directoryl_libraries/mmg/lib/libmmg3d.a" \
-	-DMMGS_LIBRARY="installation_directory/mmg/lib/libmmgs.a"   \
+Check out [our guide to download and to compile with MMG.](https://github.com/KratosMultiphysics/Kratos/wiki/%5BUtilities%5D-MMG-Process)
 
 # Examples
 
