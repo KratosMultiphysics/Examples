@@ -15,7 +15,7 @@
 - [Elliptic benchmark](validation/elliptic_benchmark)
 
 ## Remarks
-- To run with `PyCOMPSs`, it is necessary to compile it first. You can find a detailed guide on how to do it [in the Kratos wiki](https://github.com/KratosMultiphysics/Kratos/wiki/How-to-run-multiple-cases-using-PyCOMPSs). In addition, the appropriate import has to be changed from
+- To run with `PyCOMPSs`, it is necessary to compile it first. You can find a detailed guide on how to do it in the [Kratos wiki](https://github.com/KratosMultiphysics/Kratos/wiki/How-to-run-multiple-cases-using-PyCOMPSs). In addition, the appropriate import has to be changed from
 ~~~python
 from exaqute.ExaquteTaskLocal import *
 ~~~
