@@ -1,0 +1,20 @@
+{
+    "number_of_iterations"    : 3,
+    "metric_parameters" :         {
+        "minimal_size"                         : 1.0,
+        "maximal_size"                         : 200.0,
+        "sizing_parameters": {
+            "reference_variable_name"               : "DISTANCE",
+            "boundary_layer_max_distance"           : 2000.0,
+            "interpolation"                         : "linear"
+        },
+        "enforce_current"                      : false
+    },
+    "parmmg_parameters" :          {
+        "discretization_type"              : "STANDARD",
+        "save_external_files"              : false,
+        "initialize_entities"              : false,
+        "preserve_flags"                   : false,
+        "echo_level"                       : 2
+    }
+}
