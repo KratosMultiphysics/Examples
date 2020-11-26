@@ -23,6 +23,7 @@ to
 ~~~python
 from exaqute.ExaquteTaskPyCOMPSs import *
 ~~~
-wherever needed. We refer to the [MultilevelMonteCarloApplication documentation](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MultilevelMonteCarloApplication#pycompss) for further details.
+in the execution script and in `Kratos/applications/MultilevelMonteCarloApplication/external_libraries/XMC/xmc/distributedEnvironmentFramework.py`.
+We refer to the [MultilevelMonteCarloApplication documentation](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MultilevelMonteCarloApplication#pycompss) for further details.
 In case running with `PyCOMPSs` gives errors, try to replace relative paths with absolute paths in configuration `json` files, as first attempt to fix the issue.
 - These examples make use of some external libraries that are not compatible with the Kratos binaries. In order to try these examples, it is necessary to compile Kratos on your own machine.
