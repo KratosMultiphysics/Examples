@@ -10,7 +10,7 @@
 
 **Source files:** [Synchronous Monte Carlo](synchronous_monte_carlo), [Asynchronous Monte Carlo](asynchronous_monte_carlo), [Synchronous Multilevel Monte Carlo](synchronous_multilevel_monte_carlo), [Asynchronous Multilevel Monte Carlo](asynchronous_multilevel_monte_carlo)
 
-**Application dependencies:** `ConvectionDiffusionApplication`, `MeshingApplication`, `MultilevelMonteCarloApplication`
+**Application dependencies:** `ConvectionDiffusionApplication`, `LinearSolversApplications`, `MeshingApplication`, `MultilevelMonteCarloApplication`
 
 ## Case Specification
 Let's consider the stationary heat equation with a varying heat flux, a square two-dimensional domain and Dirichlet boundary conditions. The problem reads as:
