@@ -40,27 +40,27 @@ Some of the main settings to control and customize are:
 
 In  [ProjectParameters.json](source/ProjectParameters.json):
 
-- ["end_time" to change the total length of the simulation](source/ProjectParameters.json#L7)
-- ["time_step" to change the time step used](source/ProjectParameters.json#L67)
-- ["statistics_start_point_control_value", in case AVERAGE quantities are to be used, to set the inital time_step to compute statitcs](source/ProjectParameters.json#L164)
+- ["end_time"](source/ProjectParameters.json#L7) to change the total length of the simulation
+- ["time_step"](source/ProjectParameters.json#L67) to change the time step used
+- ["statistics_start_point_control_value"](source/ProjectParameters.json#L164), in case AVERAGE quantities are to be used, to set the inital time_step to compute statitcs
 
 
 In  [RemeshingParameters.json](source/RemeshingParameters.json):
 
-- ["number_of_iterations" to change the total number of consecutive resolution+remeshing of the simulation](source/RemeshingParameters.json#L2)
-- ["perform_mapping_between_steps" if it is set to `True`, it will map the solution on step `n` to the mesh `n+1`. Set it to `False` to start the simulation from rest at every new step.](source/RemeshingParameters.json#L3)
+- ["number_of_iterations"](source/RemeshingParameters.json#L2) to change the total number of consecutive resolution+remeshing of the simulation.
+- ["perform_mapping_between_steps"](source/RemeshingParameters.json#L3) if it is set to `True`, it will map the solution on step `n` to the mesh `n+1`. Set it to `False` to start the simulation from rest at every new step.
 
-    ### If "perform_mapping_between_steps"  is `True`
-    - ["search_radius" to specify the radius that the mapper will use to perform the mapping. WARNING: setting high values of the search_radius might slow down the mapping.](source/RemeshingParameters.json#L8)
+    If "perform_mapping_between_steps"  is `True`
+    - ["search_radius"](source/RemeshingParameters.json#L8) to specify the radius that the mapper will use to perform the mapping. WARNING: setting high values of the search_radius might slow down the mapping.
 
-- ["variables_to_remesh" to specify the variables of the old mesh to be used to remesh the new mesh.](source/RemeshingParameters.json#L11)
+- ["variables_to_remesh"](source/RemeshingParameters.json#L11) to specify the variables of the old mesh to be used to remesh the new mesh.
     - `VELOCITY`: This will use the velocity at each time step, starting from the [start_time_control_value](source/RemeshingParameters.json#L12).
     - `PRESSURE`: This will use the pressure at each time step, starting from the [start_time_control_value](source/RemeshingParameters.json#L12).
     - `AVERAGE_VELOCITY`: This will use the AVERAGE velocity across the simulation, starting from the [statistics_start_point_control_value](source/ProjectParameters.json#L164).
     - `AVERAGE_PRESSURE`: This will use the AVERAGE pressure across the simulation, starting from the [statistics_start_point_control_value](source/ProjectParameters.json#L164).
 
-- ["start_time_control_value" to set the starting time to start computing the metrics if `VELOCITY` or `PRESSURE` are chosen as variables to remesh the variables of the old mesh to be used to remesh the new mesh.](source/RemeshingParameters.json#L12)
+- ["start_time_control_value"](source/RemeshingParameters.json#L12) to set the starting time to start computing the metrics if `VELOCITY` or `PRESSURE` are chosen as variables to remesh the variables of the old mesh to be used to remesh the new mesh.
 
-- ["minimal_size" to set the minimal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the `interpolation_error` only.](source/RemeshingParameters.json#L14)
-- ["maximal_size" to set the maximal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the `interpolation_error` only.](source/RemeshingParameters.json#L15)
-- ["interpolation_error" to set the error that the remesher will prescribe on the output mesh. Lowering the interpolation error will result in more nodal presence and smaller sized elemnts.](source/RemeshingParameters.json#L21)
+- ["interpolation_error"](source/RemeshingParameters.json#L21) to set the error that the remesher will prescribe on the output mesh. Lowering the interpolation error will result in more nodal presence and smaller sized elemnts.
+- ["minimal_size"](source/RemeshingParameters.json#L14) to set the minimal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the ["interpolation_error"](source/RemeshingParameters.json#L21)  only.
+- ["maximal_size"](source/RemeshingParameters.json#L15) to set the maximal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the ["interpolation_error"](source/RemeshingParameters.json#L21)  only.

@@ -37,13 +37,13 @@ Velocity field
 
 In  [ProjectParameters.json](source/ProjectParameters.json):
 
-- ["end_time" to change the total length of the simulation](source/ProjectParameters.json#L6)
-- ["time_step" to change the time step used](source/ProjectParameters.json#L64)
+- ["end_time"](source/ProjectParameters.json#L6) to change the total length of the simulation.
+- ["time_step"](source/ProjectParameters.json#L64) to change the time step used.
 
 In  [RemeshingParameters.json](source/RemeshingParameters.json):
 
-- ["number_of_iterations" to change the total number of consecutive remeshing steps.](source/RemeshingParameters.json#L2)
-- ["minimal_size" to set the minimal size of the mesh. This will be the size set at `distance=0.0'.](source/RemeshingParameters.json#L4)
-- ["maximal_size" to set the maximal size of the mesh. This will be the size set at `distance=boujdary_layer_max_distance'.](source/RemeshingParameters.json#L5)
-- ["boundary_layer_max_distance" to set the distance up to where the refinement will be performed. Elements outside this distance will keep its initial size.'.](source/RemeshingParameters.json#L8)
-- ["interpolation" to set the interpolation set between the minimal_size and the maximal_size. Possible interpolation settings are: `constant`, `linear`, `exponential`.'](source/RemeshingParameters.json#L9)
+- ["number_of_iterations"](source/RemeshingParameters.json#L2) to change the total number of consecutive remeshing steps.
+- ["minimal_size"](source/RemeshingParameters.json#L4) to set the minimal size of the mesh. This will be the size set at `distance=0.0'.
+- ["maximal_size"](source/RemeshingParameters.json#L5) to set the maximal size of the mesh. This will be the size set at `distance=boundary_layer_max_distance'.
+- ["boundary_layer_max_distance"](source/RemeshingParameters.json#L8) to set the distance up to where the refinement will be performed. Elements outside this distance will keep its initial size.
+- ["interpolation"](source/RemeshingParameters.json#L9) to set the interpolation set between the minimal_size and the maximal_size. Possible interpolation settings are: `constant`, `linear`, `exponential`.
