@@ -26,11 +26,9 @@ except ImportError:
 
 #Kratos Fluid Dynamic Analysis Imports
 from FluidDynamicsAnalysisWithMetrics import FluidDynamicsAnalysisWithMetrics as FluidDynamicsAnalysis
-# from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 
 with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
-print(parameters.PrettyPrintJsonString())
 
 with open("RemeshingParameters.json",'r') as parameter_file:
     remeshing_parameters = KratosMultiphysics.Parameters(parameter_file.read())
