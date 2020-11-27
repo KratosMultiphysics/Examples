@@ -4,7 +4,7 @@
 
 **Kratos version:** 8.1
 
-**MMG version:** 1.5.2
+**MMG version:** 5.5.2
 
 **ParMMG version:** 1.3.0
 
