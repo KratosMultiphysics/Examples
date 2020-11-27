@@ -12,17 +12,17 @@
 
 **Application dependencies:** `FluidDynamicsApplication`, `LinearSolversApplications`, `MappingApplication`, `MeshingApplication`, `MetisApplication`, `TrilinosApplication`
 
-
-![gif](data/embedded_building_gif.gif)
-
 To run this example execute:
 
     export OMP_NUM_THREADS=1
-    mpirun -n 8 python3 MainKratos.py
+    mpirun -n nprocs python3 MainKratos.py
+
+Where `nprocs` is the number of processors to use in the MPI run.
 
 
 This example adaptively refines a background mesh according to the distance to a building. This considerably improves the representation of the building on the mesh. It then start a a fluid dynamic analysis with a constant logarithmic inlet, with the geometry embedded and represented by a distance field.
 
+![gif](data/embedded_building_gif.gif)
 
 ![initial](data/initial_building_cut.png)
 ![final](data/final_building_cut.png)

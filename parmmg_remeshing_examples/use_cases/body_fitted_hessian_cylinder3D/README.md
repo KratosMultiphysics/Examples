@@ -2,7 +2,7 @@
 
 **Author:** Marc Núñez Corbacho
 
-**Kratos version:** 8.1     
+**Kratos version:** 8.1
 
 **MMG version:** 5.5.2
 
@@ -15,10 +15,25 @@
 To run this example execute:
 
     export OMP_NUM_THREADS=1
-    mpirun -n 8 python3 MainKratos.py
+    mpirun -n nprocs python3 MainKratos.py
+
+Where `nprocs` is the number of processors to use in the MPI run.
+
+Initial mesh:
+![initial](data/cylinder_initial.png)
+
+Final mesh after 4 iterations:
+
+![final](data/cylinder_remeshed.png)
 ## Case Specification
 
-This test case solves and remeshes and MPI parallel fluid dynamic problem iteratively using ParMMG. The number of iterations are fixed to 4 as showcase but, can they can be changed in the RemeshingParameters.json
+This test case solves and remeshes and MPI parallel fluid dynamic problem iteratively using ParMMG. Some of the main settings to control and customize are:
 
-![initial](data/cylinder_initial.png)
-![final](data/cylinder_remeshed.png)
+
+In  `ProjectParameters.json`:
+
+["end_time" to change the total length of the simulation](source/ProjectParameters.json#L7)
+
+
+ The number of iterations are fixed to 4 as showcase but, can they can be changed in the RemeshingParameters.json
+
