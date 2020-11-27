@@ -35,6 +35,14 @@ with open("RemeshingParameters.json",'r') as parameter_file:
 
 iterations = remeshing_parameters["number_of_iterations"].GetInt()
 
+if remeshing_parameters["start_time_control_value"].GetDouble()>parameters["problem_data"]["end_time"].GetDouble():
+    remeshing_parameters["start_time_control_value"].SetDouble(parameters["problem_data"]["end_time"].GetDouble()/2.0)
+    KratosMultiphysics.Logger.PrintWarning("Start time to compute the metric is greater than end_time, it has been overwritten to start_time=end_time/2")
+statistics_parameters = parameters["processes"]["auxiliar_process_list"][1]["Parameters"]
+if statistics_parameters["statistics_start_point_control_value"].GetDouble()>parameters["problem_data"]["end_time"].GetDouble():
+    statistics_parameters["statistics_start_point_control_value"].SetDouble(parameters["problem_data"]["end_time"].GetDouble()/2.0)
+    KratosMultiphysics.Logger.PrintWarning("Start time to compute the average is greater than end_time, it has been overwritten to start_time=end_time/2")
+
 # Reading some parameters to set-up the output files.
 communicator = KratosMultiphysics.DataCommunicator.GetDefault()
 rank = communicator.Rank()
@@ -106,6 +114,14 @@ for step in range(1,iterations+1):
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
     with open("RemeshingParameters.json",'r') as parameter_file:
         remeshing_parameters = KratosMultiphysics.Parameters(parameter_file.read())
+
+    if remeshing_parameters["start_time_control_value"].GetDouble()>parameters["problem_data"]["end_time"].GetDouble():
+        remeshing_parameters["start_time_control_value"].SetDouble(parameters["problem_data"]["end_time"].GetDouble()/2.0)
+        KratosMultiphysics.Logger.PrintWarning("Start time to compute the metric is greater than end_time, it has been overwritten to start_time=end_time/2")
+    statistics_parameters = parameters["processes"]["auxiliar_process_list"][1]["Parameters"]
+    if statistics_parameters["statistics_start_point_control_value"].GetDouble()>parameters["problem_data"]["end_time"].GetDouble():
+        statistics_parameters["statistics_start_point_control_value"].SetDouble(parameters["problem_data"]["end_time"].GetDouble()/2.0)
+        KratosMultiphysics.Logger.PrintWarning("Start time to compute the average is greater than end_time, it has been overwritten to start_time=end_time/2")
 
     # Preparing settings to run an already loaded model
     parameters["solver_settings"]["model_import_settings"]["input_type"].SetString("use_input_model_part")
