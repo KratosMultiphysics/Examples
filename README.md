@@ -94,6 +94,13 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Hessian3D](mmg_remeshing_examples/validation/hessian3D/README.md)
 - [Bunny example](mmg_remeshing_examples/validation/bunny/README.md)
 
+
+## ParMMG remeshing
+**Use Cases**
+
+- [Body-fitted cylinder 3D](parmmg_remeshing_examples/use_cases/body_fitted_hessian_cylinder3D/README.md)
+- [Embedded building 3D](parmmg_remeshing_examples/use_cases/embedded_level_set_building3D/README.md)
+
 ## Poromechanics
 
 **Use cases**

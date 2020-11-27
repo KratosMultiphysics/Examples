@@ -10,7 +10,7 @@
 
 **Source files:** [MPI Embedded building 3D](https://github.com/KratosMultiphysics/Examples/tree/master/parmmg_remeshing_examples/use_cases/embedded_level_set_building3D/source)
 
-**Application dependencies:** `FluidDynamicsApplication`, `LinearSolversApplications`, `MappingApplication`, `MeshingApplication`, `MetisApplication`, `TrilinosApplication`
+**Application dependencies:** `FluidDynamicsApplication`, `LinearSolversApplications`, `MeshingApplication`, `MetisApplication`, `TrilinosApplication`
 
 
 ![gif](data/embedded_building_gif.gif)
