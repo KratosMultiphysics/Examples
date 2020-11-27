@@ -12,6 +12,9 @@
 
 **Application dependencies:** `FluidDynamicsApplication`, `LinearSolversApplications`, `MappingApplication`, `MeshingApplication`, `MetisApplication`, `TrilinosApplication`
 
+
+![gif](data/embedded_building_gif.gif)
+
 To run this example execute:
 
     export OMP_NUM_THREADS=1
