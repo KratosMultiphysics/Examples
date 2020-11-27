@@ -21,8 +21,9 @@ The path to *MMG* will also be required:
 
 These examples were prepared with versions:
 
-*MMG* v5.5.2
-*ParMMG* v1.3.0
+**MMG version:** v5.5.2
+
+**ParMMG version:** v1.3.0
 ## Use Cases
 
 - [Body-fitted cylinder hessian 3D](use_cases/body_fitted_hessian_cylinder3D/README.md)

@@ -25,15 +25,42 @@ Initial mesh:
 Final mesh after 4 iterations:
 
 ![final](data/cylinder_remeshed.png)
-## Case Specification
+## How to use
 
-This test case solves and remeshes and MPI parallel fluid dynamic problem iteratively using ParMMG. Some of the main settings to control and customize are:
+This test case solves and remeshes and MPI parallel fluid dynamic problem iteratively using ParMMG. It uses a Hessian approach, based on:
+
+*Frédéric Alauzet*. Metric-Based Anisotropic Mesh Adaptation. Course material, CEA-EDF-INRIA Schools. Numerical Analysis Summer School.  [https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf)
+
+*Pascal Tremblay* 2-D, 3-D and 4-D Anisotropic Mesh Adaptation for the Time-Continuous Space-Time Finite Element Method with Applications to the Incompressible Navier-Stokes Equations. PhD thesis Ottawa-Carleton Institute for Mechanical and Aerospace Engineering, Department of Mechanical Engineering, University of Ottawa. 2007. [http://aix1.uottawa.ca/~ybourg/thesis/PhDThesis_Pascal_Tremblay_Final.pdf](http://aix1.uottawa.ca/~ybourg/thesis/PhDThesis_Pascal_Tremblay_Final.pdf)
+
+Which allows to use the fields of previous simulations to adaptively refine the mesh by using its Hessian.
+
+Some of the main settings to control and customize are:
 
 
-In  `ProjectParameters.json`:
+In  [ProjectParameters.json](source/ProjectParameters.json):
 
-["end_time" to change the total length of the simulation](source/ProjectParameters.json#L7)
+- ["end_time" to change the total length of the simulation](source/ProjectParameters.json#L7)
+- ["time_step" to change the time step used](source/ProjectParameters.json#L67)
+- ["statistics_start_point_control_value", in case AVERAGE quantities are to be used, to set the inital time_step to compute statitcs](source/ProjectParameters.json#L164)
 
 
- The number of iterations are fixed to 4 as showcase but, can they can be changed in the RemeshingParameters.json
+In  [RemeshingParameters.json](source/RemeshingParameters.json):
 
+- ["number_of_iterations" to change the total number of consecutive resolution+remeshing of the simulation](source/RemeshingParameters.json#L2)
+- ["perform_mapping_between_steps" if it is set to `True`, it will map the solution on step `n` to the mesh `n+1`. Set it to `False` to start the simulation from rest at every new step.](source/RemeshingParameters.json#L3)
+
+    ### If "perform_mapping_between_steps"  is `True`
+    - ["search_radius" to specify the radius that the mapper will use to perform the mapping. WARNING: setting high values of the search_radius might slow down the mapping.](source/RemeshingParameters.json#L8)
+
+- ["variables_to_remesh" to specify the variables of the old mesh to be used to remesh the new mesh.](source/RemeshingParameters.json#L11)
+    - `VELOCITY`: This will use the velocity at each time step, starting from the [start_time_control_value](source/RemeshingParameters.json#L12).
+    - `PRESSURE`: This will use the pressure at each time step, starting from the [start_time_control_value](source/RemeshingParameters.json#L12).
+    - `AVERAGE_VELOCITY`: This will use the AVERAGE velocity across the simulation, starting from the [statistics_start_point_control_value](source/ProjectParameters.json#L164).
+    - `AVERAGE_PRESSURE`: This will use the AVERAGE pressure across the simulation, starting from the [statistics_start_point_control_value](source/ProjectParameters.json#L164).
+
+- ["start_time_control_value" to set the starting time to start computing the metrics if `VELOCITY` or `PRESSURE` are chosen as variables to remesh the variables of the old mesh to be used to remesh the new mesh.](source/RemeshingParameters.json#L12)
+
+- ["minimal_size" to set the minimal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the `interpolation_error` only.](source/RemeshingParameters.json#L14)
+- ["maximal_size" to set the maximal size of the mesh. WARNING: This only works as a truncation value. It is recomended to control the size of the mesh using the `interpolation_error` only.](source/RemeshingParameters.json#L15)
+- ["interpolation_error" to set the error that the remesher will prescribe on the output mesh. Lowering the interpolation error will result in more nodal presence and smaller sized elemnts.](source/RemeshingParameters.json#L21)

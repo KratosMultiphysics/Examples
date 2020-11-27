@@ -19,11 +19,31 @@ To run this example execute:
 
 Where `nprocs` is the number of processors to use in the MPI run.
 
+This example adaptively refines a background mesh according to the distance to a building. The refinement is then driven by the distance field only, and we can customize the size of the elements according to this, depending on how close/far are they from the geometry. Check the instructions below to modify these parameters.
 
-This example adaptively refines a background mesh according to the distance to a building. This considerably improves the representation of the building on the mesh. It then start a a fluid dynamic analysis with a constant logarithmic inlet, with the geometry embedded and represented by a distance field.
+This considerably improves the representation of the building on the mesh. It then start a a fluid dynamic analysis with a constant logarithmic inlet, with the geometry embedded and represented by a distance field.
 
+Initial discretization
+![initial](data/initial_building_cut.png)
+
+Final discretization
+![final](data/final_building_cut.png)
+![final_zoom](data/final_building_cut_zoom.png)
+
+Velocity field
 ![gif](data/embedded_building_gif.gif)
 
-![initial](data/initial_building_cut.png)
-![final](data/final_building_cut.png)
-![final](data/final_building_cut_zoom.png)
+## How to use
+
+In  [ProjectParameters.json](source/ProjectParameters.json):
+
+- ["end_time" to change the total length of the simulation](source/ProjectParameters.json#L6)
+- ["time_step" to change the time step used](source/ProjectParameters.json#L64)
+
+In  [RemeshingParameters.json](source/RemeshingParameters.json):
+
+- ["number_of_iterations" to change the total number of consecutive remeshing steps.](source/RemeshingParameters.json#L2)
+- ["minimal_size" to set the minimal size of the mesh. This will be the size set at `distance=0.0'.](source/RemeshingParameters.json#L4)
+- ["maximal_size" to set the maximal size of the mesh. This will be the size set at `distance=boujdary_layer_max_distance'.](source/RemeshingParameters.json#L5)
+- ["boundary_layer_max_distance" to set the distance up to where the refinement will be performed. Elements outside this distance will keep its initial size.'.](source/RemeshingParameters.json#L8)
+- ["interpolation" to set the interpolation set between the minimal_size and the maximal_size. Possible interpolation settings are: `constant`, `linear`, `exponential`.'](source/RemeshingParameters.json#L9)
