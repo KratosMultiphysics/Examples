@@ -12,7 +12,11 @@
 
 **Application dependencies:** `FluidDynamicsApplication`, `LinearSolversApplications`, `MeshingApplication`, `MetisApplication`, `TrilinosApplication`
 
-To run this example execute:
+To run this example, please first unzip the file:
+
+[skin_building.zip](source/skin_building.zip)
+
+ And then execute:
 
     export OMP_NUM_THREADS=1
     mpirun -n nprocs python3 MainKratos.py
