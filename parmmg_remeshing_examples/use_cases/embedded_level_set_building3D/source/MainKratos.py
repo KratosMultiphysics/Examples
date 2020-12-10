@@ -70,8 +70,10 @@ class Remesher():
         self.skin_model_part.ProcessInfo.SetValue(KratosMultiphysics.DOMAIN_SIZE, self.project_parameters["solver_settings"]["domain_size"].GetInt())
         self.skin_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.VELOCITY)
         self.skin_model_part.AddNodalSolutionStepVariable(KratosMultiphysics.FLAG_VARIABLE)
-
-        KratosMultiphysics.ModelPartIO('skin_building').ReadModelPart(self.skin_model_part)
+        try:
+            KratosMultiphysics.ModelPartIO('skin_building').ReadModelPart(self.skin_model_part)
+        except:
+            raise(Exception("skin_building.mdpa not found. Please check that you have unzipped the file skin_building.zip"))
 
     def InitializeGeometry(self):
         # Computing continuous distance required to compute the metric (only on intersected elements)
