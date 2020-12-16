@@ -291,7 +291,7 @@
         "index": [],
         "mappingOutputQuantities": false,
         "numberContributionsPerInstance": 1,
-        "numberQoI": 1932,
+        "numberMomentEstimator": 1932,
         "numberTimePowerSums": 1932,
         "parameters": null,
         "printToFile": true,
