@@ -1,1 +1,0 @@
-skin_building.mdpa filter=lfs diff=lfs merge=lfs -text
