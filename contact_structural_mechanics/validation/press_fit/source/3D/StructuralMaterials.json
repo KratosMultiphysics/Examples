@@ -4,14 +4,12 @@
         "properties_id"   : 1,
         "Material"        : {
             "constitutive_law" : {
-                "name" : "HyperElastic3DLaw",
-                "FRICTION_COEFFICIENT": 0.1
+                "name" : "HyperElastic3DLaw"
             },
             "Variables"        : {
                 "DENSITY"       : 7850.0,
                 "YOUNG_MODULUS" : 21000000000.0,
-                "POISSON_RATIO" : 0.3,
-                "FRICTION_COEFFICIENT": 0.1
+                "POISSON_RATIO" : 0.3
             },
             "Tables"           : {}
         }
@@ -20,14 +18,12 @@
         "properties_id"   : 2,
         "Material"        : {
             "constitutive_law" : {
-                "name" : "HyperElastic3DLaw",
-                "FRICTION_COEFFICIENT": 0.1
+                "name" : "HyperElastic3DLaw"
             },
             "Variables"        : {
                 "DENSITY"       : 7850.0,
                 "YOUNG_MODULUS" : 1000000000.0,
-                "POISSON_RATIO" : 0.47,
-                "FRICTION_COEFFICIENT": 0.1
+                "POISSON_RATIO" : 0.47
             },
             "Tables"           : {}
         }
