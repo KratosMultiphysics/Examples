@@ -92,6 +92,7 @@
             "process_name"  : "ALMContactProcess",
             "Parameters"    : {
                 "model_part_name"       : "Structure",
+                "operator_threshold"    : 1.0e-16,
                 "friction_coefficients" : {
                     "0" : 0.1
                 },
