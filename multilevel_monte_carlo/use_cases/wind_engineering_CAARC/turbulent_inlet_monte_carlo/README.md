@@ -1,4 +1,4 @@
-# Turbulent inlet wind engineering CAARC problem with ensemble average approach
+# Turbulent inlet wind engineering CAARC problem with Monte Carlo method
 
 **Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc) and [Brendan Keith](https://brendankeith.github.io/)
 
