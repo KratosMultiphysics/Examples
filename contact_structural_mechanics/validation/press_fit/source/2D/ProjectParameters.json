@@ -87,6 +87,9 @@
             "process_name"  : "ALMContactProcess",
             "Parameters"    : {
                 "model_part_name"     : "Structure",
+                "friction_coefficients" : {
+                    "0" : 0.1
+                },
                 "contact_model_part"  : {
                     "0" : ["CONTACT_Contact_slave_Auto1","CONTACT_Contact_master_Auto1"]
                 },
@@ -121,7 +124,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.008666666666666667,
+                        "output_interval"     : 0.008666666666666667,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -143,12 +146,12 @@
             "Parameters"    : {
                 "model_part_name"                    : "Structure",
                 "output_control_type"                : "time",
-                "output_frequency"                   : 0.008666666666666667,
+                "output_interval"                    : 0.008666666666666667,
                 "file_format"                        : "ascii",
                 "output_precision"                   : 7,
                 "output_sub_model_parts"             : false,
                 "write_deformed_configuration"       : true,
-                "folder_name"                        : "vtk_output",
+                "output_path"                        : "vtk_output",
                 "save_output_files_in_folder"        : true,
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP","WEIGHTED_SLIP"],
                 "nodal_data_value_variables"         : ["AUGMENTED_NORMAL_CONTACT_PRESSURE","AUGMENTED_TANGENT_CONTACT_PRESSURE","TANGENT_XI"],

@@ -29,3 +29,5 @@ The problem stated above has been solved with a structured mesh with 4x100 divis
 D.P. Mok. Partitionierte Lösungsansätze in der Strukturdynamik und der Fluid−Struktur−Interaktion. PhD thesis: Institut für Baustatik, Universität Stuttgart, 2001. [https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf](https://www.ibb.uni-stuttgart.de/publikationen/fulltext_new/2001/mok_1-2001.pdf)
 
 G. Valdés. Nonlinear Analysis of Orthotropic Membrane and Shell Structures Including Fluid-Structure Interaction. PhD thesis: Universitat Politècnica de Catalunya, 2007. [http://www.tdx.cat/handle/10803/6866](http://www.tdx.cat/handle/10803/6866)
+
+R. Zorrilla, R. Rossi, R. Wüchner, and E. Oñate. An embedded Finite Element framework for the resolution of strongly coupled fluid–structure interaction prob- lems. Application to volumetric and membrane-like structures. Computer Methods in Applied Mechanics and Engineering, 368:113179, 2020. [https://doi.org/10.1016/j.cma.2020.113179](https://doi.org/10.1016/j.cma.2020.113179)
