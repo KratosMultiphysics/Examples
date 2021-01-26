@@ -140,8 +140,8 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
     - [Stochastic wind engineering rectangle problem](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/stochastic_MC)
     - [Stochastic wind engineering rectangle problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_rectangle/stochastic_MC_ensemble_average)
 - [Wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC)
-    - [Steady inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/deterministic_steady_inlet_ensemble_average)
-    - [Turbulent inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/deterministic_turbulent_inlet_ensemble_average)
+    - [Steady inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/steady_inlet_ensemble_average)
+    - [Turbulent inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/turbulent_inlet_monte_carlo)
 
 **Validation Cases**
 - [Elliptic benchmark](multilevel_monte_carlo/validation/elliptic_benchmark)
