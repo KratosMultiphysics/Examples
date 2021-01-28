@@ -97,7 +97,7 @@
             "process_name"  : "GiDOutputProcess",
             "help"          : "This process writes postprocessing files for GiD",
             "Parameters"    : {
-                "model_part_name"        : "Structure.computing_domain",
+                "model_part_name"        : "Structure",
                 "output_name"            : "demfem_m1",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
