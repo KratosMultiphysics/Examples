@@ -11,7 +11,7 @@ This is a 2D simulation of a NACA0012 profile under transonic flow conditions (M
 
 The problem geometry consists in a rectangular 20x25m channel with a 12.5m radius semicilinder attached to its left edge. The front tip of the unit length NACA0012 profile is located at the (0.0,0.0)m coordinates.
 
-The normal component of the momentum is set to zero in the top, bottom and aerofoil walls. The momentum is also set to zero in the trailing edge of the NACA0012 profile. According to the transonic nature of the flow, the momentum, density and energy are fixed in the semicilinder inlet region to 266.67_Kg/m<sup>2</sup>s_, 1_Kg/m<sup>3</sup>_ and 232.7_kJ_. A free stream condition is considered in the outlet.
+The normal component of the momentum is set to zero in the top, bottom and aerofoil walls. The momentum is also set to zero in the trailing edge of the NACA0012 profile. According to the transonic nature of the flow, the momentum, density and energy are fixed in the semicilinder inlet region to 266.67 _Kg/m<sup>2</sup>s_, 1 _Kg/m<sup>3</sup>_ and 232.7 _kJ_. A free stream condition is considered in the outlet.
 
 Concerning the material, a Newtonian fluid with the characteristic parameters listed below is used.
 * Dynamic viscosity (&mu;): 2E-05 _Kg/ms_
