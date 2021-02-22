@@ -26,11 +26,6 @@ The problem is solved with a Variational Multi-Scale stabilized compressible Nav
 
 The computational domain is meshed with 42k linear triangular elements. Below three snapshots depicting the Mach number, density and shock sensor fields are shown. As it can be observed, the expected symmetric solution and shocks are obtained.
 
-## References
-(1) Bayona Roa, C.A., Baiges, J. and Codina, R. (2016), Variational multi-scale finite element approximation of the compressible Navier-Stokes equations, International Journal of Numerical Methods for Heat & Fluid Flow, Vol. 26 No. 3/4, pp. 1240-1271. [https://doi.org/10.1108/HFF-11-2015-0483 ](https://doi.org/10.1108/HFF-11-2015-0483 )
-
-(2) Fernandez, P., Nguyen, C., & Peraire, J. (2018), A physics-based shock capturing method for unsteady laminar and turbulent flows. In 2018 AIAA Aerospace Sciences Meeting (p. 0062). [https://doi.org/10.2514/6.2018-0062](https://doi.org/10.2514/6.2018-0062)
-
 <p align="center">
   <img src="data/transonic_naca_0012_mach.png" alt="Transonic flow around a NACA0012 profile Mach number field." style="width: 600px;"/>
 </p>
@@ -39,7 +34,11 @@ The computational domain is meshed with 42k linear triangular elements. Below th
   <img src="data/transonic_naca_0012_density.png" alt="Transonic flow around a NACA0012 profile density field [Kg/m<sup>3</sup>]." style="width: 600px;"/>
 </p>
 
-
 <p align="center">
   <img src="data/transonic_naca_0012_shock_sensor.png" alt="Transonic flow around a NACA0012 profile shock sensor field." style="width: 600px;"/>
 </p>
+
+## References
+(1) Bayona Roa, C.A., Baiges, J. and Codina, R. (2016), Variational multi-scale finite element approximation of the compressible Navier-Stokes equations, International Journal of Numerical Methods for Heat & Fluid Flow, Vol. 26 No. 3/4, pp. 1240-1271. [https://doi.org/10.1108/HFF-11-2015-0483 ](https://doi.org/10.1108/HFF-11-2015-0483 )
+
+(2) Fernandez, P., Nguyen, C., & Peraire, J. (2018), A physics-based shock capturing method for unsteady laminar and turbulent flows. In 2018 AIAA Aerospace Sciences Meeting (p. 0062). [https://doi.org/10.2514/6.2018-0062](https://doi.org/10.2514/6.2018-0062)
