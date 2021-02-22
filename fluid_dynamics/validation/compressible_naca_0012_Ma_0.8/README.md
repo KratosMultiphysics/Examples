@@ -16,7 +16,7 @@ The normal component of the momentum is set to zero in the top, bottom and aerof
 Concerning the material, a Newtonian fluid with the characteristic parameters listed below is used.
 * Dynamic viscosity (&mu;): 2E-05 _Kg/ms_
 * Thermal conductivity (&kappa;): 0.024 _J/sKm_
-* Specific heat (_c<inf>p</inf>_): 722.14 _J/KgK_
+* Specific heat (_c<sub>p</sub>_): 722.14 _J/KgK_
 * Heat capacity ratio (&gamma;): 1.4
 
 An adaptive time step strategy based on the CFL and Fourier numbers is used.
