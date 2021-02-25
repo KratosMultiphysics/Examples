@@ -68,9 +68,11 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 ## Fluid-Structure Interaction (FSI)
 
 **Validation**
-- [FSI lid driven cavity](fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md)
-- [Mok benchmark](fluid_structure_interaction/validation/fsi_mok/README.md)
-- [Turek benchmark -FSI2](fluid_structure_interaction/validation/fsi_turek_FSI2/README.md)
+- [FSI lid driven cavity](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md)
+- [Mixer with flexible blades (embedded)](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/embedded_fsi_mixer_Y/README.md)
+- [Mok benchmark](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/fsi_mok/README.md)
+- [Mok benchmark (embedded)](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/embedded_fsi_mok/README.md)
+- [Turek benchmark - FSI2](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/fsi_turek_FSI2/README.md)
 
 ## MMG remeshing
 
