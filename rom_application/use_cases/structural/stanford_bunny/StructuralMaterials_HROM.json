@@ -1,0 +1,17 @@
+{
+    "properties" : [{
+        "model_part_name" : "Structure.COMPUTE_HROM.Parts_Parts_Auto1",
+        "properties_id"   : 1,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "LinearElastic3DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"       : 2650.0,
+                "YOUNG_MODULUS" : 5000000000.0,
+                "POISSON_RATIO" : 0.22
+            },
+            "Tables"           : {}
+        }
+    }]
+}
