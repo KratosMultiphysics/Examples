@@ -1,0 +1,101 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "2_1_1_ROM_Transient_Lin",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 1,
+        "start_time"    : 0.0,
+        "end_time"      : 10
+    },
+    "solver_settings"  : {
+        "solver_type"                        : "dynamic",
+        "model_part_name"                    : "Structure",
+        "domain_size"                        : 3,
+        "echo_level"                         : 2,
+        "analysis_type"                      : "linear",
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "Generic_Tower"
+        },
+        "material_import_settings"           : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"                      : {
+            "time_step" : 0.01
+        },
+        "rotation_dofs"                      : true
+    },
+    "processes"        : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.FixedEdgeNodes",
+                "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.FixedEdgeNodes",
+                "variable_name"   : "ROTATION",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [false,false,true],
+                "value"           : [null,null,0.0]
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.SLAVE_Surface_Top",
+                "variable_name"   : "POINT_LOAD",
+                "interval"        : [0.0,1.0],
+                "modulus"         : "10 * t",
+                "direction"       : [0.0,0.0,1.0]
+            }
+        },{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.SLAVE_Surface_Top",
+                "variable_name"   : "POINT_LOAD",
+                "interval"        : [1.1,"End"],
+                "modulus"         : 0,
+                "direction"       : [0.0,0.0,1.0]
+            }
+        }],
+        "list_other_processes"     : []
+    },
+    "output_processes" : {
+        "gid_output" : [],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "output_control_type"                : "step",
+                "output_frequency"                   : 1,
+                "file_format"                        : "binary",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "folder_name"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT"],
+                "nodal_data_value_variables"         : [],
+                "element_data_value_variables"       : [],
+                "condition_data_value_variables"     : []
+            }
+        }]
+    }
+}
