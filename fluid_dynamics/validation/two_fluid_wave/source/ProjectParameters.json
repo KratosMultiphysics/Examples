@@ -55,7 +55,7 @@
             "coarse_enough" : 500
     	},
         "distance_modification_settings": {
-            "distance_threshold": 0.0000001
+            "distance_threshold": 1e-7
         }
     },
 	"processes"	:	{
