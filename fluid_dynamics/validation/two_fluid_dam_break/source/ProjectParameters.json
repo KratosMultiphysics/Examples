@@ -41,7 +41,10 @@
        		"solver_type": "amgcl",
  			"max_iteration": 200,
         	"tolerance": 1e-6
-    	}
+    	},
+		"distance_modification_settings": {
+			"distance_threshold": 0.01
+		}
     },
 	"processes"	:	{
     	"initial_conditions_process_list"  : [],
@@ -76,19 +79,7 @@
             	"direction"       : [0.0,0.0,-1.0]
         	}
     	}],
-    	"auxiliar_process_list"            : [{
-        	"python_module" : "apply_distance_modification_process",
-        	"kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-        	"process_name"  : "ApplyDistanceModificationProcess",
-        	"Parameters"    : {
-            	"model_part_name"                        : "FluidModelPart.Parts_Fluid",
-            	"distance_threshold"                     : 0.01,
-            	"check_at_each_time_step"                : false,
-            	"avoid_almost_empty_elements"            : true,
-            	"deactivate_full_negative_elements"      : false,
-            	"recover_original_distance_at_each_step" : false
-        	}
-    	}]
+    	"auxiliar_process_list"            : []
 	},
 	"output_processes" 	:	{
         "gid_output" : [{
@@ -109,7 +100,7 @@
                         },
                         "file_label"          : "time",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.01,
+                        "output_interval"     : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
