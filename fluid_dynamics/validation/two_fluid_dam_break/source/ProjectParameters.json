@@ -43,7 +43,7 @@
         	"tolerance": 1e-6
     	},
 		"distance_modification_settings": {
-			"distance_threshold": 0.01
+			"distance_threshold": 1e-2
 		}
     },
 	"processes"	:	{
