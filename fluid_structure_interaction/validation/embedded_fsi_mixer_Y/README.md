@@ -9,7 +9,7 @@
 ## Case Specification
 This example is specifically conceived to prove the extended scope of applicatoin of embedded mesh methods. Hence, it involves extremely large rotations, which would be impossible to solve by using a body fitted ALE based approach.
 
-The problem is set up as a 2D idealization of a turbine mixer with clockwise-anticlockwise alternate rotation. The problem geometry is a unit diameter circle with three embedded flexible blades. An imposed rotation is enforced in the blades axis to emulate the spin of the rotor. Such rotation changes the direction (anticlockwise to clockwise and viceversa) after More details on the dimensions, material settings and boundary conditions can be found in [not available yet](link_to_article_here).
+The problem is set up as a 2D idealization of a turbine mixer with clockwise-anticlockwise alternate rotation. The problem geometry is a unit diameter circle with three embedded flexible blades. An imposed rotation is enforced in the blades axis to emulate the spin of the rotor. Such rotation changes the direction (anticlockwise to clockwise and viceversa) after More details on the dimensions, material settings and boundary conditions can be found in [here](https://doi.org/10.1016/j.cma.2020.113179).
 
 ## Results
 The fluid domain is meshed with a 45 and 540 radial and perimeter subdivisions Q1P1 elements centered structured mesh. Each one of the flexible blades is meshed with an 8x39 subdivisions structured mesh made with Total Lagrangian quadrilateral elements. The problem is run for 20s so three complete rotations (anticlockwise - clockwise - anticlockwise) are simulated.
