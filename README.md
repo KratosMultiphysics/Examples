@@ -134,7 +134,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [No Newtonian 3D](pfem2/use_cases/no_newtonian_3d/README.md)
 - [Rayleigh](pfem2/use_cases/rayleigh/README.md)
 
-## Multilevel Monte Carlo
+## Monte Carlo & Multilevel Monte Carlo
 
 **Use Cases**
 - [Compressible potential flow problem](multilevel_monte_carlo/use_cases/compressible_potential_flow/README.md)
