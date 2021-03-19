@@ -2,7 +2,7 @@
 
 **Author:** Klaus B. Sautter
 
-**Kratos version:** 5.2
+**Kratos version:** 9.0
 
 **Source files:** [Beam Non-Linear Cantilever](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_nonlinear_cantilever/source)
 
