@@ -23,26 +23,12 @@
             "time_step"       : 1.1
         },
         "eigensolver_settings":{
-            "solver_type": "FEAST",
-            "print_feast_output": true,
-            "perform_stochastic_estimate": false,
-            "solve_eigenvalue_problem": true,
-            "lambda_min": 10,
-            "lambda_max": 10000,
-            "search_dimension": 40,
-            "linear_solver_settings":{
-                "solver_type": "skyline_lu_complex"
-            }
+            "solver_type"           : "eigen_eigensystem",
+            "max_iteration"         : 1000,
+            "tolerance"             : 1e-6,
+            "number_of_eigenvalues" : 5,
+            "echo_level"            : 1
         },
-        "line_search"                        : false,
-        "convergence_criterion"              : "residual_criterion",
-        "displacement_relative_tolerance"    : 0.0001,
-        "displacement_absolute_tolerance"    : 1e-9,
-        "residual_relative_tolerance"        : 0.0001,
-        "residual_absolute_tolerance"        : 1e-9,
-        "max_iteration"                      : 10,
-        "problem_domain_sub_model_part_list" : ["Parts_domain"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_dirichlet","ROTATION_dirichlet"],
         "rotation_dofs"                      : true
     },
     "processes" : {
@@ -76,7 +62,6 @@
         "list_other_processes" : [{
             "python_module"   : "postprocess_eigenvalues_process",
             "kratos_module"   : "KratosMultiphysics.StructuralMechanicsApplication",
-            "help"                  : "This process postprocces the eigen values for GiD",
             "process_name"          : "PostProcessEigenvaluesProcess",
             "Parameters"            : {
                 "result_file_name" : "Beam"
