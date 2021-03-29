@@ -4,14 +4,14 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 1.0,
+        "end_time"      : 50.0,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
         },
-        "burnin_time"   : 0.3,
+        "burnin_time"   : 10.0,
         "random_reference_velocity" : false,
-        "random_roughness_height" : true
+        "random_roughness_height" : false
     },
     "solver_settings"  : {
         "model_part_name"                 : "FluidModelPart",

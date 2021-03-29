@@ -23,7 +23,7 @@
         "qoiEstimator": [],
         "qoiEstimatorInputDictionary": [],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
-        "eventGroupSize": 2
+        "eventGroupSize": 1
     },
     "monteCarloSamplerInputDictionary": {
         "assemblersForError": [[1]],
@@ -51,7 +51,7 @@
         "fakeRandomVariable": [0,40.0,2.0,0],
         "index": [],
         "mappingOutputQuantities": false,
-        "numberContributionsPerInstance": 2,
+        "numberContributionsPerInstance": 1,
         "numberMomentEstimator": 18738,
         "numberCombinedMomentEstimator": 18738,
         "outputBatchSize": 1041,
