@@ -9,5 +9,5 @@ This folder contains the use cases:
     - [Stochastic wind engineering rectangle problem](wind_engineering_rectangle/stochastic_MC)
     - [Stochastic wind engineering rectangle problem with ensemble average approach](wind_engineering_rectangle/stochastic_MC_ensemble_average)
 - [Wind engineering CAARC problem](wind_engineering_CAARC)
-    - [Steady inlet wind engineering CAARC problem with ensemble average approach](wind_engineering_CAARC/steady_inlet_ensemble_average)
-    - [Turbulent inlet wind engineering CAARC problem with Monte Carlo method](wind_engineering_CAARC/turbulent_inlet_monte_carlo)
+    - [Steady inlet wind engineering CAARC problem with ensemble average approach](wind_engineering_CAARC/steady_inlet_monte_carlo)
+    - [Turbulent inlet wind engineering CAARC problem with ensemble average approach](wind_engineering_CAARC/turbulent_inlet_monte_carlo)
