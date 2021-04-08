@@ -79,15 +79,15 @@
             "solve_mesh_at_each_iteration" : true,
             "mapper_settings"              : [{
                 "mapper_face"                           : "unique",
-                "fluid_interface_submodelpart_name"     : "FluidNoSlipInterface2D_FluidInterface",
-                "structure_interface_submodelpart_name" : "StructureInterface2D_StructureInterface"
+                "fluid_interface_submodelpart_name"     : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
+                "structure_interface_submodelpart_name" : "Structure.StructureInterface2D_StructureInterface"
             }],
             "coupling_strategy_settings"   : {
                 "solver_type" : "MVQN",
                 "w_0"         : 0.825
             },
-            "structure_interfaces_list"    : ["StructureInterface2D_StructureInterface"],
-            "fluid_interfaces_list"        : ["FluidNoSlipInterface2D_FluidInterface"]
+            "structure_interfaces_list"    : ["Structure.StructureInterface2D_StructureInterface"],
+            "fluid_interfaces_list"        : ["FluidModelPart.FluidNoSlipInterface2D_FluidInterface"]
         }
     },
     "processes"        : {
@@ -201,7 +201,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.01,
+                        "output_interval"     : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -230,7 +230,7 @@
                         },
                         "file_label"          : "time",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.01,
+                        "output_interval"     : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
