@@ -1,0 +1,24 @@
+{   "problem_data":{
+        "echo_level":1
+    },
+    "processes":{
+        "model_processes":[{
+        "python_module" : "generate_simple_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "data_input"    : "data//training_in.dat",
+            "data_output"   : "data//training_out.dat",
+            "model_name"    : "my_model"    
+        }}],
+        "training_processes":[{
+        "python_module" : "train_saved_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "data_input"    : "data//training_in.dat",
+            "data_output"   : "data//training_out.dat",
+            "model"         : "my_model",
+            "epochs"        : 100    
+        }}]
+    },
+    "output_processes":{}
+}

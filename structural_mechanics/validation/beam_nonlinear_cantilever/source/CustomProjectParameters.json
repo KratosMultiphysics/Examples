@@ -99,11 +99,11 @@
             "random_distribution"      : ["normal"],
             "random_parameters"        : [0, 1],
             "print_format"             : ".8f",
-            "output_format"            : "h5",
+            "output_format"            : "ascii",
             "training_file_settings": {
                     "input_file_name"  : "training_in",
                     "output_file_name" : "training_out",
-                    "file_format"      : "h5",
+                    "file_format"      : "dat",
                     "output_path"      : "data/"
             }}
         }]
