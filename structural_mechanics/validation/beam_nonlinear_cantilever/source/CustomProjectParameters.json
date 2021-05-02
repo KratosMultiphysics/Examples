@@ -3,7 +3,7 @@
         "problem_name"    : "Beam_nonlinear_cantilever",
         "parallel_type"   : "OpenMP",
         "start_time"      : 0.0,
-        "end_time"        : 0.5,
+        "end_time"        : 0.2,
         "echo_level"      : 0
     },
     "solver_settings"          : {
@@ -80,7 +80,7 @@
                 "model_part_name" : "Structure.PointLoad2D_neumann",
                 "variable_name"   : "POINT_LOAD",
                 "modulus"          : "100000",
-                "direction"       : [0,-1,0],
+                "direction"       : [-1,-1, 0],
                 "interval"        : [0.0,"End"]
             }
         }],
@@ -92,12 +92,12 @@
             "model_part_name"          : "Structure.PointLoad2D_neumann",
             "interval"                 : [0, "End"],
             "write_output_file"        : true,
-            "input_variables"          : ["POINT_LOAD_Y"],
+            "input_variables"          : ["POINT_LOAD_X", "POINT_LOAD_Y"],
             "input_model_part"         : "Structure.PointLoad2D_neumann",
-            "output_variables"         : ["DISPLACEMENT_Y"],
+            "output_variables"         : ["DISPLACEMENT_X", "DISPLACEMENT_Y"],
             "perturbate"               : true,
-            "random_distribution"      : ["normal"],
-            "random_parameters"        : [0, 0.5],
+            "random_distribution"      : ["normal","normal"],
+            "random_parameters"        : [[0, 1.0],[0,1.0]],
             "print_format"             : ".8f",
             "output_format"            : "ascii",
             "training_file_settings": {
@@ -107,20 +107,6 @@
                     "output_path"      : "data/"
             }}
         }]
-    },
-    "output_processes" : {
-        "vtk_output" : [{
-            "python_module" : "vtk_output_process",
-            "kratos_module" : "KratosMultiphysics",
-            "Parameters"    : {
-                "model_part_name"                    : "Structure",
-                "file_format"                        : "binary",
-                "output_sub_model_parts"             : false,
-                "output_interval"                    : 1,
-                "nodal_solution_step_data_variables" : ["DISPLACEMENT","ROTATION","POINT_LOAD","POINT_MOMENT"],
-                "gauss_point_variables_extrapolated_to_nodes" : []
-            }
-        }]
-	}
+    }
 
 }

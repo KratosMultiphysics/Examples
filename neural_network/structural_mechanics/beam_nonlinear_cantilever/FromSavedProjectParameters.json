@@ -1,0 +1,43 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "model_processes":[],
+        "training_processes":[{
+        "python_module" : "custom_loss_function_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{  
+            "loss_function" : "MeanSquaredError"
+        }},
+        {
+        "python_module" : "custom_optimizer_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "optimizer"     : "Adam",
+            "learning_rate" : 0.001
+        }},
+        {
+        "python_module" : "set_callback_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "callback_type"        : "early_stopping_callback",
+            "callback_parameters"  : {
+                "monitor"          : "loss",
+                "mode"             : "min",
+                "verbose"          : 1,
+                "patience"         : 100
+            }
+        }},
+        {
+        "python_module" : "train_saved_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "data_input"    : "data//training_in.dat",
+            "data_output"   : "data//training_out.dat",
+            "model"         : "my_model_best_0",
+            "epochs"        : 10000   
+        }}]
+    },
+    "output_processes":{}
+}
