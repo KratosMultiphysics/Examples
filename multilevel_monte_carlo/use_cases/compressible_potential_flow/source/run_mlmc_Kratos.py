@@ -92,8 +92,6 @@ if __name__ == "__main__":
     ########################################################################################################################################################################################################
     ########################################################################################################################################################################################################
 
-    raise Exception("The following part must be converted to save the multi moment estimator.")
-
     # retrieve project parameters and mdpa
     with open(parameters["solverWrapperInputDictionary"]["projectParametersPath"][0],'r') as parameter_file:
         project_parameters = json.load(parameter_file)
@@ -138,20 +136,23 @@ if __name__ == "__main__":
             qoi_dict["qoi_id_"+str(qoi_counter)]["index_"+str(index)] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S10": S10, "S01": S01, "S20": S20, "S11": S11, "S02": S02, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"lift_coefficient"}
 
     # save pressure coefficient
+    qoi_counter = qoi_counter + 1
+    qoi_dict["qoi_id_"+str(qoi_counter)] = {"member_"+str(member): {} for member in range (algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._variableDimension)}
+    member = 0
     for node in current_model.GetModelPart(model_part_of_interest).Nodes:
-        qoi_counter = qoi_counter + 1
-        qoi_dict["qoi_id_"+str(qoi_counter)] = {"index_"+str(index): {} for index in range (len(algo.monteCarloSampler.indices))}
+        qoi_dict["qoi_id_"+str(qoi_counter)]["member_"+str(member)] = {"index_"+str(index): {} for index in range (len(algo.monteCarloSampler.indices))}
         for index in range (len(algo.monteCarloSampler.indices)):
             algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter] = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter])
             sample_counter = algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._sampleCounter
-            S10 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[0][0]))
-            S01 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[0][1]))
-            S20 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][0]))
-            S11 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][1]))
-            S02 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][2]))
+            S10 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["10"][member]))
+            S01 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["01"][member]))
+            S20 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["20"][member]))
+            S11 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["11"][member]))
+            S02 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["02"][member]))
             h1 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderOneDimensionOne(S10,S01,sample_counter)))
             h2 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionOne(S10,S01,S20,S11,S02,sample_counter)))
-            qoi_dict["qoi_id_"+str(qoi_counter)]["index_"+str(index)] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S10": S10, "S01": S01, "S20": S20, "S11": S11, "S02": S02, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"pressure coefficent","node_id":node.Id,"node_coordinates":[node.X,node.Y,node.Z]}
+            qoi_dict["qoi_id_"+str(qoi_counter)]["member_"+str(member)]["index_"+str(index)] = {"qoi_id":qoi_counter, "member":member, "index": index, "instances": sample_counter, "S10": S10, "S01": S01, "S20": S20, "S11": S11, "S02": S02, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"pressure coefficent","node_id":node.Id,"node_coordinates":[node.X,node.Y,node.Z]}
+        member += 1
 
     # save to file
     with open('power_sums_outputs/MLMC_asynchronous_power_sums_' +str(time.time()) + '.json', 'w') as f:
