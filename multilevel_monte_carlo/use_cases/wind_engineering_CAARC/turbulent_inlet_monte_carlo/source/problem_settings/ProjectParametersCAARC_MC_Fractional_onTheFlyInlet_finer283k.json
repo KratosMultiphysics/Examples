@@ -4,12 +4,46 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 50.0,
+        "end_time"      : 0.8,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
         },
-        "burnin_time"   : 10.0
+        "burnin_time"   : 0.4,
+        "random_reference_velocity" : false,
+        "random_roughness_height" : false
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
+                "output_name"            : "CAARC3D",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "MultipleFiles"
+                        },
+                        "file_label"          : "step",
+                        "output_control_type" : "step",
+                        "output_frequency"    : 1.0,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "nodal_results"       : ["VELOCITY","PRESSURE"],
+                        "nodal_nonhistorical_results" : ["AVERAGED_VELOCITY","AVERAGED_PRESSURE","TEMPERATURE"],
+                        "gauss_point_results" : ["VORTICITY_MAGNITUDE","VORTICITY"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }]
     },
     "solver_settings"  : {
         "model_part_name"                 : "FluidModelPart",
@@ -17,7 +51,7 @@
         "solver_type"                     : "FractionalStep",
         "model_import_settings"           : {
             "input_type"     : "mdpa",
-            "input_filename" : "problem_settings/CAARC_3d_combinedPressureVelocity_312k"
+            "input_filename" : "problem_settings/CAARC_3d_combinedPressureVelocity_283k"
         },
         "material_import_settings"    : {
             "materials_filename" : "materials/materials_Re_119M.json"
@@ -62,7 +96,7 @@
         "no_skin_parts"                   : ["VelocityConstraints3D_long_lines"],
         "time_stepping"                   : {
             "automatic_time_step" : false,
-            "time_step"           : 0.2375
+            "time_step"           : 0.11875
         }
     },
     "processes"        : {
@@ -114,7 +148,7 @@
                                         "node_output"         : false,
                                         "skin_output"         : false,
                                         "plane_output"        : [],
-                                        "nodal_results"       : ["TEMPERATURE","VELOCITY"],
+                                        "nodal_results"       : ["VELOCITY"],
                                         "nodal_nonhistorical_results" : [],
                                         "gauss_point_results" : []
                                     },
@@ -127,7 +161,7 @@
                         "model_part_name" : "FluidModelPart",
                         "domain_size"     : 3,
                         "penalty_coefficient" : 2e2,
-                        "load_velocity_field" : "average_velocity_field_CAARC_3d_combinedPressureVelocity_312k_690.0.dat",
+                        "load_velocity_field" : "average_velocity_field_CAARC_3d_combinedPressureVelocity_283k_690.0.dat",
                         "structure_model_part" : "NoSlip3D_structure"
                     },
                     "solver_settings": {
@@ -135,7 +169,7 @@
                         "domain_size" : 3,
                         "model_import_settings": {
                             "input_type": "mdpa",
-                            "input_filename": "problem_settings/CAARC_3d_combinedPressureVelocity_312k"
+                            "input_filename": "problem_settings/CAARC_3d_combinedPressureVelocity_283k"
                         },
                         "material_import_settings"           : {
                             "materials_filename" : "problem_settings/materials_Poisson.json"
@@ -161,22 +195,20 @@
             }
         }],
         "boundary_conditions_process_list" : [{
-            "python_module" : "steady_wind_kratos_inlet_process",
+            "python_module" : "onthefly_kratos_inlet_process",
             "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication.WindGenerator",
-            "Parameters"    : {
+	    "Parameters"    : {
                 "inlet_model_part_name" : "FluidModelPart.AutomaticInlet3D_inlet/Flow",
                 "y0": -432.0,
                 "z0": 0.0,
                 "inlet_position": 0.0,
-                "ramp_time": 10.0,
+                "ramp_time": 0.0,
                 "mean_profile_type": "logarithm",
                 "umean": 40.0,
                 "reference_height": 180.0,
                 "roughness_height": 2.0,
-                "Gamma": 3.9,
-                "wind_grid_levels": [8,8,7],
-                "time_interval_length": 30.0,
-		        "lx": 1440.0,
+                "wind_grid_levels": [7,7,7],
+                "lx": 720.0,
                 "seed": 9000
             }
         },{
@@ -246,17 +278,18 @@
             }
         }],
         "auxiliar_process_list"            : [{
-                "python_module" : "compute_body_fitted_drag_process",
-                "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
-                "process_name"  : "ComputeBodyFittedDragProcess",
+                "python_module" : "compute_body_fitted_drag_and_moment_process",
+                "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
+                "process_name"  : "ComputeBodyFittedDragAndMomentProcess",
                 "Parameters"    : {
                     "model_part_name"        : "FluidModelPart.NoSlip3D_structure",
                     "write_drag_output_file" : true,
-		            "output_file_settings" :{
+        		    "output_file_settings" :{
                         "file_name":  "drag_time_series",
-                        "output_path": "drag"
+                        "folder_name": "drag"
                     },
                     "print_drag_to_screen"   : false,
+                    "reference_point"        : [0.0,0.0,0.0],
                     "interval"               : [0.0,"End"]
                 }
         },{

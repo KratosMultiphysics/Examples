@@ -1,5 +1,5 @@
 {
-    "hessian_metric": {
+    "metric": {
 		"hessian_strategy_parameters"              :{
 				"estimate_interpolation_error"     : false,
 				"non_historical_metric_variable"   : true,
@@ -13,7 +13,7 @@
 		"enforce_current"                     : false,
 		"anisotropy_remeshing"                : true
     },
-    "refinement_mmg" : {
+    "remeshing" : {
         "initialize_entities"              : false,
         "echo_level"                       : 0
     }

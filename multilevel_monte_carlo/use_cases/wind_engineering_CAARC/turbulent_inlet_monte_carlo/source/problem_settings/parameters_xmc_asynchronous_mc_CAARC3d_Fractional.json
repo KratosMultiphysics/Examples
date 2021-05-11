@@ -7,10 +7,6 @@
         "tolerancesForHierarchy": [0],
         "positionMaxNumberIterationsCriterion": 2
     },
-    "costEstimatorInputDictionary": {
-        "indexSetDimension": 0,
-        "order": 1
-    },
     "hierarchyOptimiserInputDictionary": {
         "defaultHierarchy": [[[],5]],
         "indexSpace": [1,1],
@@ -20,9 +16,12 @@
     },
     "monteCarloIndexInputDictionary": {
         "costEstimator": "xmc.momentEstimator.MomentEstimator",
+        "costEstimatorInputDictionary": {
+            "indexSetDimension": 0, "order": 1, "updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder2Dimension0", "centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper", "centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"
+        },
         "indexValue": null,
-        "qoiEstimator": ["xmc.momentEstimator.MomentEstimator"],
-        "combinedEstimator": ["xmc.momentEstimator.CombinedMomentEstimator"],
+        "qoiEstimator": [],
+        "qoiEstimatorInputDictionary": [],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
         "eventGroupSize": 1
     },
@@ -36,17 +35,9 @@
         "qoiPredictor": [],
         "initialNumberBatches": 1
     },
-    "qoiEstimatorInputDictionary": {
-        "indexSetDimension": 0,
-        "order": 5
-    },
-    "combinedEstimatorInputDictionary": {
-        "indexSetDimension": 0,
-        "order": 5
-    },
     "randomGeneratorInputDictionary": {
-        "generator": "xmc.methodDefs_randomGeneratorWrapper.generator.returnUniformAndTwoNormal",
-        "parameters": [0,42949672,40.0,0.4,2.0,0.2]
+        "generator": "xmc.methodDefs_randomGeneratorWrapper.generator.returnIntegerUniformAndNormalAndUniform",
+        "parameters": [0,42949672,40.0,0.4,0.1,0.7]
     },
     "samplerInputDictionary": {
         "randomGenerator": "xmc.randomGeneratorWrapper.RandomGeneratorWrapper",
@@ -55,23 +46,23 @@
     },
     "solverWrapperInputDictionary": {
         "adaptiveRefinementJumpToFinestLevel": false,
+        "analysisStage": "simulation_definition.SimulationScenario",
         "asynchronous": true,
-        "fakeRandomVariable": [0,40.0,2.0],
+        "fakeRandomVariable": [0,40.0,2.0,0],
         "index": [],
         "mappingOutputQuantities": false,
         "numberContributionsPerInstance": 1,
-        "numberQoI": 17427,
-        "numberCombinedQoi": 17427,
+        "numberMomentEstimator": 17428,
+        "numberCombinedMomentEstimator": 17428,
         "outputBatchSize": 4357,
         "parameters": null,
         "printToFile": true,
-        "problemId": "problem_CAARC",
-        "projectParametersPath": "problem_settings/ProjectParametersCAARC_MC_Fractional_onTheFlyInlet.json",
+        "projectParametersPath": "problem_settings/ProjectParametersCAARC_MC_Fractional_onTheFlyInlet_finer283k.json",
         "refinementParametersPath": "problem_settings/parameters_refinement.json",
         "refinementStrategy": "stochastic_adaptive_refinement",
         "taskAllAtOnce": true
     },
-    "monoCriteriaInpuctDictionary" :{
+    "monoCriteriaInputDictionary" :{
         "statisticalError": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
             "tolerance": [0.01],
