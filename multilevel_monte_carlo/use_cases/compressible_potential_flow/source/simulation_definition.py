@@ -57,12 +57,14 @@ class SimulationScenario(PotentialFlowAnalysis):
     def EvaluateQuantityOfInterest(self):
         qoi_list = [self._GetSolver().main_model_part.ProcessInfo.GetValue(KratosCompressFlow.LIFT_COEFFICIENT)]
         print("[SCREENING] Lift Coefficient: ",qoi_list[0])
+        pressure_coefficient = []
         if (self.mapping is not True):
             for node in self._GetSolver().main_model_part.GetSubModelPart("Body2D_Body").Nodes:
-                qoi_list.append(node.GetValue(KratosMultiphysics.PRESSURE_COEFFICIENT))
+                pressure_coefficient.append(node.GetValue(KratosMultiphysics.PRESSURE_COEFFICIENT))
         elif (self.mapping is True):
             for node in self.mapping_reference_model.GetModelPart("model.Body2D_Body").Nodes:
-                qoi_list.append(node.GetValue(KratosMultiphysics.PRESSURE_COEFFICIENT))
+                pressure_coefficient.append(node.GetValue(KratosMultiphysics.PRESSURE_COEFFICIENT))
+        qoi_list.append(pressure_coefficient)
         print("[SCREENING] Total number of QoI:",len(qoi_list))
         return qoi_list
 

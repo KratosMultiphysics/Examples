@@ -11,7 +11,8 @@ import KratosMultiphysics
 import KratosMultiphysics.MultilevelMonteCarloApplication
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-from exaqute.ExaquteTaskLocal import *
+from exaqute import get_value_from_remote
+
 
 if __name__ == "__main__":
 
@@ -24,9 +25,8 @@ if __name__ == "__main__":
     with open(parametersPath,'r') as parameter_file:
             parameters = json.load(parameter_file)
 
-    # add path of the problem folder to python path
-    problem_id = parameters["solverWrapperInputDictionary"]["problemId"]
-    sys.path.append(os.path.join("..","xmc","classDefs_solverWrapper","problemDefs_KratosMultiphysics",problem_id))
+    # SolverWrapper
+    parameters["solverWrapperInputDictionary"]["qoiEstimator"] = parameters["monteCarloIndexInputDictionary"]["qoiEstimator"]
 
     # SampleGenerator
     samplerInputDictionary = parameters["samplerInputDictionary"]
@@ -36,19 +36,6 @@ if __name__ == "__main__":
     # MonteCarloIndex
     monteCarloIndexInputDictionary = parameters["monteCarloIndexInputDictionary"]
     monteCarloIndexInputDictionary["samplerInputDictionary"] = samplerInputDictionary
-
-    # Moment Estimators
-    qoiEstimatorInputDictionary = parameters["qoiEstimatorInputDictionary"]
-    combinedEstimatorInputDictionary = parameters["combinedEstimatorInputDictionary"]
-    costEstimatorInputDictionary = parameters["costEstimatorInputDictionary"]
-    # qoi estimators
-    monteCarloIndexInputDictionary["qoiEstimator"] = [monteCarloIndexInputDictionary["qoiEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberQoI"])]
-    monteCarloIndexInputDictionary["qoiEstimatorInputDictionary"] = [qoiEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberQoI"]
-    # combined estimators
-    monteCarloIndexInputDictionary["combinedEstimator"] = [monteCarloIndexInputDictionary["combinedEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberCombinedQoi"])]
-    monteCarloIndexInputDictionary["combinedEstimatorInputDictionary"] = [combinedEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberCombinedQoi"]
-    # cost estimator
-    monteCarloIndexInputDictionary["costEstimatorInputDictionary"] = costEstimatorInputDictionary
 
     # MonoCriterion
     criteriaArray = []
@@ -103,6 +90,8 @@ if __name__ == "__main__":
     ########################################################################################################################################################################################################
     ########################################################################################################################################################################################################
     ########################################################################################################################################################################################################
+
+    raise Exception("The following part must be converted to save the multi moment estimator.")
 
     # retrieve project parameters and mdpa
     with open(parameters["solverWrapperInputDictionary"]["projectParametersPath"],'r') as parameter_file:
