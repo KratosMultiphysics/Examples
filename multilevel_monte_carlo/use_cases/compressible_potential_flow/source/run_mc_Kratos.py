@@ -149,7 +149,7 @@ if __name__ == "__main__":
             algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter] = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter])
             sample_counter = algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._sampleCounter
             S1 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["1"][member]))
-            S2 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["1"][member]))
+            S2 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["2"][member]))
             h1 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderOneDimensionZero(S1,sample_counter)))
             h2 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionZero(S1,S2,sample_counter)))
             qoi_dict["qoi_id_"+str(qoi_counter)]["member_"+str(member)]["index_"+str(index)] = {"qoi_id":qoi_counter, "member":member, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "S3": S3, "S4": S4, "S5": S5, "S6": S6, "S7": S7, "S8": S8, "S9": S9, "S10": S10, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"pressure coefficent","node_id":node.Id,"node_coordinates":[node.X,node.Y,node.Z]}
