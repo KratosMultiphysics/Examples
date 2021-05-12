@@ -15,7 +15,8 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{ 
             "optimizer"     : "Adam",
-            "learning_rate" : 0.001
+            "learning_rate" : 0.001,
+            "decay"	     : 1e-5
         }},
         {
         "python_module" : "set_callback_process",
@@ -26,18 +27,33 @@
                 "monitor"          : "loss",
                 "mode"             : "min",
                 "verbose"          : 1,
-                "patience"         : 100
+                "patience"         : 200
             }
         }},
         {
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"    : "data//training_in.dat",
-            "data_output"   : "data//training_out.dat",
-            "model"         : "my_model_best_0",
-            "epochs"        : 10000   
+            "data_input"         : "data_beam_validation//training_in.dat",
+            "data_output"        : "data_beam_validation//training_out.dat",
+            "model"              : "my_model_best_0",
+            "epochs"             : 10000,
+            "shuffle"	          : true,
+            "training_log"       : true,
+            "training_log_file"  : "history.dat" 
         }}]
     },
-    "output_processes":{}
+    "output_processes":{
+        "output_processes":[{
+        "python_module" : "history_plotter_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "history_file"               : "history.dat",
+            "variables"                  : ["loss"],
+            "output_format"              : "png",
+            "output_name"                : "training_plot",
+            "axis"                       : "semilogx",
+            "burn_up"                    : 10
+        }
+    }]}
 }

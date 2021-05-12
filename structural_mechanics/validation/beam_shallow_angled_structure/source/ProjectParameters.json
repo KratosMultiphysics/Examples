@@ -1,17 +1,16 @@
 {
     "problem_data"             : {
         "problem_name"    : "shallow_angled_beam",
-        "model_part_name" : "Structure",
-        "domain_size"     : 3,
         "parallel_type"   : "OpenMP",
-        "time_step"       : 0.0001,
         "start_time"      : 0.0,
         "end_time"        : 1.0,
         "echo_level"      : 0
     },
     "solver_settings"          : {
         "solver_type"                        : "Static",
+        "model_part_name"                    : "Structure",
         "echo_level"                         : 0,
+        "domain_size"   		       : 3,
         "analysis_type"                      : "non_linear",
         "model_import_settings"              : {
             "input_type"     : "mdpa",
@@ -19,6 +18,9 @@
         },
         "material_import_settings"           : {
             "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping" : {
+            "time_step"       : 0.0001
         },
 	"line_search"                        : false,
         "compute_reactions"	             : true,
@@ -29,14 +31,14 @@
         "residual_absolute_tolerance"        : 1e-5,
         "max_iteration"                      : 300,
         "linear_solver_settings"             : {
-            "solver_type" : "Super_LU",
+            "solver_type" : "amgcl",
             "scaling"     : false,
             "verbosity"   : 0
         },
-        "problem_domain_sub_model_part_list" : ["Parts_structure"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_dirichletXYZ","DISPLACEMENT_dirichletZ","ROTATION_dirrot","PointLoad2D_neumann"],
+      
         "rotation_dofs"                      : true
     },
+    "processes":{
     "constraints_process_list" : [{
         "python_module" : "assign_vector_variable_process",
         "kratos_module" : "KratosMultiphysics",
@@ -44,7 +46,7 @@
         "process_name"  : "AssignVectorVariableProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "DISPLACEMENT_dirichletXYZ",
+            "model_part_name" : "Structure.DISPLACEMENT_dirichletXYZ",
             "variable_name"   : "DISPLACEMENT",
             "value"           : [0.0,0.0,0.0],
             "interval"        : [0.0,"End"]
@@ -56,7 +58,7 @@
         "process_name"  : "AssignVectorVariableProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "DISPLACEMENT_dirichletZ",
+            "model_part_name" : "Structure.DISPLACEMENT_dirichletZ",
             "variable_name"   : "DISPLACEMENT",
             "value"           : [null,null,0.0],
             "interval"        : [0.0,"End"]
@@ -68,7 +70,7 @@
         "process_name"  : "AssignVectorVariableProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "ROTATION_dirrot",
+            "model_part_name" : "Structure.ROTATION_dirrot",
             "variable_name"   : "ROTATION",
             "value"           : [0.0,0.0,0.0],
             "interval"        : [0.0,"End"]
@@ -82,44 +84,25 @@
         "process_name"  : "AssignModulusAndDirectionToConditionsProcess",
         "Parameters"            : {
             "mesh_id"         : 0,
-            "model_part_name" : "PointLoad2D_neumann",
+            "model_part_name" : "Structure.PointLoad2D_neumann",
             "variable_name"   : "POINT_LOAD",
-            "modulus"          : 0,
+            "modulus"          : 1000,
             "direction"       : [0,-1,0],
             "interval"        : [0.0,"End"]
         }
-    }],
-    "output_configuration"     : {
-        "result_file_configuration" : {
-            "gidpost_flags"       : {
-                "GiDPostMode"           : "GiD_PostBinary",
-                "WriteDeformedMeshFlag" : "WriteDeformed",
-                "WriteConditionsFlag"   : "WriteConditions",
-                "MultiFileFlag"         : "SingleFile"
-            },
-            "file_label"          : "step",
-            "output_control_type" : "step",
-            "output_frequency"    : 1.0,
-            "body_output"         : true,
-            "node_output"         : true,
-            "skin_output"         : false,
-            "plane_output"        : [],
-            "nodal_results"       : ["DISPLACEMENT","REACTION","ROTATION","POINT_LOAD"],
-            "gauss_point_results" : ["FORCE","MOMENT","LOCAL_AXES_VECTOR"]
-        },
-        "point_data_configuration"  : []
-    },
-    "restart_options"          : {
-        "SaveRestart"      : false,
-        "RestartFrequency" : 0,
-        "LoadRestart"      : false,
-        "Restart_Step"     : 0
-    },
-    "constraints_data"         : {
-        "incremental_load"         : false,
-        "incremental_displacement" : false
-    },
-    "material_import_settings" : {
-        "materials_filename" : "StructuralMaterials.json"
+    }]},
+    "output_processes" : {
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "file_format"                        : "binary",
+                "output_sub_model_parts"             : false,
+                "output_interval"                    : 1,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","ROTATION","POINT_LOAD","POINT_MOMENT"],
+                "gauss_point_variables_extrapolated_to_nodes" : []
+            }
+        }]
     }
 }
