@@ -1,6 +1,6 @@
 {
     "problem_data"             : {
-        "problem_name"    : "Custom_Beam_nonlinear_cantilever",
+        "problem_name"    : "Beam_nonlinear_cantilever",
         "parallel_type"   : "OpenMP",
         "start_time"      : 0.0,
         "end_time"        : 1.0,
@@ -14,13 +14,13 @@
         "analysis_type"                      : "non_linear",
         "model_import_settings"              : {
             "input_type"     : "mdpa",
-            "input_filename" : "Custom_Beam_nonlinear_cantilever"
+            "input_filename" : "Beam_nonlinear_cantilever"
         },
         "material_import_settings"           : {
             "materials_filename" : "StructuralMaterials.json"
         },
         "time_stepping" : {
-            "time_step"       : 0.0005
+            "time_step"       : 0.0002
         },
 	    "line_search"                        : false,
         "convergence_criterion"              : "residual_criterion",
@@ -79,7 +79,7 @@
                 "mesh_id"         : 0,
                 "model_part_name" : "Structure.PointLoad2D_neumann",
                 "variable_name"   : "POINT_LOAD",
-                "modulus"          : "262500*t",
+                "modulus"          : "7000000*t",
                 "direction"       : [0,-1, 0],
                 "interval"        : [0.0,"End"]
             }
@@ -92,17 +92,17 @@
             "model_part_name"          : "Structure.PointLoad2D_neumann",
             "interval"                 : [0.0, "End"],
             "write_output_file"        : true,
-            "input_variables"          : ["POINT_LOAD"],
+            "input_variables"          : ["POINT_LOAD_Y"],
             "input_model_part"         : "Structure.PointLoad2D_neumann",
-            "output_variables"         : ["DISPLACEMENT_X", "DISPLACEMENT_Y"],
+            "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
             "perturbate"               : false,
-            "random_distribution"      : ["normal", "normal"],
-            "random_parameters"        : [[0,0.1],[0,0.1]],
+            "random_distribution"      : ["normal"],
+            "random_parameters"        : [[0,0.1]],
             "print_format"             : ".8f",
             "output_format"            : "ascii",
             "training_file_settings": {
-                    "input_file_name"  : "training_in",
-                    "output_file_name" : "training_out",
+                    "input_file_name"  : "training_in_raw",
+                    "output_file_name" : "training_out_raw",
                     "file_format"      : "dat",
                     "output_path"      : "data/"
             }}
@@ -117,7 +117,7 @@
             "output_variables" : ["POINT_LOAD","DISPLACEMENT_Y"],
             "output_file_name" : "data/test_results.json",
             "model_part_name"  : "Structure.PointLoad2D_neumann",
-            "time_frequency"   : 0.00025
+            "time_frequency"   : 0.0001
         	}
     	}
     ]
