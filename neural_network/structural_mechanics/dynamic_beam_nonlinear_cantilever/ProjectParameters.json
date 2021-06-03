@@ -53,16 +53,6 @@
             }
         },
         {
-            "python_module": "masking_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "objective": "input",
-                "load_from_log": false,
-                "input_log_name"  : "input_preprocessing.json",
-                "variable_ids"    : [1]
-            }
-        },
-        {
             "python_module": "mask_zeros_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
@@ -110,10 +100,10 @@
         "parameters"    :{
             "layer_type"          : "block_dense_layer",
             "layer_parameters"    :{
-            "number_layers"            : 4,
-            "neurons_per_layer"        : [128,64,16,4],
+            "number_layers"            : 2,
+            "neurons_per_layer"        : [100, 100],
             "batch_normalization"      : false,
-            "activation"               : "relu"
+            "activation"               : "tanh"
         }  
         }},
         {
@@ -122,7 +112,7 @@
         "parameters"    :{
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
-                "units" 		     : 2,
+                "units" 		     : 1,
                 "activation"		     : "linear"
         }}},  
         {
@@ -143,8 +133,8 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{ 
             "optimizer"     : "Adam",
-            "learning_rate" : 0.001,
-            "decay"	     : 1e-5
+            "learning_rate" : 0.01,
+            "decay"	     : 1e-3
         }},
         {
         "python_module" : "metric_compiler",
@@ -207,10 +197,10 @@
             "predictions_file"    : "data//predicted.csv",
             "input_file"          : "data//testing_in.dat",
             "target_file"         : "data//testing_out.dat",
-            "input_variable"      : "Point Load",
-            "variables"           : ["Displacement_X", "Displacement_Y"],
+            "input_variable"      : "Time",
+            "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
-            "output_name"         : "diamond_shape",
+            "output_name"         : "dynamic_cantilever_beam",
             "output_format"       : "png"          
         }}
     ]}

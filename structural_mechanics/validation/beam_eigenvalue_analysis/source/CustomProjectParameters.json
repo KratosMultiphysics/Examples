@@ -1,0 +1,71 @@
+{
+    "problem_data"             : {
+        "problem_name"    : "Beam_Eigenfrequencies",
+        "parallel_type"   : "OpenMP",
+        "start_time"      : 0.0,
+        "end_time"        : 1.0,
+        "echo_level"      : 0
+    },
+    "solver_settings"          : {
+        "model_part_name" : "Structure",
+        "domain_size"     : 3,
+        "solver_type"                        : "eigen_value",
+        "echo_level"                         : 1,
+        "scheme_type"                        : "dynamic",
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "Beam_Eigenfrequencies"
+        },
+        "material_import_settings"           : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping" : {
+            "time_step"       : 1.1
+        },
+        "eigensolver_settings":{
+            "solver_type"           : "eigen_eigensystem",
+            "max_iteration"         : 1000,
+            "tolerance"             : 1e-6,
+            "number_of_eigenvalues" : 5,
+            "echo_level"            : 1
+        },
+        "rotation_dofs"                      : true
+    },
+    "processes" : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"          : "This process fixes the selected components of a given vector variable",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.DISPLACEMENT_dirichlet",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"          : "This process fixes the selected components of a given vector variable",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.ROTATION_dirichlet",
+                "variable_name"   : "ROTATION",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "list_other_processes" : [{
+            "python_module"   : "postprocess_eigenvalues_process",
+            "kratos_module"   : "KratosMultiphysics.StructuralMechanicsApplication",
+            "process_name"          : "PostProcessEigenvaluesProcess",
+            "Parameters"            : {
+                "result_file_name" : "Beam"
+            }
+        }]
+    }
+}
