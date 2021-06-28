@@ -22,7 +22,7 @@
             }
         },
         {
-            "python_module": "normalization_zero_one_process",
+            "python_module": "normalization_soft_zero_one_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "objective": "output",
@@ -72,14 +72,15 @@
             "units"         	   : 20,
             "return_sequences"    : true
         }  
-        }},
+        }},   
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "layer_type"          : "lstm_layer",
             "layer_parameters"    :{
-            "units"         	   : 20
+            "units"         	   : 20,
+            "return_sequences"    : false
         }  
         }},
         {
@@ -88,7 +89,7 @@
         "parameters"    :{
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
-                "units" 		     : 1,
+                "units" 		     : 2,
                 "activation"		     : "linear"
         }}},  
         {
@@ -137,7 +138,7 @@
             "data_input"          : "data//training_in.npy",
             "data_output"         : "data//training_out.npy",
             "model"              : "my_model",
-            "epochs"             : 10000,
+            "epochs"             : 2000,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -162,7 +163,7 @@
             "model"               : "my_model",
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
-            "timesteps"           : 1000,
+            "timesteps"           : 8000,
             "lookback"            : 50,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
@@ -175,10 +176,10 @@
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.npy",
             "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "variables"           : ["Displacement_X","Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "training_timesteps"  : 4000,
+            "output_name"         : "simple_pendulum",
             "output_format"       : "png"          
         }}
     ]}

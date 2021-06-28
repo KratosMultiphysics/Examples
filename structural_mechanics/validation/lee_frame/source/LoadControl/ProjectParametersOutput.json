@@ -1,0 +1,221 @@
+{
+    "output_processes": {},
+    "problem_data": {
+        "echo_level": 3,
+        "end_time": 1.0,
+        "parallel_type": "OpenMP",
+        "problem_name": "LeeFrame",
+        "start_time": 0.0
+    },
+    "processes": {
+        "constraints_process_list": [
+            {
+                "Parameters": {
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "help": "This process assigns a given value (vector) to the nodes belonging a certain submodelpart",
+                    "interval": [
+                        0.0,
+                        "End"
+                    ],
+                    "local_axes": {},
+                    "mesh_id": 0,
+                    "model_part_name": "Structure.DISPLACEMENT_dirichletXYZ",
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "variable_name": "DISPLACEMENT"
+                },
+                "help": "This process fixes the selected components of a given vector variable",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorVariableProcess",
+                "python_module": "assign_vector_variable_process"
+            },
+            {
+                "Parameters": {
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "help": "This process assigns a given value (vector) to the nodes belonging a certain submodelpart",
+                    "interval": [
+                        0.0,
+                        "End"
+                    ],
+                    "local_axes": {},
+                    "mesh_id": 0,
+                    "model_part_name": "Structure.ROTATION_dirrot",
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "variable_name": "ROTATION"
+                },
+                "help": "This process fixes the selected components of a given vector variable",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorVariableProcess",
+                "python_module": "assign_vector_variable_process"
+            },
+            {
+                "Parameters": {
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "help": "This process assigns a given value (vector) to the nodes belonging a certain submodelpart",
+                    "interval": [
+                        0.0,
+                        "End"
+                    ],
+                    "local_axes": {},
+                    "mesh_id": 0,
+                    "model_part_name": "Structure.ROTATION_dirrotZ",
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "variable_name": "ROTATION"
+                },
+                "help": "This process fixes the selected components of a given vector variable",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorVariableProcess",
+                "python_module": "assign_vector_variable_process"
+            }
+        ],
+        "list_other_processes": [
+            {
+                "Parameters": {
+                    "help": "This process generates the data series for the neural network training and testing",
+                    "input_model_part": "Structure.DISPLACEMENT_dirichlet",
+                    "input_sources": [
+                        "solution_step",
+                        "solution_step"
+                    ],
+                    "input_variables": [
+                        "DISPLACEMENT_X",
+                        "DISPLACEMENT_Y"
+                    ],
+                    "interval": [
+                        0.0,
+                        1e+30
+                    ],
+                    "model_part_name": "Structure.PrescribedDisplacement_top",
+                    "output_format": "ascii",
+                    "output_sources": [
+                        "condition"
+                    ],
+                    "output_variables": [
+                        "POINT_LOAD_Y"
+                    ],
+                    "perturbate_variables": [],
+                    "print_format": ".8f",
+                    "random_distribution": [],
+                    "random_parameters": [
+                        [
+                            0,
+                            1
+                        ]
+                    ],
+                    "training_file_settings": {
+                        "file_format": "dat",
+                        "input_file_name": "training_in_raw",
+                        "output_file_name": "training_out_raw",
+                        "output_path": "data/"
+                    },
+                    "write_output_file": true
+                },
+                "kratos_module": "NeuralNetworkApplication",
+                "python_module": "data_generator_process"
+            }
+        ],
+        "loads_process_list": [
+            {
+                "Parameters": {
+                    "direction": [
+                        0.0,
+                        1.0,
+                        0.0
+                    ],
+                    "entities": [
+                        "conditions"
+                    ],
+                    "help": "This process sets a variable a certain scalar value in a given direction, for all the conditions belonging to a submodelpart. Uses assign_scalar_variable_to_conditions_process for each component",
+                    "interval": [
+                        0.0,
+                        1e+30
+                    ],
+                    "local_axes": {},
+                    "mesh_id": 0,
+                    "model_part_name": "Structure.PrescribedDisplacement_top",
+                    "modulus": "-3.5e4*t",
+                    "variable_name": "POINT_LOAD"
+                },
+                "kratos_module": "KratosMultiphysics",
+                "python_module": "assign_vector_by_direction_to_condition_process"
+            }
+        ]
+    },
+    "solver_settings": {
+        "analysis_type": "non_linear",
+        "auxiliary_dofs_list": [],
+        "auxiliary_reaction_list": [],
+        "auxiliary_variables_list": [],
+        "buffer_size": 2,
+        "builder_and_solver_settings": {
+            "advanced_settings": {
+                "block_builder": true,
+                "diagonal_values_for_dirichlet_dofs": "use_max_diagonal",
+                "echo_level": 1,
+                "name": "block_builder_and_solver",
+                "silent_warnings": false
+            },
+            "use_block_builder": true,
+            "use_lagrange_BS": false
+        },
+        "clear_storage": false,
+        "compute_reactions": true,
+        "convergence_criterion": "residual_criterion",
+        "displacement_absolute_tolerance": 1e-05,
+        "displacement_control": false,
+        "displacement_relative_tolerance": 0.001,
+        "domain_size": 3,
+        "echo_level": 0,
+        "line_search": false,
+        "linear_solver_settings": {},
+        "material_import_settings": {
+            "materials_filename": "StructuralMaterials.json"
+        },
+        "max_iteration": 100,
+        "model_import_settings": {
+            "ignore_variables_not_in_solution_step_data": false,
+            "input_filename": "LeeFrame",
+            "input_type": "mdpa",
+            "reorder": false,
+            "reorder_consecutive": false,
+            "skip_timer": true
+        },
+        "model_part_name": "Structure",
+        "move_mesh_flag": true,
+        "multi_point_constraints_used": true,
+        "pressure_dofs": false,
+        "reform_dofs_at_each_step": false,
+        "residual_absolute_tolerance": 1e-06,
+        "residual_relative_tolerance": 0.001,
+        "rotation_dofs": true,
+        "solver_type": "Static",
+        "time_stepping": {
+            "time_step": 0.0005
+        },
+        "use_old_stiffness_in_first_iteration": false,
+        "volumetric_strain_dofs": false
+    }
+}

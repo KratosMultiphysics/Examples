@@ -14,27 +14,10 @@
             }
         },
         {
-            "python_module": "mask_zeros_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
-            }
-        },
-        {
             "python_module": "normalization_zero_one_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "objective": "output",
-                "input_log_name"  : "input_preprocessing.json",
-                "output_log_name" : "output_preprocessing.json"
-            }
-        },
-        {
-            "python_module": "lookback_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "lookback"	   : 50,
+                "objective": "all",
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -45,13 +28,11 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "ascii",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
-        
         }
-
         ],
         "model_processes":[{
         "python_module" : "initiate_network_process",
@@ -60,26 +41,19 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy"  
+                "data_input"      : "data//training_in.dat"  
             }  
         }},   
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "layer_type"          : "lstm_layer",
+            "layer_type"          : "block_dense_layer",
             "layer_parameters"    :{
-            "units"         	   : 20,
-            "return_sequences"    : true
-        }  
-        }},
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "lstm_layer",
-            "layer_parameters"    :{
-            "units"         	   : 20
+            "number_layers"            : 4,
+            "neurons_per_layer"        : [128,64,16,4],
+            "batch_normalization"      : false,
+            "activation"               : "relu"
         }  
         }},
         {
@@ -110,7 +84,7 @@
         "parameters"    :{ 
             "optimizer"     : "Adam",
             "learning_rate" : 0.001,
-            "decay"	     : 1e-3
+            "decay"	     : 1e-5
         }},
         {
         "python_module" : "metric_compiler",
@@ -134,8 +108,8 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.dat",
+            "data_output"         : "data//training_out.dat",
             "model"              : "my_model",
             "epochs"             : 10000,
             "shuffle"	          : true,
@@ -156,29 +130,42 @@
             "burn_up"                    : 10
         }},
         {
-        "python_module" : "testing_timeseries_process",
+        "python_module" : "testing_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
-            "timesteps"           : 1000,
-            "lookback"            : 50,
+            "input_file"          : "data//training_in.dat",
+            "target_file"         : "data//training_out.dat",
             "echo"                : 1,
-            "predictions_file"    : "data/predictions",
-            "save_format"         : "npy"            
+            "predictions_file"    : "data//predicted",
+            "save_format"	   : "ascii"            
         }},
         {
-        "python_module" : "prediction_timeseries_plotter",
+        "python_module" : "prediction_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
-            "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "predictions_file"    : "data//predicted.csv",
+            "input_file"          : "data//training_in.dat",
+            "target_file"         : "data//training_out.dat",
+            "input_variable"      : "Displacement_X",
+            "input_variable_id"   : 0,
+            "variables"           : ["Point_load"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "output_name"         : "lees_frame_Y",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted.csv",
+            "input_file"          : "data//training_in.dat",
+            "target_file"         : "data//training_out.dat",
+            "input_variable"      : "Displacement_Y",
+            "input_variable_id"   : 1,
+            "variables"           : ["Point_load"],
+            "axis"                : "plot",
+            "output_name"         : "lees_frame_X",
             "output_format"       : "png"          
         }}
     ]}

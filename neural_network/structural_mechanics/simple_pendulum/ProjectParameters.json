@@ -22,19 +22,10 @@
             }
         },
         {
-            "python_module": "normalization_zero_one_process",
+            "python_module": "normalization_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "objective": "output",
-                "input_log_name"  : "input_preprocessing.json",
-                "output_log_name" : "output_preprocessing.json"
-            }
-        },
-        {
-            "python_module": "lookback_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "lookback"	   : 50,
+                "objective": "all",
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -45,11 +36,51 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "ascii",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
-        
+        },
+        {
+            "python_module": "data_reader_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "data_input"    : "data//testing_in_raw.dat",
+                "data_output"   : "data//testing_out_raw.dat",
+                "load_from_log" : true,
+                "input_log_name" 	    : "input_preprocessing.json",
+                "output_log_name" 	    : "output_preprocessing.json"
+            }
+        },
+        {
+            "python_module": "mask_zeros_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "output",
+                "load_from_log": true,
+                "output_log_name"  : "output_preprocessing.json"
+            }
+        },
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective"	   : "all",
+                "load_from_log"   : true,
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json"
+            }
+        },
+        {
+            "python_module": "save_data_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "input_file_name"          : "data//testing_in",
+                "output_file_name"         : "data//testing_out",
+                "format"                   : "ascii",
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json"
+            }
         }
 
         ],
@@ -60,26 +91,19 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy"  
+                "data_input"      : "data//training_in.dat"  
             }  
         }},   
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "layer_type"          : "lstm_layer",
+            "layer_type"          : "block_dense_layer",
             "layer_parameters"    :{
-            "units"         	   : 20,
-            "return_sequences"    : true
-        }  
-        }},
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "lstm_layer",
-            "layer_parameters"    :{
-            "units"         	   : 20
+            "number_layers"            : 2,
+            "neurons_per_layer"        : [100, 100],
+            "batch_normalization"      : false,
+            "activation"               : "tanh"
         }  
         }},
         {
@@ -109,7 +133,7 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{ 
             "optimizer"     : "Adam",
-            "learning_rate" : 0.001,
+            "learning_rate" : 0.01,
             "decay"	     : 1e-3
         }},
         {
@@ -134,8 +158,8 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.dat",
+            "data_output"         : "data//training_out.dat",
             "model"              : "my_model",
             "epochs"             : 10000,
             "shuffle"	          : true,
@@ -156,28 +180,26 @@
             "burn_up"                    : 10
         }},
         {
-        "python_module" : "testing_timeseries_process",
+        "python_module" : "testing_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
-            "timesteps"           : 1000,
-            "lookback"            : 50,
+            "input_file"          : "data//testing_in.dat",
+            "target_file"         : "data//testing_out.dat",
             "echo"                : 1,
-            "predictions_file"    : "data/predictions",
-            "save_format"         : "npy"            
+            "predictions_file"    : "data//predicted",
+            "save_format"	   : "ascii"            
         }},
         {
-        "python_module" : "prediction_timeseries_plotter",
+        "python_module" : "prediction_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
+            "predictions_file"    : "data//predicted.csv",
+            "input_file"          : "data//testing_in.dat",
+            "target_file"         : "data//testing_out.dat",
             "input_variable"      : "Time",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
             "output_name"         : "dynamic_cantilever_beam",
             "output_format"       : "png"          
         }}

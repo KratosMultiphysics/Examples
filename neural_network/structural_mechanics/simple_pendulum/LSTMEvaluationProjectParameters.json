@@ -15,7 +15,7 @@
             "model"               : "my_model",
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
-            "timesteps"           : 1000,
+            "timesteps"           : 4000,
             "lookback"            : 50,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
@@ -28,10 +28,10 @@
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.npy",
             "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "variables"           : ["Displacement_X","Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "training_timesteps"  : 2000,
+            "output_name"         : "simple_pendulum",
             "output_format"       : "png"          
         }}]}
 }
