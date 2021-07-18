@@ -86,7 +86,11 @@
                 "interval"        : [0.0,"End"]
             }
         }],
-        "list_other_processes" : [{
+        "list_other_processes" : [],
+        "print_output_process" : []
+    },
+    "output_processes" : {
+    	"data_generation": [{
 			"python_module" : "data_generator_process",
 			"kratos_module" : "NeuralNetworkApplication",
 			"Parameters" 	: {
@@ -111,9 +115,6 @@
                     "output_path"      : "data/"
             }}
         }],
-        "print_output_process" : []
-    },
-    "output_processes" : {
         "vtk_output" : [{
             "python_module" : "vtk_output_process",
             "kratos_module" : "KratosMultiphysics",

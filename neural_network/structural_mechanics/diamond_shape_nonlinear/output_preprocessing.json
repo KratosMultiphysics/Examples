@@ -1,0 +1,1 @@
+{"data_output": "data/training_in_raw.dat", "masking_zeros": [1, 2], "normalizationcenter": [-0.7389777777153618, -0.4216274375292808], "normalizationscaling": [0.24384226304203171, 0.10566151958098244], "saved_file_name": "data//testing_out.dat"}

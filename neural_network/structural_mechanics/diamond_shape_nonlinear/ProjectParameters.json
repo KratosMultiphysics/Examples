@@ -201,12 +201,34 @@
             "save_format"	   : "ascii"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//testing_in.dat",
+            "predictions_file"    : "data//predicted.csv",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//predicted_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//testing_in.dat",
+            "predictions_file"    : "data//testing_out.dat",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
         "python_module" : "prediction_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predicted.csv",
-            "input_file"          : "data//testing_in.dat",
-            "target_file"         : "data//testing_out.dat",
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//output_corrected.npy",
             "input_variable"      : "Point Load",
             "variables"           : ["Displacement_X", "Displacement_Y"],
             "axis"                : "plot",

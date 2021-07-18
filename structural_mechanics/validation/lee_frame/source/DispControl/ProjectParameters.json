@@ -81,7 +81,10 @@
                 "interval"        : [0.0,"End"]
             }
         }],
-        "list_other_processes"     : [{
+        "list_other_processes"     : []
+    },
+    "output_processes" : {
+    	"data_generation":[{
 			"python_module" : "data_generator_process",
 			"kratos_module" : "NeuralNetworkApplication",
 			"Parameters" 	: {
@@ -106,7 +109,5 @@
                     "output_path"      : "data/"
             }}
         }]
-    },
-    "output_processes" : {
     }
 }

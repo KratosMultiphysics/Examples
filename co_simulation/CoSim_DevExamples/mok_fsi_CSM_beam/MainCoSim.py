@@ -2,7 +2,7 @@ from __future__ import print_function, absolute_import, division  # makes Kratos
 
 # Importing the Kratos Library => only needed to get the CoSim-Python-Scripts on the path!
 import KratosMultiphysics
-import KratosMultiphysics.EmpireApplication
+import KratosMultiphysics.CoSimulationApplication
 
 # Importing the base class
 from co_simulation_analysis import CoSimulationAnalysis

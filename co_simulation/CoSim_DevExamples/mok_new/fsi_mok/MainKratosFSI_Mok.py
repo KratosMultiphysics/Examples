@@ -19,7 +19,7 @@ import KratosMultiphysics.StructuralMechanicsApplication as KratosStructuralMech
 
 
 # Import the "BlackBox" Solvers
-from KratosMultiphysics.StructuralMechanicsApplication .structural_mechanics_analysis import StructuralMechanicsAnalysis
+from KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis import StructuralMechanicsAnalysis
 from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
 
 import fsi_utilities # here auxiliary functions e.g. for relaxation are declared
@@ -43,7 +43,7 @@ fluid_solver = FluidDynamicsAnalysis(fluid_model, parameters_fluid)
 
 fluid_solver.Initialize()
 
-fluid_model_part = fluid_model["MainModelPart"]
+fluid_model_part = fluid_model["FluidModelPart"]
 
 print("======================================================================")
 print("||||||||||||||||||||||| SETTING UP FLUID DONE ||||||||||||||||||||||||")

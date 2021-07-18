@@ -20,7 +20,7 @@
             "materials_filename" : "StructuralMaterials.json"
         },
         "time_stepping" : {
-            "time_step"       : 0.0002
+            "time_step"       : 0.002
         },
 	    "line_search"                        : false,
         "convergence_criterion"              : "residual_criterion",
@@ -98,31 +98,7 @@
                 "interval"        : [0.0,"End"]
             }
         }],
-        "list_other_processes" : [{
-			"python_module" : "data_generator_process",
-			"kratos_module" : "NeuralNetworkApplication",
-			"Parameters" 	: {
-            "help"                     : "This process generates the data series for the neural network training and testing",
-            "model_part_name"          : "Structure.DISPLACEMENT_dirichlet",
-            "interval"                 : [0.0, "End"],
-            "write_output_file"        : true,
-            "input_variables"          : ["POINT_LOAD_Y"],
-            "input_sources"            : ["condition"],
-            "input_model_part"         : "Structure.PointLoad2D_neumann",
-            "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
-            "output_sources"           : ["solution_step","solution_step"],
-            "perturbate_variables"     : ["POINT_LOAD_Y"],
-            "random_distribution"      : ["normal"],
-            "random_parameters"        : [[0,0.1]],
-            "print_format"             : ".8f",
-            "output_format"            : "ascii",
-            "training_file_settings": {
-                    "input_file_name"  : "testing_in_raw",
-                    "output_file_name" : "testing_out_raw",
-                    "file_format"      : "dat",
-                    "output_path"      : "data/"
-            }}
-        }],
+        "list_other_processes" : [],
         "print_output_process" : [
     	{
         "python_module"   : "json_output_process",
@@ -139,6 +115,31 @@
     ]
     },
     "output_processes" : {
+	"data_generation":[{
+		"python_module" : "data_generator_process",
+		"kratos_module" : "NeuralNetworkApplication",
+		"Parameters" 	: {
+		    "help"                     : "This process generates the data series for the neural network training and testing",
+		    "model_part_name"          : "Structure.DISPLACEMENT_dirichlet",
+		    "interval"                 : [0.0, "End"],
+		    "write_output_file"        : true,
+		    "input_variables"          : ["POINT_LOAD_Y"],
+		    "input_sources"            : ["condition"],
+		    "input_model_part"         : "Structure.PointLoad2D_neumann",
+		    "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
+		    "output_sources"           : ["solution_step","solution_step"],
+		    "perturbate_variables"     : [],
+		    "random_distribution"      : ["normal"],
+		    "random_parameters"        : [[0,0.1]],
+		    "print_format"             : ".8f",
+		    "output_format"            : "ascii",
+		    "training_file_settings": {
+			    "input_file_name"  : "training_in_raw",
+			    "output_file_name" : "training_out_raw",
+			    "file_format"      : "dat",
+	            "output_path"      : "data/"
+		    }}
+		}],
         "vtk_output" : [{
             "python_module" : "vtk_output_process",
             "kratos_module" : "KratosMultiphysics",

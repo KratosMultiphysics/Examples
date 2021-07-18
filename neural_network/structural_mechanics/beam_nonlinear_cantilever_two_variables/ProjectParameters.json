@@ -134,7 +134,7 @@
                 "monitor"          : "mean_squared_error",
                 "mode"             : "min",
                 "verbose"          : 1,
-                "patience"         : 1000
+                "patience"         : 100
             }
         }},
         {

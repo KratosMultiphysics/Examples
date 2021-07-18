@@ -97,6 +97,31 @@
         "print_output_process" : []
     },
     "output_processes" : {
+    	"data_generation":[{
+			"python_module" : "data_generator_process",
+			"kratos_module" : "NeuralNetworkApplication",
+			"Parameters" 	: {
+            "help"                     : "This process generates the data series for the neural network training and testing",
+            "model_part_name"          : "Structure.PointLoad2D_neumann",
+            "interval"                 : [0.0, "End"],
+            "write_output_file"        : true,
+            "input_variables"          : ["TIME"],
+            "input_sources"            : ["process"],
+            "input_model_part"         : "Structure.PointLoad2D_neumann",
+            "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
+            "output_sources"           : ["solution_step","solution_step"],
+            "perturbate_variables"     : [],
+            "random_distribution"      : [],
+            "random_parameters"        : [[0,0.1],[0,0.1]],
+            "print_format"             : ".8f",
+            "output_format"            : "ascii",
+            "training_file_settings": {
+                    "input_file_name"  : "training_in_raw",
+                    "output_file_name" : "training_out_raw",
+                    "file_format"      : "dat",
+                    "output_path"      : "data/"
+            }}}
+        ],
         "vtk_output" : [{
             "python_module" : "vtk_output_process",
             "kratos_module" : "KratosMultiphysics",
