@@ -1,0 +1,111 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "model_processes":[],
+        "training_processes":[{
+        "python_module" : "custom_loss_function_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{  
+            "loss_function" : "MeanSquaredError"
+        }},
+        {
+        "python_module" : "custom_optimizer_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "optimizer"     : "Adam",
+            "learning_rate" : 0.001,
+            "decay"	     : 1e-5
+        }},
+        {
+        "python_module" : "metric_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "metric"     : "MeanSquaredError"
+        }},
+        {
+        "python_module" : "set_callback_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "callback_type"        : "early_stopping_callback",
+            "callback_parameters"  : {
+                "monitor"          : "loss",
+                "mode"             : "min",
+                "verbose"          : 1,
+                "patience"         : 200
+            }
+        }},
+        {
+        "python_module" : "train_saved_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "data_input"         : "data//training_in.dat",
+            "data_output"        : "data//training_out.dat",
+            "model"              : "my_model_best_0",
+            "epochs"             : 10000,
+            "shuffle"	          : true,
+            "training_log"       : true,
+            "training_log_file"  : "history.dat" 
+        }}]
+    },
+    "output_processes":{
+        "output_processes":[{
+        "python_module" : "history_plotter_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "history_file"               : "history.dat",
+            "variables"                  : ["mean_squared_error"],
+            "output_format"              : "png",
+            "output_name"                : "training_plot",
+            "axis"                       : "semilogx",
+            "burn_up"                    : 10
+        }},
+        {
+        "python_module" : "testing_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "model"               : "my_model_best_0",
+            "input_file"          : "data//testing_in.dat",
+            "target_file"         : "data//testing_out.dat",
+            "echo"                : 1,
+            "predictions_file"    : "data//predicted",
+            "save_format"	   : "ascii"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//testing_in.dat",
+            "predictions_file"    : "data//predicted.csv",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//predicted_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//testing_in.dat",
+            "predictions_file"    : "data//testing_out.dat",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "prediction_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//output_corrected.npy",
+            "input_variable"      : "Point Load",
+            "variables"           : ["Displacement_X", "Displacement_Y"],
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }}
+    ]}
+}
