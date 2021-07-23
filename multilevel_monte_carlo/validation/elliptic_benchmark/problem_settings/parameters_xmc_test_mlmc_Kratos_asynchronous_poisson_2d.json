@@ -7,10 +7,6 @@
         "tolerancesForHierarchy": [0],
         "positionMaxNumberIterationsCriterion": 2
     },
-    "costEstimatorInputDictionary": {
-        "indexSetDimension": 0,
-        "order": 1
-    },
     "hierarchyOptimiserInputDictionary": {
         "defaultHierarchy": [[[0],5],[[1],5],[[2],5]],
         "indexSpace": [10],
@@ -21,8 +17,13 @@
     "monteCarloIndexInputDictionary": {
         "combinedEstimator": ["xmc.momentEstimator.CombinedMomentEstimator"],
         "costEstimator": "xmc.momentEstimator.MomentEstimator",
+        "costEstimatorInputDictionary": {
+            "indexSetDimension": 0,
+            "order": 1
+        },
         "indexValue": null,
         "qoiEstimator": ["xmc.momentEstimator.MomentEstimator"],
+        "qoiEstimatorInputDictionary": [{"indexSetDimension": 1,"order": 1}],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
         "eventGroupSize": 5
     },
@@ -36,14 +37,6 @@
         "qoiPredictor": [],
         "initialNumberBatches": 2
     },
-    "qoiEstimatorInputDictionary": {
-        "indexSetDimension": 1,
-        "order": 1
-    },
-    "combinedEstimatorInputDictionary": {
-        "indexSetDimension": 0,
-        "order": 1
-    },
     "randomGeneratorInputDictionary": {
         "parameters": [2, 6],
         "generator": "xmc.methodDefs_randomGeneratorWrapper.generator.returnBeta"
@@ -55,36 +48,32 @@
     },
     "solverWrapperInputDictionary": {
         "adaptiveRefinementJumpToFinestLevel": false,
+        "analysisStage": "simulation_definition.SimulationScenario",
         "asynchronous": true,
         "fakeRandomVariable": [0.25],
-        "index": [],
         "mappingOutputQuantities": false,
         "numberContributionsPerInstance": 1,
-        "numberQoI": 1,
-        "numberCombinedQoi": 0,
-        "parameters": null,
         "printToFile": false,
-        "problemId": "poisson_2d",
         "projectParametersPath": "../problem_settings/parameters_poisson_square_2d_finer.json",
         "refinementParametersPath": "../problem_settings/parameters_refinement.json",
         "refinementStrategy": "stochastic_adaptive_refinement",
         "outputBatchSize": 1,
         "taskAllAtOnce": true
     },
-    "monoCriteriaInpuctDictionary" :{
+    "monoCriteriaInputDictionary" :{
         "statisticalError": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
-            "tolerance": [0.15],
+            "tolerance": 0.15,
             "input": "error0"
         },
         "minNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [0],
+            "tolerance": 0.0,
             "input": "algorithmCost"
         },
         "maxNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [2],
+            "tolerance": 2.0,
             "input": "algorithmCost"
         }
     },
