@@ -74,17 +74,17 @@
     "monoCriteriaInpuctDict" :{
         "statisticalError": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
-            "tolerance": [0.15],
+            "tolerance": 0.15,
             "input": "error0"
         },
         "minNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [0],
+            "tolerance": 0.0,
             "input": "algorithmCost"
         },
         "maxNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [0],
+            "tolerance": 0.0,
             "input": "algorithmCost"
         }
     },
