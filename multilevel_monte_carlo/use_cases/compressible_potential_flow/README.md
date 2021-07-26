@@ -4,9 +4,9 @@
 
 **Kratos version:** 8.1
 
-**XMC version:** 2.0
+**XMC version:** Kratos default version
 
-**PyCOMPSs version:** 2.7
+**PyCOMPSs version:** Kratos default version to run in serial, >2.8 to run with `runcompss`
 
 **Source files:** [Asynchronous Monte Carlo and Asynchronous Multilevel Monte Carlo](source)
 
