@@ -8,7 +8,7 @@
         "positionMaxNumberIterationsCriterion": 2
     },
     "hierarchyOptimiserInputDictionary": {
-        "defaultHierarchy": [[[0],5],[[1],5],[[2],5]],
+        "defaultHierarchy": [[[0],500],[[1],200],[[2],100],[[3],75],[[4],50],[[5],25],[[6],25],[[7],25]],
         "indexSpace": [10],
         "optimalIndexSet": "xmc.methodDefs_hierarchyOptimiser.optimalIndexSet.incrementLevelsByOne",
         "optimalSampleNumbers": "xmc.methodDefs_hierarchyOptimiser.optimalSampleNumbers.multiLevelDoubleAllSamples",
@@ -55,9 +55,18 @@
         "numberContributionsPerInstance": 1,
         "printToFile": false,
         "problemId": "poisson_2d",
-        "projectParametersPath": "../problem_settings/parameters_poisson_square_2d_finer.json",
+        "projectParametersPath": [
+            "../problem_settings/parameters_level_1.json",
+            "../problem_settings/parameters_level_2.json",
+            "../problem_settings/parameters_level_3.json",
+            "../problem_settings/parameters_level_4.json",
+            "../problem_settings/parameters_level_5.json",
+            "../problem_settings/parameters_level_6.json",
+            "../problem_settings/parameters_level_7.json",
+            "../problem_settings/parameters_level_8.json"
+        ],
         "refinementParametersPath": "../problem_settings/parameters_refinement.json",
-        "refinementStrategy": "stochastic_adaptive_refinement",
+        "refinementStrategy": "reading_from_file",
         "outputBatchSize" : 1,
         "taskAllAtOnce": false
     },
@@ -74,7 +83,7 @@
         },
         "maxNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": 3.0,
+            "tolerance": 0.0,
             "input": "algorithmCost"
         }
     },
