@@ -5,7 +5,7 @@ from KratosMultiphysics.NeuralNetworkApplication.neural_network_analysis import 
 
 if __name__ == "__main__":
     # ProjectParametersWithModel generates a simple model without specifying the composition
-    with open("ProjectParametersWithModel.json") as json_file:
+    with open("ProjectParametersWithoutModel.json") as json_file:
     # ProjectParametersWithoutModel specifies the model in the json model
     #with open("ProjectParametersWithoutModel.json") as json_file:
         #parameters = json.load(json_file)

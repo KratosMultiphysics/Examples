@@ -27,7 +27,8 @@
             "parameters"   :{
                 "objective": "all",
                 "input_log_name"  : "input_preprocessing.json",
-                "output_log_name" : "output_preprocessing.json"
+                "output_log_name" : "output_preprocessing.json",
+                "normalization_type": "soft_zero_one"
             }
         },
         {
