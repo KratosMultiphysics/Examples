@@ -3,7 +3,16 @@
         "echo_level":1
     },
     "processes":{
-        "model_processes":[],
+        "model_processes":[
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective"       : "predict_all",
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json"
+            }
+        }],
         "training_processes":[{
         "python_module" : "custom_loss_function_compiler",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
