@@ -6,7 +6,7 @@
     },
     "time_integration_parameters":{
         "alpha_m": 0.0,
-        "alpha_f":  0.0,
+        "start_time":  0.0,
         "time_step": 0.01
     },
      "initial_values":{
@@ -14,7 +14,7 @@
         "velocity": 0.0
      },
      "boundary_conditions":{
-        "external_load": 0.0
+
      },
      "solver_parameters": {
          "buffer_size": 3

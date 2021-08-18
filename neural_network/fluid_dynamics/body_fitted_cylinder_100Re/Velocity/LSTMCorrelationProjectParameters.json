@@ -1,0 +1,40 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "preprocessing_processes":[],
+        "training_processes":[]
+    },
+    "output_processes":{
+        "output_processes":[
+        {
+        "python_module" : "correlation_matrix_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "file"                : "data/training_out_raw.dat",
+            "origin"              : "output_generation",
+            "bias"                : true,
+            "annotations"         : false,
+            "vmin"                : [-0.2, -0.2],
+            "vmax"                : [0.2, 0.2],
+            "variables"           : ["Velocity_X", "Velocity_Y"],
+            "output_name"         : "correlation_matrix_raw_bodyfitted",
+            "output_format"       : "png"          
+        }},
+        {
+            "python_module" : "correlation_matrix_plotter",
+            "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"    :{
+                "file"                : "data/predictions.npy",
+                "origin"              : "prediction",
+                "bias"                : true,
+                "annotations"         : false,
+                "vmin"                : [-0.2, -0.2],
+                "vmax"                : [0.2, 0.2],
+                "variables"           : ["Velocity_X", "Velocity_Y"],
+                "output_name"         : "correlation_matrix_prediction_bodyfitted",
+                "output_format"       : "png"          
+            }}
+        ]}
+}

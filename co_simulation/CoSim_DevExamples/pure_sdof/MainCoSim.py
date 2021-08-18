@@ -2,16 +2,16 @@ from __future__ import print_function, absolute_import, division  # makes Kratos
 
 # Importing the Kratos Library => only needed to get the CoSim-Python-Scripts on the path!
 import KratosMultiphysics
-import KratosMultiphysics.EmpireApplication
+import KratosMultiphysics.CoSimulationApplication
 
 # Importing the base class
-from co_simulation_analysis import CoSimulationAnalysis
+from KratosMultiphysics.CoSimulationApplication.co_simulation_analysis import CoSimulationAnalysis
 import json
 
 parameter_file_name = "project_parameters_cosim_pure_SDof.json"
 
 with open(parameter_file_name, 'r') as parameter_file:
-    cosim_parameters = json.load(parameter_file)
+    cosim_parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
 simulation = CoSimulationAnalysis(cosim_parameters)
 simulation.Run()

@@ -38,7 +38,7 @@
             "process_name"  : "VtkOutputProcess",
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
-                "model_part_name"                    : "FluidModelPart.Drag_No_Slip_Cylinder",
+                "model_part_name"                    : "FluidModelPart.fluid_computational_model_part",
                 "output_control_type"                : "step",
                 "output_interval"                    : 1,
                 "file_format"                        : "ascii",

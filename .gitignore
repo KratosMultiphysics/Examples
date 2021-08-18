@@ -1,2 +1,4 @@
-/neural_network/fsi/
-/neural_network/fluid_dynamics/
+/fluid_structure_interaction/
+/fluid_dynamics/
+/co_simulation/
+/neural_network/cosim/

@@ -83,6 +83,7 @@
     "LoadRestart": "False",
     "Restart_Step": 0
   },
+  "processes" :{
   "initial_conditions_process_list": [],
   "boundary_conditions_process_list": [
     {
@@ -207,4 +208,5 @@
     }
   ],
   "auxiliar_process_list": []
+  }
 }

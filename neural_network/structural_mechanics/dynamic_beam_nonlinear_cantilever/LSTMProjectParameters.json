@@ -32,7 +32,7 @@
             }
         },
         {
-            "python_module": "lookback_process",
+            "python_module": "input_with_lookback_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "lookback"	   : 3,

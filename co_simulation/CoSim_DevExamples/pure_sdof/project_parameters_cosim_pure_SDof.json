@@ -2,11 +2,13 @@
     "problem_data" :
     {
         "start_time" : 0.0,
-        "end_time" : 100.0
+        "end_time" : 100.0,
+        "parallel_type"   : "OpenMP"
     },
     "solver_settings" :
     {
-        "solver_type" : "sdof",
-        "input_file"  : "ProjectParametersSDof"
+        "type" : "solver_wrappers.sdof.sdof_solver_wrapper",
+        "solver_wrapper_settings"  : {
+        	"input_file":"ProjectParametersSDof.json"}
     }
 }

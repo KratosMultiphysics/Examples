@@ -6,7 +6,6 @@
     },
     "time_integration_parameters":{
         "alpha_m": -0.5,
-        "alpha_f":  -0.5,
         "time_step": 0.10
     },
      "initial_values":{
@@ -14,7 +13,8 @@
         "velocity": 0.0
      },
      "boundary_conditions":{
-        "external_load": 1.0
+        "amplitude_force": 1.0,
+        "omega_force": 1.0
      }   
 
 }
