@@ -12,19 +12,19 @@ The problem consists on a ThermoMechanical test.  In this case, an Eulerian conv
 
 - The simple mesh:
 
-<img src="data/mesh.png" width="600">
+<img src="data/mesh.png" width="50">
 
 - The result at t=0:
 
-<img src="data/t_0.png" width="600">
+<img src="data/t_0.png" width="50">
 
 - The result at t=100:
 
-<img src="data/t_100.png" width="600">
+<img src="data/t_100.png" width="50">
 
 - The result at t=200:
 
-<img src="data/t_200.png" width="600">
+<img src="data/t_200.png" width="50">
 
 ## Results
 
