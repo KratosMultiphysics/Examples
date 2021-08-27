@@ -35,7 +35,7 @@
             "python_module": "lookback_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "lookback"	   : 3,
+                "lookback"	   : 30,
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -61,6 +61,7 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
+            "input_to_recurrent"  : true,
                 "data_input"      : "data//training_in.npy"  
             }  
         }},   
@@ -98,14 +99,15 @@
             "layer_parameters"             :{
                 "units" 		     : 50,
                 "activation"		     : "relu"
-        }}},  
+        }}},
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
-                "units" 		     : 1,
+                "output_layer" 	     : true,
+                "data_output"		     : "data//training_out.npy",
                 "activation"		     : "linear"
         }}},  
         {
@@ -155,6 +157,7 @@
             "data_output"         : "data//training_out.npy",
             "model"              : "my_model",
             "epochs"             : 10000,
+            "recurrent"	  : true,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -180,7 +183,7 @@
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
             "timesteps"           : 1500,
-            "lookback"            : 2,
+            "lookback"            : 30,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
@@ -192,10 +195,11 @@
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.npy",
             "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "variables"           : ["Pressure"],
             "axis"                : "plot",
-            "training_timesteps"  : 997,
-            "output_name"         : "dynamic_cantilever_beam",
+            "node_id"		   : 60,
+            "training_timesteps"  : 460,
+            "output_name"         : "bodyfitted_cylinder",
             "output_format"       : "png"          
         }}
     ]}

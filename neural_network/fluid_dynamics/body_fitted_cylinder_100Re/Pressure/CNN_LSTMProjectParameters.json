@@ -32,10 +32,10 @@
             }
         },
         {
-            "python_module": "input_with_lookback_process",
+            "python_module": "lookback_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "lookback"	   : 3,
+                "lookback"	   : 5,
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -61,16 +61,54 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
+            "input_to_recurrent"  : true,
                 "data_input"      : "data//training_in.npy"  
             }  
-        }},   
+        }},
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"          : "conv1d_layer",
+            "layer_parameters"    :{
+            "filters"             : 64,
+            "kernel_size"	   : 2,
+            "activation"	   : "relu"
+        }  
+        }},
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "maxpooling1d_layer",
+            "layer_parameters"             :{
+                "pool_size"		    : 2
+        }}},
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "flatten_layer",
+            "layer_parameters"             :{}
+        }},      
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "repeat_vector_layer",
+            "layer_parameters"             :{
+            "n"			    :1
+            }
+        }},
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "layer_type"          : "lstm_layer",
             "layer_parameters"    :{
-            "units"         	   : 4
+            "units"         	   : 150,
+            "return_sequences"    : false,
+            "stateful"		   : false
         }  
         }},
         {
@@ -79,7 +117,8 @@
         "parameters"    :{
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
-                "units" 		     : 1,
+                "output_layer" 	     : true,
+                "data_output"		     : "data//training_out.npy",
                 "activation"		     : "linear"
         }}},  
         {
@@ -100,7 +139,7 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{ 
             "optimizer"     : "Adam",
-            "learning_rate" : 0.001,
+            "learning_rate" : 0.01,
             "decay"	     : 1e-3
         }},
         {
@@ -128,7 +167,8 @@
             "data_input"          : "data//training_in.npy",
             "data_output"         : "data//training_out.npy",
             "model"              : "my_model",
-            "epochs"             : 10000,
+            "recurrent"	  : true,
+            "epochs"             : 20000,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -144,7 +184,8 @@
             "output_format"              : "png",
             "output_name"                : "training_plot",
             "axis"                       : "semilogx",
-            "burn_up"                    : 10
+            "burn_up"                    : 10,
+            "show"			   : false
         }},
         {
         "python_module" : "testing_timeseries_process",
@@ -153,8 +194,8 @@
             "model"               : "my_model",
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
-            "timesteps"           : 1500,
-            "lookback"            : 3,
+            "timesteps"           : 500,
+            "lookback"            : 5,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
@@ -166,10 +207,11 @@
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.npy",
             "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "variables"           : ["Pressure"],
             "axis"                : "plot",
-            "training_timesteps"  : 997,
-            "output_name"         : "dynamic_cantilever_beam",
+            "node_id"		   : 0,
+            "training_timesteps"  : 430,
+            "output_name"         : "bodyfitted_cylinder",
             "output_format"       : "png"          
         }}
     ]}

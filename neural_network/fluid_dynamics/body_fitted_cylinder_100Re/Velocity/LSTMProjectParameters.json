@@ -70,6 +70,7 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
+            "input_to_recurrent"  : true,
                 "data_input"      : "data//training_in.npy"  
             }  
         }},   
@@ -150,6 +151,7 @@
             "data_input"          : "data//training_in.npy",
             "data_output"         : "data//training_out.npy",
             "model"              : "my_model",
+            "recurrent"	  : true,
             "epochs"             : 2000,
             "shuffle"	          : true,
             "training_log"       : true,
@@ -201,10 +203,66 @@
             "input_variable"      : "Time",
             "variables"           : ["Velocity_X", "Velocity_Y"],
             "axis"                : "plot",
-            "node_id"		   : 60,
+            "node_id"		   : 1000,
             "training_timesteps"  : 450,
-            "output_name"         : "bodyfitted_cylinder",
+            "output_name"         : "bodyfitted_cylinder_node1000",
             "output_format"       : "png"          
-        }}
-    ]}
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "variables"           : ["Velocity_X", "Velocity_Y"],
+            "axis"                : "plot",
+            "node_id"		   : 0,
+            "training_timesteps"  : 450,
+            "output_name"         : "bodyfitted_cylinder_node0000",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "variables"           : ["Velocity_X", "Velocity_Y"],
+            "axis"                : "plot",
+            "node_id"		   : 3000,
+            "training_timesteps"  : 450,
+            "output_name"         : "bodyfitted_cylinder_node3000",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "variables"           : ["Velocity_X", "Velocity_Y"],
+            "axis"                : "plot",
+            "node_id"		   : 2000,
+            "training_timesteps"  : 450,
+            "output_name"         : "bodyfitted_cylinder_node2000",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "variables"           : ["Velocity_X", "Velocity_Y"],
+            "axis"                : "plot",
+            "node_id"		   : 1,
+            "training_timesteps"  : 450,
+            "output_name"         : "bodyfitted_cylinder_node0001",
+            "output_format"       : "png"          
+        }}]
+        }
 }

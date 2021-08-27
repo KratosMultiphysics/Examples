@@ -4,7 +4,7 @@ from KratosMultiphysics.NeuralNetworkApplication.neural_network_analysis import 
 
 if __name__ == "__main__":
 
-    with open("LSTMCorrelationProjectParameters.json") as json_file:
+    with open("CNN_LSTMProjectParameters.json") as json_file:
         #parameters = json.load(json_file)
         parameters = KM.Parameters(json_file.read())
 

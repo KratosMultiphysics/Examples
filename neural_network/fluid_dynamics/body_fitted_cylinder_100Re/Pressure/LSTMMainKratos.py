@@ -10,3 +10,4 @@ if __name__ == "__main__":
 
     trainer = NeuralNetworkAnalysis(parameters)
     trainer.Run()
+    

@@ -16,8 +16,8 @@
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
             "timesteps"           : 1000,
-            "lookback"            : 5,
-            "echo"                : 1,
+            "lookback"            : 30,
+            "echo"                : 0,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
         }},
@@ -28,9 +28,51 @@
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.npy",
             "input_variable"      : "Time",
-            "variables"           : ["Pressure"],
+            "variables"           : ["Pressure_0"],
             "axis"                : "plot",
-            "node_id"		   : 60,
+            "node_id"		   : 0,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.npy",
+            "input_variable"      : "Time",
+            "variables"           : ["Pressure_1"],
+            "axis"                : "plot",
+            "node_id"		   : 1,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.npy",
+            "input_variable"      : "Time",
+            "variables"           : ["Pressure_2"],
+            "axis"                : "plot",
+            "node_id"		   : 2,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.npy",
+            "input_variable"      : "Time",
+            "variables"           : ["Pressure_125"],
+            "axis"                : "plot",
+            "node_id"		   : 125,
             "training_timesteps"  : 1000,
             "output_name"         : "bodyfitted_cylinder",
             "output_format"       : "png"          

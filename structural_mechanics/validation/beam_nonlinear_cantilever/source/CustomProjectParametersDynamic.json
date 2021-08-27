@@ -101,11 +101,9 @@
             "input_variables"          : ["TIME"],
             "input_sources"            : ["process"],
             "input_model_part"         : "Structure.PointLoad2D_neumann",
-            "output_variables"         : ["DISPLACEMENT_Y"],
-            "output_sources"           : ["solution_step"],
+            "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
+            "output_sources"           : ["solution_step","solution_step"],
             "perturbate_variables"     : [],
-            "random_distribution"      : ["normal"],
-            "random_parameters"        : [[0,0.1]],
             "print_format"             : ".8f",
             "output_format"            : "ascii",
             "training_file_settings": {

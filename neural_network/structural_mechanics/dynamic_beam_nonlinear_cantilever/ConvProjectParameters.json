@@ -35,7 +35,7 @@
             "python_module": "lookback_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "lookback"	   : 3,
+                "lookback"	   : 20,
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -61,7 +61,8 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy"  
+            "data_input"          : "data//training_in.npy",
+            "input_to_recurrent"  : true    
             }  
         }},   
         {
@@ -154,7 +155,7 @@
             "data_input"          : "data//training_in.npy",
             "data_output"         : "data//training_out.npy",
             "model"              : "my_model",
-            "epochs"             : 10000,
+            "epochs"             : 2000,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -180,7 +181,7 @@
             "input_file"          : "data/training_in.npy",
             "target_file"         : "data/training_out.npy",
             "timesteps"           : 1500,
-            "lookback"            : 2,
+            "lookback"            : 20,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
