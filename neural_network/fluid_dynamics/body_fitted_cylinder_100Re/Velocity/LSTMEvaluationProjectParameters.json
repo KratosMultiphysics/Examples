@@ -33,6 +33,30 @@
             "save_format"	   : "npy"            
         }},
         {
+        "python_module" : "correlation_matrix_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "file"   			  : "data//training_out_raw.dat",
+            "origin"			  : "output_generation",
+            "variables"			  : ["VELOCITY_X", "VELOCITY_Y"],
+            "vmin"				  : [-0.1, -0.1],
+            "vmax"				  : [0.1, 0.1],
+            "output_name"         : "correlation_matrix_raw",
+            "output_format"       : "png"          
+        }},
+		{
+        "python_module" : "correlation_matrix_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "file"   			  : "data//output_corrected.npy",
+            "origin"			  : "prediction",
+            "variables"			  : ["VELOCITY_X", "VELOCITY_Y"],
+            "vmin"				  : [-0.1, -0.1],
+            "vmax"				  : [0.1, 0.1],
+            "output_name"         : "correlation_matrix_prediction",
+            "output_format"       : "png"          
+        }},
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
