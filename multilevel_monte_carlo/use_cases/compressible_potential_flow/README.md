@@ -34,6 +34,8 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 
 The pressure coefficient for the problem is shown next.
 ![cpf_pressurecoeff](data/cpf_pressure.png)
+The pressure coefficient risk measure <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[C_p] \pm \sigma[C_p]"> is shown next.
+![cpf_expvalue_pm_stddeviation](data/cpf_expvalue_pm_stddeviation.png)
 
 The power sums and the h-statistics of both the lift coefficient and the pressure coefficient can be found [here](source/power_sums_outputs).
 The lift coefficient expected value is consistent with literature results [M. Davari, R. Rossi, P. Dadvand, I. López, R. W. (2019). A cut finite element method for the solution of the full-potential equation with an embedded wake. Comput Mech, 63(5), 821–833. https://doi.org/https://doi.org/10.1007/s00466-018-1624-3].
