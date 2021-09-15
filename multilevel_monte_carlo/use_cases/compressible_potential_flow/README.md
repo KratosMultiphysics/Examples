@@ -33,9 +33,12 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 ## Results
 
 The pressure coefficient for the problem is shown next.
-![cpf_pressurecoeff](data/cpf_pressure.png)
+
+<img src="data/cpf_pressure.png" alt="pressure coefficient" width="500"/>
+
 The pressure coefficient risk measure <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[C_p] \pm \sigma[C_p]"> is shown next.
-![cpf_expvalue_pm_stddeviation](data/cpf_expvalue_pm_stddeviation.png)
+
+<img src="data/cpf_expvalue_pm_stddeviation.png" alt="pressure coefficient risk measure" width="500"/>
 
 The power sums and the h-statistics of both the lift coefficient and the pressure coefficient can be found [here](source/power_sums_outputs).
 The lift coefficient expected value is consistent with literature results [2].
