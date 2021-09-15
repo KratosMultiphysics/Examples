@@ -37,14 +37,19 @@ To run the examples, the user should go inside the folder-algorithm of interest 
 
 The expected result is to observe statistical accuracy and scheduling parallelism for the asynchronous algorithms.
 
-![Temperature](results/poisson.png)
+<img src="results/poisson.png" alt="temperature" width="700"/>
 
 Concerning statistical accuracy, the QoI we obtain is consistent with literature results [1]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
 
 We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
-SMC: ![SMC graph](results/SMC_graph.PNG)
-AMC: ![AMC graph](results/AMC_graph.PNG)
+SMC:
+
+<img src="results/SMC_graph.PNG" alt="SMC" width="700"/>
+
+AMC: 
+
+<img src="results/AMC_graph.PNG" alt="AMC" width="700"/>
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
 
