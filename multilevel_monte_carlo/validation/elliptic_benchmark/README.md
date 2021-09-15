@@ -39,7 +39,7 @@ The expected result is to observe statistical accuracy and scheduling parallelis
 
 ![Temperature](results/poisson.png)
 
-Concerning statistical accuracy, the QoI we obtain is consistent with literature results [Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
+Concerning statistical accuracy, the QoI we obtain is consistent with literature results [1]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
 
 We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
@@ -47,3 +47,7 @@ SMC: ![SMC graph](results/SMC_graph.PNG)
 AMC: ![AMC graph](results/AMC_graph.PNG)
 
 SMLMC and AMLMC graphs present similar behaviors, with the difference that samples are run on different accuracy levels.
+
+## References
+
+[1] Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466
