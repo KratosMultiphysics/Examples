@@ -24,70 +24,90 @@ if __name__ == "__main__":
     with open(parametersPath,'r') as parameter_file:
             parameters = json.load(parameter_file)
 
+    # SolverWrapper
+    parameters["solverWrapperInputDictionary"]["qoiEstimator"] = parameters[
+        "monteCarloIndexInputDictionary"
+    ]["qoiEstimator"]
     # SampleGenerator
     samplerInputDictionary = parameters["samplerInputDictionary"]
-    samplerInputDictionary['randomGeneratorInputDictionary'] = parameters["randomGeneratorInputDictionary"]
-    samplerInputDictionary['solverWrapperInputDictionary'] = parameters["solverWrapperInputDictionary"]
-
+    samplerInputDictionary["randomGeneratorInputDictionary"] = parameters[
+        "randomGeneratorInputDictionary"
+    ]
+    samplerInputDictionary["solverWrapperInputDictionary"] = parameters[
+        "solverWrapperInputDictionary"
+    ]
     # MonteCarloIndex Constructor
     monteCarloIndexInputDictionary = parameters["monteCarloIndexInputDictionary"]
     monteCarloIndexInputDictionary["samplerInputDictionary"] = samplerInputDictionary
-
-    # Moment Estimators
-    qoiEstimatorInputDictionary = parameters["qoiEstimatorInputDictionary"]
-    combinedEstimatorInputDictionary = parameters["combinedEstimatorInputDictionary"]
-    costEstimatorInputDictionary = parameters["costEstimatorInputDictionary"]
-    # qoi estimators
-    monteCarloIndexInputDictionary["qoiEstimator"] = [monteCarloIndexInputDictionary["qoiEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberQoI"])]
-    monteCarloIndexInputDictionary["qoiEstimatorInputDictionary"] = [qoiEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberQoI"]
-    # combined estimators
-    monteCarloIndexInputDictionary["combinedEstimator"] = [monteCarloIndexInputDictionary["combinedEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberCombinedQoi"])]
-    monteCarloIndexInputDictionary["combinedEstimatorInputDictionary"] = [combinedEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberCombinedQoi"]
-    # cost estimator
-    monteCarloIndexInputDictionary["costEstimatorInputDictionary"] = costEstimatorInputDictionary
-
     # MonoCriterion
     criteriaArray = []
     criteriaInputs = []
-    for monoCriterion in (parameters["monoCriteriaInpuctDict"]):
-        criteriaArray.append(xmc.monoCriterion.MonoCriterion(\
-            parameters["monoCriteriaInpuctDict"][monoCriterion]["criteria"],\
-            parameters["monoCriteriaInpuctDict"][monoCriterion]["tolerance"]))
-        criteriaInputs.append([parameters["monoCriteriaInpuctDict"][monoCriterion]["input"]])
-
+    for monoCriterion in parameters["monoCriteriaInputDictionary"]:
+        criteriaArray.append(
+            xmc.monoCriterion.MonoCriterion(
+                parameters["monoCriteriaInputDictionary"][monoCriterion]["criteria"],
+                parameters["monoCriteriaInputDictionary"][monoCriterion]["tolerance"],
+            )
+        )
+        criteriaInputs.append(
+            [parameters["monoCriteriaInputDictionary"][monoCriterion]["input"]]
+        )
     # MultiCriterion
-    multiCriterionInputDictionary=parameters["multiCriterionInputDictionary"]
+    multiCriterionInputDictionary = parameters["multiCriterionInputDictionary"]
     multiCriterionInputDictionary["criteria"] = criteriaArray
     multiCriterionInputDictionary["inputsForCriterion"] = criteriaInputs
     criterion = xmc.multiCriterion.MultiCriterion(**multiCriterionInputDictionary)
-
     # ErrorEstimator
-    MSEErrorEstimator = xmc.errorEstimator.ErrorEstimator(**parameters["errorEstimatorInputDictionary"])
-
+    MSEErrorEstimator = xmc.errorEstimator.ErrorEstimator(
+        **parameters["errorEstimatorInputDictionary"]
+    )
     # HierarchyOptimiser
-    hierarchyCostOptimiser = xmc.hierarchyOptimiser.HierarchyOptimiser(**parameters["hierarchyOptimiserInputDictionary"])
-
+    # Set tolerance from stopping criterion
+    parameters["hierarchyOptimiserInputDictionary"]["tolerance"] = parameters["monoCriteriaInputDictionary"]["statisticalError"]["tolerance"]
+    hierarchyCostOptimiser = xmc.hierarchyOptimiser.HierarchyOptimiser(
+        **parameters["hierarchyOptimiserInputDictionary"]
+    )
     # EstimationAssembler
-    if "expectationAssembler" in parameters["estimationAssemblerInputDictionary"].keys():
-        expectationAssembler = xmc.estimationAssembler.EstimationAssembler(**parameters["estimationAssemblerInputDictionary"]["expectationAssembler"])
-    if "discretizationErrorAssembler" in parameters["estimationAssemblerInputDictionary"].keys():
-        discretizationErrorAssembler = xmc.estimationAssembler.EstimationAssembler(**parameters["estimationAssemblerInputDictionary"]["discretizationErrorAssembler"])
+    if (
+        "expectationAssembler"
+        in parameters["estimationAssemblerInputDictionary"].keys()
+    ):
+        expectationAssembler = xmc.estimationAssembler.EstimationAssembler(
+            **parameters["estimationAssemblerInputDictionary"]["expectationAssembler"]
+        )
+    if (
+        "discretizationErrorAssembler"
+        in parameters["estimationAssemblerInputDictionary"].keys()
+    ):
+        discretizationErrorAssembler = xmc.estimationAssembler.EstimationAssembler(
+            **parameters["estimationAssemblerInputDictionary"][
+                "discretizationErrorAssembler"
+            ]
+        )
     if "varianceAssembler" in parameters["estimationAssemblerInputDictionary"].keys():
-        varianceAssembler = xmc.estimationAssembler.EstimationAssembler(**parameters["estimationAssemblerInputDictionary"]["varianceAssembler"])
-
+        varianceAssembler = xmc.estimationAssembler.EstimationAssembler(
+            **parameters["estimationAssemblerInputDictionary"]["varianceAssembler"]
+        )
     # MonteCarloSampler
     monteCarloSamplerInputDictionary = parameters["monteCarloSamplerInputDictionary"]
-    monteCarloSamplerInputDictionary["indexConstructorDictionary"] = monteCarloIndexInputDictionary
-    monteCarloSamplerInputDictionary["assemblers"] =  [expectationAssembler,discretizationErrorAssembler,varianceAssembler]
+    monteCarloSamplerInputDictionary[
+        "indexConstructorDictionary"
+    ] = monteCarloIndexInputDictionary
+    monteCarloSamplerInputDictionary["assemblers"] = [
+        expectationAssembler,
+        discretizationErrorAssembler,
+        varianceAssembler,
+    ]
     monteCarloSamplerInputDictionary["errorEstimators"] = [MSEErrorEstimator]
-    mcSampler = xmc.monteCarloSampler.MonteCarloSampler(**monteCarloSamplerInputDictionary)
-
+    # build Monte Carlo sampler object
+    mcSampler = xmc.monteCarloSampler.MonteCarloSampler(
+        **monteCarloSamplerInputDictionary
+    )
     # XMCAlgorithm
     XMCAlgorithmInputDictionary = parameters["XMCAlgorithmInputDictionary"]
     XMCAlgorithmInputDictionary["monteCarloSampler"] = mcSampler
     XMCAlgorithmInputDictionary["hierarchyOptimiser"] = hierarchyCostOptimiser
     XMCAlgorithmInputDictionary["stoppingCriterion"] = criterion
-
     algo = xmc.XMCAlgorithm(**XMCAlgorithmInputDictionary)
 
     time_start = time.time()
