@@ -1,6 +1,6 @@
 # Fluid dynamics building problem
 
-**Author:** [Riccardo Tosi](https://github.com/riccardotosi)
+**Author:** [Riccardo Tosi](https://riccardotosi.github.io)
 
 **Kratos version:** 8.1
 
