@@ -22,7 +22,7 @@ The problem can be run with four different algorithms:
 * Synchronous Multilevel Monte Carlo (SMLMC),
 * Asynchronous Multilevel Monte Carlo (AMLMC),
 
-and by default AMC and AMLMC are selected. If one is interested in running SMC or SMLMC, it is needed to select `asynchronous = false` in the solver wrapper settings. Please observe that for running you may want to invrease the number of realizations per level.
+and by default AMC and AMLMC are selected. If one is interested in running SMC or SMLMC, it is needed to select `asynchronous = false` in the solver wrapper settings. Please observe that for running you may want to increase the number of realizations per level.
 
 The Quantities of Interest of the problem are the lift coefficient and the pressure coefficient. Statistical convergence is assessed for the lift coefficient.
 
