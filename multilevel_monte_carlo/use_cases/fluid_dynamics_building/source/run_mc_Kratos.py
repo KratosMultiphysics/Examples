@@ -136,7 +136,7 @@ if __name__ == "__main__":
     qoi_dict["qoi_id_legend"] = {"index_legend":{}}
     qoi_dict["qoi_id_legend"]["index_legend"] = {"qoi_id":"qoi id", "index": "Monte Carlo index/level", "instances": "number of samples/contributions for current level", "Sa": "power sum order a", "ha": "moment order a","type":"qoi type","tag":"physical quantity name","node_id": "mesh node id", "node_coordinates": "coordinates of the node"}
 
-    # save lift coefficient
+    # save drag force
     for qoi_counter in range (0,1):
         qoi_dict["qoi_id_"+str(qoi_counter)] = {"index_"+str(index): {} for index in range (len(algo.monteCarloSampler.indices))}
         for index in range (len(algo.monteCarloSampler.indices)):
@@ -156,7 +156,7 @@ if __name__ == "__main__":
             h2 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionZero(S1,S2,sample_counter)))
             qoi_dict["qoi_id_"+str(qoi_counter)]["index_"+str(index)] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "S3": S3, "S4": S4, "S5": S5, "S6": S6, "S7": S7, "S8": S8, "S9": S9, "S10": S10, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"drag_force"}
 
-    # save pressure coefficient
+    # save pressure
     qoi_counter = qoi_counter + 1
     qoi_dict["qoi_id_"+str(qoi_counter)] = {"member_"+str(member): {} for member in range (algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._variableDimension)}
     member = 0
