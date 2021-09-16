@@ -13,38 +13,6 @@
         "random_reference_velocity" : false,
         "random_roughness_height" : false
     },
-    "output_processes" : {
-        "gid_output" : [{
-            "python_module" : "gid_output_process",
-            "kratos_module" : "KratosMultiphysics",
-            "process_name"  : "GiDOutputProcess",
-            "help"          : "This process writes postprocessing files for GiD",
-            "Parameters"    : {
-                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
-                "output_name"            : "CAARC3D",
-                "postprocess_parameters" : {
-                    "result_file_configuration" : {
-                        "gidpost_flags"       : {
-                            "GiDPostMode"           : "GiD_PostBinary",
-                            "WriteDeformedMeshFlag" : "WriteDeformed",
-                            "WriteConditionsFlag"   : "WriteConditions",
-                            "MultiFileFlag"         : "MultipleFiles"
-                        },
-                        "file_label"          : "step",
-                        "output_control_type" : "step",
-                        "output_frequency"    : 1.0,
-                        "body_output"         : true,
-                        "node_output"         : false,
-                        "skin_output"         : false,
-                        "nodal_results"       : ["VELOCITY","PRESSURE"],
-                        "nodal_nonhistorical_results" : ["AVERAGED_VELOCITY","AVERAGED_PRESSURE","TEMPERATURE"],
-                        "gauss_point_results" : ["VORTICITY_MAGNITUDE","VORTICITY"]
-                    },
-                    "point_data_configuration"  : []
-                }
-            }
-        }]
-    },
     "solver_settings"  : {
         "model_part_name"                 : "FluidModelPart",
         "domain_size"                     : 3,
@@ -124,39 +92,6 @@
                     "search_radius" : 0.1
                 },
                 "poisson_parameters" : {
-                    "output_processes" : {
-                        "gid_output" : [{
-                            "python_module" : "gid_output_process",
-                            "kratos_module" : "KratosMultiphysics",
-                            "process_name"  : "GiDOutputProcess",
-                            "help"          : "This process writes postprocessing files for GiD",
-                            "Parameters"    : {
-                                "model_part_name"        : "FluidModelPart",
-                                "output_name"            : "kratos_perturbation_process",
-                                "postprocess_parameters" : {
-                                    "result_file_configuration" : {
-                                        "gidpost_flags"       : {
-                                            "GiDPostMode"           : "GiD_PostBinary",
-                                            "WriteDeformedMeshFlag" : "WriteDeformed",
-                                            "WriteConditionsFlag"   : "WriteConditions",
-                                            "MultiFileFlag"         : "SingleFile"
-                                        },
-                                        "file_label"          : "time",
-                                        "output_control_type" : "step",
-                                        "output_frequency"    : 1,
-                                        "body_output"         : true,
-                                        "node_output"         : false,
-                                        "skin_output"         : false,
-                                        "plane_output"        : [],
-                                        "nodal_results"       : ["VELOCITY"],
-                                        "nodal_nonhistorical_results" : [],
-                                        "gauss_point_results" : []
-                                    },
-                                    "point_data_configuration"  : []
-                                }
-                            }
-                        }]
-                    },
                     "problem_data" : {
                         "model_part_name" : "FluidModelPart",
                         "domain_size"     : 3,
@@ -286,7 +221,7 @@
                     "write_drag_output_file" : true,
         		    "output_file_settings" :{
                         "file_name":  "drag_time_series",
-                        "folder_name": "drag"
+                        "output_path": "drag"
                     },
                     "print_drag_to_screen"   : false,
                     "reference_point"        : [0.0,0.0,0.0],
