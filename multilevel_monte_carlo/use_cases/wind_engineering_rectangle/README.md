@@ -1,4 +1,4 @@
-# Stochastic wind engineering rectangle problem with ensemble average approach
+# Wind engineering rectangle problem with deterministic and stochastic inlet boundary conditions
 
 **Author:** [Riccardo Tosi](https://github.com/riccardotosi) and [Marc Núñez](https://github.com/marcnunezc) and [Brendan Keith](https://brendankeith.github.io/)
 
@@ -15,8 +15,8 @@
 ## Case Specification
 We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication) of a fluid passing through a bluff body. The problem is characterized by uniform wind inlet velocity, constant in time. Two different problems can be solved:
 
-* deterministic inlet boundary conditions: wind velocity modulus is <img src="https://render.githubusercontent.com/render/math?math=2m/s">,
-* stochastic inlet boundary conditions: wind velocity modulus is random and its probability density function is <img src="https://render.githubusercontent.com/render/math?math=u_{inlet}\sim\mathcal{N}(2.0,0.02)">.
+* constant in time deterministic inlet boundary conditions: wind velocity modulus is <img src="https://render.githubusercontent.com/render/math?math=2m/s">,
+* constant in time stochastic inlet boundary conditions: wind velocity modulus is random and it behaves as <img src="https://render.githubusercontent.com/render/math?math=u_{inlet}\sim\mathcal{N}(2.0,0.02)">.
 
 Each realization with fixed inlet boundary condition can be solved exploiting ensemble average, see [1] for details.
 
