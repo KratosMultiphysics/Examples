@@ -1,16 +1,11 @@
 # Import Python libraries
-import sys
+import sys, os, json, time, pickle
 sys.dont_write_bytecode = True
-import os
-import json
-import time
-import pickle
-
 # Import XMC, Kratos, COMPSs
 import KratosMultiphysics
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-from exaqute import *   # to execute with runcompss
+from exaqute import get_value_from_remote
 
 
 if __name__ == "__main__":
@@ -18,7 +13,7 @@ if __name__ == "__main__":
     if(len(sys.argv)==2):
         parametersPath = str(sys.argv[1]) # set path to the parameters
     else:
-        parametersPath = "problem_settings/parameters_xmc_asynchronous_mc_CAARC3d_Fractional.json"
+        parametersPath = "problem_settings/parameters_xmc.json"
 
     # read parameters
     with open(parametersPath,'r') as parameter_file:
@@ -137,7 +132,7 @@ if __name__ == "__main__":
     if(len(sys.argv)==2):
         parametersPath_dict = str(sys.argv[1]) # set path to the parameters
     else:
-        parametersPath_dict = "problem_settings/parameters_xmc_asynchronous_mc_CAARC3d_Fractional.json"
+        parametersPath_dict = "problem_settings/parameters_xmc.json"
     # read parameters
     with open(parametersPath_dict,'r') as parameter_file_dict:
             parameters_dict = json.load(parameter_file_dict)

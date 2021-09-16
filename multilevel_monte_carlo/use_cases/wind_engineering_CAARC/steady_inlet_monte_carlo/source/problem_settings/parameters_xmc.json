@@ -57,25 +57,25 @@
         "outputBatchSize": 1041,
         "parameters": null,
         "printToFile": true,
-        "projectParametersPath": "problem_settings/ProjectParametersCAARC_MC_steadyInlet.json",
-        "refinementParametersPath": "problem_settings/parameters_refinement.json",
-        "refinementStrategy": "stochastic_adaptive_refinement",
+        "projectParametersPath": ["problem_settings/ProjectParametersCAARC_MC_steadyInlet.json"],
+        "refinementParametersPath": null,
+        "refinementStrategy": "reading_from_file",
         "taskAllAtOnce": true
     },
     "monoCriteriaInputDictionary" :{
         "statisticalError": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
-            "tolerance": [0.01],
+            "tolerance": 0.01,
             "input": "error0"
         },
         "minNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [0],
+            "tolerance": 0.0,
             "input": "algorithmCost"
         },
         "maxNumberIterations": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
-            "tolerance": [0],
+            "tolerance": 0.0,
             "input": "algorithmCost"
         }
     },

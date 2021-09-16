@@ -35,7 +35,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
         raw_path, raw_filename = os.path.split(self.filename)
         self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["write_drag_output_file"].SetBool(True)
         self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["file_name"].SetString(raw_filename)
-        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["folder_name"].SetString(raw_path)
+        self.project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["output_file_settings"]["output_path"].SetString(raw_path)
         if (self.project_parameters["problem_data"]["perturbation"]["type"].GetString() == "correlated"):
             if type(self.sample[-1]) is int:
                 # for MC + ensemble average
