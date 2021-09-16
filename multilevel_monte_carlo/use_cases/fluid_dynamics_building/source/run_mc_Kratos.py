@@ -109,7 +109,7 @@ if __name__ == "__main__":
     ####################################################################################################################################################################################
 
     # retrieve project parameters and mdpa
-    with open(parameters["solverWrapperInputDictionary"]["projectParametersPath"],'r') as parameter_file:
+    with open(parameters["solverWrapperInputDictionary"]["projectParametersPath"][0],'r') as parameter_file:
         project_parameters = json.load(parameter_file)
     pickled_model = algo.monteCarloSampler.indices[0].sampler.solvers[0].pickled_model[0]
     serialized_model = pickle.loads(pickled_model)
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     if(len(sys.argv)==2):
         parametersPath_dict = str(sys.argv[1]) # set path to the parameters
     else:
-        parametersPath_dict = "problem_settings/parameters_xmc_asynchronous_mc_potentialFlow.json"
+        parametersPath_dict = "problem_settings/parameters_xmc_asynchronous_mc_problemZero.json"
     # read parameters
     with open(parametersPath_dict,'r') as parameter_file_dict:
             parameters_dict = json.load(parameter_file_dict)

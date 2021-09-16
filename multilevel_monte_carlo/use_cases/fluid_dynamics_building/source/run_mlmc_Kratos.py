@@ -136,7 +136,7 @@ if __name__ == "__main__":
     if(len(sys.argv)==2):
         parametersPath_dict = str(sys.argv[1]) # set path to the parameters
     else:
-        parametersPath_dict = "problem_settings/parameters_xmc_asynchronous_mlmc_potentialFlow.json"
+        parametersPath_dict = "problem_settings/parameters_xmc_asynchronous_mlmc_problemZero.json"
     # read parameters
     with open(parametersPath_dict,'r') as parameter_file_dict:
             parameters_dict = json.load(parameter_file_dict)

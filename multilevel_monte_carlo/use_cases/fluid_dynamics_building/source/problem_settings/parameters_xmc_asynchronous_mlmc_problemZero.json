@@ -30,7 +30,7 @@
         ],
         "qoiEstimatorInputDictionary": [
             {"indexSetDimension": 1,"order": 1,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder2Dimension1","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
-            {"variableDimension": 157,"order": 1, "isEstimationParallel": false}
+            {"variableDimension": 156,"order": 1, "isEstimationParallel": false}
         ],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
         "eventGroupSize": 5
@@ -68,10 +68,10 @@
         "projectParametersPath": ["problem_settings/ProblemZeroParametersVMS_lev0.json","problem_settings/ProblemZeroParametersVMS_lev1.json","problem_settings/ProblemZeroParametersVMS_lev2.json"],
         "refinementParametersPath": "problem_settings/parameters_refinement.json",
         "refinementStrategy": "reading_from_file",
-        "sizeMultiXMomentEstimator": 204,
+        "sizeMultiXMomentEstimator": 156,
         "taskAllAtOnce": true
     },
-    "monoCriteriaInputDict" :{
+    "monoCriteriaInputDictionary" :{
         "statisticalError": {
             "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
             "tolerance": 0.15,
