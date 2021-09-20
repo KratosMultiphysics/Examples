@@ -1,5 +1,5 @@
 {
-    "hessian_metric": {
+    "metric": {
 		"hessian_strategy_parameters"              :{
 				"metric_variable"				           : ["VELOCITY_X,VELOCITY_Y"],
 				"estimate_interpolation_error"     : false,
@@ -11,7 +11,7 @@
 		"anisotropy_remeshing"              : true,
 		"enforce_anisotropy_relative_variable" : false
     },
-    "refinement_mmg" : {
+    "remeshing" : {
         "initialize_entities"              : false,
         "echo_level"                       : 0
     }

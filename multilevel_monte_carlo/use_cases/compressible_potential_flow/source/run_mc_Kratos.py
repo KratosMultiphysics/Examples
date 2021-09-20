@@ -11,7 +11,8 @@ import KratosMultiphysics
 import KratosMultiphysics.MultilevelMonteCarloApplication
 import xmc
 import xmc.methodDefs_momentEstimator.computeCentralMoments as mdccm
-from exaqute.ExaquteTaskLocal import *
+from exaqute import get_value_from_remote
+
 
 if __name__ == "__main__":
 
@@ -24,9 +25,8 @@ if __name__ == "__main__":
     with open(parametersPath,'r') as parameter_file:
             parameters = json.load(parameter_file)
 
-    # add path of the problem folder to python path
-    problem_id = parameters["solverWrapperInputDictionary"]["problemId"]
-    sys.path.append(os.path.join("..","xmc","classDefs_solverWrapper","problemDefs_KratosMultiphysics",problem_id))
+    # SolverWrapper
+    parameters["solverWrapperInputDictionary"]["qoiEstimator"] = parameters["monteCarloIndexInputDictionary"]["qoiEstimator"]
 
     # SampleGenerator
     samplerInputDictionary = parameters["samplerInputDictionary"]
@@ -36,19 +36,6 @@ if __name__ == "__main__":
     # MonteCarloIndex
     monteCarloIndexInputDictionary = parameters["monteCarloIndexInputDictionary"]
     monteCarloIndexInputDictionary["samplerInputDictionary"] = samplerInputDictionary
-
-    # Moment Estimators
-    qoiEstimatorInputDictionary = parameters["qoiEstimatorInputDictionary"]
-    combinedEstimatorInputDictionary = parameters["combinedEstimatorInputDictionary"]
-    costEstimatorInputDictionary = parameters["costEstimatorInputDictionary"]
-    # qoi estimators
-    monteCarloIndexInputDictionary["qoiEstimator"] = [monteCarloIndexInputDictionary["qoiEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberQoI"])]
-    monteCarloIndexInputDictionary["qoiEstimatorInputDictionary"] = [qoiEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberQoI"]
-    # combined estimators
-    monteCarloIndexInputDictionary["combinedEstimator"] = [monteCarloIndexInputDictionary["combinedEstimator"][0] for _ in range (0,parameters["solverWrapperInputDictionary"]["numberCombinedQoi"])]
-    monteCarloIndexInputDictionary["combinedEstimatorInputDictionary"] = [combinedEstimatorInputDictionary]*parameters["solverWrapperInputDictionary"]["numberCombinedQoi"]
-    # cost estimator
-    monteCarloIndexInputDictionary["costEstimatorInputDictionary"] = costEstimatorInputDictionary
 
     # MonoCriterion
     criteriaArray = []
@@ -153,25 +140,20 @@ if __name__ == "__main__":
             qoi_dict["qoi_id_"+str(qoi_counter)]["index_"+str(index)] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "S3": S3, "S4": S4, "S5": S5, "S6": S6, "S7": S7, "S8": S8, "S9": S9, "S10": S10, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"lift_coefficient"}
 
     # save pressure coefficient
+    qoi_counter = qoi_counter + 1
+    qoi_dict["qoi_id_"+str(qoi_counter)] = {"member_"+str(member): {} for member in range (algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._variableDimension)}
+    member = 0
     for node in current_model.GetModelPart(model_part_of_interest).Nodes:
-        qoi_counter = qoi_counter + 1
-        qoi_dict["qoi_id_"+str(qoi_counter)] = {"index_"+str(index): {} for index in range (len(algo.monteCarloSampler.indices))}
+        qoi_dict["qoi_id_"+str(qoi_counter)]["member_"+str(member)] = {"index_"+str(index): {} for index in range (len(algo.monteCarloSampler.indices))}
         for index in range (len(algo.monteCarloSampler.indices)):
             algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter] = get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter])
             sample_counter = algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._sampleCounter
-            S1 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[0][0]))
-            S2 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[1][0]))
-            S3 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[2][0]))
-            S4 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[3][0]))
-            S5 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[4][0]))
-            S6 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[5][0]))
-            S7 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[6][0]))
-            S8 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[7][0]))
-            S9 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[8][0]))
-            S10 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter].powerSums[9][0]))
+            S1 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["1"][member]))
+            S2 = float(get_value_from_remote(algo.monteCarloSampler.indices[index].qoiEstimator[qoi_counter]._powerSums["2"][member]))
             h1 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderOneDimensionZero(S1,sample_counter)))
             h2 = float(get_value_from_remote(mdccm.computeCentralMomentsOrderTwoDimensionZero(S1,S2,sample_counter)))
-            qoi_dict["qoi_id_"+str(qoi_counter)]["index_"+str(index)] = {"qoi_id":qoi_counter, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "S3": S3, "S4": S4, "S5": S5, "S6": S6, "S7": S7, "S8": S8, "S9": S9, "S10": S10, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"pressure coefficent","node_id":node.Id,"node_coordinates":[node.X,node.Y,node.Z]}
+            qoi_dict["qoi_id_"+str(qoi_counter)]["member_"+str(member)]["index_"+str(index)] = {"qoi_id":qoi_counter, "member":member, "index": index, "instances": sample_counter, "S1": S1, "S2": S2, "S3": S3, "S4": S4, "S5": S5, "S6": S6, "S7": S7, "S8": S8, "S9": S9, "S10": S10, "h1": h1, "h2": h2,"type":"scalar_quantity","tag":"pressure coefficent","node_id":node.Id,"node_coordinates":[node.X,node.Y,node.Z]}
+        member += 1
 
     # save to file
     with open('power_sums_outputs/MC_asynchronous_power_sums_' +str(time.time()) + '.json', 'w') as f:
