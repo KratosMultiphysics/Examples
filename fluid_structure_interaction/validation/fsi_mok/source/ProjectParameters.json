@@ -99,9 +99,19 @@
             "Parameters"    : {
                 "model_part_name" : "FluidModelPart.AutomaticInlet2D_Inlet",
                 "variable_name"   : "VELOCITY",
-                "modulus"         : "0.1214*(1-cos(0.1*pi*t))*y*(1-y) if t<10 else 0.2428*y*(1-y)",
+                "modulus"         : "0.1214*(1-cos(0.1*pi*t))*y*(1-y)",
                 "direction"       : "automatic_inwards_normal",
-                "interval"        : [0.0,"End"]
+                "interval"        : [0.0,10.0]
+            }
+        },{
+            "python_module" : "apply_inlet_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.AutomaticInlet2D_Inlet",
+                "variable_name"   : "VELOCITY",
+                "modulus"         : "0.2428*y*(1-y)",
+                "direction"       : "automatic_inwards_normal",
+                "interval"        : [10.0,"End"]
             }
         },{
             "python_module" : "apply_outlet_process",
