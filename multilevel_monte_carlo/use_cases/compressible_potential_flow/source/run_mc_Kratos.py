@@ -95,7 +95,7 @@ if __name__ == "__main__":
     with open(parameters["solverWrapperInputDictionary"]["projectParametersPath"],'r') as parameter_file:
         project_parameters = json.load(parameter_file)
     pickled_model = algo.monteCarloSampler.indices[0].sampler.solvers[0].pickled_model[0]
-    serialized_model = pickle.loads(pickled_model)
+    serialized_model = pickle.loads(get_value_from_remote(pickled_model))
     current_model = KratosMultiphysics.Model()
     serialized_model.Load("ModelSerialization",current_model)
     model_part_of_interest = "model.Body2D_Body"
