@@ -29,7 +29,9 @@
             "parameters"   :{
                 "lookback"	   : 3,
                 "input_log_name"  : "input_preprocessing.json",
-                "output_log_name" : "output_preprocessing.json"
+                "output_log_name" : "output_preprocessing.json",
+                "record"	   : false,
+                "features_as_timesteps": true
             }
         },
         {
@@ -38,7 +40,7 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "pkl",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
@@ -54,7 +56,7 @@
             "layer_parameters"    :{
             "layer_name"          : "input",
             "input_to_recurrent"  : true,
-                "data_input"      : "data//training_in.npy"  
+                "data_input"      : "data//training_in.pkl"  
             }  
         }},   
         {
@@ -99,7 +101,7 @@
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
                 "output_layer" 	     : true,
-                "data_output"		     : "data//training_out.npy",
+                "data_output"		     : "data//training_out.pkl",
                 "activation"		     : "linear"
         }}},  
         {
@@ -145,8 +147,8 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
             "model"              : "my_model",
             "epochs"             : 2000,
             "shuffle"	          : true,
@@ -173,8 +175,8 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1000,
             "lookback"            : 3,
             "echo"                : 1,
@@ -186,12 +188,12 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
+            "target_file"         : "data//training_out.pkl",
             "input_variable"      : "Time",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
             "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "output_name"         : "sdof_displacement",
             "output_format"       : "png"          
         }}
     ]}

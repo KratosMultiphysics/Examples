@@ -28,6 +28,7 @@
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "lookback"	   : 3,
+                "timesteps_as_features": true,
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }

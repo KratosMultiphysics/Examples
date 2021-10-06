@@ -36,6 +36,8 @@
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "lookback"	   : 50,
+                "features_as_timesteps": false,
+                "timesteps_as_features": false,
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
@@ -46,7 +48,7 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "pkl",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
@@ -61,7 +63,7 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy",
+                "data_input"      : "data//training_in.pkl",
                 "input_to_recurrent": true  
             }  
         }},   
@@ -136,10 +138,10 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
             "model"              : "my_model",
-            "epochs"             : 10000,
+            "epochs"             : 1000,
             "recurrent"          : true,
             "shuffle"	          : true,
             "training_log"       : true,
@@ -156,15 +158,16 @@
             "output_format"              : "png",
             "output_name"                : "training_plot",
             "axis"                       : "semilogx",
-            "burn_up"                    : 10
+            "burn_up"                    : 10,
+            "show"			   : false
         }},
         {
         "python_module" : "testing_timeseries_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1000,
             "lookback"            : 50,
             "echo"                : 1,
@@ -176,7 +179,7 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
+            "target_file"         : "data//training_out.pkl",
             "input_variable"      : "Time",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",

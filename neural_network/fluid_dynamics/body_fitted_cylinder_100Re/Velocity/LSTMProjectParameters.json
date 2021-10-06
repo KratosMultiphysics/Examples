@@ -55,7 +55,7 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "pkl",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
@@ -71,7 +71,7 @@
             "layer_parameters"    :{
             "layer_name"          : "input",
             "input_to_recurrent"  : true,
-                "data_input"      : "data//training_in.npy"  
+                "data_input"      : "data//training_in.pkl"  
             }  
         }},   
  
@@ -102,7 +102,7 @@
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
                 "output_layer" 	     : true,
-                "data_output"		     : "data//training_out.npy",
+                "data_output"		     : "data//training_out.pkl",
                 "activation"		     : "linear"
         }}},  
         {
@@ -148,14 +148,14 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
-            "model"              : "my_model",
-            "recurrent"	  : true,
-            "epochs"             : 2000,
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
+            "model"               : "my_model",
+            "recurrent"	  		  : true,
+            "epochs"              : 2000,
             "shuffle"	          : true,
-            "training_log"       : true,
-            "training_log_file"  : "history.dat" 
+            "training_log"        : true,
+            "training_log_file"   : "history.dat" 
         }}]
     },
     "output_processes":{
@@ -175,8 +175,8 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1000,
             "lookback"            : 5,
             "echo"                : 1,
@@ -188,7 +188,7 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "echo"                : 1,
-            "input_file"	   : "data//training_in.npy",
+            "input_file"	   : "data//training_in.pkl",
             "predictions_file"    : "data//predictions.npy",
             "input_file_name"	   : "data//input_corrected",
             "output_file_name"    : "data//output_corrected",
@@ -201,8 +201,8 @@
             "file"   			  : "data//training_out_raw.dat",
             "origin"			  : "output_generation",
             "variables"			  : ["VELOCITY_X", "VELOCITY_Y"],
-            "vmin"				  : [-0.1, -0.1],
-            "vmax"				  : [0.1, 0.1],
+            "vmin"				  : [-0.05, -0.05],
+            "vmax"				  : [0.05, 0.05],
             "output_name"         : "correlation_matrix_raw",
             "output_format"       : "png"          
         }},
@@ -213,8 +213,8 @@
             "file"   			  : "data//output_corrected.npy",
             "origin"			  : "prediction",
             "variables"			  : ["VELOCITY_X", "VELOCITY_Y"],
-            "vmin"				  : [-0.1, -0.1],
-            "vmax"				  : [0.1, 0.1],
+            "vmin"				  : [-0.05, -0.05],
+            "vmax"				  : [0.05, 0.05],
             "output_name"         : "correlation_matrix_prediction",
             "output_format"       : "png"          
         }},

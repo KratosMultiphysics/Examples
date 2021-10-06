@@ -13,8 +13,8 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1500,
             "lookback"            : 3,
             "echo"                : 1,
@@ -26,7 +26,7 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
+            "target_file"         : "data//training_out.pkl",
             "input_variable"      : "Time",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",

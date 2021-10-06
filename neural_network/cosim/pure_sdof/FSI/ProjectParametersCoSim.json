@@ -75,13 +75,15 @@
             },
             "neural_network" :
             {
-                "type" : "solver_wrappers.kratos.neural_network_wrapper",
+                "type" : "solver_wrappers.kratos.neural_network_without_mdpa_wrapper",
                 "solver_wrapper_settings" : {
                     "input_file"  : "ProjectParametersNeuralNetwork",
                     "input_variable" : "load",
                     "output_variable": "disp",
                     "mdpa_file_name" : "mdpa_neural_network",
-                    "lookback"       : 3
+                    "lookback"       : 3,
+                    "features_as_timesteps": true,
+                    "record"		: false
                 },
                 "data" : {
                     "disp" : {

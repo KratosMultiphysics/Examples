@@ -1,3 +1,12 @@
 /fluid_structure_interaction/
 /fluid_dynamics/
 /co_simulation/
+*.vtk
+*.png
+*.dat
+*.pkl
+*.npy
+**/my_model
+**/data
+*.pyc
+/co_simulation/CoSim_DevExamples/
