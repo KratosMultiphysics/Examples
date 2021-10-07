@@ -33,13 +33,15 @@ class SimulationScenario(FluidDynamicsAnalysis):
         # compute drag force
         drag_force_vector = KratosMultiphysics.FluidDynamicsApplication.DragUtilities().CalculateBodyFittedDrag(self.model.GetModelPart(self.interest_model_part))
         qoi_list.append(drag_force_vector[0]) # add drag force
-
+        # pressure
+        pressure_list = []
         if (self.mapping is not True):
             for node in self.model.GetModelPart(self.interest_model_part).Nodes:
-                qoi_list.append(node.GetSolutionStepValue(KratosMultiphysics.PRESSURE)) # add pressure
+                pressure_list.append(node.GetSolutionStepValue(KratosMultiphysics.PRESSURE)) # add pressure
         elif (self.mapping is True):
             for node in self.mapping_reference_model.GetModelPart(self.interest_model_part).Nodes:
-                qoi_list.append(node.GetSolutionStepValue(KratosMultiphysics.PRESSURE)) # add pressure
+                pressure_list.append(node.GetSolutionStepValue(KratosMultiphysics.PRESSURE)) # add pressure
+        qoi_list.append(pressure_list)
         print("[SCREENING] Total number of QoI:",len(qoi_list))
 
         return qoi_list
