@@ -141,8 +141,8 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Fluid dynamics building problem](multilevel_monte_carlo/use_cases/fluid_dynamics_building)
 - [Wind engineering rectangle problem](multilevel_monte_carlo/use_cases/wind_engineering_rectangle)
 - [Wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC)
-    - [Steady inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/steady_inlet_monte_carlo)
-    - [Turbulent inlet wind engineering CAARC problem with ensemble average approach](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/turbulent_inlet_monte_carlo)
+    - [Steady inlet wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/steady_inlet_monte_carlo)
+    - [Turbulent inlet wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/turbulent_inlet_monte_carlo)
 
 **Validation Cases**
 - [Elliptic benchmark](multilevel_monte_carlo/validation/elliptic_benchmark)
