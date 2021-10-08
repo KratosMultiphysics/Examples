@@ -39,9 +39,14 @@ In the latter case, the environment variable `EXAQUTE_BACKEND` has to be set to 
 
 ## Results
 
-The velocity field of the problem is shown next.
+The velocity field of the problem is shown next, where a time window of 600 seconds is considered and the output frequency is 5 seconds. We first show the velocity field from an isometric view
 <p align="center">
-  <img src="data/animation_twisted_building_slow.gif" alt="velocity" style="width: 750px;"/>
+  <img src="data/animation_twisted_building_isometric_velocity.gif" alt="velocity" style="width: 750px;"/>
+</p>
+and then from vertical and horizontal views.
+<p align="center">
+  <img src="data/animation_twisted_building_fromside_velocity.gif" alt="velocity" style="height: 190px;"/>
+  <img src="data/animation_twisted_building_fromtop_velocity.gif" alt="velocity" style="height: 190px;"/>
 </p>
 
 An example of power sums and h-statistics of both time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
