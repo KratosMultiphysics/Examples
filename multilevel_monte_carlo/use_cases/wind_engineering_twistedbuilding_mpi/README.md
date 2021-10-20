@@ -38,6 +38,12 @@ To run the first scenario execute `mpirun -n $number_processes python3 run_mc_Kr
 In the latter case, the environment variable `EXAQUTE_BACKEND` has to be set to `pycompss`. In the former case, the environment variable `EXAQUTE_BACKEND` has to be set to local.
 
 We remark that the mesh discretization we upload in this repository is rather coarse, since only 300000 elements are used to discretize the domain. The discretization can be observed next. The whole domain is reported in the left figure and a zoom close to the building is reported in the right figure.
+<object data="/multilevel_monte_carlo/use_cases/wind_engineering_twistedbuilding_mpi/data/mesh.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/assets/documents/cv.pdf">
+        <p>This browser does not support PDFs. Please <a href="/assets/documents/cv.pdf">download the PDF</a> to view.</p>
+    </embed>
+</object>
+
 <p align="center">
   <img src="data/mesh.png" alt="mesh discretization" style="height: 175px;"/>
   <img src="data/mesh_zoom.png" alt="mesh discretization zoom" style="height: 175px;"/>
