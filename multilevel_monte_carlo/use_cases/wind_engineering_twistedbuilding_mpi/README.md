@@ -42,7 +42,7 @@ We remark that the mesh discretization we upload in this repository is rather co
   <img src="data/mesh.png" alt="mesh discretization" style="height: 175px;"/>
   <img src="data/mesh_zoom.png" alt="mesh discretization zoom" style="height: 175px;"/>
 </p>
-We recommend using more accurate meshes for solving the problem, if results of engineering interest are required. For example, finer discretizations can be obtained remeshing the current mesh using the [MeshingApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MeshingApplication).  The results we report in the Results section are obtained with a much finer mesh.
+We recommend using more accurate meshes for solving the problem, if results of engineering interest are required. For example, finer discretizations can be obtained remeshing the current mesh using the <a href="https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MeshingApplication">MeshingApplication</a>.  The results we report in the Results section are obtained with a much finer mesh.
 
 ## Results
 
