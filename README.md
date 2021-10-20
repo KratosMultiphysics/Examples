@@ -143,6 +143,7 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC)
     - [Steady inlet wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/steady_inlet_monte_carlo)
     - [Turbulent inlet wind engineering CAARC problem](multilevel_monte_carlo/use_cases/wind_engineering_CAARC/turbulent_inlet_monte_carlo)
+- [Wind engineering twisted building problem with MPI parallelism](multilevel_monte_carlo/use_cases/wind_engineering_twistedbuilding_mpi)
 
 **Validation Cases**
 - [Elliptic benchmark](multilevel_monte_carlo/validation/elliptic_benchmark)

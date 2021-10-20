@@ -7,6 +7,7 @@
 - [Wind engineering CAARC problem](use_cases/wind_engineering_CAARC)
     - [Steady inlet wind engineering CAARC problem](use_cases/wind_engineering_CAARC/steady_inlet_monte_carlo)
     - [Turbulent inlet wind engineering CAARC problem](use_cases/wind_engineering_CAARC/turbulent_inlet_monte_carlo)
+- [Wind engineering twisted building problem with MPI parallelism](use_cases/wind_engineering_twistedbuilding_mpi)
 
 ## Validation Cases
 - [Elliptic benchmark](validation/elliptic_benchmark)
