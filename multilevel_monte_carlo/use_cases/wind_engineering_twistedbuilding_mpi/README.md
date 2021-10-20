@@ -37,6 +37,13 @@ Two different workflows are available:
 To run the first scenario execute `mpirun -n $number_processes python3 run_mc_Kratos.py`, while to run with runcompss the second scenario execute `sh run.sh`.
 In the latter case, the environment variable `EXAQUTE_BACKEND` has to be set to `pycompss`. In the former case, the environment variable `EXAQUTE_BACKEND` has to be set to local.
 
+We remark that the mesh discretization we upload in this repository is rather coarse, since only 300000 elements are used to discretize the domain. The discretization can be observed next. The whole domain is reported in the left figure and a zoom close to the building is reported in the right figure.
+<p align="center">
+  <img src="data/mesh.png" alt="mesh discretization" style="height: 175px;"/>
+  <img src="data/mesh_zoom.png" alt="mesh discretization zoom" style="height: 175px;"/>
+</p>
+We recommend using more accurate meshes for solving the problem, if results of engineering interest are required. The results we report in the Results section are obtained with a much finer mesh.
+
 ## Results
 
 The velocity field of the problem is shown next, where a time window of 50 seconds is considered and the output frequency is 0.5 seconds. We first show the velocity field from an isometric view
