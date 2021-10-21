@@ -1,0 +1,262 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "twisted_building",
+        "parallel_type" : "MPI",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 50.0,
+        "perturbation"  : {
+            "type"      : "correlated",
+            "intensity" : 0.1
+        },
+        "burnin_time"   : 36.0,
+        "random_reference_velocity" : false,
+        "random_roughness_height" : true
+    },
+    "solver_settings"  : {
+        "model_part_name"                 : "FluidModelPart",
+        "domain_size"                     : 3,
+        "solver_type"                     : "FractionalStep",
+        "model_import_settings"           : {
+            "input_type"     : "mdpa",
+            "input_filename" : "problem_settings/twisted_building_coarse"
+        },
+        "material_import_settings"    : {
+            "materials_filename" : "problem_settings/materials_air.json"
+        },
+        "echo_level"                      : 1,
+        "compute_reactions"               : true,
+        "dynamic_tau"                     : 0.1,
+        "predictor_corrector"             : false,
+        "pressure_tolerance"              : 0.001,
+        "maximum_pressure_iterations"     : 4,
+        "velocity_tolerance"              : 0.001,
+        "maximum_velocity_iterations"     : 10,
+        "velocity_linear_solver_settings" : {
+            "solver_type"                    : "amgcl",
+            "max_iteration"                  : 300,
+            "tolerance"                      : 1e-5,
+            "provide_coordinates"            : false,
+            "smoother_type"                  : "damped_jacobi",
+            "krylov_type"                    : "lgmres",
+            "coarsening_type"                : "aggregation",
+            "gmres_krylov_space_dimension"   : 250,
+            "scaling"                        : true,
+            "use_block_matrices_if_possible" : true
+        },
+        "pressure_linear_solver_settings" : {
+            "solver_type"                    : "amgcl",
+            "max_iteration"                  : 300,
+            "tolerance"                      : 1e-7,
+            "provide_coordinates"            : false,
+            "smoother_type"                  : "damped_jacobi",
+            "krylov_type"                    : "lgmres",
+            "coarsening_type"                : "aggregation",
+            "gmres_krylov_space_dimension"   : 250,
+            "scaling"                        : true,
+            "use_block_matrices_if_possible" : true
+        },
+        "volume_model_part_name"          : "Parts_Fluid",
+        "skin_parts"                      : ["AutomaticInlet3D_Inlet","Outlet3D_Outlet","Slip3D","NoSlip3D_No_Slip_BC","NoSlip3D_No_Slip_Edges"],
+        "no_skin_parts"                   : ["Drag_Structure"],
+        "time_stepping"                   : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.25
+        }
+    },
+    "processes"        : {
+        "initial_conditions_process_list"  : [{
+            "python_module" : "kratos_perturbation_process",
+            "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Parts_Fluid",
+                "correlated_noise_generator" : {
+                    "dimension" : 3,
+                    "grid_dimensions" : [1440,720,450],
+                    "correlated_length" : 0.1,
+                    "grid_shape" : 50
+                },
+                "lx": 1441.0,
+                "ly": 721,
+                "lz": 451.0,
+                "x0": 0.0,
+                "y0": -360.0,
+                "z0": 0.0,
+                "seed": 9000,
+                "mapper_parameters" : {
+                    "mapper_type": "nearest_neighbor",
+                    "echo_level" : 3,
+                    "search_radius" : 0.1
+                },
+                "poisson_parameters" : {
+                    "problem_data" : {
+                        "parallel_type"   : "MPI",
+                        "model_part_name" : "FluidModelPart",
+                        "domain_size"     : 3,
+                        "penalty_coefficient" : 0.0,
+                        "load_velocity_field" : "average_velocity_twisted_building_merged.dat",
+                        "structure_model_part" : "NoSlip3D_No_Slip_Building"
+                    },
+                    "solver_settings": {
+                        "model_part_name" : "FluidModelPart",
+                        "domain_size" : 3,
+                        "model_import_settings"           : {
+                            "input_type"     : "mdpa",
+                            "input_filename" : "problem_settings/twisted_building_coarse"
+                        },
+                        "material_import_settings" : {
+                            "materials_filename" : "problem_settings/materials_Poisson.json"
+                        },
+                        "problem_domain_sub_model_part_list": ["Parts_Fluid"],
+                        "processes_sub_model_part_list": ["AutomaticInlet3D_Inlet","Outlet3D_Outlet","Slip3D","NoSlip3D_No_Slip_BC","NoSlip3D_No_Slip_Edges"],
+                        "auxiliary_variables_list" : []
+                    },
+                    "processes" : {
+                        "constraints_process_list" : [{
+                            "python_module" : "assign_scalar_variable_process",
+                            "kratos_module" : "KratosMultiphysics",
+                            "Parameters"    : {
+                                "model_part_name" : "FluidModelPart.Outlet3D_Outlet",
+                                "variable_name"   : "TEMPERATURE",
+                                "constrained"     : true,
+                                "value"           : 0.0,
+                                "interval"        : [0.0,"End"]
+                            }
+                        }]
+                    }
+                }
+            }
+        }],
+        "boundary_conditions_process_list" : [{
+            "python_module" : "onthefly_kratos_inlet_process",
+            "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication.WindGenerator",
+            "Parameters"    : {
+                "inlet_model_part_name" : "FluidModelPart.AutomaticInlet3D_Inlet",
+                "wind_inlet_aux_file_name" : "problem_settings/wind_inlet_twisted_building_sub_model_part",
+                "y0": -360.0,
+                "z0": 0.0,
+                "inlet_position": 0.0,
+                "ramp_time": 0.0,
+                "mean_profile_type": "logarithm",
+                "umean": 40.0,
+                "reference_height": 80.0,
+                "roughness_height": 0.3,
+                "wind_grid_levels": [5,5,5],
+                "lx": 40,
+                "seed": 9000
+            }
+        },{
+            "python_module" : "apply_outlet_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name"    : "FluidModelPart.Outlet3D_Outlet",
+                "variable_name"      : "PRESSURE",
+                "constrained"        : true,
+                "value"              : 0.0,
+                "hydrostatic_outlet" : false,
+                "h_top"              : 0.0
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip3D_No_Slip_BC"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip3D_No_Slip_Edges"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip3D_No_Slip_Building"
+            }
+        },{
+            "python_module" : "apply_slip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplySlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Slip3D"
+            }
+        }],
+        "gravity"                          : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Parts_Fluid",
+                "variable_name"   : "BODY_FORCE",
+                "modulus"         : 0.0,
+                "constrained"     : false,
+                "direction"       : [0.0,0.0,-1.0]
+            }
+        }],
+        "auxiliar_process_list"            : [{
+            "python_module" : "compute_body_fitted_drag_and_moment_process",
+            "kratos_module" : "KratosMultiphysics.ExaquteSandboxApplication",
+            "process_name"  : "ComputeBodyFittedDragAndMomentProcess",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.NoSlip3D_No_Slip_Building",
+                "write_drag_output_file" : true,
+                "output_file_settings" :{
+                    "file_name":  "drag_time_series",
+                    "output_path": "drag"
+                },
+                "print_drag_to_screen"   : false,
+                "reference_point"        : [382.5,0.0,0.0],
+                "interval"               : [0.0,"End"]
+            }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "FluidModelPart.Drag_Structure",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "PRESSURE"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_PRESSURE"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
+        },{
+            "kratos_module": "KratosMultiphysics.StatisticsApplication",
+            "python_module": "temporal_statistics_process",
+            "Parameters": {
+                "model_part_name": "FluidModelPart",
+                "input_variable_settings": [
+                    {
+                        "method_name": "mean",
+                        "norm_type": "none",
+                        "container": "nodal_historical_non_historical",
+                        "echo_level": 0,
+                        "method_settings": {
+                            "input_variables": [
+                                "VELOCITY"
+                            ],
+                            "output_variables": [
+                                "AVERAGED_VELOCITY"
+                            ]
+                        }
+                    }
+                ],
+                "statistics_start_point_control_variable_name": "TIME",
+                "statistics_start_point_control_value": null
+            }
+        }]
+    }
+}
