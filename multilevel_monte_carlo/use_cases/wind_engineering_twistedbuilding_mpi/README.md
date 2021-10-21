@@ -27,7 +27,7 @@ The problem can be solved by running two different algorithms [2]:
 
 and by default AMC is selected. If one is interested in running SMC, it is needed to select `asynchronous = false` in the XMC settings (in `problem_settings/parameters_xmc.json`). To change the inlet boundary condition, you can set true or false the keys `random_reference_velocity` and `random_roughness_height` of Kratos settings (in `problem_settings/ProjectParameters.json`). Please observe that for running you may want to increase the number of realizations per level, the time horizon of each realization and the burn-in time (initial transient we discard when computing statistics to discard dependencies from initial conditions). All settings can be observed in the corresponding configuration file [of the problem](source/problem_settings/ProjectParameters.json) and [of the algorithm](source/problem_settings/parameters_xmc.json).
 
-The Quantities of Interest of the problem are the drag force, the base moment and the pressure field on the building surface and their time-averaged counterparts. Statistical convergence is assessed for the time-averaged drag force.
+The quantities of interest of the problem are the drag force, the base moment and the pressure field on the building surface and their time-averaged counterparts. Statistical convergence is assessed for the time-averaged drag force. Statistics are estimated using h-statistics, which are computed using power sums. Power sums are updated on the fly, and we refer to [2] for details. The statistics we estimate are the expected value and the variance of all quantities of interest.
 
 Two different workflows are available:
 
@@ -35,7 +35,7 @@ Two different workflows are available:
 * workflow is serial, only Kratos tasks are MPI parallel and are scheduled by distributed environment scheduler.
 
 To run the first scenario execute `mpirun -n $number_processes python3 run_mc_Kratos.py`, while to run with runcompss the second scenario execute `sh run.sh`.
-In the latter case, the environment variable `EXAQUTE_BACKEND` has to be set to `pycompss`. In the former case, the environment variable `EXAQUTE_BACKEND` has to be set to local.
+In the latter case, the environment variable `EXAQUTE_BACKEND` has to be set to `pycompss`. In the former case, the environment variable `EXAQUTE_BACKEND` has to be set to `local`.
 
 We remark that the mesh discretization we upload in this repository is rather coarse, since only 300000 elements are used to discretize the domain. The discretization can be observed next. The whole domain is reported in the left figure and a zoom close to the building is reported in the right figure.
 <p align="center">
@@ -66,7 +66,7 @@ and then from vertical and horizontal views.
   <img src="data/animation_twisted_building_fromtop_pressure_slow.gif" alt="pressure" style="height: 175px;"/>
 </p>
 
-An example of power sums and h-statistics of both time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
+An example of power sums and h-statistics of drag force, base moment, pressure field and their time-averaged counterparts can be found [here](source/power_sums_outputs).
 
 ## Refrences
 
