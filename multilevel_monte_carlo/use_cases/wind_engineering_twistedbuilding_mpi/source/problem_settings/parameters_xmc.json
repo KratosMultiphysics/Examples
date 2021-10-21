@@ -1,0 +1,168 @@
+{
+    "XMCAlgorithmInputDictionary": {
+	"checkInitialisation": "xmc.methodDefs_xmcAlgorithm.checkInitialisation.checkInitialisationMC",
+        "errorsForStoppingCriterion": [0],
+        "estimatorsForHierarchy": [[0,[1,true,true]]],
+        "predictorsForHierarchy": [],
+        "tolerancesForHierarchy": [0],
+        "positionMaxNumberIterationsCriterion": 2
+    },
+    "hierarchyOptimiserInputDictionary": {
+        "defaultHierarchy": [[[],5]],
+        "indexSpace": [1,1],
+        "optimalIndexSet": "xmc.methodDefs_hierarchyOptimiser.optimalIndexSet.zeroDimensionSamplesOnly",
+        "optimalSampleNumbers": "xmc.methodDefs_hierarchyOptimiser.optimalSampleNumbers.singleIndexConstantSampleNumber",
+        "toleranceSplittingBounds": [0.5,0.5]
+    },
+    "monteCarloIndexInputDictionary": {
+        "costEstimator": "xmc.momentEstimator.MomentEstimator",
+        "costEstimatorInputDictionary": {
+            "indexSetDimension": 0, "order": 1, "updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder2Dimension0", "centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper", "centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"
+        },
+        "indexValue": null,
+        "qoiEstimator": [
+            "xmc.momentEstimator.MomentEstimator",
+            "xmc.momentEstimator.MomentEstimator",
+            "xmc.momentEstimator.MultiMomentEstimator",
+            "xmc.momentEstimator.CombinedMomentEstimator",
+            "xmc.momentEstimator.CombinedMomentEstimator",
+            "xmc.momentEstimator.MultiCombinedMomentEstimator",
+            "xmc.momentEstimator.MultiMomentEstimator",
+            "xmc.momentEstimator.MultiMomentEstimator",
+            "xmc.momentEstimator.MultiMomentEstimator",
+            "xmc.momentEstimator.MultiMomentEstimator"
+        ],
+        "qoiEstimatorInputDictionary": [
+            {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
+            {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
+            {"variableDimension": 22791,"order": 5, "isParallel": false},
+            {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updateCombinedPowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
+            {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updateCombinedPowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
+            {"variableDimension": 22791,"order": 5, "isParallel": false},
+            {"variableDimension": 22791,"order": 2, "isParallel": false},
+            {"variableDimension": 22791,"order": 2, "isParallel": false},
+            {"variableDimension": 22791,"order": 2, "isParallel": false},
+            {"variableDimension": 22791,"order": 2, "isParallel": false}
+        ],
+        "sampler": "xmc.sampleGenerator.SampleGenerator",
+        "eventGroupSize": 5
+    },
+    "monteCarloSamplerInputDictionary": {
+        "assemblersForError": [[1]],
+        "costPredictor": null,
+        "estimatorsForAssembler": [[[0,[1,true,false]]],[[0,[1,true,true]]]],
+        "estimatorsForPredictor": [[null]],
+        "indexConstructor": "xmc.monteCarloIndex.MonteCarloIndex",
+        "indices": [],
+        "qoiPredictor": [],
+        "initialNumberBatches": 1
+    },
+    "samplerInputDictionary": {
+        "randomGenerator": "xmc.randomGeneratorWrapper.EventDatabase",
+        "solverWrapper": "xmc.classDefs_solverWrapper.KratosSolverWrapper.KratosSolverWrapper",
+        "solverWrapperIndices": null
+    },
+    "solverWrapperInputDictionary": {
+        "adaptiveRefinementJumpToFinestLevel": false,
+        "analysisStage": "simulation_definition.SimulationScenario",
+        "asynchronous": false,
+        "fakeRandomVariable": [0,40.0,0.4,0],
+        "index": [],
+        "isMpi": true,
+        "mappingOutputQuantities": false,
+        "numberContributionsPerInstance": 1,
+        "outputBatchSize": 1,
+        "parameters": null,
+        "printToFile": true,
+        "projectParametersPath": ["/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/ProjectParameters_Kratos.json"],
+        "refinementParametersPath": null,
+        "refinementStrategy": "reading_from_file",
+        "sizeMultiXMomentEstimator": 22791,
+        "taskAllAtOnce": true
+    },
+    "monoCriteriaInputDictionary" :{
+        "statisticalError": {
+            "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isLowerThanOrEqualTo",
+            "tolerance": 0.01,
+            "input": "error0"
+        },
+        "minNumberIterations": {
+            "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
+            "tolerance": 0.0,
+            "input": "algorithmCost"
+        },
+        "maxNumberIterations": {
+            "criteria": "xmc.methodDefs_monoCriterion.criterionFunctions.isGreaterThanOrEqualTo",
+            "tolerance": 0.0,
+            "input": "algorithmCost"
+        }
+    },
+    "multiCriterionInputDictionary": {
+        "interpreter": "xmc.methodDefs_multiCriterion.interpreter.interpretAsConvergenceAndIterationBounds",
+        "flag": "xmc.methodDefs_multiCriterion.flag.plainFlag"
+    },
+    "errorEstimatorInputDictionary": {
+        "error": "xmc.methodDefs_errorEstimator.errorEstimation.errorEstimationStatError",
+        "parameters": [0.95]
+    },
+    "estimationAssemblerInputDictionary": {
+        "expectationAssembler": {
+            "assembleEstimation": "xmc.methodDefs_estimationAssembler.assembleEstimation.assembleValue"
+        },
+        "varianceAssembler": {
+            "assembleEstimation": "xmc.methodDefs_estimationAssembler.assembleEstimation.assembleStatisticalError"
+        }
+    },
+    "randomGeneratorInputDictionary": {
+        "events": [[28086107, 39.20873213052952, 0.30830076942505397],
+                   [16531338, 40.02083737299665, 0.18395315147908692],
+                   [6105, 39.53239321797558, 0.5481627015517484],
+                   [13320043, 40.27894130850728, 0.6857473354817588],
+                   [23763618, 40.083011519284334, 0.509809096523859],
+                   [41658114, 39.54542210870089, 0.3627980349314659],
+                   [31157856, 40.1580232569081, 0.22463613440168775],
+                   [8722532, 40.12815283986428, 0.6163721567808235],
+                   [26391929, 39.804428591754615, 0.5084656422373023],
+                   [26380823, 40.15534376925964, 0.5477840549969724],
+                   [16277022, 40.710552716836794, 0.1459522739899123],
+                   [40748260, 39.70549773536737, 0.3613473244300126],
+                   [18566193, 39.214642159946486, 0.5411204104782833],
+                   [38276521, 39.59296200384982, 0.5068630863644286],
+                   [41991343, 39.8926635778856, 0.37863285842204486],
+                   [169001, 40.570849818142186, 0.4878908109194502],
+                   [19895807, 40.31686449887734, 0.44446562335438633],
+                   [26373498, 40.26233601240731, 0.37626764063616724],
+                   [20191292, 39.16611637619697, 0.3290734793496142],
+                   [20477735, 40.28931634645965, 0.29630874411315705],
+                   [32805947, 39.506718468645225, 0.16901927148962975],
+                   [28810507, 39.976773218925175, 0.5860140108660792],
+                   [18047400, 39.90365323377674, 0.10376562890564518],
+                   [2329507, 39.83276597756503, 0.5562163804247279],
+                   [14107795, 40.293309718016516, 0.3582501549813224],
+                   [28667930, 40.553593806348225, 0.6066815852188805],
+                   [23922140, 39.71267610306998, 0.32280176795755156],
+                   [9685965, 41.046033809621186, 0.5107656456266504],
+                   [6309862, 40.384139950922204, 0.18157187655444473],
+                   [20721456, 40.385000928066816, 0.3881941407339542],
+                   [27539369, 39.51871597596818, 0.6173876538205516],
+                   [24427645, 39.62012237885299, 0.16558662128740687],
+                   [30484720, 40.2089638369756, 0.4858355320284946],
+                   [16563149, 40.00919183994855, 0.3881795124654882],
+                   [3871919, 40.29820251861145, 0.18196782626735275],
+                   [7351964, 39.89917461509105, 0.5504174490097857],
+                   [34530221, 40.3925729038995, 0.5971635777996741],
+                   [16411204, 40.23358502101523, 0.46520401732150163],
+                   [22979946, 39.601350836885246, 0.3118205117984647],
+                   [15475896, 39.917252116777675, 0.33224581119305],
+                   [822320, 40.11295787717761, 0.37709770888688576],
+                   [10363101, 39.45428820111958, 0.27717394652305416],
+                   [31695491, 40.28778087719401, 0.423521350897443],
+                   [15745156, 39.70369356619274, 0.5808719821473581],
+                   [36656990, 40.15336616917323, 0.34982182453858646],
+                   [3089791, 39.78659657421909, 0.16043247258213006],
+                   [18081302, 39.57722438870114, 0.5231849481671337],
+                   [34831763, 39.5735717310898, 0.3049428001680604],
+                   [36031873, 40.35874505591846, 0.2817917012628075],
+                   [29637772, 40.22311509462572, 0.5179683174242931]]
+    }
+}
