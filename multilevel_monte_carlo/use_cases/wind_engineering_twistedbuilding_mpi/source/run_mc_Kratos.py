@@ -115,7 +115,10 @@ if __name__ == "__main__":
     ) as parameter_file:
         project_parameters = json.load(parameter_file)
     pickled_model = algo.monteCarloSampler.indices[0].sampler.solvers[0].pickled_model[0]
-    serialized_model = pickle.loads(get_value_from_remote(pickled_model[0]))
+    try:
+        serialized_model = pickle.loads(get_value_from_remote(pickled_model[0]))
+    except:
+        serialized_model = pickle.loads(get_value_from_remote(pickled_model))
     current_model = KratosMultiphysics.Model()
     serialized_model.Load("ModelSerialization", current_model)
     model_part_of_interest = "FluidModelPart.NoSlip3D_structure"
@@ -897,3 +900,4 @@ if __name__ == "__main__":
         "power_sums_outputs/MC_asynchronous_power_sums_" + str(time.time()) + ".json", "w"
     ) as f:
         json.dump(qoi_dict, f, indent=2)
+

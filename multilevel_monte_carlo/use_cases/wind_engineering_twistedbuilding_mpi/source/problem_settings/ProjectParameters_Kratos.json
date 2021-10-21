@@ -4,12 +4,12 @@
         "parallel_type" : "MPI",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 150.0,
+        "end_time"      : 1.0,
         "perturbation"  : {
             "type"      : "correlated",
             "intensity" : 0.1
         },
-        "burnin_time"   : 50.0,
+        "burnin_time"   : 0.3,
         "random_reference_velocity" : false,
         "random_roughness_height" : true
     },
@@ -19,10 +19,10 @@
         "solver_type"                     : "FractionalStep",
         "model_import_settings"           : {
             "input_type"     : "mdpa",
-            "input_filename" : "/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/twisted_building_coarse"
+            "input_filename" : "problem_settings/twisted_building_coarse"
         },
         "material_import_settings"    : {
-            "materials_filename" : "/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/materials_air.json"
+            "materials_filename" : "problem_settings/materials_air.json"
         },
         "echo_level"                      : 1,
         "compute_reactions"               : true,
@@ -94,7 +94,7 @@
                         "model_part_name" : "FluidModelPart",
                         "domain_size"     : 3,
                         "penalty_coefficient" : 0.0,
-                        "load_velocity_field" : "/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/average_velocity_twisted_building_merged.dat",
+                        "load_velocity_field" : "average_velocity_twisted_building_merged.dat",
                         "structure_model_part" : "NoSlip3D_No_Slip_Building"
                     },
                     "solver_settings": {
@@ -102,10 +102,10 @@
                         "domain_size" : 3,
                         "model_import_settings"           : {
                             "input_type"     : "mdpa",
-                            "input_filename" : "/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/twisted_building_coarse"
+                            "input_filename" : "problem_settings/twisted_building_coarse"
                         },
                         "material_import_settings" : {
-                            "materials_filename" : "/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/materials_Poisson.json"
+                            "materials_filename" : "problem_settings/materials_Poisson.json"
                         },
                         "problem_domain_sub_model_part_list": ["Parts_Fluid"],
                         "processes_sub_model_part_list": ["AutomaticInlet3D_Inlet","Outlet3D_Outlet","Slip3D","NoSlip3D_No_Slip_BC","NoSlip3D_No_Slip_Edges"],

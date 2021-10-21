@@ -196,7 +196,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
                         "interface_submodel_part_destination": "FluidModelPart.NoSlip3D_structure",
                         "echo_level" : 3
                         }""")
-                    mapper = KratosMultiphysics.MappingApplication.MapperFactory.CreateMPIMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)
+                    mapper = KratosMultiphysics.MappingApplication.MPIExtension.MPIMapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)
                     mapper.Map(KratosMultiphysics.PRESSURE,KratosMultiphysics.PRESSURE)
                     # pressure field power sums
                     self.power_sums_process_mapping.ExecuteFinalizeSolutionStep()
@@ -329,7 +329,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
             "interface_submodel_part_destination": "FluidModelPart.NoSlip3D_structure",
             "echo_level" : 3
             }""")
-        mapper = KratosMultiphysics.MappingApplication.MapperFactory.CreateMPIMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)
+        mapper = KratosMultiphysics.MappingApplication.MPIExtension.MPIMapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)
         mapper.Map(KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE, \
             KratosMultiphysics.ExaquteSandboxApplication.AVERAGED_PRESSURE,        \
             KratosMultiphysics.MappingApplication.Mapper.FROM_NON_HISTORICAL |     \

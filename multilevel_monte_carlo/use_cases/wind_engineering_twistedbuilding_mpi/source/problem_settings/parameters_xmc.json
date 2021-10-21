@@ -35,14 +35,14 @@
         "qoiEstimatorInputDictionary": [
             {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
             {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updatePowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
-            {"variableDimension": 22791,"order": 5, "isParallel": false},
+            {"variableDimension": 13254,"order": 5, "isParallel": false},
             {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updateCombinedPowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
             {"indexSetDimension": 0,"order": 5,"updatedPowerSums":"xmc.methodDefs_momentEstimator.updateCombinedPowerSums.updatePowerSumsOrder10Dimension0","centralMomentComputer":"xmc.methodDefs_momentEstimator.computeCentralMoments.centralMomentWrapper","centralMomentErrorComputer":"xmc.methodDefs_momentEstimator.computeErrorEstimation.centralMomentErrorWrapper"},
-            {"variableDimension": 22791,"order": 5, "isParallel": false},
-            {"variableDimension": 22791,"order": 2, "isParallel": false},
-            {"variableDimension": 22791,"order": 2, "isParallel": false},
-            {"variableDimension": 22791,"order": 2, "isParallel": false},
-            {"variableDimension": 22791,"order": 2, "isParallel": false}
+            {"variableDimension": 13254,"order": 5, "isParallel": false},
+            {"variableDimension": 13254,"order": 2, "isParallel": false},
+            {"variableDimension": 13254,"order": 2, "isParallel": false},
+            {"variableDimension": 13254,"order": 2, "isParallel": false},
+            {"variableDimension": 13254,"order": 2, "isParallel": false}
         ],
         "sampler": "xmc.sampleGenerator.SampleGenerator",
         "eventGroupSize": 5
@@ -74,10 +74,10 @@
         "outputBatchSize": 1,
         "parameters": null,
         "printToFile": true,
-        "projectParametersPath": ["/scratch/project/open-21-3/exaqute_demonstrator/riccardo_test_kratos_example/problem_settings/ProjectParameters_Kratos.json"],
+        "projectParametersPath": ["problem_settings/ProjectParameters_Kratos.json"],
         "refinementParametersPath": null,
         "refinementStrategy": "reading_from_file",
-        "sizeMultiXMomentEstimator": 22791,
+        "sizeMultiXMomentEstimator": 13254,
         "taskAllAtOnce": true
     },
     "monoCriteriaInputDictionary" :{
@@ -166,3 +166,4 @@
                    [29637772, 40.22311509462572, 0.5179683174242931]]
     }
 }
+
