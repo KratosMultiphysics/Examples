@@ -22,7 +22,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\Omega=[0,
 
 <img src="https://render.githubusercontent.com/render/math?math=QoI=\int_{\Omega}\phi(x,y)dxdy \,.">
 
-The problem can be run with four different algorithms:
+The problem can be run with four different algorithms and we refer to [1] for details:
 
 * Synchronous Monte Carlo (SMC),
 * Asynchronous Monte Carlo (AMC),
@@ -39,7 +39,7 @@ The expected result is to observe statistical accuracy and scheduling parallelis
 
 <img src="results/poisson.png" alt="temperature" width="700"/>
 
-Concerning statistical accuracy, the QoI we obtain is consistent with literature results [1]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
+Concerning statistical accuracy, the QoI we obtain is consistent with literature results [2]. This ensures the correct implementation of XMC and its integration with Kratos Multiphysics.
 
 We report the graph dependencies of SMC and of AMC to compare synchronous and asynchronous algorithms. The figure below shows the increased parallelism provided by the asynchronous algorithm, with respect to the synchronous one.
 
@@ -55,4 +55,6 @@ SMLMC and AMLMC graphs present similar behaviors, with the difference that sampl
 
 ## References
 
-[1] Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466
+[1] Tosi, R., Amela, R., Badia, R., & Rossi, R. (2021). A parallel dynamic asynchronous framework for Uncertainty Quantification by hierarchical Monte Carlo algorithms. Journal of Scientific Computing, 89(28), 25. https://doi.org/10.1007/s10915-021-01598-6
+
+[2] Pisaroni, M., Krumscheid, S., & Nobile, F. (2020). Quantifying uncertain system outputs via the multilevel Monte Carlo method — Part I: Central moment estimation. Journal of Computational Physics. https://doi.org/10.1016/j.jcp.2020.109466
