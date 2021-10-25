@@ -272,7 +272,7 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
             else:
                 pickled_list = communicator.SendRecvString(string_to_send, 0, 0)
             qoi_list.append(pressure_power_sums_list_new)
-            
+
             # save coordinates
             coord_list_1 = []; coord_list_2 = []; coord_list_3 = []; coord_list_4 = []
             for node in model_part_of_interest.Nodes:
@@ -325,8 +325,8 @@ class SimulationScenario(FluidDynamicsAnalysisMC):
         # map from current model part of interest to reference model part
         mapping_parameters = KratosMultiphysics.Parameters("""{
             "mapper_type": "nearest_element",
-            "interface_submodel_part_origin": "FluidModelPart.NoSlip3D_structure",
-            "interface_submodel_part_destination": "FluidModelPart.NoSlip3D_structure",
+            "interface_submodel_part_origin": "FluidModelPart.NoSlip3D_No_Slip_Building",
+            "interface_submodel_part_destination": "FluidModelPart.NoSlip3D_No_Slip_Building",
             "echo_level" : 3
             }""")
         mapper = KratosMultiphysics.MappingApplication.MPIExtension.MPIMapperFactory.CreateMapper(self._GetSolver().main_model_part,self.mapping_reference_model.GetModelPart("FluidModelPart"),mapping_parameters)

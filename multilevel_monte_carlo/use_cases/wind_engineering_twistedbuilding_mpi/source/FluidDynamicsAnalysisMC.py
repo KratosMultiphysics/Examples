@@ -21,7 +21,7 @@ class FluidDynamicsAnalysisMC(FluidDynamicsAnalysis):
         super().__init__(model,project_parameters)
         self.drag_force_vector = np.zeros([0,4]) ; self.base_moment_vector = np.zeros([0,4])
         # set model part of interest
-        self.interest_model_part = "FluidModelPart.Drag_Structure"
+        self.interest_model_part = "FluidModelPart.NoSlip3D_No_Slip_Building"
         self.default_time_step = self.project_parameters["solver_settings"]["time_stepping"]["time_step"].GetDouble()
 
     def ModifyInitialProperties(self):
