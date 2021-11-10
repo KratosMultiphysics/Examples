@@ -51,7 +51,7 @@
                         "from_solver"      : "fluid",
                         "from_solver_data" : "load",
                         "data_transfer_operator" : "mapper",
-                        "data_transfer_operator_options" : ["swap_sign"]
+                        "data_transfer_operator_options" : ["swap_sign", "use_transpose"]
                     }
                 ],
                 "output_data_list": [
