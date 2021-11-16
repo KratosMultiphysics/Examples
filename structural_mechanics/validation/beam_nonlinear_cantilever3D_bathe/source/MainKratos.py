@@ -27,6 +27,7 @@ class StructuralMechanicsAnalysisWithFlush(StructuralMechanicsAnalysis):
     def Initialize(self):
         super().Initialize()
         sys.stdout.flush()
+        KratosMultiphysics.Logger.Flush()
 
     def FinalizeSolutionStep(self):
         super().FinalizeSolutionStep()
