@@ -2,7 +2,7 @@
 
 **Author:** Carlos Lázaro
 
-**Kratos version:** 9.0
+**Kratos version:** 8.1
 
 **Source files:** [Beam Non-Linear Cantilever 3D Bathe](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation/beam_nonlinear_cantilever3D_bathe/source)
 
