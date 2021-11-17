@@ -4,7 +4,7 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 0,
         "start_time"    : 0.0,
-        "end_time"      : 45
+        "end_time"      : 35.0
     },
     "output_processes" : {
         "data_generation":[{
@@ -13,7 +13,7 @@
 		"Parameters" 	: {
 		    "help"                     : "This process generates the data series for the neural network training and testing",
 		    "model_part_name"          : "FluidModelPart.fluid_computational_model_part",
-		    "interval"                 : [2.0, "End"],
+		    "interval"                 : [10.0, "End"],
 		    "write_output_file"        : true,
 		    "input_variables"          : ["TIME"],
 		    "input_sources"            : ["process"],
@@ -26,8 +26,32 @@
 		    "print_format"             : ".8f",
 		    "output_format"            : "ascii",
 		    "training_file_settings": {
-			    "input_file_name"  : "training_in_raw",
-			    "output_file_name" : "training_out_raw",
+			    "input_file_name"  : "training_in_raw_v",
+			    "output_file_name" : "training_out_raw_v",
+			    "file_format"      : "dat",
+	            "output_path"      : "data/"
+		    }}
+		},{
+		"python_module" : "data_generator_process",
+		"kratos_module" : "NeuralNetworkApplication",
+		"Parameters" 	: {
+		    "help"                     : "This process generates the data series for the neural network training and testing",
+		    "model_part_name"          : "FluidModelPart.fluid_computational_model_part",
+		    "interval"                 : [10.0, "End"],
+		    "write_output_file"        : true,
+		    "input_variables"          : ["TIME"],
+		    "input_sources"            : ["process"],
+		    "input_model_part"         : "FluidModelPart.fluid_computational_model_part",
+		    "output_variables"         : ["PRESSURE"],
+		    "output_sources"           : ["solution_step"],
+		    "perturbate_variables"     : [],
+		    "random_distribution"      : ["normal"],
+		    "random_parameters"        : [[0,0.1]],
+		    "print_format"             : ".8f",
+		    "output_format"            : "ascii",
+		    "training_file_settings": {
+			    "input_file_name"  : "training_in_raw_p",
+			    "output_file_name" : "training_out_raw_p",
 			    "file_format"      : "dat",
 	            "output_path"      : "data/"
 		    }}
@@ -66,7 +90,7 @@
         },
         "echo_level"                  : 0,
         "compute_reactions"           : false,
-        "maximum_iterations"          : 10,
+        "maximum_iterations"          : 50,
         "relative_velocity_tolerance" : 0.001,
         "absolute_velocity_tolerance" : 1e-5,
         "relative_pressure_tolerance" : 0.001,
@@ -76,7 +100,7 @@
         "no_skin_parts"               : ["Drag_No_Slip_Cylinder"],
         "time_stepping"               : {
             "automatic_time_step" : false,
-            "time_step"           : 0.1
+            "time_step"           : 0.01
         },
         "formulation"                 : {
             "element_type"             : "vms",
@@ -92,9 +116,9 @@
             "Parameters"    : {
                 "model_part_name" : "FluidModelPart.AutomaticInlet2D_Inlet",
                 "variable_name"   : "VELOCITY",
-                "modulus"         : "6*y*(1-y)*sin(pi*t*0.5)",
+                "modulus"         : "6*50*y*(1-y)*sin(pi*t/10.0*0.5)",
                 "direction"       : "automatic_inwards_normal",
-                "interval"        : [0,1]
+                "interval"        : [0,10]
             }
         },{
             "python_module" : "apply_inlet_process",
@@ -102,9 +126,9 @@
             "Parameters"    : {
                 "model_part_name" : "FluidModelPart.AutomaticInlet2D_Inlet",
                 "variable_name"   : "VELOCITY",
-                "modulus"         : "6*y*(1-y)",
+                "modulus"         : "6*50*y*(1-y)",
                 "direction"       : "automatic_inwards_normal",
-                "interval"        : [0,"End"]
+                "interval"        : [10,"End"]
             }
         },{
             "python_module" : "apply_outlet_process",

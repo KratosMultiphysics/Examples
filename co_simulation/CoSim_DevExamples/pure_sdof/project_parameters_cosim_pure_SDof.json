@@ -2,7 +2,8 @@
     "problem_data" :
     {
         "start_time" : 0.0,
-        "end_time" : 100.0,
+        "timestep" :0.01,
+        "end_time" : 2.0,
         "parallel_type"   : "OpenMP"
     },
     "solver_settings" :

@@ -1,8 +1,57 @@
 {
-    "output_processes": {},
+    "output_processes": {
+        "data_generation": [
+            {
+                "Parameters": {
+                    "help": "This process generates the data series for the neural network training and testing",
+                    "input_model_part": "Structure.DISPLACEMENT_dirichlet",
+                    "input_order": "variables_first",
+                    "input_sources": [
+                        "solution_step",
+                        "solution_step"
+                    ],
+                    "input_variables": [
+                        "DISPLACEMENT_X",
+                        "DISPLACEMENT_Y"
+                    ],
+                    "interval": [
+                        0.0,
+                        1e+30
+                    ],
+                    "model_part_name": "Structure.DISPLACEMENT_dirichlet",
+                    "output_format": "ascii",
+                    "output_order": "variables_first",
+                    "output_sources": [
+                        "solution_step"
+                    ],
+                    "output_variables": [
+                        "LOAD_FACTOR"
+                    ],
+                    "perturbate_variables": [],
+                    "print_format": ".8f",
+                    "random_distribution": [],
+                    "random_parameters": [
+                        [
+                            0,
+                            1
+                        ]
+                    ],
+                    "training_file_settings": {
+                        "file_format": "dat",
+                        "input_file_name": "training_in_raw",
+                        "output_file_name": "training_out_raw",
+                        "output_path": "data/"
+                    },
+                    "write_output_file": true
+                },
+                "kratos_module": "NeuralNetworkApplication",
+                "python_module": "data_generator_process"
+            }
+        ]
+    },
     "problem_data": {
         "echo_level": 3,
-        "end_time": 1.0,
+        "end_time": 0.925,
         "parallel_type": "OpenMP",
         "problem_name": "LeeFrame",
         "start_time": 0.0
@@ -91,52 +140,7 @@
                 "python_module": "assign_vector_variable_process"
             }
         ],
-        "list_other_processes": [
-            {
-                "Parameters": {
-                    "help": "This process generates the data series for the neural network training and testing",
-                    "input_model_part": "Structure.DISPLACEMENT_dirichlet",
-                    "input_sources": [
-                        "solution_step",
-                        "solution_step"
-                    ],
-                    "input_variables": [
-                        "DISPLACEMENT_X",
-                        "DISPLACEMENT_Y"
-                    ],
-                    "interval": [
-                        0.0,
-                        1e+30
-                    ],
-                    "model_part_name": "Structure.DISPLACEMENT_dirichlet",
-                    "output_format": "ascii",
-                    "output_sources": [
-                        "solution_step"
-                    ],
-                    "output_variables": [
-                        "LOAD_FACTOR"
-                    ],
-                    "perturbate_variables": [],
-                    "print_format": ".8f",
-                    "random_distribution": [],
-                    "random_parameters": [
-                        [
-                            0,
-                            1
-                        ]
-                    ],
-                    "training_file_settings": {
-                        "file_format": "dat",
-                        "input_file_name": "training_in_raw",
-                        "output_file_name": "training_out_raw",
-                        "output_path": "data/"
-                    },
-                    "write_output_file": true
-                },
-                "kratos_module": "NeuralNetworkApplication",
-                "python_module": "data_generator_process"
-            }
-        ],
+        "list_other_processes": [],
         "loads_process_list": [
             {
                 "Parameters": {

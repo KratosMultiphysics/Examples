@@ -27,11 +27,46 @@
         "parameters"    :{
             "predictions_file"    : "data//predictions.npy",
             "target_file"         : "data//training_out.pkl",
-            "input_variable"      : "Time",
+            "input_variable"      : "Timesteps",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
+            "training_timesteps"  : 300,
             "output_name"         : "dynamic_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//training_out.pkl",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//target_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//target_corrected.npy",
+            "variables"           : ["Displacement_Y"],
+            "axis"                : "plot",
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 300,
+            "output_name"         : "dynamic_cantilever_beam_frequency",
             "output_format"       : "png"          
         }}]}
 }

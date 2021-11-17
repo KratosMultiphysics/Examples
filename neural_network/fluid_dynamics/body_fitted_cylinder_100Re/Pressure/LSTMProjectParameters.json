@@ -14,13 +14,14 @@
             }
         },
         {
-            "python_module": "mask_zeros_process",
+            "python_module": "divide_dataset_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
+                "objective": "all",
+                "proportion": 0.5
             }
         },
+
         {
             "python_module": "normalization_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
@@ -71,7 +72,7 @@
         "parameters"    :{
             "layer_type"          : "lstm_layer",
             "layer_parameters"    :{
-            "units"         	   : 150,
+            "units"         	   : 20,
             "return_sequences"    : true,
             "stateful"		   : false
         }  
@@ -82,7 +83,7 @@
         "parameters"    :{
             "layer_type"          : "lstm_layer",
             "layer_parameters"    :{
-            "units"         	   : 150,
+            "units"         	   : 20,
             "return_sequences"    : false,
             "stateful"		   : false
         }  
@@ -144,7 +145,7 @@
             "data_output"         : "data//training_out.pkl",
             "model"              : "my_model",
             "recurrent"	  : true,
-            "epochs"             : 1000,
+            "epochs"             : 10000,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -169,24 +170,116 @@
             "model"               : "my_model",
             "input_file"          : "data/training_in.pkl",
             "target_file"         : "data/training_out.pkl",
-            "timesteps"           : 500,
+            "timesteps"           : 250,
             "lookback"            : 5,
             "echo"                : 0,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//training_out.pkl",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//target_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.pkl",
-            "input_variable"      : "Time",
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timesteps",
             "variables"           : ["Pressure"],
             "axis"                : "plot",
-            "node_id"		   : 0,
-            "training_timesteps"  : 430,
-            "output_name"         : "bodyfitted_cylinder",
+            "node_id"		   : 2820,
+            "training_timesteps"  : 125,
+            "output_name"         : "bodyfitted_cylinder_node_2821",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "variables"           : ["Pressure"],
+            "axis"                : "plot",
+            "node_id"		   : 2820,
+            "plot_zero_frequency" : false,
+            "flatten_target"      : true,
+            "training_timesteps"  : 125,
+            "sampling_rate"       : 0.1,
+            "output_name"         : "bodyfitted_cylinder_node_2821_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timesteps",
+            "variables"           : ["Pressure"],
+            "axis"                : "plot",
+            "node_id"		   : 1401,
+            "training_timesteps"  : 125,
+            "output_name"         : "bodyfitted_cylinder_node_1402",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "variables"           : ["Pressure"],
+            "axis"                : "plot",
+            "node_id"		   : 1401,
+            "plot_zero_frequency" : false,
+            "flatten_target"      : true,
+            "training_timesteps"  : 125,
+            "sampling_rate"       : 0.1,
+            "output_name"         : "bodyfitted_cylinder_node_1402_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "correlation_matrix_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "file"   			  : "data//training_out_raw.dat",
+            "origin"			  : "output_generation",
+            "variables"			  : ["Pressure"],
+            "vmin"				  : [-0.05, -0.05],
+            "vmax"				  : [0.05, 0.05],
+            "output_name"         : "correlation_matrix_raw",
+            "output_format"       : "png"          
+        }},
+		{
+        "python_module" : "correlation_matrix_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "file"   			  : "data//output_corrected.npy",
+            "origin"			  : "prediction",
+            "variables"			  : ["Pressure"],
+            "vmin"				  : [-0.05, -0.05],
+            "vmax"				  : [0.05, 0.05],
+            "output_name"         : "correlation_matrix_prediction",
             "output_format"       : "png"          
         }}
     ]}

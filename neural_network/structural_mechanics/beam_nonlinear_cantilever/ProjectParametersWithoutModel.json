@@ -98,7 +98,7 @@
         "parameters"    :{
             "layer_type"          : "dense_layer",
             "layer_parameters"    :{
-                "units"           : 2,
+                "units"           : 1,
                 "activation"	   : "linear"
             }  
         }},
@@ -165,6 +165,55 @@
             "output_name"                : "training_plot",
             "axis"                       : "semilogx",
             "burn_up"                    : 10
-        }
-    }]}
+        }},
+   {
+        "python_module" : "testing_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "model"               : "my_model",
+            "input_file"          : "data//testing_in.dat",
+            "target_file"         : "data//testing_out.dat",
+            "echo"                : 1,
+            "predictions_file"    : "data//predicted",
+            "save_format"	   : "ascii"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//testing_in.dat",
+            "predictions_file"    : "data//predicted.csv",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//predicted_corrected",
+            "save_format"	   : "npy"            
+        }},
+
+        {
+        "python_module" : "prediction_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//testing_out.dat",
+            "input_variable"      : "Point Load",
+            "variables"           : [ "Displacement_Y"],
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//testing_out.dat",
+            "input_variable"      : "Point Load",
+            "variables"           : [ "Error Displacement_Y"],
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }}
+    ]}
 }

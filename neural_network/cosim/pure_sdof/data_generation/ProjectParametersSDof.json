@@ -15,8 +15,8 @@
      },
      "boundary_conditions":{
         "amplitude_force": 1.0,
-	"excitation_function_force": "A * t * exp(0.1*t) * sin(omega * t)",
-	"omega_force": 4.25
+	"excitation_function_force": "A*t  * exp(0.1*t) * sin(omega * t)",
+	"omega_force":4.25
      }   
 
 }

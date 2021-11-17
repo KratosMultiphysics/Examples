@@ -18,7 +18,8 @@
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
+                "output_log_name"  : "output_preprocessing.json",
+                "invert"	    : false
             }
         },
         {
@@ -28,7 +29,8 @@
                 "objective": "all",
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json",
-                "normalization_type": "standard"
+                "normalization_type": "standard",
+                "invert"	    : false
             }
         },
         {
@@ -231,7 +233,23 @@
             "input_file"          : "data//input_corrected.npy",
             "target_file"         : "data//output_corrected.npy",
             "input_variable"      : "Point Load",
-            "variables"           : ["Displacement_X", "Displacement_Y"],
+            "variables"           : ["Displacement_X", "Zeros", "Zeros", "Displacement_Y"],
+            "predict_marker"      : "+",
+            "target_marker"       : ".",
+            "axis"                : "plot",
+            "output_name"         : "diamond_shape",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//output_corrected.npy",
+            "input_variable"      : "Point Load",
+            "variables"           : ["Error_Displacement_X", "Zeros", "Zeros", "Error_Displacement_Y"],
+            "marker"     	   : "x",
             "axis"                : "plot",
             "output_name"         : "diamond_shape",
             "output_format"       : "png"          

@@ -12,6 +12,13 @@
                 "input_log_name"  : "input_preprocessing.json",
                 "output_log_name" : "output_preprocessing.json"
             }
+        },{
+            "python_module": "divide_dataset_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "all",
+                "proportion": 0.75
+            }
         },
         {
             "python_module": "normalization_process",
@@ -39,7 +46,7 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "pkl",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
@@ -54,7 +61,7 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy",
+                "data_input"      : "data//training_in.pkl",
                 "input_to_recurrent": true    
             }  
         }},   
@@ -84,7 +91,7 @@
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
                 "output_layer"	     : true,
-                "data_output"		     : "data//training_out.npy",
+                "data_output"		     : "data//training_out.pkl",
                 "activation"		     : "linear"
         }}},  
         {
@@ -130,10 +137,10 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
             "model"              : "my_model",
-            "epochs"             : 5000,
+            "epochs"             : 750,
             "shuffle"	          : true,
             "recurrent"          : true,
             "training_log"       : true,
@@ -158,25 +165,36 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1000,
-            "lookback"            : 10,
+            "lookback"            : 5,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
-            "input_variable"      : "Time",
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timesteps",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "training_timesteps"  : 750,
+            "output_name"         : "sdof_training",
             "output_format"       : "png"          
         }}
     ]}

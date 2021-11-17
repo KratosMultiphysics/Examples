@@ -1,0 +1,25 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "preprocessing_processes":[],
+        "training_processes":[]
+    },
+    "output_processes":{
+        "output_processes":[
+
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.npy",
+            "variables"           : ["Pressure_125"],
+            "axis"                : "plot",
+            "node_id"		   : 125,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }}]}
+}

@@ -1,11 +1,6 @@
 #!/bin/bash
 
-cd data_generation
-python3 MainCoSim.py
-cd ..
-python3 ModifyData.py
-cd neural_network_training
-python3 CNNLSTMMainKratos.py
-cd ../FSI
-python3 MainKratos.py
-python3 Plot.py
+cd only_structure
+python3 SingleCNNLSTMMain.py
+cd ../mok_fsi_CSM_solids_NN
+python3 MainCosim.py

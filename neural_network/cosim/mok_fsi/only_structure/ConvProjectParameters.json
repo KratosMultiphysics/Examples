@@ -1,0 +1,185 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "preprocessing_processes":[{
+            "python_module": "data_reader_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "data_input"    : "data/training_in_raw.dat",
+                "data_output"   : "data//training_out_raw.dat",
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json"
+            }
+        },
+	{
+            "python_module": "mask_zeros_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "output",
+                "output_log_name"  : "output_preprocessing.json"
+            }
+        },
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "input",
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json",
+                "normalization_type": "soft_zero_one"
+            }
+        },
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "output",
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json",
+                "normalization_type": "soft_zero_one"
+            }
+        },
+        {
+            "python_module": "input_with_lookback_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "lookback"	   : 10,
+                "features_as_timesteps": false,
+                "record"               : true,
+                "input_log_name"  : "input_preprocessing.json",
+                "output_log_name" : "output_preprocessing.json"
+            }
+        },
+        {
+            "python_module": "save_data_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "input_file_name"          : "data//training_in",
+                "output_file_name"         : "data//training_out",
+                "format"                   : "pkl",
+                "input_log_name" 	    : "input_preprocessing.json",
+                "output_log_name" 	    : "output_preprocessing.json"
+            }
+        
+        }
+
+        ],
+        "model_processes":[{
+        "python_module" : "initiate_network_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"          : "input_layer",
+            "layer_parameters"    :{
+            "layer_name"          : "input",
+                "data_input"      : "data//training_in.pkl",
+                "input_to_recurrent": true      
+            }  
+        }},   
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"          : "add_dimension_layer",
+            "layer_parameters"    :{
+            	"size"		   : 4,
+                "data_input"      : "data//training_in.pkl",
+                "input_to_recurrent": true      
+            }  
+        }},   
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"          : "conv1d_layer",
+            "layer_parameters"    :{
+            "filters"             : 32,
+            "kernel_size"	  : 6,
+            "padding"		  : "same",
+            "activation"	  : "relu"
+        }  
+        }},
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "flatten_layer",
+            "layer_parameters"             :{}
+        }},    
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "dense_layer",
+            "layer_parameters"             :{
+                "units" 		     : 500,
+                "activation"		     : "relu"
+        }}},
+
+        {
+        "python_module" : "add_layer_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "layer_type"                   : "dense_layer",
+            "layer_parameters"             :{
+                "output_layer" 	     : true,
+                "data_output"		     : "data//training_out.pkl",
+                "activation"		     : "linear"
+        }}},   
+        {
+        "python_module" : "save_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "model_name"          : "my_model",
+            "format"              : "SavedModel"
+        }}],
+        "training_processes":[{
+        "python_module" : "custom_loss_function_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{  
+            "loss_function" : "MeanSquaredError"
+        }},
+        {
+        "python_module" : "custom_optimizer_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "optimizer"     : "Adam",
+            "learning_rate" : 0.001,
+            "decay"	     : 1e-3
+        }},
+        {
+        "python_module" : "metric_compiler",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "metric"     : "MeanSquaredError"
+        }},
+        {
+        "python_module" : "set_callback_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{ 
+            "callback_type"        : "early_stopping_callback",
+            "callback_parameters"  : {
+                "monitor"          : "mean_squared_error",
+                "mode"             : "min",
+                "verbose"          : 1,
+                "patience"         : 100
+            }
+        }},
+        {
+        "python_module" : "train_saved_model_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
+            "model"              : "my_model",
+            "epochs"             : 10000,
+            "shuffle"	          : true,
+            "training_log"       : true,
+            "training_log_file"  : "history.dat" 
+        }}]
+    },
+    "output_processes":{
+        "output_processes":[]
+        }
+}

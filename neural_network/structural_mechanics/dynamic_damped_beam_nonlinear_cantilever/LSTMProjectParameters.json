@@ -14,13 +14,24 @@
             }
         },
         {
-            "python_module": "mask_zeros_process",
+            "python_module": "divide_dataset_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "all",
+                "proportion": 0.25
+            }
+        },
+        {
+            "python_module": "masking_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
                 "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
+                "load_from_log": false,
+                "input_log_name"  : "output_preprocessing.json",
+                "variable_ids"    : [0]
             }
         },
+
         {
             "python_module": "normalization_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
@@ -35,7 +46,7 @@
             "python_module": "lookback_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "lookback"	   : 50,
+                "lookback"	   : 20,
                 "features_as_timesteps": false,
                 "timesteps_as_features": false,
                 "input_log_name"  : "input_preprocessing.json",
@@ -92,7 +103,7 @@
         "parameters"    :{
             "layer_type"                   : "dense_layer",
             "layer_parameters"             :{
-                "units" 		     : 2,
+                "units" 		     : 1,
                 "activation"		     : "linear"
         }}},  
         {
@@ -175,16 +186,57 @@
             "save_format"         : "npy"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.pkl",
-            "input_variable"      : "Time",
-            "variables"           : ["Displacement_Y"],
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timestep",
+            "variables"           : ["Displacement_X","Displacement_Y"],
             "axis"                : "plot",
             "training_timesteps"  : 250,
-            "output_name"         : "dynamic_cantilever_beam",
+            "output_name"         : "dynamic_damped_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+           {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "input_file"          : "data//training_in_raw.dat",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "timesteps"	   : 250,
+            "variables"           : ["Error_Displacement_X","Error_Displacement_Y"],
+            "marker"     	   : "x-",
+            "axis"                : "plot",
+            "output_name"         : "dynamic_damped_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "variables"           : ["Displacement_X","Displacement_Y"],
+            "axis"                : "plot",
+            "plot_zero_frequency" : false,
+            "flatten_target"      : true,
+            "training_timesteps"  : 500,
+            "output_name"         : "dynamic_damped_cantilever_beam_frequency",
             "output_format"       : "png"          
         }}
     ]}

@@ -118,7 +118,7 @@
         "parameters"    :{ 
             "optimizer"     : "Adam",
             "learning_rate" : 0.001,
-            "decay"	     : 1e-5
+            "decay"	     : 1e-3
         }},
         {
         "python_module" : "metric_compiler",
@@ -163,5 +163,33 @@
             "axis"                       : "semilogx",
             "burn_up"                    : 10
         }
-    }]}
+    },
+        {
+        "python_module" : "prediction_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//testing_out.dat",
+            "input_variable"      : "Point Load",
+            "variables"           : [ "Displacement_Y"],
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//testing_out.dat",
+            "input_variable"      : "Point Load",
+            "variables"           : [ "Error Displacement_Y"],
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }}
+    ]}
+
 }

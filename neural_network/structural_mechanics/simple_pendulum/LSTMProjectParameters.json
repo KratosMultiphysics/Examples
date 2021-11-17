@@ -14,11 +14,11 @@
             }
         },
         {
-            "python_module": "mask_zeros_process",
+            "python_module": "divide_dataset_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
-                "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
+                "objective": "all",
+                "proportion": 0.5
             }
         },
         {
@@ -46,7 +46,7 @@
             "parameters"   :{
                 "input_file_name"          : "data//training_in",
                 "output_file_name"         : "data//training_out",
-                "format"                   : "npy",
+                "format"                   : "pkl",
                 "input_log_name" 	    : "input_preprocessing.json",
                 "output_log_name" 	    : "output_preprocessing.json"
             }
@@ -136,10 +136,10 @@
         "python_module" : "train_saved_model_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "data_input"          : "data//training_in.npy",
-            "data_output"         : "data//training_out.npy",
+            "data_input"          : "data//training_in.pkl",
+            "data_output"         : "data//training_out.pkl",
             "model"              : "my_model",
-            "epochs"             : 2000,
+            "epochs"             : 1000,
             "shuffle"	          : true,
             "training_log"       : true,
             "training_log_file"  : "history.dat" 
@@ -162,25 +162,65 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "model"               : "my_model",
-            "input_file"          : "data/training_in.npy",
-            "target_file"         : "data/training_out.npy",
-            "timesteps"           : 8000,
+            "input_file"          : "data/training_in.pkl",
+            "target_file"         : "data/training_out.pkl",
+            "timesteps"           : 2000,
             "lookback"            : 50,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
-            "target_file"         : "data//training_out.npy",
-            "input_variable"      : "Time",
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timesteps",
             "variables"           : ["Displacement_X","Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 4000,
+            "training_timesteps"  : 1000,
             "output_name"         : "simple_pendulum",
+            "output_format"       : "png"          
+        }},
+         {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "input_file"          : "data//training_in_raw.dat",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Time",
+            "timesteps"	   : 1000,
+            "variables"           : ["Error_Displacement_X","Error_Displacement_Y"],
+            "marker"     	   : "x-",
+            "axis"                : "plot",
+            "output_name"         : "simple_pendulum",
+            "output_format"       : "png"          
+        }},
+        {
+        
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "variables"           : ["Displacement_X","Displacement_Y"],
+            "axis"                : "plot",
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "simple_pendulum_frequency",
             "output_format"       : "png"          
         }}
     ]}

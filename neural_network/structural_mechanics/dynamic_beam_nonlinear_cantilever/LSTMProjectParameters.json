@@ -14,14 +14,6 @@
             }
         },
         {
-            "python_module": "mask_zeros_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "objective": "output",
-                "output_log_name"  : "output_preprocessing.json"
-            }
-        },
-        {
             "python_module": "normalization_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
@@ -157,19 +149,30 @@
             "model"               : "my_model",
             "input_file"          : "data/training_in.pkl",
             "target_file"         : "data/training_out.pkl",
-            "timesteps"           : 1000,
+            "timesteps"           : 1500,
             "lookback"            : 5,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
         }},
         {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
+        }},
+        {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
+            "predictions_file"    : "data//output_corrected.npy",
             "target_file"         : "data//training_out.pkl",
-            "input_variable"      : "Time",
+            "input_variable"      : "Timesteps",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
             "training_timesteps"  : 250,

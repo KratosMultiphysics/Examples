@@ -4,7 +4,7 @@
         "parallel_type" : "OpenMP",
         "echo_level"    : 3,
         "start_time"    : 0.0,
-        "end_time"      : 1.0
+        "end_time"      : 0.925
     },
     "solver_settings"  : {
         "solver_type"                        : "Static",

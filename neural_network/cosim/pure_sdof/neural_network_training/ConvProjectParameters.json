@@ -179,20 +179,33 @@
             "target_file"         : "data/training_out.pkl",
             "timesteps"           : 1000,
             "lookback"            : 3,
-            "echo"                : 1,
+            "echo"                : 0,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
+        }},
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "input_file"	   : "data//training_in.pkl",
+            "predictions_file"    : "data//predictions.npy",
+            "input_file_name"	   : "data//input_corrected",
+            "output_file_name"    : "data//output_corrected",
+            "save_format"	   : "npy"            
         }},
         {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
-            "predictions_file"    : "data//predictions.npy",
+            "predictions_file"    : "data//output_corrected.npy",
             "target_file"         : "data//training_out.pkl",
             "input_variable"      : "Time",
             "variables"           : ["Displacement_Y"],
             "axis"                : "plot",
-            "training_timesteps"  : 250,
+            "figure_size_inches_1": 7,
+            "figure_size_inches_2": 5,
+            "training_timesteps"  : 1000,
             "output_name"         : "sdof_displacement",
             "output_format"       : "png"          
         }}

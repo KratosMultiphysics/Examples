@@ -2,7 +2,7 @@
     "problem_data" :
     {
         "start_time" : 0.0,
-        "end_time" : 1.2,
+        "end_time" :2.0,
         "echo_level" : 0,
         "print_colors" : true,
         "parallel_type" : "OpenMP"
@@ -82,7 +82,8 @@
                     "output_variable": "disp",
                     "mdpa_file_name" : "mdpa_neural_network",
                     "lookback"       : 3,
-                    "features_as_timesteps": true,
+                    "features_as_timesteps": false,
+                    "timesteps_as_features": true,
                     "record"		: false
                 },
                 "data" : {

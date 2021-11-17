@@ -1,0 +1,82 @@
+{   "problem_data":{
+        "problem_type": "train", 
+        "echo_level":1
+    },
+    "processes":{
+        "preprocessing_processes":[],
+        "training_processes":[]
+    },
+    "output_processes":{
+        "output_processes":[
+
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.pkl",
+            "variables"           : ["Velocity_X_0", "Velocity_Y_0"],
+            "axis"                : "plot",
+            "node_id"		   : 0,
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.pkl",
+            "variables"           : ["Velocity_X_50", "Velocity_Y_50"],
+            "axis"                : "plot",
+            "node_id"		   : 50,
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.pkl",
+            "variables"           : ["Velocity_X_100", "Velocity_Y_100"],
+            "axis"                : "plot",
+            "node_id"		   : 100,
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.pkl",
+            "variables"           : ["Velocity_X_64", "Velocity_Y_64"],
+            "axis"                : "plot",
+            "node_id"		   : 64,
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "frequency_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predictions.npy",
+            "target_file"         : "data//training_out.pkl",
+            "variables"           : ["Velocity_X_32", "Velocity_Y_32"],
+            "axis"                : "plot",
+            "node_id"		   : 32,
+            "plot_zero_frequency" : false,
+            "training_timesteps"  : 1000,
+            "output_name"         : "bodyfitted_cylinder_frequency",
+            "output_format"       : "png"          
+        }}]}
+}

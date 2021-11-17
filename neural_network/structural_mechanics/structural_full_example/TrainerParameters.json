@@ -112,6 +112,22 @@
             "target_file"         : "data//output_corrected.npy",
             "input_variable"      : "Point Load",
             "variables"           : ["Displacement_X", "Displacement_Y"],
+            "predict_marker"      : "-",
+            "target_marker"       : "-",
+            "axis"                : "plot",
+            "output_name"         : "nonlinear_cantilever_beam",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_error_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//predicted_corrected.npy",
+            "input_file"          : "data//input_corrected.npy",
+            "target_file"         : "data//output_corrected.npy",
+            "input_variable"      : "Point Load",
+            "variables"           : ["Error_Displacement_X", "Error_Displacement_Y"],
+            "marker"     	   : "-",
             "axis"                : "plot",
             "output_name"         : "nonlinear_cantilever_beam",
             "output_format"       : "png"          
