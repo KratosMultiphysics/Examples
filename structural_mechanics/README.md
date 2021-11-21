@@ -9,6 +9,7 @@ The Examples are continously updated and extended
 ## Validation
 - [Beam Eigenvalue Analysis](validation/beam_eigenvalue_analysis/README.md)
 - [Beam Non-Linear Cantilever](validation/beam_nonlinear_cantilever/README.md)
+- [Beam Non-Linear 3D Cantilever (Bathe & Bolourchi)](validation/beam_nonlinear_cantilever3D_bathe/README.md)
 - [Beam Shallow-angled Structure](validation/beam_shallow_angled_structure/README.md)
 - [Beam Roll Up](validation/beam_roll_up/README.md)
 - [Truss Two-Bar-Truss Snapthrough](validation/truss_snap_through/README.md)
