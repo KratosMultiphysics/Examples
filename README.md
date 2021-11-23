@@ -161,3 +161,4 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Convection gaussian hill problem](convection_diffusion/validation/gaussian_hill_explicit)
 - [Convection-Diffusion gaussian hill problem](convection_diffusion/validation/gaussian_hill_with_diffusion_explicit)
 - [Rotating pulse problem](convection_diffusion/validation/rotating_pulse_explicit)
+- [Space and time convergence tests](convection_diffusion/validation/space_time_convergence_test)
