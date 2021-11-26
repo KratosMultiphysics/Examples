@@ -61,7 +61,7 @@
             "layer_type"          : "input_layer",
             "layer_parameters"    :{
             "layer_name"          : "input",
-                "data_input"      : "data//training_in.npy"  
+                "data_input"      : "data//training_in.pkl"  
             }  
         }},   
         {
