@@ -2,7 +2,7 @@
 
 **Author:** [Riccardo Tosi](https://riccardotosi.github.io)
 
-**Kratos version:** 8.1
+**Kratos version:** 9.0
 
 **XMC version:** Kratos default version
 
