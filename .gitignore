@@ -1,0 +1,37 @@
+### ATTENTION ###
+# This is the GLOBAL gitignore, please do NOT change this file,
+# unless it should be available for everyone
+# Please change the LOCAL gitignore (.git/info/exclude) to customize
+# exluding files/folders from being recognized by git
+
+# Recovery files
+*~
+
+# Compiled python
+*.pyc
+
+# Times files
+*.time
+
+# GiD post files
+*.post.res
+*.post.msh
+*.post.bin
+*.post.lst
+
+# VTK post files
+*.vtk
+*.vtu
+
+# HDF5 files
+*.h5
+*.hdf5
+
+# Output of tests of meshing application (MMG)
+*.sol
+*.mesh
+*.o.sol
+*.o.mesh
+
+# Backup files
+*.bak
