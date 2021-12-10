@@ -71,17 +71,7 @@
                 "direction"       : [0.0,-1.0,0.0]
             }
         }],
-        "list_other_processes"     : [{
-			"python_module" : "json_output_process",
-			"kratos_module" : "KratosMultiphysics",
-			"process_name"  : "JsonOutputProcess",
-			"Parameters"    : {
-				"output_variables"     : ["DISPLACEMENT_X"],
-				"output_file_name"     : "structure2d_struct_results.json",
-				"model_part_name"      : "Structure",
-				"time_frequency"       : 0.01
-			}
-		}]
+        "list_other_processes"     : []
     },
     "output_processes" : {
         "vtk_output" : [{
