@@ -50,7 +50,7 @@ The problem stated above has been solved with a mesh composed by around 300 tria
 </p>
 
 <p align="center">
-  <img src="data/dam_break_flex_wall_ux.png" alt="Horizontal displacement comparison." style="width: 300px;"/>
+  <img src="data/dam_break_flex_wall_ux.png" alt="Horizontal displacement comparison." style="width: 400px;"/>
 </p>
 
 ## References
@@ -60,8 +60,6 @@ Meduri, S., Cremonesi, M., Perego, U., Bettinotti, O., Kurkchubasche, A., and Oa
 
 Ryzhakov, P. B., Rossi, R., Idelsohn, S. R., and Oñate, E. (2010). A monolithic Lagrangian approach for fluid-structure interaction problems. _Computational Mechanics_, 46(6):883–
 899. [https://doi.org/10.1007/s00466-010-0522-0](https://doi.org/10.1007/s00466-010-0522-0)
-
-
 
 Walhorn, E., Kölke, A., Hübner, B., and Dinkler, D. (2005). Fluid-structure coupling within a monolithic model involving free surface flows. _Computers & Structures_ 83, 2100–2111. [https://doi.org/10.1016/j.compstruc.2005.03.010](https://doi.org/10.1016/j.compstruc.2005.03.010)
 
