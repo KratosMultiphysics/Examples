@@ -38,7 +38,7 @@
         },
         "pressure_dofs"                      : false,
         "linear_solver_settings"             : {
-            "solver_type" : "LinearSolversApplication.super_lu",
+            "solver_type" : "LinearSolversApplication.sparse_lu",
             "scaling"     : false
         }
 
@@ -88,7 +88,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.01,
+                        "output_interval"    : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -117,7 +117,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_frequency"    : 0.01,
+                        "output_interval"    : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
