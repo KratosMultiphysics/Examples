@@ -38,7 +38,7 @@
         },
         "pressure_dofs"                      : false,
         "linear_solver_settings"             : {
-            "solver_type" : "ExternalSolversApplication.super_lu",
+            "solver_type" : "LinearSolversApplication.super_lu",
             "scaling"     : false
         }
 
