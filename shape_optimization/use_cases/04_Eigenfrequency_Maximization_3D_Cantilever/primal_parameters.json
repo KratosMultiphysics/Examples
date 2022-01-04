@@ -22,10 +22,9 @@
            "materials_filename": "materials.json"
        },
         "eigensolver_settings":{
-            "solver_type": "eigen_eigensystem",
+            "solver_type": "spectra_sym_g_eigs_shift",
             "number_of_eigenvalues": 2,
             "max_iteration": 1000,
-            "tolerance": 1e-6,
             "echo_level": 1
         },
         "rotation_dofs"                      : false

@@ -117,7 +117,7 @@
                                           "SHAPE_UPDATE",
                                           "SHAPE_CHANGE" ],
             "output_format" : {
-                "name": "gid"
+                "name": "vtk"
             }
         }
     }

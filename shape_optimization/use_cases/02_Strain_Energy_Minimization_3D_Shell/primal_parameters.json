@@ -21,18 +21,6 @@
         "material_import_settings": {
             "materials_filename": "materials_2D.json"
         },
-        "line_search": false,
-        "convergence_criterion": "residual_criterion",
-        "displacement_relative_tolerance": 0.0001,
-        "displacement_absolute_tolerance": 1e-9,
-        "residual_relative_tolerance": 0.0001,
-        "residual_absolute_tolerance": 1e-9,
-        "max_iteration": 10,
-        "linear_solver_settings": {
-            "solver_type": "EigenSolversApplication.sparse_lu",
-            "scaling": false,
-            "verbosity": 0
-        },
         "rotation_dofs": true
     },
     "processes": {
@@ -140,13 +128,7 @@
                 "help": "This process writes postprocessing files for VTK",
                 "Parameters": {
                     "model_part_name": "3D_Shell",
-                    "file_format": "binary",
-                    "output_precision": 7,
-                    "output_control_type": "step",
-                    "output_interval": 1.0,
-                    "output_sub_model_parts": false,
                     "folder_name": "Primal_Results",
-                    "save_output_files_in_folder": true,
                     "nodal_solution_step_data_variables": [
                         "DISPLACEMENT",
                         "REACTION",

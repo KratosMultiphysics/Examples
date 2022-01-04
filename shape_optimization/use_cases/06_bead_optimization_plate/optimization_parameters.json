@@ -44,8 +44,7 @@
             "type": "vertex_morphing",
             "filter": {
                 "filter_function_type": "linear",
-                "filter_radius": 0.075,
-                "max_nodes_in_filter_radius": 1000
+                "filter_radius": 0.075
             }
         },
         "optimization_algorithm": {
@@ -71,6 +70,7 @@
                 "DF1DALPHA",
                 "DF1DALPHA_MAPPED",
                 "DPDALPHA",
+                "DLDALPHA",
                 "ALPHA",
                 "ALPHA_MAPPED",
                 "CONTROL_POINT_CHANGE",
