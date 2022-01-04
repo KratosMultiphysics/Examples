@@ -38,11 +38,6 @@
                         "time_step"       : 1.0
                     },
                     "domain_size"     : 3,
-                    "mesh_motion_linear_solver_settings"  : {
-                        "solver_type" : "ExternalSolversApplication.super_lu",
-                        "scaling"     : false,
-                        "verbosity"   : 0
-                    },
                     "compute_reactions"     : true
                 }
             }
@@ -111,7 +106,7 @@
                                           "SHAPE_UPDATE",
                                           "SHAPE_CHANGE" ],
             "output_format" : {
-                "name": "gid"
+                "name": "vtk"
             }
         }
     }
