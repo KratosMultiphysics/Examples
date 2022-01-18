@@ -17,7 +17,7 @@ The following application of Kratos is used:
 The problem geometry as well as the boundary conditions are sketched below:
 
 <p align="center">
-  <img src="data/cylinder_on_inclined_plane.png" alt="Initial geometry and boundary conditions." width="350" />
+  <img src="data/cylinder_on_inclined_plane.png" alt="Initial geometry and boundary conditions." width="700" />
 </p>
 
 A hyper elastic Neo Hookean Plane strain (2D) constitutive law with unit thickness is considered with the following material parameters:
