@@ -1,14 +1,11 @@
-# Making KratosMultiphysics backward compatible with python 2.6 and 2.7
-from __future__ import print_function, absolute_import, division
-
 # Import Kratos core and apps
 import KratosMultiphysics as KM
 
 # Additional imports
 import KratosMultiphysics.ShapeOptimizationApplication as KSO
-from KratosMultiphysics.ShapeOptimizationApplication import optimizer_factory, analyzer_base
+from KratosMultiphysics.ShapeOptimizationApplication import optimizer_factory
 from KratosMultiphysics.StructuralMechanicsApplication import structural_response_function_factory as csm_response_factory
-from KratosMultiphysics.ShapeOptimizationApplication.analyzer_base import AnalyzerBaseClass
+from KratosMultiphysics.ShapeOptimizationApplication.analyzers.analyzer_base import AnalyzerBaseClass
 
 # Read parameters
 with open("optimization_parameters.json", 'r') as parameter_file:
