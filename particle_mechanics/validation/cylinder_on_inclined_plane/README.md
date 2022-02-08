@@ -20,7 +20,7 @@ by using penalty augmentation based on (Chandra et al., 2021).
 
 The following application of Kratos is used:
 - [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
-- [LinearSolversApplication] (https://github.com/KratosMultiphysics/Kratos/tree/master/applications/LinearSolversApplication)
+- [LinearSolversApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/LinearSolversApplication)
 
 The problem geometry as well as the boundary conditions are sketched below:
 
@@ -46,7 +46,7 @@ The analytical and numerical solution for the displacement function of the respe
 
 
 Simulation of the rotating cylinder: 
-<p align="left"> <img src="data/rolling cylinder gif.gif" alt="Rotating cylinder" width="500" /> </p> <p align="left"> <img src="data/sliding cylinder gif.gif" alt="Sliding cylinder" width="500" /></p>
+<p align="left"> <img src="data/rolling cylinder gif.gif" alt="Rotating cylinder" width="500" /> </p> <p align="right"> <img src="data/sliding cylinder gif.gif" alt="Sliding cylinder" width="500" /> </p>
 
  
 ## References
