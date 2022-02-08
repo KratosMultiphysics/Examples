@@ -48,7 +48,7 @@ The left image displays the rolling cylinder - modelled with option "contact". T
 <p align="center">
   <img alt="Light" src="data/rolling cylinder 3 gif.gif" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="data/sliding cylinder 3 gif.gif" width="47%">
+  <img alt="Dark" src="data/sliding cylinder 3 gif.gif" width="46%">
 </p>
 
 
