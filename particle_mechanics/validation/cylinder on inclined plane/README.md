@@ -3,7 +3,7 @@
 
 **Kratos version:** Development branch. **Expected 6.0** 
 
-**Source files:** [rolling_cylinder_2D](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cylinder on inclined plane/source)
+**Source files:** [rolling_cylinder_2D](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cylinder_on_inclined_plane_2D/source)
 
 ## Case Specification
 
