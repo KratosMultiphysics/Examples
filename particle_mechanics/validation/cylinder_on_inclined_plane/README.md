@@ -12,8 +12,10 @@ Linear, unstructured, triangular elements with a size of 0.01m are used to initi
 However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non (grid) conforming Dirichlet boundary condition is imposed 
 by using penalty augmentation based on (Chandra et al., 2021).  
 
+The non grid conforming boundary condition is respresented by the copper coloured line in the image below.
 <p align="center"> <img src="data/non_grid_conforming_bc.png" width="500" /> </p>
-<p align="center">The non grid conforming boundary condition is respresented by the copper coloured line.</p>  
+
+
 
 The following applications of Kratos are used:
 - [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
