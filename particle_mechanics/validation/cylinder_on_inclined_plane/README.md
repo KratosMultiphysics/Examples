@@ -46,9 +46,9 @@ The analytical and numerical solution for the displacement function of the respe
 The left image displays the rolling cylinder - modelled with option "contact". The right one shows the sliding cylinder - modelled with option "slip".
 
 <p align="center">
-  <img alt="Light" src="data/rolling cylinder 3 gif.gif" width="45%">
+  <img alt="Light" src="data/rolling cylinder gif.gif" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="data/sliding cylinder 3 gif.gif" width="46%">
+  <img alt="Dark" src="data/sliding cylinder gif.gif" width="46%">
 </p>
 
 
