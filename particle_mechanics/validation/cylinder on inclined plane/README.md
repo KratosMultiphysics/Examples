@@ -7,8 +7,10 @@
 
 ## Case Specification
 
-This is a 2D simulation of a rotating cylinder on an inclined plane. The simulation is set up according to section 4.5.2 of (Iaconeta, 2019). Linear, unstructured, triangular elements with a size of 0.01m are used to initialize the MPs. For the backgroundmesh linear, unstructured, triangular elements with a size of 0.02m are used.
-However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non (grid) conforming Dirichlet boundary condition is imposed by using penalty augmentation based on (Chandra et al., 2021).  
+This is a 2D simulation of a cylinder on an inclined plane. A rotationg as well as a sliding behaviour of the cylinder is regarded subsequently. The simulation is set up according to section 4.5.2 of (Iaconeta, 2019). 
+Linear, unstructured, triangular elements with a size of 0.01m are used to initialize the MPs. For the backgroundmesh linear, unstructured, triangular elements with a size of 0.02m are used.
+However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non (grid) conforming Dirichlet boundary condition is imposed 
+by using penalty augmentation based on (Chandra et al., 2021).  
 
 
 The following application of Kratos is used:
@@ -30,22 +32,19 @@ The time step is 0.001 seconds; the total simulation time is 1.0 seconds. The an
 The contact between cylinder and inclined plane is modelled in the first case with the option "contact" (see line 53, file *ProjectParameters.json*) and in the second case with "slip", based on (Chandra et al., 2021).  
 
 ## Results
-The solutions of the displacement- and velocity function of the above stated problem are compared with the analytical solution of a rolling cylinder on an inclined plane. 
+The analytical and numerical solution for the displacement function of the above stated problem are compared afterwards: 
 
-Case 1: Contact
-In this case the numerical solution of the simulation is compared to the anaylitcal solution for the displacement function of a rolling cylinder on an inclined plane.
-
-Analytical function for the displacement in y direction: -2/6*g*sin((_&alpha;_))^2*t^2 
-
-The following images show the results of the simulation:
+###Case 1: contact - rolling cylinder ###
+Analytical function for the displacement in y direction: $\frac{-2}{6} \times g \times \sin((_&alpha;_))^2 \times t^2$
 
 
 
-Case 2: Contact
+
+
+###Case 2: slip - sliding cylinder ###
 In this case the numerical solution of the simulation is compared to the anaylitcal solution for the displacement and the velocity function of a slipping cylinder on an inclined plane.
 
-Analytical function for the velocity along the direction of the inclined plane: -g*sin((_&alpha;_))^2*t
-
+Analytical function for the velocity along the direction of the inclined plane: -g*sin((_&alpha;_))^2*t  
 Analytical function for the displacement in y direction: -1/2*g*sin((_&alpha;_))^2*t^2
  
 
