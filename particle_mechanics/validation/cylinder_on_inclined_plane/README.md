@@ -43,7 +43,7 @@ The analytical and numerical solution for the displacement function of the respe
   <img src="data/comparison_analytical_numerical_disp.png" alt="Initial geometry and boundary conditions." width="1600" />
 </p>
 
-
+The left image displays the rolling cylinder - modelled with option "contact". The right one shows the sliding cylinder - modelled with option "slip".
 
 <p align="center">
   <img alt="Light" src="data/rolling cylinder 3 gif.gif" width="45%">
