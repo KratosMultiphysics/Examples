@@ -35,12 +35,12 @@ Choosing "contact" leads to a rolling behaviour of the cylinder; "slip" to a sli
 ## Results
 Simulation of the rotating cylinder:
 <p align="center">
-  <img src="data/rolling cylinder gif.gif" alt="Initial geometry and boundary conditions." width="1600" />
+  <img src="data/rolling cylinder gif.gif" alt="Initial geometry and boundary conditions." width="1200" />
 </p>
 
 Simulation of the sliding cylinder:
 <p align="center">
-  <img src="data/sliding cylinder gif.gif" alt="Initial geometry and boundary conditions." width="1600" />
+  <img src="data/sliding cylinder gif.gif" alt="Initial geometry and boundary conditions." width="1200" />
 </p>
 
 
