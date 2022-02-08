@@ -47,7 +47,7 @@ The analytical and numerical solution for the displacement function of the respe
 
 
 Simulation of the rotating cylinder: 
-<p align="left"> <img src="data/rolling cylinder gif.gif" alt="Rotating cylinder" width="500" /> </p> <p align="right"> <img src="data/sliding cylinder gif.gif" alt="Sliding cylinder" width="400" /> </p>
+<p align="left"> <img src="data/rolling cylinder gif.gif" alt="Rotating cylinder" width="500" /> </p> <p align="right"> <img src="data/sliding cylinder gif.gif" alt="Sliding cylinder" width="300" /> </p>
 
  
 ## References
