@@ -18,7 +18,7 @@ by using penalty augmentation based on (Chandra et al., 2021).
 
 
 
-The following application of Kratos is used:
+The following applications of Kratos are used:
 - [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
 - [LinearSolversApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/LinearSolversApplication)
 
@@ -43,6 +43,10 @@ The analytical and numerical solution for the displacement function of the respe
 <p align="center">
   <img src="data/comparison_analytical_numerical_disp.png" alt="Initial geometry and boundary conditions." width="1600" />
 </p>
+
+
+![12345](data/rolling cylinder gif.gif"title-1") ![alt-text-2](data/sliding cylinder gif.gif "title-2")
+
 
 
 Simulation of the rotating cylinder: 
