@@ -46,9 +46,9 @@ The analytical and numerical solution for the displacement function of the respe
 
 
 <p align="center">
-  <img alt="Light" src="data/rolling cylinder 3 gif.gif" width="50%">
+  <img alt="Light" src="data/rolling cylinder 3 gif.gif" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="data/sliding cylinder 3 gif.gif" width="35%">
+  <img alt="Dark" src="data/sliding cylinder 3 gif.gif" width="45%">
 </p>
 
 
