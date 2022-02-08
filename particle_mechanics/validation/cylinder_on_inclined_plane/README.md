@@ -15,6 +15,12 @@ by using penalty augmentation based on (Chandra et al., 2021).
 <p align="center"> <img src="data/non_grid_conforming_bc.png" width="500" /> </p>The non grid conforming boundary condition is respresented by the copper coloured line.
 
 
+<p align="center"> 
+    <img src="data/non_grid_conforming_bc.png" width="500" />
+    <em>The non grid conforming boundary condition is respresented by the copper coloured line.</em>
+</p>
+
+
 The following applications of Kratos are used:
 - [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
 - [LinearSolversApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/LinearSolversApplication)
@@ -51,8 +57,7 @@ The analytical and numerical solution for the displacement function of the respe
 
 
 
-Simulation of the rotating cylinder: 
-<p align="left"> <img src="data/rolling cylinder gif.gif" alt="Rotating cylinder" width="500" /> <p align="right"> <img src="data/sliding cylinder gif.gif" alt="Sliding cylinder" width="350" /></p>
+
 
  
 ## References
