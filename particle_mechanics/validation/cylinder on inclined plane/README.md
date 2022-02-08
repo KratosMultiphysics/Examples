@@ -29,8 +29,7 @@ A hyper elastic Neo Hookean Plane strain (2D) constitutive law with unit thickne
 
 The time step is 0.001 seconds; the total simulation time is 1.0 seconds. The angle (_&alpha;_) of the inclined plane is 60°. The penalty-factor is 1e13. Three material points per cell are considered.
 
-The contact between cylinder and inclined plane is modelled with the option "contact" (see line 53, file *ProjectParameters_contact.json*) in the first and with "slip" in the second case, based on (Chandra et al., 2021).  
-Choosing "contact" leads to a rolling behaviour of the cylinder; "slip" to a sliding behaviour.
+The contact between cylinder and inclined plane is modelled with the option "contact" (see line 53, file *ProjectParameters_contact.json*) in the first and with "slip" in the second case, based on (Chandra et al., 2021). Choosing "contact" leads to a rolling behaviour of the cylinder; "slip" to a sliding behaviour.
 
 ## Results
 Simulation of the rotating cylinder:
