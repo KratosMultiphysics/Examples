@@ -1,4 +1,4 @@
-# Rotating cylinder 2D - comparison between analytical and numerical solution with MPM
+# Cylinder on inclined plane 2D - comparison between analytical and numerical solution with MPM
 **Author:** Philip Franz 
 
 **Kratos version:** Development branch. **Expected 6.0** 
@@ -32,7 +32,7 @@ The contact between cylinder and inclined plane is modelled in the first case wi
 ## Results
 The solutions of the displacement- and velocity function of the above stated problem are compared with the analytical solution of a rolling cylinder on an inclined plane. 
 
-###Case 1: Contact
+Case 1: Contact
 In this case the numerical solution of the simulation is compared to the anaylitcal solution for the displacement function of a rolling cylinder on an inclined plane.
 
 Analytical function for the displacement in y direction: -2/6*g*sin((_&alpha;_))^2*t^2 
@@ -41,10 +41,11 @@ The following images show the results of the simulation:
 
 
 
-###Case 2: Contact
+Case 2: Contact
 In this case the numerical solution of the simulation is compared to the anaylitcal solution for the displacement and the velocity function of a slipping cylinder on an inclined plane.
 
 Analytical function for the velocity along the direction of the inclined plane: -g*sin((_&alpha;_))^2*t
+
 Analytical function for the displacement in y direction: -1/2*g*sin((_&alpha;_))^2*t^2
  
 
