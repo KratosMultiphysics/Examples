@@ -17,6 +17,15 @@
             "python_module": "mask_zeros_process",
             "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
             "parameters"   :{
+                "objective": "input",
+                "input_log_name"  : "input_preprocessing.json",
+                "invert": false
+            }
+        },
+        {
+            "python_module": "mask_zeros_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
                 "objective": "output",
                 "output_log_name"  : "output_preprocessing.json"
             }
@@ -40,15 +49,6 @@
                 "output_log_name" : "output_preprocessing.json",
                 "features_as_timesteps": false,
                 "record"               : true
-            }
-        },
-        {
-            "python_module": "reorder_process",
-            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
-            "parameters"   :{
-                "number_of_partitions"   : 4,
-                "input_log_name"  : "input_preprocessing.json",
-                "output_log_name" : "output_preprocessing.json"
             }
         },
 
@@ -77,76 +77,7 @@
                 "input_to_recurrent": true    
             }  
         }},
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "add_dimension_layer",
-            "layer_parameters"    :{
-            	"new_dimensions_sizes": [4,1],
-                "data_input"      : "data//training_in.pkl",
-                "input_to_recurrent": true      
-            }  
-        }},   
-
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "conv3d_layer",
-            "layer_parameters"    :{
-            "filters"             : 128,
-            "kernel_size_1"	  : 5,
-            "kernel_size_2"	  : 1,
-            "kernel_size_3"	  : 4,
-            "padding"		  : "same",
-            "activation"	  : "relu"
-        }  
-        }},        
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "conv3d_layer",
-            "layer_parameters"    :{
-            "filters"             : 256,
-            "kernel_size_1"	  : 4,
-            "kernel_size_2"	  : 1,
-            "kernel_size_3"	  : 4,
-            "padding"		  : "valid",
-            "activation"	  : "relu"
-        }  
-        }},
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "reshape_layer",
-            "layer_parameters"    :{
-            	"new_shape": [7, 203, 256,1]    
-            }  
-        }}, 
-        
-        {
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "averagepooling3d_layer",
-            "layer_parameters"    :{
-            	"pool_size_1"              : 1,
-            	"pool_size_2"              : 1,
-           	"pool_size_3"              : 256   
-            }  
-        }},   
-     	{
-        "python_module" : "add_layer_process",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "layer_type"          : "reshape_layer",
-            "layer_parameters"    :{
-            	"new_shape": [7, 203]    
-            }  
-        }}, 
+       
         {
         "python_module" : "add_layer_process",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
@@ -263,7 +194,7 @@
             "input_file"          : "data/training_in.pkl",
             "target_file"         : "data/training_out.pkl",
             "timesteps"           : 250,
-            "lookback"            : 8,
+            "lookback"            : 10,
             "echo"                : 1,
             "predictions_file"    : "data/predictions",
             "save_format"         : "npy"            
@@ -284,9 +215,23 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//output_corrected.npy",
-            "target_file"         : "data//training_out.pkl",
+            "target_file"         : "data//training_out_raw.dat",
             "input_variable"      : "Timesteps",
-            "variables"           : ["Displacement_X [m]","Displacement_Y [m]"],
+            "variables"           : ["Displacement_X [m]","Displacement_Y [m]","Displacement_Z [m]"],
+            "axis"                : "plot",
+            "node_id"		   : 0,
+            "training_timesteps"  : 200,
+            "output_name"         : "mok_fsi_node_0",
+            "output_format"       : "png"          
+        }},
+        {
+        "python_module" : "prediction_timeseries_plotter",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "predictions_file"    : "data//output_corrected.npy",
+            "target_file"         : "data//training_out_raw.dat",
+            "input_variable"      : "Timesteps",
+            "variables"           : ["Displacement_X [m]","Displacement_Y [m]","Displacement_Z [m]"],
             "axis"                : "plot",
             "node_id"		   : 50,
             "training_timesteps"  : 150,
@@ -298,37 +243,24 @@
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//output_corrected.npy",
-            "target_file"         : "data//training_out.pkl",
+            "target_file"         : "data//training_out_raw.dat",
             "input_variable"      : "Timesteps",
-            "variables"           : ["Displacement_X [m]","Displacement_Y [m]"],
+            "variables"           : ["Displacement_X [m]","Displacement_Y [m]","Displacement_Z [m]"],
             "axis"                : "plot",
             "node_id"		   : 100,
             "training_timesteps"  : 150,
             "output_name"         : "mok_fsi_node_100",
             "output_format"       : "png"          
         }},
+
         {
         "python_module" : "prediction_timeseries_plotter",
         "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
         "parameters"    :{
             "predictions_file"    : "data//output_corrected.npy",
-            "target_file"         : "data//training_out.pkl",
+            "target_file"         : "data//training_out_raw.dat",
             "input_variable"      : "Timesteps",
-            "variables"           : ["Displacement_X [m]","Displacement_Y [m]"],
-            "axis"                : "plot",
-            "node_id"		   : 150,
-            "training_timesteps"  : 150,
-            "output_name"         : "mok_fsi_node_150",
-            "output_format"       : "png"          
-        }},
-        {
-        "python_module" : "prediction_timeseries_plotter",
-        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
-        "parameters"    :{
-            "predictions_file"    : "data//output_corrected.npy",
-            "target_file"         : "data//training_out.pkl",
-            "input_variable"      : "Timesteps",
-            "variables"           : ["Displacement_X [m]","Displacement_Y [m]"],
+            "variables"           : ["Displacement_X [m]","Displacement_Y [m]","Displacement_Z [m]"],
             "axis"                : "plot",
             "node_id"		   : 32,
             "training_timesteps"  : 150,

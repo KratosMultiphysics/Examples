@@ -1,0 +1,149 @@
+{   "problem_data":{
+        "problem_type"  : "predict_with_modelpart",
+        "parallel_type" : "OpenMP",
+        "model_part_file": "Mok_CSM",
+        "solver_type": "neural_network",
+        "model_part_name": "Structure",
+        "neural_network_file": "../only_structure/my_model",
+        "external_model": true,
+        "library_name": "keras",
+        "import_applications": ["StructuralMechanicsApplication"],
+        "input_model_part" : "Structure.GENERIC_FSI",
+        "output_model_part": "Structure.GENERIC_FSI",
+        "input_variables"          : ["POINT_LOAD_X", "POINT_LOAD_Y"],
+        "input_sources"            : ["solution_step","solution_step"],
+        "input_model_part"         : "Structure.GENERIC_FSI",
+        "input_order"		: "sources_first",
+        "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
+        "output_sources"           : ["solution_step","solution_step"],
+        "output_order"		: "sources_first",
+        "lookback"       : 10,
+        "reorder_partitions": 4,
+        "domain_size"    : 2,
+        "timesteps_as_features": false,
+        "record"		: true,
+        "only_input"	: false,
+        "time_buffer"	: 0.4,
+        "timestep"     : 0.1,
+        "start_time"    : 0.0,
+        "end_time"      : 20.0,
+        "echo_level"    : 1,
+        "solver_module":  "KratosMultiphysics.StructuralMechanicsApplication.python_solvers_wrapper_structural",
+        "solver_settings"          : {
+		"problem_data"             : {
+		"problem_name"    : "Mok_CSM",
+		"parallel_type"   : "OpenMP",
+		"start_time"      : 0.0,
+		"end_time"        : 1.0,
+		"echo_level"      : 1
+	    },
+	    "solver_settings"          : {
+		"solver_type"                        : "dynamic",
+		"echo_level"                         : 0,
+		"analysis_type"                      : "non_linear",
+		"time_integration_method"            : "implicit",
+		"scheme_type"                        : "bossak",
+		"model_part_name"                    : "Structure",
+		"domain_size"                        : 2,
+		"model_import_settings"              : {
+		    "input_type"     : "mdpa",
+		    "input_filename" : "Mok_CSM"
+		},
+		"material_import_settings"           : {
+		    "materials_filename" : "StructuralMaterials.json"
+		},
+		"time_stepping"               : {
+		    "time_step"           : 0.1
+		},
+		"line_search"                        : false,
+		"convergence_criterion"              : "residual_criterion",
+		"displacement_relative_tolerance"    : 1e-7,
+		"displacement_absolute_tolerance"    : 1e-9,
+		"residual_relative_tolerance"        : 1e-7,
+		"residual_absolute_tolerance"        : 1e-9,
+		"max_iteration"                      : 50,
+		        "linear_solver_settings"             : {
+		    "solver_type" : "LinearSolversApplication.sparse_qr"
+		},
+		"problem_domain_sub_model_part_list" : ["Parts_Structure"],
+		"processes_sub_model_part_list"      : ["DISPLACEMENT_Dirichlet","GENERIC_FSI","PointLoad2D_FSI"],
+		"rotation_dofs"                      : false
+	    }
+    }},
+    "processes":{
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.DISPLACEMENT_Dirichlet",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+
+    "model_processes":[
+        
+        {
+            "python_module": "mask_zeros_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective": "output",
+                "load_from_log": true,
+                "output_log_name"  : "../only_structure/output_preprocessing.json"
+            }
+        },
+
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective"       : "input",
+                "load_from_log"   : true,
+                "input_log_name"  : "../only_structure/input_preprocessing.json",
+                "output_log_name" : "../only_structure/output_preprocessing.json",
+                "normalization_type": "soft_zero_one"
+            }
+        
+        },
+        {
+            "python_module": "normalization_process",
+            "kratos_module": "KratosMultiphysics.NeuralNetworkApplication",
+            "parameters"   :{
+                "objective"       : "output",
+                "load_from_log"   : true,
+                "input_log_name"  : "../only_structure/input_preprocessing.json",
+                "output_log_name" : "../only_structure/output_preprocessing.json",
+                "normalization_type": "soft_zero_one"
+            }
+        
+        }
+        ]
+    },
+    "output_processes":{
+        "output_processes":[
+        {
+        "python_module" : "invert_transformations_process",
+        "kratos_module" : "KratosMultiphysics.NeuralNetworkApplication",
+        "parameters"    :{
+            "echo"                : 1,
+            "to_output"	   : true,
+            "write_output"        : false
+            }
+        }
+    ],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "file_format"                        : "binary",
+                "output_sub_model_parts"             : false,
+                "output_interval"                    : 1,
+                "write_deformed_configuration"	: true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","ROTATION","POINT_LOAD","POINT_MOMENT"],
+                "gauss_point_variables_extrapolated_to_nodes" : []
+            }
+        }]}
+}

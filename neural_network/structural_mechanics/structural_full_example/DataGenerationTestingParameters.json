@@ -20,7 +20,7 @@
             "materials_filename" : "StructuralMaterials.json"
         },
         "time_stepping" : {
-            "time_step"       : 0.0005
+            "time_step"       : 0.05
         },
 	    "line_search"                        : false,
         "convergence_criterion"              : "residual_criterion",
@@ -90,15 +90,15 @@
 			"kratos_module" : "NeuralNetworkApplication",
 			"Parameters" 	: {
             "help"                     : "This process generates the data series for the neural network training and testing",
-            "model_part_name"          : "Structure.PointLoad2D_neumann",
+            "model_part_name"          : ["Structure.PointLoad2D_neumann", "Structure.DISPLACEMENT_dirichletXYZ"],
             "interval"                 : [0.0, "End"],
             "write_output_file"        : true,
-            "input_variables"          : ["POINT_LOAD_Y"],
-            "input_sources"            : ["condition"],
+            "input_variables"          : ["POINT_LOAD_Y", "POINT_LOAD_Y"],
+            "input_sources"            : ["condition", "condition"],
             "input_model_part"         : "Structure.PointLoad2D_neumann",
-            "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
+            "output_variables"         : ["DISPLACEMENT","DISPLACEMENT_Y"],
             "output_sources"           : ["solution_step","solution_step"],
-            "perturbate_variables"     : ["POINT_LOAD"],
+            "perturbate_variables"     : ["POINT_LOAD_Y"],
             "random_distribution"      : ["normal"],
             "random_parameters"        : [[0,0.02]],
             "print_format"             : ".8f",

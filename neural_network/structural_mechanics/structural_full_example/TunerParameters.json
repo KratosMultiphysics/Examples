@@ -110,7 +110,7 @@
         "parameters"    :{
             "layer_type"          : "dense_layer",
             "layer_parameters"    :{
-                "units"           : 2,
+                "units"           : 4,
                 "activation"      : "linear"
             }  
         }}],

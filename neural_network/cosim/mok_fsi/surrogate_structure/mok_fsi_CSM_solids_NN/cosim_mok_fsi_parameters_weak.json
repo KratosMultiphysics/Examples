@@ -83,34 +83,19 @@
             },
             "neural_network" :
             {
-                "type" : "solver_wrappers.kratos.neural_network_with_mdpa_wrapper",
+                "type" : "solver_wrappers.kratos.neural_network_wrapper",
                 "solver_wrapper_settings" : {
-                    "input_file"  : "ProjectParametersNeuralNetwork",
-                    "input_variable" : "load",
-                    "output_variable": "disp",
-                    "input_variable_name" : "FORCE",
-                    "dimension_input"     : 2,
-                    "output_variable_name": "DISPLACEMENT",
-                    "mdpa_file_name" : "Mok_CSM",
-                    "submodel_part_name":"GENERIC_FSI",
-                    "lookback"       : 10,
-                    "reorder_partitions": 4,
-                    "features_as_timesteps": false,
-                    "record"		: true,
-                    "only_input"	: false,
-                    "time_buffer"	: 2
+                    "input_file"  : "ProjectParametersNeuralNetwork"
                 },
                 "data" : {
                     "disp" : {
-                        "model_part_name" : "NeuralNetwork.GENERIC_FSI",
+                        "model_part_name" : "Structure.GENERIC_FSI",
                         "variable_name" : "DISPLACEMENT",
-                        "location"      : "node_historical",
                         "dimension"     : 2
                     },
                     "load" : {
-                        "model_part_name" : "NeuralNetwork.GENERIC_FSI",
-                        "variable_name" : "FORCE",
-                        "location"      : "node_historical",
+                        "model_part_name" : "Structure.GENERIC_FSI",
+                        "variable_name" : "POINT_LOAD",
                         "dimension"     : 2
                     }
                 }

@@ -14,7 +14,7 @@ parameter_file_name = "ProjectParametersCSM.json"
 # neural_network_original_file_name = "LSTMProjectParameters.json"
 # neural_network_original_file_name = "ConvProjectParameters.json"
 # neural_network_original_file_name = "Conv2DProjectParameters.json"
-neural_network_original_file_name = "CNNLSTMProjectParameters.json"
+neural_network_original_file_name = "CNNLSTMProjectParameters_new.json"
 neural_network_retrain_file_name = "NeuralNetworkProjectParameters.json"
 load_file = "original_loads.dat"
 

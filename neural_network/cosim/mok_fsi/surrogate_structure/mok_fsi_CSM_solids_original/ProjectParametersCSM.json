@@ -89,6 +89,7 @@
                 "file_format"                        : "binary",
                 "output_sub_model_parts"             : false,
                 "output_interval"                    : 1,
+                "write_deformed_configuration"	: true,
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT","ROTATION","POINT_LOAD","POINT_MOMENT"],
                 "gauss_point_variables_extrapolated_to_nodes" : []
             }
