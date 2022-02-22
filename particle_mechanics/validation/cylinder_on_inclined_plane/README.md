@@ -12,19 +12,14 @@ Linear, unstructured, triangular elements with a size of 0.01m are used to initi
 However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non conforming Dirichlet boundary condition is imposed 
 by using penalty augmentation based on (Chandra et al., 2021).  
 
-The non conforming boundary condition is respresented by the copper coloured line in the image below:
-<p align="center"> <img src="data/non_grid_conforming_bc.png" width="500" /> </p>
-
-
-
 The following applications of Kratos are used:
 - [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
 - [LinearSolversApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/LinearSolversApplication)
 
-The problem geometry as well as the boundary conditions are sketched below:
+The problem geometry as well as the boundary conditions are sketched below. The non conforming boundary condition is respresented by the copper coloured line.
 
 <p align="center">
-  <img src="data/cylinder_on_inclined_plane.png" alt="Initial geometry and boundary conditions." width="1400" />
+  <img src="data/cylinder_on_inclined_plane_with_grid_detail.png" alt="Initial geometry and boundary conditions." width="1400" />
 </p>
 
 A hyper elastic Neo Hookean Plane strain (2D) constitutive law with unit thickness is considered with the following material parameters:
