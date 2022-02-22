@@ -9,10 +9,10 @@
 
 This is a 2D simulation of a cylinder on an inclined plane. A rotating as well as a sliding behaviour of the cylinder is regarded subsequently. The simulation is set up according to section 4.5.2 of (Iaconeta, 2019). 
 Linear, unstructured, triangular elements with a size of 0.01m are used to initialize the MPs and three MPs per cell are considered. For the backgroundmesh linear, unstructured, triangular elements with a size of 0.02m are used.
-However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non (grid) conforming Dirichlet boundary condition is imposed 
+However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non conforming Dirichlet boundary condition is imposed 
 by using penalty augmentation based on (Chandra et al., 2021).  
 
-The non grid conforming boundary condition is respresented by the copper coloured line in the image below:
+The non conforming boundary condition is respresented by the copper coloured line in the image below:
 <p align="center"> <img src="data/non_grid_conforming_bc.png" width="500" /> </p>
 
 
@@ -34,7 +34,7 @@ A hyper elastic Neo Hookean Plane strain (2D) constitutive law with unit thickne
 
 The time step is 0.001 seconds; the total simulation time is 1.0 seconds. The angle (_&alpha;_) of the inclined plane is 60°. The penalty-factor is 1e13. 
 
-The contact between cylinder and inclined plane is modelled with the option "contact" (see line 53, file *ProjectParameters_contact.json*) in the first and with "slip" in the second case, based on (Chandra et al., 2021). Choosing "contact" leads to a rolling behaviour of the cylinder; "slip" to a sliding behaviour.
+The contact between cylinder and inclined plane is modelled with the option "contact" (see line 53, file *ProjectParameters_contact.json*) in the first and with "slip" in the second case, based on (Chandra et al., 2021). Choosing "contact" leads to a rolling behaviour of the cylinder; "slip" to frictionless sliding.
 
 ## Results
 The analytical and numerical solution for the displacement function of the respective case of the above stated problem are compared afterwards:
@@ -43,7 +43,7 @@ The analytical and numerical solution for the displacement function of the respe
   <img src="data/comparison_analytical_numerical_disp.png" alt="Initial geometry and boundary conditions." width="1600" />
 </p>
 
-The left image displays the rolling cylinder - modelled with option "contact". The right one shows the sliding cylinder - modelled with option "slip".
+The left image displays the rolling cylinder - modelled with option "contact". The right one shows the sliding cylinder (frictionless) - modelled with option "slip".
 
 <p align="center">
   <img alt="Light" src="data/rolling cylinder gif.gif" width="45%">
