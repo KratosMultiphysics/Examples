@@ -19,7 +19,7 @@ The following applications of Kratos are used:
 The problem geometry as well as the boundary conditions are sketched below. The non conforming boundary condition is respresented by the copper coloured line.
 
 <p align="center">
-  <img src="data/cylinder_on_inclined_plane_with_grid_detail.png" alt="Initial geometry and boundary conditions." width="1400" />
+  <img src="data/Cylinder_on_inclined_plane_with_grid_detail.png" alt="Initial geometry and boundary conditions." width="1400" />
 </p>
 
 A hyper elastic Neo Hookean Plane strain (2D) constitutive law with unit thickness is considered with the following material parameters:
