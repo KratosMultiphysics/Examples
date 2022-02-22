@@ -8,7 +8,7 @@
 ## Case Specification
 
 This is a 2D simulation of a cylinder on an inclined plane. A rotating as well as a frictionless sliding behaviour of the cylinder are regarded subsequently. The simulation is set up according to section 4.5.2 of (Iaconeta, 2019). 
-Linear, unstructured, triangular elements with a size of 0.01m are used to initialize the MPs and three MPs per cell are considered. For the backgroundmesh linear, unstructured, triangular elements with a size of 0.02m are used.
+Linear, unstructured, triangular elements with a size of 0.01m are used to initialize the MPs. Three MPs per cell are considered. For the backgroundmesh linear, unstructured, triangular elements with a size of 0.02m are used.
 However, in contrast to section 4.5.2 of (Iaconeta, 2019) the inclined plane is modelled by a line with unstructured elements with size 0.01m. On that line a non conforming Dirichlet boundary condition is imposed 
 by using penalty augmentation based on (Chandra et al., 2021).  
 
