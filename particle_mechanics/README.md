@@ -13,6 +13,7 @@ The examples are continuously updated and extended along with the development of
 
 ### Validation
  - [Granular Flow 2D](validation/granular_flow_2D/README.md)
+ - [Cylinder on inclined plane](validation/cylinder_on_inclined_plane/README.md)
 
 ### Use Cases
 - Coming soon...
