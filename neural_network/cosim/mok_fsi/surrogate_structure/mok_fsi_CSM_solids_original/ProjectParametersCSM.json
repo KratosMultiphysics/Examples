@@ -65,10 +65,10 @@
             "input_variables"          : ["POINT_LOAD_X", "POINT_LOAD_Y"],
             "input_sources"            : ["solution_step","solution_step"],
             "input_model_part"         : "Structure.GENERIC_FSI",
-            "input_order"		: "sources_first",
+            "input_order"		: "variables_first",
             "output_variables"         : ["DISPLACEMENT_X","DISPLACEMENT_Y"],
             "output_sources"           : ["solution_step","solution_step"],
-            "output_order"		: "sources_first",
+            "output_order"		: "variables_first",
             "perturbate_variables"     : [],
             "random_distribution"      : ["normal"],
             "random_parameters"        : [[0,0.1]],
@@ -78,7 +78,7 @@
                     "input_file_name"  : "training_in_raw",
                     "output_file_name" : "training_out_raw",
                     "file_format"      : "dat",
-                    "output_path"      : "data/"
+                    "output_path"      : "../only_structure/data/"
             }}
         }],
         "vtk_output" : [{

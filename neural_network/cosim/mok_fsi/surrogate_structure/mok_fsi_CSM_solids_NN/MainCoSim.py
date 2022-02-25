@@ -9,7 +9,7 @@ import time
 from KratosMultiphysics.CoSimulationApplication.co_simulation_analysis import CoSimulationAnalysis
 import json
 
-parameter_file_name = "cosim_mok_fsi_parameters_weak.json"
+parameter_file_name = "cosim_mok_fsi_parameters_strong.json"
 
 with open(parameter_file_name, 'r') as parameter_file:
     cosim_parameters = KratosMultiphysics.Parameters(parameter_file.read())

@@ -98,7 +98,7 @@
                     "features_as_timesteps": false,
                     "record"		: true,
                     "only_input"	: false,
-                    "time_buffer"	: 2
+                    "time_buffer"	: 1
                 },
                 "data" : {
                     "disp" : {
