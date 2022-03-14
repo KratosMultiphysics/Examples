@@ -10,10 +10,8 @@ This folder contains examples related to the [Particle Mechanics Application](ht
 ## Examples
 
 The examples are continuously updated and extended along with the development of Kratos.
+Some validation and use cases are available in the [Examples](https://kratosmultiphysics.github.io/Examples/) repository of Kratos.
 
 ### Validation
  - [Granular Flow 2D](validation/granular_flow_2D/README.md)
  - [Cylinder on inclined plane](validation/cylinder_on_inclined_plane/README.md)
-
-### Use Cases
-- Coming soon...
