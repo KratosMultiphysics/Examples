@@ -1,7 +1,7 @@
 # Cylinder on inclined plane 2D - comparison between analytical and numerical solution with MPM
 **Author:** Philip Franz 
 
-**Kratos version:** Development branch. **Expected 6.0** 
+**Kratos version:** Development branch. **Expected 9.1** 
 
 **Source files:** [cylinder_on_inclined_plane_2D](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cylinder_on_inclined_plane/source)
 
