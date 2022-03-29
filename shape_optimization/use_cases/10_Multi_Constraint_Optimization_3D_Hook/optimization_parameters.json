@@ -45,9 +45,6 @@
                         "time_step"       : 1.0
                     },
                     "domain_size"     : 3,
-                    "linear_solver_settings"  : {
-                        "solver_type"         : "LinearSolversApplication.pardiso_llt"
-                    },
                     "compute_reactions"     : false
                 }
             }
