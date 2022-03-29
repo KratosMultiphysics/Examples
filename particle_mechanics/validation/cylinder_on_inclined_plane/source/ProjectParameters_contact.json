@@ -38,15 +38,6 @@
         "auxiliary_variables_list"        : ["NORMAL","IS_STRUCTURE"]
     },
     "processes"        : {
-        "constraints_process_list" : [],
-        "loads_process_list"       : [{
-            "python_module" : "lagrangian_moving_particle_process",
-            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
-            "Parameters"    : {
-                "model_part_name" : "Background_Grid.PointLoad2D_Load_on_points_Auto1",
-                "variable_name"   : "LINE_LOAD"
-            }
-        }],
         "list_other_processes"     : [{
             "python_module" : "apply_mpm_particle_dirichlet_condition_process",
             "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
