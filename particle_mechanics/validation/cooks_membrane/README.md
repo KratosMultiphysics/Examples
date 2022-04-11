@@ -24,7 +24,7 @@ The problem geometry as well as the boundary conditions are sketched below:
   <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="400" />
 </p>
 
-The problem is solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per size.
+The problem is solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per side.
 
 ## Results
 
