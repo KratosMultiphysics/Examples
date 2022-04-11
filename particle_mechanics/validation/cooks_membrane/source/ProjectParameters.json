@@ -22,7 +22,6 @@
         "material_import_settings"        : {
             "materials_filename" : "ParticleMaterials.json"
         },
-        "stabilization"                   : "PPP",
         "convergence_criterion"           : "residual_criterion",
         "displacement_relative_tolerance" : 0.0001,
         "displacement_absolute_tolerance" : 1e-9,
@@ -134,37 +133,6 @@
                     "point_data_configuration"  : []
                 },
                 "output_name"            : "cooks_Grid"
-            }
-        }],
-        "vtk_output_processes" : [{
-            "python_module" : "vtk_output_process",
-            "kratos_module" : "KratosMultiphysics",
-            "process_name"  : "VtkOutputProcess",
-            "Parameters"    : {
-                "model_part_name"                    : "Background_Grid",
-                "output_control_type"                : "step",
-                "output_interval"                    : 1,
-                "file_format"                        : "ascii",
-                "output_precision"                   : 7,
-                "output_sub_model_parts"             : false,
-                "output_path"                        : "vtk_output",
-                "save_output_files_in_folder"        : true,
-                "nodal_solution_step_data_variables" : ["DISPLACEMENT","PRESSURE"]
-            }
-        },{
-            "python_module" : "particle_vtk_output_process",
-            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
-            "process_name"  : "ParticleMPMVTKOutputProcess",
-            "Parameters"    : {
-                "model_part_name"             : "MPM_Material",
-                "output_control_type"         : "step",
-                "output_interval"             : 1,
-                "file_format"                 : "ascii",
-                "output_precision"            : 7,
-                "output_sub_model_parts"      : false,
-                "save_output_files_in_folder" : true,
-                "folder_name"                 : "vtk_output",
-                "gauss_point_results"         : ["MP_DISPLACEMENT","MP_PRESSURE"]
             }
         }]
     },
