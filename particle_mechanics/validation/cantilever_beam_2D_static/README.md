@@ -24,10 +24,11 @@ The problem geometry as well as the boundary conditions are sketched below:
   <img src="data/cantilever_scheme.png" alt="Geometry of the problem." width="750" />
 </p>
 
+The problem stated above has been solved with a structured mesh of quadrilateral elements with 4 material points per cell. A mesh size considered here is h=0.0625. 
 
 ## Results
 
-The problem stated above has been solved with a structured mesh of quadrilateral elements with 4 material points per cell. A mesh size considered here is h=0.0625. The obtained numerical results are compared with the solution using other methods such as FEM, GMM-MLS and GMM-LME. An agreement between methods was observed (see reference).
+The obtained numerical results are compared with the solution using other methods such as FEM, GMM-MLS and GMM-LME. An agreement between methods was observed (see reference).
 
 <p align="center">
   <img src="data/cantilever_ydisp.png" alt="Obtained results and comparison." width="600" />
