@@ -32,7 +32,7 @@ The problem stated above has been solved with a structured mesh of quadrilateral
 <p align="center">
   <img src="data/" alt="Obtained results and comparison." width="700" />
 
-The deflection value reached by all methods (including MPM) is (_&delta;_)=-0.67433m.  
+The deflection value reached by all methods (including MPM) is &delta;=-0.67433m.  
 
 ## Reference
 Iaconeta I., Larese A., Rossi R. & Guo Z. (2017). Comparison of a material point method and a Galerkin Meshfree Method for the simulation of cohesive-frictional materials. Materials, 10(10), 1150.
