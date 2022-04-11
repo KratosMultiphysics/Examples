@@ -127,6 +127,8 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 **Validation**
 - [Granular Flow 2D](particle_mechanics/validation/granular_flow_2D/README.md)
 - [Cylinder on inclined plane 2D](particle_mechanics/validation/cylinder_on_inclined_plane/README.md)
+- [Cantilever beam 2D static](particle_mechanics/validation/cantilever_beam_2D_static/README.md)
+- [Cook's membrane](particle_mechanics/validation/cooks_membrane/README.md)
 
 ## PFEM2
 
