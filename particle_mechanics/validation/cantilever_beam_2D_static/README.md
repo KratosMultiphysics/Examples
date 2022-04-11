@@ -11,8 +11,8 @@ The
 
 ## Case Specification
 
-The static analysis of a 2D cantilever beam subjected to its self-weight under the assumptions of plain strain is presented here.
-The beam is modelled with a hyperelastic material:
+The static analysis of a 2D cantilever beam subjected to its self-weight under the assumptions of plain strain is presented here. Regarding the formulation, it is irreducible, where the unknown is the displacement.
+Moreover, the beam is modelled with a hyperelastic material:
 * Density (_&rho;_): 1000 Kg/m<sup>3</sup>
 * Young's modulus (_E_):  90 MPa
 * Poisson ratio (_&nu;_): 0
@@ -28,13 +28,13 @@ The problem is solved with a structured mesh of quadrilateral elements with 4 ma
 
 ## Results
 
-The obtained numerical results are compared with the solution using other methods such as FEM, GMM-MLS and GMM-LME. An agreement between methods was observed (see reference).
+The obtained numerical result is compared with the solution using other methods such as FEM, GMM-MLS and GMM-LME. An agreement between methods was observed (see reference).
 
 <p align="center">
   <img src="data/cantilever_ydisp.png" alt="Obtained results and comparison." width="600" />
 </p>  
 
-The deflection value &delta;=-0.67433 is reached in all methods under assumption of non-linearity and for a element size h=0.01.
+The deflection value &delta;=-0.67433 is reached in all methods under assumption of non-linearity and for an element size h=0.01.
   
 
 ## Reference
