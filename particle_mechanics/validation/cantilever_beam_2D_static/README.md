@@ -21,7 +21,7 @@ The beam is modelled with a hyperelastic material:
 The problem geometry as well as the boundary conditions are sketched below:
 
 <p align="center">
-  <img src="data/cantilever_scheme" alt="Geometry of the problem." width="350" />
+  <img src="data/cantilever_scheme.png" alt="Geometry of the problem." width="350" />
 </p>
 
 
