@@ -1,0 +1,172 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "cooks",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 1.0
+    },
+    "solver_settings"  : {
+        "time_stepping"                   : {
+            "time_step" : 1.1
+        },
+        "solver_type"                     : "Static",
+        "model_part_name"                 : "MPM_Material",
+        "domain_size"                     : 2,
+        "echo_level"                      : 1,
+        "analysis_type"                   : "non_linear",
+        "model_import_settings"           : {
+            "input_type"     : "mdpa",
+            "input_filename" : "cooks_Body"
+        },
+        "material_import_settings"        : {
+            "materials_filename" : "ParticleMaterials.json"
+        },
+        "stabilization"                   : "PPP",
+        "convergence_criterion"           : "residual_criterion",
+        "displacement_relative_tolerance" : 0.0001,
+        "displacement_absolute_tolerance" : 1e-9,
+        "residual_relative_tolerance"     : 0.0001,
+        "residual_absolute_tolerance"     : 1e-9,
+        "max_iteration"                   : 10,
+        "grid_model_import_settings"      : {
+            "input_type"     : "mdpa",
+            "input_filename" : "cooks_Grid"
+        },
+        "pressure_dofs"                   : true,
+        "linear_solver_settings"          : {
+            "solver_type" : "LinearSolversApplication.sparse_lu"
+        },
+        "auxiliary_variables_list"        : ["NORMAL","IS_STRUCTURE"]
+    },
+    "processes"        : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Background_Grid.DISPLACEMENT_Displacement_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Background_Grid.LineLoad2D_Load_on_lines_Auto1",
+                "variable_name"   : "LINE_LOAD",
+                "interval"        : [0.0,"End"],
+                "modulus"         : 0.0625,
+                "direction"       : [0.0,1,0.0]
+            }
+        }],
+        "list_other_processes"     : [],
+        "gravity"                  : [{
+            "python_module" : "assign_gravity_to_particle_process",
+            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
+            "process_name"  : "AssignGravityToParticleProcess",
+            "Parameters"    : {
+                "model_part_name" : "MPM_Material",
+                "variable_name"   : "MP_VOLUME_ACCELERATION",
+                "modulus"         : 0,
+                "direction"       : [0.0,-1.0,0.0]
+            }
+        }]
+    },
+    "output_processes" : {
+        "gid_output_processes" : [{
+            "python_module" : "particle_gid_output_process",
+            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
+            "process_name"  : "ParticleMPMGiDOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "MPM_Material",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"               : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"                  : "step",
+                        "output_control_type"         : "time",
+                        "output_interval"             : 1.0,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "gauss_point_results"         : ["MP_DISPLACEMENT","MP_PRESSURE"],
+                        "nodal_nonhistorical_results" : []
+                    },
+                    "point_data_configuration"  : []
+                },
+                "output_name"            : "cooks_Body"
+            }
+        },{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "Background_Grid",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"               : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"                  : "step",
+                        "output_control_type"         : "time",
+                        "output_interval"             : 1.0,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "nodal_results"               : ["DISPLACEMENT","PRESSURE"],
+                        "nodal_nonhistorical_results" : []
+                    },
+                    "point_data_configuration"  : []
+                },
+                "output_name"            : "cooks_Grid"
+            }
+        }],
+        "vtk_output_processes" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "Parameters"    : {
+                "model_part_name"                    : "Background_Grid",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","PRESSURE"]
+            }
+        },{
+            "python_module" : "particle_vtk_output_process",
+            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
+            "process_name"  : "ParticleMPMVTKOutputProcess",
+            "Parameters"    : {
+                "model_part_name"             : "MPM_Material",
+                "output_control_type"         : "step",
+                "output_interval"             : 1,
+                "file_format"                 : "ascii",
+                "output_precision"            : 7,
+                "output_sub_model_parts"      : false,
+                "save_output_files_in_folder" : true,
+                "folder_name"                 : "vtk_output",
+                "gauss_point_results"         : ["MP_DISPLACEMENT","MP_PRESSURE"]
+            }
+        }]
+    },
+    "analysis_stage"   : "KratosMultiphysics.ParticleMechanicsApplication.particle_mechanics_analysis"
+}
