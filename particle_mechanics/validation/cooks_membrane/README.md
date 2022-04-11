@@ -1,7 +1,7 @@
 # Cook's membrane problem
 **Author:** Laura Moreno
 
-**Kratos version:** 
+**Kratos version:** 9.0.1
 
 **Source files:** [cooks_membrane](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cooks_membrane/source)
 
