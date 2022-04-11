@@ -1,9 +1,9 @@
-# 2D cantilever beam. Static analysis
-**Author:** Ilaria Iaconeta and Laura Moreno
+# Cook's membrane problem
+**Author:** Laura Moreno
 
 **Kratos version:** 
 
-**Source files:** [cantilever_beam_2D_static](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cantilever_beam_2D_static/source)
+**Source files:** [cooks_membrane](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/cooks_membrane/source)
 
 The
 [Particle Mechanics Application](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication) of Kratos is used to perform this example.
@@ -11,27 +11,31 @@ The
 
 ## Case Specification
 
-The static analysis of a 2D cantilever beam subjected to its self-weight under the assumptions of plain strain is presented here.
-The beam is modelled with a hyperelastic material:
+The Cook's membrane test under the assumptions of plain strain is presented. This test is used to check the mixed element formulation (U-P) under incompressible conditions.
+The material considered is the hyperelastic one and the properties are:
 * Density (_&rho;_): 1000 Kg/m<sup>3</sup>
-* Young's modulus (_E_):  90 MPa
-* Poisson ratio (_&nu;_): 0
+* Young's modulus (_E_):  70 Pa
+* Poisson ratio (_&nu;_): 0.499
 
 
 The problem geometry as well as the boundary conditions are sketched below:
 
 <p align="center">
-  <img src="data/cantilever_scheme.png" alt="Geometry of the problem." width="750" />
+  <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="750" />
 </p>
 
+The problem stated above has been solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per size.
 
 ## Results
 
-The problem stated above has been solved with a structured mesh of quadrilateral elements with 4 material points per cell. A mehs convergence study  is carried out adopting five different mesh sizes: h=0.5, 0.25, 0.125, 0.0625 and 0.01m. The obtained numerical results are compared with the solution using other methods such as FEM, GMM-MLS and GMM-LME. An agreement between methods can be observed.
+The results shows as the U-P formulation prevent the pressure oscillation issues in the mean stress field.
 
 <p align="center">
-  <img src="data/" alt="Obtained results and comparison." width="700" />
+  <img src="data/cooks_disp.png" alt="Distribution of vertical displacement on the domain" width="500" />
+  <img src="data/cooks_press.png" alt="Distribution of pressure field" width="500" />
+</p>
+
   
 
-## Reference
-Iaconeta, I., Larese, A., Rossi, R., & Guo, Z. (2017). Comparison of a material point method and a galerkin meshfree method for the simulation of cohesive-frictional materials. Materials, 10(10), 1150.
+## References
+
