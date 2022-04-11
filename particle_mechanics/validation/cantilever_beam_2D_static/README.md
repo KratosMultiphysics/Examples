@@ -1,4 +1,4 @@
-# 2D cantilever beam. Static analysis
+# Cantilever beam 2D. Static analysis
 **Author:** Laura Moreno
 
 **Kratos version:** 9.0.1
