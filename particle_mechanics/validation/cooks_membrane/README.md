@@ -35,8 +35,7 @@ The results shows how the U-P formulation prevent the pressure oscillation issue
   <img src="data/cooks_press.png" alt="Distribution of pressure field" width="500" />
 </p>
 
- 
 
 ## References
-- Cooks test (original)
-- Artículo de Ilaria.
+- Cook, R. D. (1974). Improved two-dimensional finite element. Journal of the Structural Division, 100(9), 1851-1863.
+- Iaconeta, I., Larese, A., Rossi, R., & Oñate, E. (2019). A stabilized mixed implicit material point method for non-linear incompressible solid mechanics. Computational Mechanics, 63(6), 1243-1260.
