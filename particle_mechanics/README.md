@@ -15,3 +15,5 @@ Some validation and use cases are available in the [Examples](https://kratosmult
 ### Validation
  - [Granular Flow 2D](validation/granular_flow_2D/README.md)
  - [Cylinder on inclined plane](validation/cylinder_on_inclined_plane/README.md)
+ - [Cantilever beam 2D static](cantilever_beam_2D_static/README.md)
+ - [Cook's membrane](cooks_membrane/README.md)
