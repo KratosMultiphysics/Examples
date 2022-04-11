@@ -21,21 +21,22 @@ The material considered is the hyperelastic one and the properties are:
 The problem geometry as well as the boundary conditions are sketched below:
 
 <p align="center">
-  <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="750" />
+  <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="650" />
 </p>
 
-The problem stated above has been solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per size.
+The problem is solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per size.
 
 ## Results
 
-The results shows as the U-P formulation prevent the pressure oscillation issues in the mean stress field.
+The results shows how the U-P formulation prevent the pressure oscillation issues in the mean stress field.
 
 <p align="center">
   <img src="data/cooks_disp.png" alt="Distribution of vertical displacement on the domain" width="500" />
   <img src="data/cooks_press.png" alt="Distribution of pressure field" width="500" />
 </p>
 
-  
+ 
 
 ## References
-
+- Cooks test (original)
+- Artículo de Ilaria.
