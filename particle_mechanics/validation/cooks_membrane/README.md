@@ -21,7 +21,7 @@ The material considered is the hyperelastic one and the properties are:
 The problem geometry as well as the boundary conditions are sketched below:
 
 <p align="center">
-  <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="650" />
+  <img src="data/cooks_membrane_geometry.png" alt="Geometry of the problem." width="400" />
 </p>
 
 The problem is solved with a structured mesh of triangle elements with 3 material points per cell, and with 32 elements per size.
