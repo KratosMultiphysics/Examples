@@ -1,5 +1,5 @@
 # 2D cantilever beam. Static analysis
-**Author:** Ilaria Iaconeta and Laura Moreno
+**Author:** Laura Moreno
 
 **Kratos version:** 
 
