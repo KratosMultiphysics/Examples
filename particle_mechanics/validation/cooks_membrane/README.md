@@ -12,11 +12,11 @@ The
 ## Case Specification
 
 The Cook's membrane test under the assumptions of plain strain is presented. This test is used to check the mixed element formulation (U-P) under incompressible conditions.
+The problem consists on a tapered panel, clambed on the left side and subjected to a shearing vertical load at the free right egde of (0,0.0625) Pa.
 The material considered is the hyperelastic one and the properties are:
 * Density (_&rho;_): 1000 Kg/m<sup>3</sup>
 * Young's modulus (_E_):  70 Pa
 * Poisson ratio (_&nu;_): 0.499
-
 
 The problem geometry as well as the boundary conditions are sketched below:
 
@@ -34,6 +34,7 @@ The results shows how the U-P formulation prevent the pressure oscillation issue
   <img src="data/cooks_disp.png" alt="Distribution of vertical displacement on the domain" width="500" />
   <img src="data/cooks_press.png" alt="Distribution of pressure field" width="500" />
 </p>
+
 
 
 ## References
