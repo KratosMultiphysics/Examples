@@ -1,4 +1,5 @@
  {
+    "analysis_stage": "KratosMultiphysics.FSIApplication.fsi_analysis",
     "problem_data": {
         "problem_name": "embedded_fsi_mok_test",
         "parallel_type": "OpenMP",
@@ -28,7 +29,6 @@
             "time_stepping": {
                 "time_step": 0.1
             },
-            "line_search"                        : false,
             "convergence_criterion"              : "residual_criterion",
             "displacement_relative_tolerance"    : 1e-5,
             "displacement_absolute_tolerance"    : 1e-7,
@@ -51,7 +51,7 @@
                 "materials_filename": "FluidMaterials.json"
             },
             "distance_modification_settings": {
-                "distance_threshold": 2.5e-3
+                "distance_threshold": 5.0e-3
             },
             "echo_level"                  : 1,
             "compute_reactions"           : true,
@@ -70,7 +70,7 @@
             "formulation": {
                 "element_type": "embedded_symbolic_navier_stokes",
                 "is_slip": false,
-                "penalty_coefficient": 0.1,
+                "penalty_coefficient": 0.05,
                 "dynamic_tau": 1.0
             },
             "fm_ale_settings": {
@@ -266,7 +266,7 @@
                         "node_output"         : false,
                         "skin_output"         : false,
                         "plane_output"        : [],
-                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","POSITIVE_FACE_PRESSURE"],
+                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","LINE_LOAD"],
                         "gauss_point_results" : []
                     },
                     "point_data_configuration"  : []
