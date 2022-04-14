@@ -1,4 +1,5 @@
 {
+    "analysis_stage" : "KratosMultiphysics.FSIApplication.fsi_analysis",
     "problem_data"     : {
         "problem_name"  : "lid_driven_emb_ref_0",
         "parallel_type" : "OpenMP",
@@ -30,7 +31,6 @@
             },
             "rayleigh_alpha"                  : 0.0,
             "rayleigh_beta"                   : 0.0,
-            "line_search"                     : false,
             "convergence_criterion"           : "residual_criterion",
             "displacement_relative_tolerance" : 1e-8,
             "displacement_absolute_tolerance" : 1e-10,
@@ -69,7 +69,7 @@
                 "time_step"           : 0.025
             },
             "formulation": {
-                "element_type": "embedded_symbolic_navier_stokes_discontinuous",
+                "element_type": "embedded_weakly_compressible_navier_stokes_discontinuous",
                 "is_slip": true,
                 "slip_length": 0.0,
                 "penalty_coefficient": 1.0,
