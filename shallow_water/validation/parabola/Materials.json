@@ -1,0 +1,12 @@
+{
+    "properties" : [{
+        "model_part_name" : "model_part",
+        "properties_id"   : 1,
+        "Material"        : {
+            "Variables" : {
+                "DENSITY" : 1e3
+            },
+            "Tables"    : {}
+        }
+    }]
+}

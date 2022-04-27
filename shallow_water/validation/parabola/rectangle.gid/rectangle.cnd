@@ -1,0 +1,58 @@
+BOOK:Parts
+NUMBER: 1 CONDITION: Computing_domain
+CONDTYPE: over group
+GROUPALLOW: surfaces nodes elements
+END CONDITION
+BOOK:Topographic_data
+NUMBER: 2 CONDITION: Topography
+CONDTYPE: over group
+GROUPALLOW: surfaces nodes elements
+QUESTION: Source#CB#(From_digital_model,By_function)
+VALUE: From_digital_model
+DEPENDENCIES: (From_digital_model,HIDE,Expression,#CURRENT#)(By_function,RESTORE,Expression,#CURRENT#)
+QUESTION: Expression
+VALUE: 0.1*x
+END CONDITION
+NUMBER: 3 CONDITION: Bottom_friction
+CONDTYPE: over group
+GROUPALLOW: surfaces nodes elements
+QUESTION: Manning_coefficient
+VALUE: 0.004
+END CONDITION
+BOOK:Initial_conditions
+NUMBER: 4 CONDITION: Initial_water_level
+CONDTYPE: over group
+GROUPALLOW: surfaces nodes elements
+QUESTION: Variable#CB#(FREE_SURFACE_ELEVATION,HEIGHT)
+VALUE: FREE_SURFACE_ELEVATION
+QUESTION: Value
+VALUE: 0.0
+END CONDITION
+BOOK:Boundary_conditions
+NUMBER: 5 CONDITION: Slip_condition
+CONDTYPE: over group
+GROUPALLOW: lines nodes faces
+END CONDITION
+NUMBER: 6 CONDITION: Water_height
+CONDTYPE: over group
+GROUPALLOW: lines nodes faces
+QUESTION: Value
+VALUE: 0.0
+HELP: Units in IS: m
+QUESTION: Fixed#CB#(true,false)
+VALUE: true
+END CONDITION
+NUMBER: 7 CONDITION: Imposed_flow_rate
+CONDTYPE: over group
+GROUPALLOW: lines nodes faces
+QUESTION: Modulus
+VALUE: 0.0
+HELP: Units in IS: m
+QUESTION: Direction
+VALUE: 0
+HELP: Units: degrees
+QUESTION: Fixed_X#CB#(true,false)
+VALUE: false
+QUESTION: Fixed_Y#CB#(true,false)
+VALUE: false
+END CONDITION

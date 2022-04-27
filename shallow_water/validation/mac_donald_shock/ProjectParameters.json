@@ -1,0 +1,150 @@
+{
+    "problem_data"             : {
+        "problem_name"             : "benchmark",
+        "start_time"               : 0.0,
+        "end_time"                 : 200,
+        "echo_level"               : 0,
+        "parallel_type"            : "OpenMP"
+    },
+    "modelers"                 : [{
+        "kratos_module"            : "KratosMultiphysics",
+        "modeler_name"             : "import_mdpa_modeler",
+        "Parameters"               : {
+            "model_part_name"          : "model_part",
+            "input_filename"           : "mac_donald_1.0"
+        }
+    }],
+    "solver_settings"          : {
+        "solver_type"                : "stabilized_shallow_water_solver",
+        "model_part_name"            : "model_part",
+        "domain_size"                : 2,
+        "gravity"                    : 9.81,
+        "echo_level"                 : 1,
+        "time_integration_order"     : 2,
+        "stabilization_factor"       : 0.01,
+        "shock_capturing_factor"     : 0.5,
+        "shock_capturing_type"       : "gradient_jump",
+        "relative_tolerance"         : 1e-6,
+        "absolute_tolerance"         : 1e-9,
+        "maximum_iterations"         : 5,
+        "compute_reactions"          : false,
+        "reform_dofs_at_each_step"   : false,
+        "move_mesh_flag"             : false,
+        "linear_solver_settings"     : {
+            "solver_type"                : "amgcl"
+        },
+        "time_stepping"              : {
+            "automatic_time_step"        : true,
+            "time_step"                  : 0.005,
+            "courant_number"             : 1.0
+        }
+    },
+    "output_processes" : {
+        "output_process_list" : [{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "gid_output_process",
+            "Parameters"      : {
+                "model_part_name"        : "model_part",
+                "output_name"            : "mac_donald_shock",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "output_control_type"   : "time",
+                        "output_interval"       : 10,
+                        "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT","TOPOGRAPHY"],
+                        "nodal_flags_results"   : [],
+                        "gauss_point_results"   : [],
+                        "nodal_nonhistorical_results" : ["FREE_SURFACE_ERROR","FROUDE"]
+                    }
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "line_graph_output_process",
+            "Parameters"      : {
+                "model_part_name"         : "model_part",
+                "output_file_settings"    : {
+                    "file_name"               : "graph",
+                    "output_path"             : ""
+                },
+                "start_point"             : [0.0, 2.0, 0.0],
+                "end_point"               : [100.0, 2.0, 0.0],
+                "output_variables"        : ["HEIGHT","FREE_SURFACE_ELEVATION","TOPOGRAPHY","MOMENTUM","VELOCITY"],
+                "nonhistorical_variables" : ["EXACT_FREE_SURFACE","EXACT_MOMENTUM"],
+                "time_format"             : "{:.0f}",
+                "output_control_settings" : {
+                    "output_control_type"     : "time",
+                    "time_frequency"          : 100
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "convergence_output_process",
+            "Parameters"      : {
+                "model_part_name"            : "model_part",
+                "file_name"                  : "convergence",
+                "analysis_label"             : "all  ",
+                "printing_times"             : [200],
+                "analysis_attributes"        : {
+                    "discharge"                  : 2,
+                    "manning"                    : 0.0328
+                },
+                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","VELOCITY_ERROR_X","EXACT_VELOCITY_X","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"]
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "convergence_output_process",
+            "Parameters"      : {
+                "model_part_name"            : "model_part",
+                "file_name"                  : "convergence",
+                "analysis_label"             : "local",
+                "printing_times"             : [200],
+                "analysis_attributes"        : {
+                    "discharge"          : 2,
+                    "manning"            : 0.0328
+                },
+                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","VELOCITY_ERROR_X","EXACT_VELOCITY_X","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"],
+                "low_corner"                 : [65, 1],
+                "high_corner"                : [67, 4]
+            }
+        }]
+    },
+    "processes" : {
+        "initial_conditions_process_list"   : [],
+        "boundary_conditions_process_list"  : [{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantVectorValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.walls",
+                "variable_name"   : "MOMENTUM",
+                "modulus"         : 0.0,
+                "direction"       : [1.0, 0.0, 0.0],
+                "is_fixed_y"      : true
+            }
+        }],
+        "topography_process_list"  : [],
+        "benchmark_process_list"  : [{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.benchmarks",
+            "python_module"   : "mac_donald_shock_benchmark",
+            "Parameters"      : {
+                "model_part_name"      : "model_part",
+                "variables_list"       : ["FREE_SURFACE_ELEVATION","MOMENTUM"],
+                "exact_variables_list" : ["EXACT_FREE_SURFACE","EXACT_MOMENTUM"],
+                "error_variables_list" : ["FREE_SURFACE_ERROR","MOMENTUM_ERROR"],
+                "benchmark_settings"   : {
+                    "upstream_model_part"   : "model_part.upstream",
+                    "downstream_model_part" : "model_part.downstream"
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "compute_froude_process",
+            "Parameters"      : {
+                "model_part_name"      : "model_part"
+            }
+        },{
+            "kratos_module" : "KratosMultiphysics",
+            "python_module" : "timer_process"
+        }]
+    }
+}
