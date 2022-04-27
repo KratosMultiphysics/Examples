@@ -8,3 +8,7 @@
 - [MacDonald transition benchmark](https://github.com/KratosMultiphysics/Examples/blob/master/shallow_water/validation/mac_donald_transition/README.md)
 - [Solitary wave benchmark](https://github.com/KratosMultiphysics/Examples/blob/master/shallow_water/validation/solitary_wave/README.md)
 - [Absorbing boundary](https://github.com/KratosMultiphysics/Examples/blob/master/shallow_water/validation/solitary_wave/README.md)
+
+## Use cases
+
+- [Experimental dam break](https://github.com/KratosMultiphysics/Examples/blob/master/shallow_water/use_cases/experiment/README.md)
