@@ -1,0 +1,161 @@
+{
+    "problem_data"               : {
+        "problem_name"               : "backward_step",
+        "echo_level"                 : 1,
+        "start_time"                 : 0.0,
+        "end_time"                   : 7.0,
+        "parallel_type"              : "OpenMP"
+    },
+    "modelers"                   : [{
+        "kratos_module"              : "KratosMultiphysics",
+        "modeler_name"               : "import_mdpa_modeler",
+        "Parameters"                 : {
+            "model_part_name"            : "model_part",
+            "input_filename"             : "backward_step"
+        }
+    }],
+    "solver_settings"            : {
+        "solver_type"                : "stabilized_shallow_water_solver",
+        "model_part_name"            : "model_part",
+        "domain_size"                : 2,
+        "gravity"                    : 9.81,
+        "echo_level"                 : 1,
+        "stabilization_factor"       : 0.01,
+        "shock_capturing_factor"     : 0.0,
+        "relative_tolerance"         : 1e-6,
+        "absolute_tolerance"         : 1e-9,
+        "maximum_iterations"         : 10,
+        "compute_reactions"          : false,
+        "reform_dofs_at_each_step"   : false,
+        "move_mesh_flag"             : false,
+        "linear_solver_settings"   : {
+            "solver_type"      : "amgcl"
+        },
+        "time_stepping"            : {
+            "automatic_time_step"      : true,
+            "courant_number"           : 1.0
+        }
+    },
+    "output_processes" : {
+        "output_process_list" : [{
+            "kratos_module"        : "KratosMultiphysics",
+            "python_module"        : "gid_output_process",
+            "Parameters"           : {
+                "model_part_name"        : "model_part",
+                "output_name"            : "backward_step",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"         : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteElementsOnly",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "output_control_type"   : "step",
+                        "output_interval"       : 10,
+                        "body_output"           : true,
+                        "node_output"           : false,
+                        "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT","FREE_SURFACE_ELEVATION","TOPOGRAPHY"],
+                        "gauss_point_results"   : []
+                    }
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.output",
+            "python_module"   : "nodes_output_process",
+            "Parameters"      : {
+                "model_part_name"         : "model_part",
+                "file_name"               : "output_file",
+                "start_point"             : [0.0, 0.55],
+                "end_point"               : [10.0, 0.55],
+                "output_variables"        : ["FREE_SURFACE_ELEVATION"],
+                "nonhistorical_variables" : [],
+                "printing_times"          : [0.01, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.2, 4.5, 4.8, 5.1, 5.4, 5.7, 6.0],
+                "relative_tol_to_line"    : 0.1,
+                "use_mesh_nodes"          : false
+            }
+        }]
+    },
+    "processes"    : {
+        "topography_process_list"     : [{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantScalarValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Bottom_friction",
+                "variable_name"   : "MANNING",
+                "value"           : 0.0,
+                "is_fixed"        : false
+            }
+        },{
+            "python_module"   : "set_topography_process",
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Bottom_friction",
+                "value"           : "-1.0"
+            }
+        }],
+        "initial_conditions_process_list"   : [{
+            "python_module"   : "initial_perturbation_process",
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication",
+            "Parameters"      : {
+                "model_part_name"            : "model_part",
+                "source_type"                : "model_part",
+                "source_model_part_name"     : "model_part.Inlet",
+                "variable_name"              : "FREE_SURFACE_ELEVATION",
+                "default_value"              : 0.0,
+                "distance_of_influence"      : 1.0,
+                "maximum_perturbation_value" : 0.05
+            }
+        }],
+        "boundary_conditions_process_list"  : [{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantVectorValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Walls",
+                "variable_name"   : "MOMENTUM",
+                "modulus"         : 0.0,
+                "direction"       : [1.0, 0.0, 0.0],
+                "is_fixed_x"      : false,
+                "is_fixed_y"      : true
+            }
+        },{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantVectorValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Backward_step",
+                "variable_name"   : "MOMENTUM",
+                "modulus"         : 0.0,
+                "direction"       : [1.0, 0.0, 0.0],
+                "is_fixed_x"      : true,
+                "is_fixed_y"      : false
+            }
+        },{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantVectorValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Inlet",
+                "variable_name"   : "MOMENTUM",
+                "modulus"         : 0.0,
+                "direction"       : [1.0, 0.0, 0.0],
+                "is_fixed_x"      : true,
+                "is_fixed_y"      : false
+            }
+        },{
+            "python_module"   : "process_factory",
+            "kratos_module"   : "KratosMultiphysics",
+            "process_name"    : "ApplyConstantVectorValueProcess",
+            "Parameters"      : {
+                "model_part_name" : "model_part.Outlet",
+                "variable_name"   : "MOMENTUM",
+                "modulus"         : 0.0,
+                "direction"       : [1.0, 0.0, 0.0],
+                "is_fixed_x"      : true,
+                "is_fixed_y"      : false
+            }
+        }]
+    }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:latexdraw="http://latexdraw.sourceforge.net/namespaces/latexdraw" version="1.1" baseProfile="full">
+    <g>
+        <g latexdraw:type="akinPoints" id="id187226727" latexdraw:pathType="CURVES" latexdraw:interval="5" latexdraw:points="30.0 250.0 40.0 260.0 ">
+            <path d="M 30.0 250.0 " stroke-width="2.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id799323443" latexdraw:size="20.0" latexdraw:dotShape="*" latexdraw:position="490.0 220.0">
+            <path d="M 499.2307692307692 220.0 C 499.2307692307692 225.09801307536117 495.09801307536117 229.23076923076923 490.0 229.23076923076923 C 484.90198692463883 229.23076923076923 480.7692307692308 225.09801307536117 480.7692307692308 220.0 C 480.7692307692308 214.90198692463883 484.90198692463883 210.76923076923077 490.0 210.76923076923077 C 495.09801307536117 210.76923076923077 499.2307692307692 214.90198692463883 499.2307692307692 220.0 z " fill="red" stroke-linecap="square" stroke-linejoin="butt" stroke-width="1.25" stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="red"/>
+        </g>
+        <g latexdraw:type="rectangle" id="id1131554242">
+            <rect x="363.67647058823513" y="171.32352941176464" width="290.2941176470588" height="188.52941176470586" latexdraw:borderPos="outer" stroke-width="5.0" stroke="#c8c8c8" fill="none" rx="7.89608970668394"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1684543650">
+            <polyline points="380.0,190.0 540.0,190.0 540.0,240.0 570.0,240.0 570.0,190.0 640.0,190.0 " stroke-width="4.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1838920394">
+            <polyline points="640.0,340.0 570.0,340.0 570.0,290.0 540.0,290.0 540.0,340.0 380.0,340.0 " stroke-width="4.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+    </g>
+    <defs/>
+    <metadata>
+        <latexdraw:metadata>
+            <latexdraw:latexIncludes/>
+            <latexdraw:displayXScale>true</latexdraw:displayXScale>
+            <latexdraw:displayYScale>true</latexdraw:displayYScale>
+            <latexdraw:unit>CM</latexdraw:unit>
+            <latexdraw:zoom>1.7000000000000006</latexdraw:zoom>
+            <latexdraw:magneticGridStyle>CUSTOMISED</latexdraw:magneticGridStyle>
+            <latexdraw:gridGap>10</latexdraw:gridGap>
+            <latexdraw:magneticGrid>true</latexdraw:magneticGrid>
+            <latexdraw:version>3.3.8</latexdraw:version>
+            <latexdraw:size>
+                <latexdraw:width>1608</latexdraw:width>
+                <latexdraw:height>1023</latexdraw:height>
+            </latexdraw:size>
+            <latexdraw:position>
+                <latexdraw:x>72.0</latexdraw:x>
+                <latexdraw:y>27.0</latexdraw:y>
+            </latexdraw:position>
+        </latexdraw:metadata>
+    </metadata>
+</svg>

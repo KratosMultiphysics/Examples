@@ -1,0 +1,12 @@
+{
+    "properties" : [{
+        "model_part_name" : "main_model_part.ShallowWaterParts_channel",
+        "properties_id"   : 1,
+        "Material"        : {
+            "Variables" : {
+                "MANNING" : 0.009
+            },
+            "Tables"    : {}
+        }
+    }]
+}
