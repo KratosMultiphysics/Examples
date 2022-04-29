@@ -49,9 +49,21 @@ class MassConservationOutputProcess(KM.OutputProcess):
 
     @staticmethod
     def IsOutputStep():
-        return True
+        """See ExecuteFinalizeSolutionStep."""
+        return False
 
-    def PrintOutput(self):
+    @staticmethod
+    def PrintOutput():
+        """See ExecuteFinalizeSolutionStep."""
+        pass
+
+    def ExecuteFinalizeSolutionStep(self):
+        """Print the total mass into a log file.
+        
+        The PrintOutput is avoided for two reasons:
+        - This process does not need processing variables at the ExecuteBeforeOutputStep.
+        - Returning True at IsOutputStep will enforce the ExecuteBeforeOutputStep of the benchmark, which is very expensive.
+        """
         current_time = self.model_part.ProcessInfo.GetValue(KM.TIME)
 
         if self.interval.IsInInterval(current_time):
