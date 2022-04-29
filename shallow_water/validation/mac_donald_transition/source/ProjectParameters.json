@@ -23,7 +23,7 @@
         "time_integration_order"     : 2,
         "stabilization_factor"       : 0.01,
         "shock_capturing_factor"     : 0.5,
-        "shock_capturing_type"       : "gradient_jump",
+        "shock_capturing_type"       : "residual_viscosity",
         "relative_tolerance"         : 1e-6,
         "absolute_tolerance"         : 1e-9,
         "maximum_iterations"         : 5,

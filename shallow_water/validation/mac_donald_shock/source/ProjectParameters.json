@@ -23,7 +23,7 @@
         "time_integration_order"     : 2,
         "stabilization_factor"       : 0.01,
         "shock_capturing_factor"     : 0.5,
-        "shock_capturing_type"       : "gradient_jump",
+        "shock_capturing_type"       : "residual_viscosity",
         "relative_tolerance"         : 1e-6,
         "absolute_tolerance"         : 1e-9,
         "maximum_iterations"         : 5,
@@ -88,7 +88,7 @@
                     "discharge"                  : 2,
                     "manning"                    : 0.0328
                 },
-                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","VELOCITY_ERROR_X","EXACT_VELOCITY_X","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"]
+                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"]
             }
         },{
             "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
@@ -102,7 +102,7 @@
                     "discharge"          : 2,
                     "manning"            : 0.0328
                 },
-                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","VELOCITY_ERROR_X","EXACT_VELOCITY_X","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"],
+                "convergence_variables_list" : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"],
                 "low_corner"                 : [65, 1],
                 "high_corner"                : [67, 4]
             }
