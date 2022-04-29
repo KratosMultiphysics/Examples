@@ -16,8 +16,10 @@ args = parser.parse_args()
 with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
+model = KratosMultiphysics.Model()
+
 if args.mode == 'regular_analysis':
-    utils.RunCase(ShallowWaterAnalysis, parameters)
+    ShallowWaterAnalysis(model, parameters).Run()
 else:
     output_base_name = 'reflection_coefficient_{:.1f}'
     output_base_path = ''
@@ -33,4 +35,4 @@ else:
             utils.GetProcessParameters(case['processes'], 'apply_absorbing_boundary_process')['relative_damping'].SetDouble(rel_damping)
             utils.GetProcessParameters(case['processes'], 'apply_absorbing_boundary_process')['relative_distance'].SetDouble(rel_dist)
             utils.GetProcessParameters(case['output_processes'], 'compute_reflection_coefficient_process')['file_name'].SetString(output_name)
-            utils.RunCase(ShallowWaterAnalysis, case)
+            ShallowWaterAnalysis(model, case).Run()
