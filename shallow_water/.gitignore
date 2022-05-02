@@ -1,9 +1,13 @@
 # exclude the custom post process files
 *.dat
-*.hdf5
 *.pdf
 *.png
 *.grf
+
+# exclude execution files
+*.out
+*.err
+*.log
 
 # exclude the auxiliary GiD files
 **/*gid/*.err
