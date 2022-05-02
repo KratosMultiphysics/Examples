@@ -16,11 +16,11 @@
 **/*gid/*.png
 **/*gid/*.vv
 
-# and exclude the GiD pre-process files
+# exclude the GiD pre-process files
 **/*gid/*.json
 **/*gid/*.mdpa
 **/*gid/*.py
 
-# and include a data folder
-!**/data/*.png
-!**/data/*.pdf
+# and include useful files in the data folder
+!**/data/**/*.png
+!**/data/**/*.pdf
