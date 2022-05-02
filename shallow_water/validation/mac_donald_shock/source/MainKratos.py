@@ -1,14 +1,9 @@
-import os
 import argparse
 import KratosMultiphysics
 import KratosMultiphysics.ShallowWaterApplication
 
 from KratosMultiphysics.ShallowWaterApplication.shallow_water_analysis import ShallowWaterAnalysis
 from KratosMultiphysics.ShallowWaterApplication.utilities import benchmarking_utilities as utils
-from KratosMultiphysics.KratosUnittest import WorkFolderScope
-
-def GetFilePath(fileName):
-    return os.path.join(os.path.dirname(os.path.realpath(__file__)), fileName)
 
 parser = argparse.ArgumentParser()
 mode = parser.add_mutually_exclusive_group()
@@ -16,14 +11,13 @@ mode.add_argument("-r", "--regular_analysis", action="store_const", dest="mode",
 mode.add_argument("-c", "--convergence_analysis", action="store_const", dest="mode", const="convergence_analysis")
 args = parser.parse_args()
 
-with open(GetFilePath("ProjectParameters.json"),'r') as parameter_file:
+with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
 model = KratosMultiphysics.Model()
 
 if args.mode == "regular_analysis":
-    with WorkFolderScope(os.path.dirname(__file__),__file__):
-        ShallowWaterAnalysis(model, parameters).Run()
+    ShallowWaterAnalysis(model, parameters).Run()
 else:
     meshes = [2.0, 1.0, 0.5, 0.2, 0.1]
     steps = [0.005] * len(meshes)
@@ -41,5 +35,4 @@ else:
         utils.GetProcessParameters(case['output_processes'], 'gid_output_process')['output_name'].SetString(output_path + '/' + output_name)
         utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['file_name'].SetString(output_name)
         utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['output_path'].SetString(output_path)
-        with WorkFolderScope(os.path.dirname(__file__),__file__):
-            ShallowWaterAnalysis(model, parameters).Run()
+        ShallowWaterAnalysis(model, parameters).Run()
