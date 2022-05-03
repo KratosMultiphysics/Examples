@@ -15,7 +15,7 @@
             "solver_type"                        : "Dynamic",
             "model_part_name"                    : "Structure",
             "domain_size"                        : 2,
-            "echo_level"                         : 1,
+            "echo_level"                         : 0,
             "analysis_type"                      : "non_linear",
             "time_integration_method"            : "implicit",
             "scheme_type"                        : "bossak",
@@ -53,7 +53,7 @@
             "distance_modification_settings": {
                 "distance_threshold": 5.0e-3
             },
-            "echo_level"                  : 1,
+            "echo_level"                  : 0,
             "compute_reactions"           : true,
             "maximum_iterations"          : 10,
             "relative_velocity_tolerance" : 1e-3,
@@ -297,36 +297,6 @@
                         "nodal_results": ["VELOCITY","PRESSURE","MESH_VELOCITY","DISTANCE","EMBEDDED_WET_VELOCITY"],
                         "nodal_nonhistorical_results": [],
                         "elemental_conditional_flags_results": [],
-                        "gauss_point_results": []
-                    },
-                    "point_data_configuration": []
-                }
-            }
-        },{
-            "python_module": "gid_output_process",
-            "kratos_module": "KratosMultiphysics",
-            "process_name": "GiDOutputProcess",
-            "Parameters": {
-                "model_part_name": "VirtualModelPart",
-                "output_name": "embedded_fsi_mok_test_virtual_model_part",
-                "postprocess_parameters": {
-                    "result_file_configuration": {
-                        "gidpost_flags": {
-                            "GiDPostMode": "GiD_PostBinary",
-                            "WriteDeformedMeshFlag": "WriteDeformed",
-                            "WriteConditionsFlag": "WriteConditions",
-                            "MultiFileFlag": "SingleFile"
-                        },
-                        "file_label": "time",
-                        "output_control_type": "step",
-                        "output_interval": 1.0,
-                        "body_output": true,
-                        "node_output": false,
-                        "skin_output": false,
-                        "plane_output": [],
-                        "nodal_results": ["VELOCITY","PRESSURE","MESH_VELOCITY","MESH_DISPLACEMENT","DISPLACEMENT"],
-                        "nodal_nonhistorical_results": [],
-                        "elemental_conditional_flags_results": ["INTERFACE"],
                         "gauss_point_results": []
                     },
                     "point_data_configuration": []
