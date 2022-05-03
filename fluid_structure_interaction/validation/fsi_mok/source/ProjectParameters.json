@@ -83,9 +83,7 @@
                 "structure_interface_submodelpart_name" : "Structure.StructureInterface2D_StructureInterface"
             }],
             "coupling_strategy_settings"   : {
-                "solver_type" : "MVQN_recursive",
-                "w_0"         : 0.825,
-                "buffer_size" : 10
+                "solver_type" : "MVQN"
             },
             "structure_interfaces_list"    : ["Structure.StructureInterface2D_StructureInterface"],
             "fluid_interfaces_list"        : ["FluidModelPart.FluidNoSlipInterface2D_FluidInterface"]
