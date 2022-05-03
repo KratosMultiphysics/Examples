@@ -2,25 +2,29 @@
 *.dat
 *.pdf
 *.png
-*.grf
 
 # exclude execution files
 *.out
 *.err
-*.log
+*.sh
 
 # exclude the auxiliary GiD files
-**/*gid/*.err
 **/*gid/*.info
+**/*gid/*.err
 **/*gid/*.msh
 **/*gid/*.png
-**/*gid/*.vv
 
 # exclude the GiD pre-process files
 **/*gid/*.json
 **/*gid/*.mdpa
 **/*gid/*.py
 
-# and include useful files in the data folder
+# exclude other GiD and graphical files
+*.grf
+*.svg
+*.vv
+
+# and reinclude useful files in the data folder
+!**/data/**/*.dat
 !**/data/**/*.png
 !**/data/**/*.pdf
