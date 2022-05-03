@@ -98,10 +98,10 @@ class gauges:
                 fig, axes = plt.subplots(nrows=3, ncols=2, sharex=True, sharey=False, figsize=(7, 7))
 
                 for i in range(6):
-                    id = i + 1
+                    gauge_id = i + 1
                     ax = axes[self.row(i), self.col(i)]
-                    self.plot_gauge(ax, id, 'h', path_list, labels_list)
-                    self.set_layout(ax, id, 'h', i)
+                    self.plot_gauge(ax, gauge_id, 'h', path_list, labels_list)
+                    self.set_layout(ax, gauge_id, 'h', i)
 
             else:
                 fig, axes = plt.subplots()
@@ -127,4 +127,5 @@ if not args.label:
     labels = [path.upper() for path in args.path]
 else:
     labels = args.label
+plt.style.use("seaborn-deep")
 gauges().plot(args.gauge_id, args.variable, args.path, labels)
