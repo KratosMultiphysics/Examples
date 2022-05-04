@@ -1,4 +1,5 @@
  {
+    "analysis_stage" : "KratosMultiphysics.FSIApplication.fsi_analysis",
     "problem_data": {
         "problem_name": "embedded_fsi_mixer_Y",
         "parallel_type": "OpenMP",
@@ -14,7 +15,7 @@
             "solver_type"                        : "Dynamic",
             "model_part_name"                    : "Structure",
             "domain_size"                        : 2,
-            "echo_level"                         : 1,
+            "echo_level"                         : 0,
             "analysis_type"                      : "non_linear",
             "time_integration_method"            : "implicit",
             "scheme_type"                        : "bossak",
@@ -50,7 +51,7 @@
             "distance_modification_settings": {
                 "distance_threshold": 1.0e-3
             },
-            "echo_level"                  : 1,
+            "echo_level"                  : 0,
             "compute_reactions"           : true,
             "maximum_iterations"          : 10,
             "relative_velocity_tolerance" : 1e-5,
@@ -66,7 +67,7 @@
                 "time_step": 0.01
             },
             "formulation": {
-                "element_type": "embedded_symbolic_navier_stokes",
+                "element_type": "embedded_weakly_compressible_navier_stokes",
                 "is_slip": false,
                 "slip_length": 0.0,
                 "penalty_coefficient": 1.0e2,
@@ -227,36 +228,6 @@
                         "nodal_results": ["VELOCITY","PRESSURE","MESH_VELOCITY","DISTANCE","EMBEDDED_WET_VELOCITY"],
                         "nodal_nonhistorical_results": [],
                         "elemental_conditional_flags_results": [],
-                        "gauss_point_results": []
-                    },
-                    "point_data_configuration": []
-                }
-            }
-        },{
-            "python_module": "gid_output_process",
-            "kratos_module": "KratosMultiphysics",
-            "process_name": "GiDOutputProcess",
-            "Parameters": {
-                "model_part_name": "VirtualModelPart",
-                "output_name": "embedded_fsi_mixer_Y_fluid_virtual",
-                "postprocess_parameters": {
-                    "result_file_configuration": {
-                        "gidpost_flags": {
-                            "GiDPostMode": "GiD_PostBinary",
-                            "WriteDeformedMeshFlag": "WriteDeformed",
-                            "WriteConditionsFlag": "WriteConditions",
-                            "MultiFileFlag": "SingleFile"
-                        },
-                        "file_label": "time",
-                        "output_control_type": "time",
-                        "output_frequency": 0.05,
-                        "body_output": true,
-                        "node_output": false,
-                        "skin_output": false,
-                        "plane_output": [],
-                        "nodal_results": ["VELOCITY","PRESSURE","MESH_VELOCITY","MESH_DISPLACEMENT","DISPLACEMENT"],
-                        "nodal_nonhistorical_results": [],
-                        "elemental_conditional_flags_results": ["INTERFACE"],
                         "gauss_point_results": []
                     },
                     "point_data_configuration": []

@@ -1,4 +1,5 @@
 {
+    "analysis_stage" : "KratosMultiphysics.FSIApplication.fsi_analysis",
     "problem_data"     : {
         "problem_name"  : "fsi_turek_FSI2",
         "parallel_type" : "OpenMP",
@@ -14,7 +15,7 @@
             "solver_type"                        : "Dynamic",
             "model_part_name"                    : "Structure",
             "domain_size"                        : 2,
-            "echo_level"                         : 1,
+            "echo_level"                         : 0,
             "analysis_type"                      : "non_linear",
             "time_integration_method"            : "implicit",
             "scheme_type"                        : "bossak",
@@ -28,7 +29,6 @@
             "time_stepping"                      : {
                 "time_step" : 0.002
             },
-            "line_search"                        : false,
             "convergence_criterion"              : "residual_criterion",
             "displacement_relative_tolerance"    : 0.0001,
             "displacement_absolute_tolerance"    : 1e-9,
@@ -46,6 +46,9 @@
             "model_import_settings"       : {
                 "input_type"     : "mdpa",
                 "input_filename" : "fsi_turek_FSI2_Fluid"
+            },
+            "material_import_settings"           : {
+                "materials_filename" : "FluidMaterials.json"
             },
             "echo_level"                  : 0,
             "compute_reactions"           : true,
