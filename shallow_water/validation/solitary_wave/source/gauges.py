@@ -7,7 +7,7 @@ import KratosMultiphysics.ShallowWaterApplication.utilities.solitary_wave_utilit
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-g','--gauge_id', help="from 1 to 3", default=1, type=int)
+parser.add_argument('-g','--gauge_id', help="from 1 to 3", default=2, type=int)
 parser.add_argument('-a','--analytical', help="plot the analytical solution", default=True, type=bool)
 args = parser.parse_args()
 
@@ -41,15 +41,14 @@ def analytical_data(x):
     return df
 
 
-def plot_gauge(id, ax):
-    coord = coordinates_map[id]
+def plot_gauge(gauge_id, ax):
+    coord = coordinates_map[gauge_id]
 
-    data = read_data(results_pattern.format(coord), skiprows=2, names=['t', 'h', 'u', 'v', 'w'])
+    data = read_data(results_pattern.format(gauge_id), skiprows=2, names=['t', 'h', 'u', 'v', 'w'])
+    plot_data(data, ax, label="numerical")    
+
     if args.analytical:
         analyt = analytical_data(coord)
-
-    plot_data(data, ax, label="numerical")    
-    if args.analytical:
         plot_data(analyt, ax, label='analytical')
 
     ax.set_title('recording at x={}m'.format(coord))

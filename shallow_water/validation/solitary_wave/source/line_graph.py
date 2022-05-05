@@ -17,7 +17,7 @@ args = parser.parse_args()
 amplitude = 0.1
 x_shift = 0
 x_end = 73
-results_pattern = 'line_graph/boussinesq-{:.1f}.dat'
+results_pattern = 'line_graph/line_graph-{:.1f}.dat'
 
 
 def plot_data(data, ax, **kwargs):
@@ -39,13 +39,13 @@ def analytical_data(time):
 
 
 def plot_gauge(time, ax, **kwarg):
+
     data = read_data(results_pattern.format(time), skiprows=1, names=['x', 'y', 'z', 'f'])
+    plot_data(data, ax, **kwarg)    
+
     if args.analytical:
         analyt = analytical_data(time)
-
-    plot_data(data, ax, **kwarg)    
-    if args.analytical:
-        plot_data(analyt, ax, label='analytical')
+        plot_data(analyt, ax, label='Analytical')
 
     ax.set_xlabel('distance [m]')
     ax.set_ylabel('amplitude [m]')
