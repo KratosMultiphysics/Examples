@@ -12,7 +12,6 @@ parser.add_argument('-p','--path', help="the path to the files", default="gauges
 
 
 amplitude = 0.1
-x_shift = 0
 end_time = 60
 results_pattern = '{}/gauge_{}.dat'
 coordinates_map = {
@@ -32,12 +31,12 @@ def read_data(file_name, reference=0, **kwargs):
     return df
 
 
-def analytical_data(x):
+def analytical_data(x, amplitude):
     t = np.linspace(0, end_time, 500)
     w = solitary_wave.BoussinesqSolution(1.0, amplitude=amplitude)
-    h = [float(w.eta(x -x_shift, time)) for time in t]
+    h = [float(w.eta(x, time)) for time in t]
     df = pd.DataFrame({'t': t, 'h': h})
-    return df
+    return df, w
 
 
 def plot_gauge(gauge_id, ax, path):
@@ -47,7 +46,7 @@ def plot_gauge(gauge_id, ax, path):
     plot_data(data, ax, label="Numerical")    
 
     if args.analytical:
-        analyt = analytical_data(coord)
+        analyt = analytical_data(coord, amplitude)
         plot_data(analyt, ax, label='Analytical', color='k', linewidth=1, dashes=[3,6])
 
     ax.set_title('Gauge at x={}m'.format(coord))
@@ -56,16 +55,17 @@ def plot_gauge(gauge_id, ax, path):
     ax.set_xlim([0, end_time])
 
 
-plt.style.use('seaborn-muted')
-args = parser.parse_args()
-if args.gauge_id == 'all':
-    fig, axes = plt.subplots(3, sharex=True)
-    for i in range(3):
-        plot_gauge(i+1, axes[i], args.path)
-        axes[i].legend().remove()
-    axes[0].legend()
-else:
-    fig, axes = plt.subplots()
-    plot_gauge(int(args.gauge_id), axes, args.path)
-fig.tight_layout()
-plt.show()
+if __name__ == '__main__':
+    plt.style.use('seaborn-muted')
+    args = parser.parse_args()
+    if args.gauge_id == 'all':
+        fig, axes = plt.subplots(3, sharex=True)
+        for i in range(3):
+            plot_gauge(i+1, axes[i], args.path)
+            axes[i].legend().remove()
+        axes[0].legend()
+    else:
+        fig, axes = plt.subplots()
+        plot_gauge(int(args.gauge_id), axes, args.path)
+    fig.tight_layout()
+    plt.show()
