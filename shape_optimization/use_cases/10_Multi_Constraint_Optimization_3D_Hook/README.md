@@ -15,7 +15,7 @@ Optimization of a solid 3D Hook subjected to multiple constraints.
 3. No penetration of packaging (bounding) mesh
 
 <p align="center">
-  <img src="https://github.com/KratosMultiphysics/Examples/edit/master/shape_optimization/use_cases/10_Multi_Constraint_Optimization_3D_Hook/images/hook_opt_setup.png" height="500">
+  <img src="images/hook_opt_setup.png" height="500">
 </p>
 
 ## Optimization settings
