@@ -91,7 +91,7 @@
                 "value"           : [0.0,null,null]
             }
         }],
-        "gauges_process_list" : [{
+        "auxiliary_process_list" : [{
             "python_module"   : "multiple_points_output_process",
             "kratos_module"   : "KratosMultiphysics",
             "Parameters"      : {
@@ -107,6 +107,9 @@
                     "output_path"          : "gauges"
                 }
             }
+        },{
+            "python_module"   : "timer_process",
+            "kratos_module"   : "KratosMultiphysics"
         }]
     },
     "output_processes" : {

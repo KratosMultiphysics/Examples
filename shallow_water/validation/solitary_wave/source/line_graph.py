@@ -7,7 +7,7 @@ import KratosMultiphysics.ShallowWaterApplication.utilities.solitary_wave_utilit
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-t','--time', help="time or array of times", default=0.0, nargs='+')
+parser.add_argument('-t','--time', help="time or array of times", default=[4, 8, 12], nargs='+')
 parser.add_argument('--analytical',    dest='analytical', action='store_true')
 parser.add_argument('--no-analytical', dest='analytical', action='store_false')
 parser.set_defaults(analytical=False)
@@ -40,7 +40,7 @@ def analytical_data(time):
 
 def plot_gauge(time, ax, **kwarg):
 
-    data = read_data(results_pattern.format(time), skiprows=1, names=['x', 'y', 'z', 'f'])
+    data = read_data(results_pattern.format(time), skiprows=2, names=['x', 'y', 'z', 'f'])
     plot_data(data, ax, **kwarg)    
 
     if args.analytical:
