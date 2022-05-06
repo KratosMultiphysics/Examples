@@ -1,6 +1,6 @@
 # Coronary artery
 
-**Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla)
+**Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla) and [Eduardo Soudah](https://github.com/soudah)
 
 **Kratos version:** 9.1
 
