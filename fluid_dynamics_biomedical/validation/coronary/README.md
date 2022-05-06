@@ -1,4 +1,4 @@
-# Body-fitted 100 Re cylinder
+# Coronary artery
 
 **Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla)
 
