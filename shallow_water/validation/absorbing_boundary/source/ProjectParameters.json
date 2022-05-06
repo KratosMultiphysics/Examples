@@ -11,7 +11,7 @@
         "modeler_name"               : "import_mdpa_modeler",
         "Parameters"                 : {
             "model_part_name"            : "model_part",
-            "input_filename"             : "channel_0.2"
+            "input_filename"             : "absorbing_boundary_2.0"
         }
     }],
     "solver_settings"            : {
@@ -40,43 +40,47 @@
     "output_processes" : {
         "output_process_list" : [{
             "python_module"    : "compute_reflection_coefficient_process",
-            "Parameters"      : {
+            "Parameters"       : {
                 "model_part_name"    : "model_part",
                 "gauge_coordinates"  : [60, 2.5, 0],
                 "search_tolerance"   : 1e-6,
                 "variable_name"      : "FREE_SURFACE_ELEVATION",
                 "file_name"          : "reflection_coefficient"
             }
-        // },{
-        //     "kratos_module"   : "KratosMultiphysics",
-        //     "python_module"   : "gid_output_process",
-        //     "Parameters"      : {
-        //         "model_part_name"        : "model_part",
-        //         "output_name"            : "channel",
-        //         "postprocess_parameters" : {
-        //             "result_file_configuration" : {
-        //                 "output_control_type"   : "time",
-        //                 "output_interval"       : 0.2,
-        //                 "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT","FREE_SURFACE_ELEVATION","TOPOGRAPHY","DISTANCE"],
-        //                 "nodal_flags_results"   : [],
-        //                 "gauss_point_results"   : ["FRICTION_COEFFICIENT"],
-        //                 "nodal_nonhistorical_results" : []
-        //             }
-        //         }
-        //     }
-        // },{
-        //     "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.output",
-        //     "python_module"   : "nodes_output_process",
-        //     "Parameters"      : {
-        //         "model_part_name"         : "model_part",
-        //         "file_name"               : "output_file",
-        //         "output_path"             : "",
-        //         "start_point"             : [0, 2, 0],
-        //         "end_point"               : [100, 2, 0],
-        //         "output_variables"        : ["FREE_SURFACE_ELEVATION","MOMENTUM","VELOCITY"],
-        //         "nonhistorical_variables" : [],
-        //         "printing_times"          : [10,20]
-        //     }
+        },{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "gid_output_process",
+            "Parameters"      : {
+                "model_part_name"        : "model_part",
+                "output_name"            : "absorbing_boundary",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "output_control_type"   : "time",
+                        "output_interval"       : 0.2,
+                        "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT","FREE_SURFACE_ELEVATION","TOPOGRAPHY","DISTANCE"],
+                        "nodal_flags_results"   : [],
+                        "gauss_point_results"   : ["FRICTION_COEFFICIENT"],
+                        "nodal_nonhistorical_results" : []
+                    }
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "line_graph_output_process",
+            "Parameters"      : {
+                "model_part_name"         : "model_part",
+                "start_point"             : [0, 2, 0],
+                "end_point"               : [100, 2, 0],
+                "output_variables"        : ["FREE_SURFACE_ELEVATION","MOMENTUM","VELOCITY"],
+                "output_file_settings"    : {
+                    "file_name"               : "absorbing_boundary",
+                    "output_path"             : "line_graph"
+                },
+                "output_control_settings" : {
+                    "output_control_type"     : "time",
+                    "time_frequency"          : 10
+                }
+            }
         }]
     },
     "processes" : {
@@ -96,18 +100,6 @@
                 "variable_name"   : "FREE_SURFACE_ELEVATION",
                 "value"           : "0.0"
             }
-        // },{
-            // "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication",
-            // "python_module"   : "initial_perturbation_process",
-            // "Parameters"      : {
-            //     "model_part_name"            : "model_part",
-            //     "source_type"                : "model_part",
-            //     "source_model_part_name"     : "model_part.upstream",
-            //     "variable_name"              : "FREE_SURFACE_ELEVATION",
-            //     "default_value"              : 0.0,
-            //     "distance_of_influence"      : 3.0,
-            //     "maximum_perturbation_value" : 0.1
-            // }
         }],
         "boundary_conditions_process_list"  : [{
             "python_module"   : "process_factory",
@@ -125,25 +117,16 @@
             "kratos_module" : "KratosMultiphysics.ShallowWaterApplication",
             "python_module" : "wave_generator_process",
             "Parameters"    : {
-                "model_part_name" : "model_part.upstream",
-                "formulation"       : "conserved_variables",
-                "variables"         : "velocity",
-                "interval"          : [0, 3],
-                "wave_period"       : 1.0,
-                "wave_height"       : 0.05,
-                "smooth_time"       : 1
-            }
-        },{
-            "python_module"   : "process_factory",
-            "kratos_module"   : "KratosMultiphysics",
-            "process_name"    : "ApplyConstantVectorValueProcess",
-            "Parameters"      : {
-                "model_part_name" : "model_part.upstream",
-                "variable_name"   : "MOMENTUM",
-                "modulus"         : 0.0,
-                "direction"       : [1.0, 0.0, 0.0],
-                "is_fixed_x"      : true,
-                "is_fixed_y"      : false
+                "model_part_name"     : "model_part.upstream",
+                "formulation"         : "conserved_variables",
+                "interval"            : [0, 3],
+                "direction"           : [1, 0 ,0],
+                "smooth_time"         : 1.0,
+                "wave_specifications" : {
+                    "wave_theory"         : "boussinesq",
+                    "period"              : 1.0,
+                    "amplitude"           : 0.05
+                }
             }
         },{
             "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication",
