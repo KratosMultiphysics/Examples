@@ -36,7 +36,7 @@ def analytical_data(x, amplitude):
     w = solitary_wave.BoussinesqSolution(1.0, amplitude=amplitude)
     h = [float(w.eta(x, time)) for time in t]
     df = pd.DataFrame({'t': t, 'h': h})
-    return df, w
+    return df
 
 
 def plot_gauge(gauge_id, ax, path):
