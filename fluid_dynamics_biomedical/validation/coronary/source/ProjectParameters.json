@@ -1,0 +1,126 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "coronary",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 1.12
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
+                "output_name"            : "coronary",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"               : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"                  : "time",
+                        "output_control_type"         : "step",
+                        "output_interval"             : 1.0,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "nodal_results"               : ["VELOCITY","PRESSURE","NORMAL","REACTION"],
+                        "gauss_point_results"         : [],
+                        "nodal_nonhistorical_results" : ["WSS_TANGENTIAL_STRESS","OSI","WALL_NORMAL","INLET_NORMAL","WALL_DISTANCE"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }]
+    },
+    "solver_settings"  : {
+        "model_part_name"             : "FluidModelPart",
+        "domain_size"                 : 3,
+        "solver_type"                 : "Monolithic",
+        "model_import_settings"       : {
+            "input_type"     : "mdpa",
+            "input_filename" : "coronary"
+        },
+        "material_import_settings"    : {
+            "materials_filename" : "FluidMaterials.json"
+        },
+        "echo_level"                  : 1,
+        "compute_reactions"           : true,
+        "maximum_iterations"          : 10,
+        "relative_velocity_tolerance" : 0.001,
+        "absolute_velocity_tolerance" : 1e-5,
+        "relative_pressure_tolerance" : 0.001,
+        "absolute_pressure_tolerance" : 1e-5,
+        "volume_model_part_name"      : "Fluid",
+        "skin_parts"                  : ["Inlet","Outlet","Walls"],
+        "no_skin_parts"               : [],
+        "time_scheme"                 : "bossak",
+        "time_stepping"               : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.005
+        },
+        "formulation"                 : {
+            "element_type"             : "qsvms",
+            "use_orthogonal_subscales" : false,
+            "dynamic_tau"              : 1.0
+        },
+        "reform_dofs_at_each_step"    : false
+    },
+    "processes"        : {
+        "initial_conditions_process_list"  : [],
+        "boundary_conditions_process_list" : [{
+            "python_module" : "apply_parabolic_inlet_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsBiomedicalApplication",
+            "Parameters"    : {
+                "inlet_model_part_name" : "FluidModelPart.Inlet",
+                "wall_model_part_name" : "FluidModelPart.Walls",
+                "interval" : [0.0,"End"],
+                "parabola_vertex_value" : 1.0
+            }
+        },{
+            "python_module" : "apply_outlet_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyOutletProcess",
+            "Parameters"    : {
+                "model_part_name"    : "FluidModelPart.Outlet",
+                "variable_name"      : "PRESSURE",
+                "constrained"        : true,
+                "value"              : 0.0,
+                "hydrostatic_outlet" : false,
+                "h_top"              : 0.0
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyNoSlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Walls"
+            }
+        }],
+        "gravity"                          : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Fluid",
+                "variable_name"   : "BODY_FORCE",
+                "modulus"         : 0.0,
+                "constrained"     : false,
+                "direction"       : [0.0,-1.0,0.0]
+            }
+        }],
+        "auxiliar_process_list"            : [{
+            "python_module" : "compute_wss_statistics_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsBiomedicalApplication",
+            "Parameters" : {
+                "model_part_name" : "FluidModelPart.Walls"
+            }
+        }]
+    }
+}
