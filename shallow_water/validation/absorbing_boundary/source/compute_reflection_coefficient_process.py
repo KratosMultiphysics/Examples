@@ -51,20 +51,25 @@ class ComputeReflectionCoefficientProcess(KM.OutputProcess):
         locator = KM.BruteForcePointLocator(self.model_part)
         self.area_coords = KM.Vector()
         found_id = locator.FindElement(self.gauge_coordinates, self.area_coords, configuration, self.tolerance)
-        self.element = self.model_part.Elements[found_id]
+        if found_id > -1:
+            self.element = self.model_part.Elements[found_id]
+        else:
+            KM.Logger.PrintWarning(self.__class__.__name__, "The point is outside the domain")
+            self.element = None
 
     def ExecuteFinalizeSolutionStep(self):
         current_time = self.model_part.ProcessInfo[KM.TIME]
 
         if self.interval.IsInInterval(current_time):
-            value = self._GetValue(self.variable)
-            velocity = self._GetValue(KM.VELOCITY)
-            if value * np.dot(velocity, self.incident_direction) > 0:
-                self.incident_max = max(self.incident_max, value)
-                self.incident_min = min(self.incident_min, value)
-            else:
-                self.reflected_max = max(self.reflected_max, value)
-                self.reflected_min = min(self.reflected_min, value)
+            if self.element is not None:
+                value = self._GetValue(self.variable)
+                velocity = self._GetValue(KM.VELOCITY)
+                if value * np.dot(velocity, self.incident_direction) > 0:
+                    self.incident_max = max(self.incident_max, value)
+                    self.incident_min = min(self.incident_min, value)
+                else:
+                    self.reflected_max = max(self.reflected_max, value)
+                    self.reflected_min = min(self.reflected_min, value)
 
     def ExecuteFinalize(self):
         incident_wave = self.incident_max - self.incident_min
