@@ -17,7 +17,7 @@ args = parser.parse_args()
 amplitude = 0.1
 x_shift = 0
 x_end = 73
-results_pattern = 'line_graph/line_graph-{:.1f}.dat'
+results_pattern = 'line_graph/line_graph_{:.1f}.dat'
 
 
 def plot_data(data, ax, **kwargs):

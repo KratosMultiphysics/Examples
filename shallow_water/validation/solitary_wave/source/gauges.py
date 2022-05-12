@@ -17,7 +17,7 @@ results_pattern = '{}/gauge_{}.dat'
 coordinates_map = {
     1 : 20,
     2 : 50,
-    3 : 150  # Non flat bottom. Here the analytical solution is not valid since shoaling is present.
+    3 : 150  # If non flat bottom, the analytical solution won't be valid since shoaling is present.
 }
 
 
