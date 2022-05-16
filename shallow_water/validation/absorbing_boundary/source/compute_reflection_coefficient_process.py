@@ -19,7 +19,7 @@ class ComputeReflectionCoefficientProcess(KM.OutputProcess):
         self.incident_direction = KM.Array3(settings["incident_direction"].GetVector())
         self.variable = KM.KratosGlobals.GetVariable(settings["variable_name"].GetString())
         self.tolerance = settings["search_tolerance"].GetDouble()
-        self.file_name = settings["file_name"].GetString() + ".dat"
+        self.filename = settings["filename"].GetString() + ".dat"
 
     @staticmethod
     def GetDefaultParameters():
@@ -30,7 +30,7 @@ class ComputeReflectionCoefficientProcess(KM.OutputProcess):
             "gauge_coordinates"  : [0, 0, 0],
             "search_tolerance"   : 1e-6,
             "variable_name"      : "FREE_SURFACE_ELEVATION",
-            "file_name"          : "file_name"
+            "filename"           : "filename"
         }""")
 
     @staticmethod
@@ -80,7 +80,7 @@ class ComputeReflectionCoefficientProcess(KM.OutputProcess):
         print("Reflected wave: {}".format(reflected_wave))
         print("The reflection coefficient is : {}".format(reflection_coefficient))
 
-        with open(self.file_name, 'a') as file:
+        with open(self.filename, 'a') as file:
             file.write('{}\n'.format(reflection_coefficient))
 
     def _GetValue(self, variable):
