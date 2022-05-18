@@ -14,24 +14,27 @@ mode.add_argument("-d", "--damping_sensitivity", action="store_const", dest="mod
 with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
-model = KratosMultiphysics.Model()
-
 args = parser.parse_args()
 if args.mode == 'regular_analysis':
+    model = KratosMultiphysics.Model()
     ShallowWaterAnalysis(model, parameters).Run()
 else:
-    output_base_name = 'reflection_coefficient_{:.1f}'
-    output_base_path = ''
+    output_base_name = 'time_series_{}long_{}damp'
+    output_base_path = 'reflection_coefficient'
 
-    relative_dampings = 10**np.linspace(-1, 2, 31)
-    relative_wavelengths = np.array([1.0, 1.5, 2.0, 4.0])
+    relative_dampings = 10**np.linspace(-.5, 1, 15)
+    relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
 
-    for rel_dist in relative_wavelengths:
-        output_name = output_base_name.format(rel_dist)
-        output_path = output_base_path.format(rel_dist)
-        for rel_damping in relative_dampings:
+    for l, rel_dist in enumerate(relative_wavelengths):
+        for d, rel_damping in enumerate(relative_dampings):
+            output_name = output_base_name.format(l, d)
+            output_path = output_base_path.format(l, d)
             case = parameters.Clone()
-            GetProcessParameters(case['processes'], 'apply_absorbing_boundary_process')['relative_damping'].SetDouble(rel_damping)
-            GetProcessParameters(case['processes'], 'apply_absorbing_boundary_process')['relative_distance'].SetDouble(rel_dist)
-            GetProcessParameters(case['output_processes'], 'compute_reflection_coefficient_process')['file_name'].SetString(output_name)
+            boundary_process = GetProcessParameters(case['processes'], 'apply_absorbing_boundary_process')
+            boundary_process['relative_damping'].SetDouble(rel_damping)
+            boundary_process['relative_distance'].SetDouble(rel_dist)
+            point_process = GetProcessParameters(case['processes'], 'multiple_points_output_process')
+            point_process['output_file_settings']['file_name'].SetString(output_name)
+            point_process['output_file_settings']['output_path'].SetString(output_path)
+            model = KratosMultiphysics.Model()
             ShallowWaterAnalysis(model, case).Run()

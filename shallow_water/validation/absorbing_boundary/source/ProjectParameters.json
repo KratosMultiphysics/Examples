@@ -15,12 +15,11 @@
         }
     }],
     "solver_settings"            : {
-        "solver_type"                : "wave_solver",
+        "solver_type"                : "boussinesq_solver",
         "model_part_name"            : "model_part",
         "domain_size"                : 2,
         "gravity"                    : 9.81,
         "echo_level"                 : 1,
-        "time_integration_order"     : 2,
         "stabilization_factor"       : 0.01,
         "relative_tolerance"         : 1e-6,
         "absolute_tolerance"         : 1e-9,
@@ -39,14 +38,6 @@
     },
     "output_processes" : {
         "output_process_list" : [{
-            "python_module"    : "compute_reflection_coefficient_process",
-            "Parameters"       : {
-                "model_part_name"    : "model_part",
-                "gauge_coordinates"  : [60, 0.5, 0],
-                "variable_name"      : "FREE_SURFACE_ELEVATION",
-                "filename"           : "reflection_coefficient"
-            }
-        },{
             "kratos_module"    : "KratosMultiphysics",
             "python_module"    : "gid_output_process",
             "Parameters"       : {
@@ -84,6 +75,25 @@
         }]
     },
     "processes" : {
+        "auxiliary_process_list"    : [{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "multiple_points_output_process",
+            "Parameters"      : {
+                "model_part_name"      : "model_part",
+                "positions"            : [
+                    [40, 0.5, 0],
+                    [60, 0.5, 0]
+                ],
+                "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
+                "output_file_settings" : {
+                    "file_name"            : "time_series",
+                    "output_path"          : "reflection_coefficient"
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "timer_process"
+        }],
         "topography_process_list"   : [{
             "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication",
             "python_module"   : "set_topography_process",
@@ -134,7 +144,7 @@
                 "relative_damping"          : 2.0,
                 "wave_specifications"       : {
                     "wave_theory"         : "boussinesq",
-                    "period"              : 1.0
+                    "period"              : 2.0
                 }
             }
         }]
