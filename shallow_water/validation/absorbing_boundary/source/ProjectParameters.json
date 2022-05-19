@@ -61,8 +61,9 @@
                 "model_part_name"         : "model_part",
                 "start_point"             : [0, 0.5, 0],
                 "end_point"               : [100, 0.5, 0],
+                "sampling_points"         : 500,
                 "time_format"             : "{:.0f}",
-                "output_variables"        : ["FREE_SURFACE_ELEVATION","MOMENTUM","VELOCITY"],
+                "output_variables"        : ["FREE_SURFACE_ELEVATION","VELOCITY"],
                 "output_file_settings"    : {
                     "file_name"               : "absorbing_boundary",
                     "output_path"             : "line_graph"
