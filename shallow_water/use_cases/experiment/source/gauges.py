@@ -119,7 +119,6 @@ class gauges:
                 self.set_layout(axes[1], gauge_id, 'u2')
 
         fig.tight_layout()
-        plt.show()
 
 
 args = parser.parse_args()
@@ -129,3 +128,4 @@ else:
     labels = args.label
 plt.style.use("seaborn-deep")
 gauges().plot(args.gauge_id, args.variable, args.path, labels)
+plt.show()
