@@ -32,6 +32,7 @@ else:
             output_name = output_base_name.format(mesh)
             case = parameters.Clone()
             case['solver_settings']['time_stepping']['automatic_time_step'].SetBool(False)
+            case['solver_settings']['time_stepping']['courant_number'].SetDouble(0.5)
             case['solver_settings']['time_stepping']['time_step'].SetDouble(step)
             case['solver_settings']['shock_capturing_type'].SetString(mode)
             utils.GetModelerParameters(case['modelers'], 'import_mdpa_modeler')['input_filename'].SetString(input_name)

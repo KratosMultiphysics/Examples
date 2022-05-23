@@ -50,7 +50,7 @@
             "Parameters"      : {
                 "model_part_name"         : "model_part",
                 "output_file_settings"    : {
-                    "file_name"               : "output_file",
+                    "file_name"               : "parabola",
                     "output_path"             : "line_graph"
                 },
                 "start_point"             : [0.0, 0.51, 0.0],
@@ -70,7 +70,7 @@
                 "model_part_name"        : "model_part",
                 "file_name"              : "convergence",
                 "printing_times"         : [0.5, 1.0, 2.0],
-                "analysis_label"         : "rv",
+                "analysis_label"         : "label",
                 "convergence_variables"  : ["HEIGHT_ERROR","EXACT_HEIGHT","VELOCITY_ERROR_X","EXACT_VELOCITY_X","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"]
             }
         },{
@@ -94,14 +94,16 @@
             "python_module"   : "mass_conservation_output_process",
             "Parameters"      : {
                 "model_part_name"      : "model_part",
-                "file_name"            : "total_mass"
+                "file_name"            : "total_mass",
+                "output_path"          : "mass_conservation"
             }
         },{
             "python_module"   : "mass_conservation_output_process",
             "Parameters"      : {
                 "model_part_name"      : "model_part",
                 "relative_dry_height"  : 0.2,
-                "file_name"            : "wet_mass"
+                "file_name"            : "wet_mass",
+                "output_path"          : "mass_conservation"
             }
         }]
     },
