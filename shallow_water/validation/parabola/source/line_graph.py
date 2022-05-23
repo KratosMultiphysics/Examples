@@ -6,7 +6,7 @@ def ReadDataFrame(file_name):
     df.columns = df.columns.str.replace('#', '')
     return df
 
-time = '0.5'
+time = '1.0'
 
 name = 'line_graph/parabola_{}.dat'.format(time)
 df = ReadDataFrame(name)
