@@ -1,10 +1,7 @@
-import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--path", type=str, default="mass_conservation")
-args = parser.parse_args()
+path = "mass_conservation"
 
 def ReadDataFrame(file_name):
     df = pd.read_csv(file_name, sep='\s+', skiprows=1)
@@ -12,7 +9,7 @@ def ReadDataFrame(file_name):
     return df
 
 def PrintTotalMassConservation(ax, identifier="", label=""):
-    file_name = args.path + '/total_mass' + identifier + '.dat'
+    file_name = path + '/total_mass' + identifier + '.dat'
     df = ReadDataFrame(file_name)
     initial_mass = df['Mass'][0]
     df['Mass'] -= initial_mass
@@ -20,7 +17,7 @@ def PrintTotalMassConservation(ax, identifier="", label=""):
     df.plot(x='Time', y='Mass', ax=ax, label='Total mass' + label, color='k')
 
 def PrintWetMassConservation(ax, identifier="", label=""):
-    file_name = args.path + '/wet_mass' + identifier + '.dat'
+    file_name = path + '/wet_mass' + identifier + '.dat'
     df = ReadDataFrame(file_name)
     initial_mass = df['Mass'][0]
     df['Mass'] -= initial_mass
