@@ -37,11 +37,11 @@ class ConvergenceAnalysis:
         self.AddFilter(label=label, time=time)
 
 
-    def AddFilter(self, *, label=None, time=None):
+    def AddFilter(self, *, time=None, **kwargs):
         '''Merge the current filter with the new conditions.'''
-        if label is not None:
-            label_filter = self.data["label"] == label
-            self._AppendFilter(label_filter)
+        for key, value in kwargs.items():
+            new_filter = self.data[key] == value
+            self._AppendFilter(new_filter)
         if time is not None:
             time_filter = abs(self.data["time"] - time) < self.data['time_step']
             self._AppendFilter(time_filter)
@@ -107,7 +107,10 @@ class ConvergenceAnalysis:
                 d_incr = increments[i] / increments[i+1]
                 d_err = error[i] / error[i+1]
                 slopes.append(d_err / d_incr)
-        return sum(slopes) / len(slopes)
+            return sum(slopes) / len(slopes)
+        else:
+            print("[WARNING]: There is no data to compute the slope")
+            return 0
 
 
     def PrintLatexTable(self, variable, ref_variable=None):
@@ -182,7 +185,7 @@ class ConvergenceAnalysis:
 if __name__ == '__main__':
     convergence = ConvergenceAnalysis(filename='convergence', area=10)
     # convergence.AddFilter(label='label', time=1.0)
-    # convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", marker='o', label='GJV')
+    # convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", marker='o')
     # convergence.PrintLatexTable("HEIGHT_ERROR", "EXACT_HEIGHT")
     # slope = convergence.Slope("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT")
     # print("slope :  ", slope)
