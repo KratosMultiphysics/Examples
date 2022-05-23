@@ -65,7 +65,7 @@
             }
         },{
             "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
-            "python_module"   : "convergence_output_process_2",
+            "python_module"   : "convergence_output_process",
             "Parameters"      : {
                 "model_part_name"        : "model_part",
                 "file_name"              : "convergence",
