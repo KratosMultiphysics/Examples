@@ -4,7 +4,7 @@
 
 **Kratos version:** 9.1
 
-**Source files:** [Sod shock tube]()
+**Source files:** [Sod shock tube](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_sod_shock_tube/source)
 
 ## Case Specification
 This is a 2D simulation of the classical Sod shock tube benchmark, using the Euler equations.
