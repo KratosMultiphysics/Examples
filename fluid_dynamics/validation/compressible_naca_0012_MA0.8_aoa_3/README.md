@@ -1,10 +1,10 @@
-# Transonic flow around a NACA0012 profile at an angle
+# Transonic flow around a NACA0012 profile at a 3&deg; angle
 
 **Author:** [Eduard Gómez](https://github.com/EduardGomezEscandell)
 
 **Kratos version:** 9.1
 
-**Source files:** [Transonic flow around a NACA0012 profile at an angle](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8_aoa_3/source)
+**Source files:** [Transonic flow around a NACA0012 profile at a 3&deg; angle](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8_aoa_3/source)
 
 ## Case Specification
 This is a 2D simulation of a NACA0012 profile under transonic flow conditions (Ma = 0.8) with angle of attack of 3&deg;.
