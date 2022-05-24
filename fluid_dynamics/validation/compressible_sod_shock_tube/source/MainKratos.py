@@ -27,7 +27,6 @@ class FluidDynamicsAnalysisCompressible(FluidDynamicsAnalysis):
         self.flush_frequency = flush_frequency
         self.last_flush = time.time()
         sys.stdout.flush()
-        self.print_count = 0
 
     def Initialize(self):
         super().Initialize()

@@ -25,7 +25,7 @@ Concerning the material, a perfect fluid with the characteristic parameters list
 * Specific heat (_c<sub>p</sub>_): 722.14 _J/KgK_
 * Heat capacity ratio (&gamma;): 1.4
 
-An adaptive time step strategy based on the CFL and Fourier numbers is used.
+An adaptive time step strategy based on the CFL is used.
 
 ## Results
 The problem is solved with a Variational Multi-Scale stabilized compressible Navier-Stokes formulation written in conservative variables (1). An explicit third order otal-variational-diminishing Runge-Kutta explicit strategy is used for the time discretization, see (2) for more details. The physics-based shock capturing technique described in (3) is also used.
