@@ -12,7 +12,7 @@ This is a 2D simulation of the classical step from Woodward and Collela (1), usi
 The problem geometry consists of a rectangle with a step at the bottom. The boundaing rectangle has a width of 3m and a height of 1m. The step is located 0.6 meters to the right of the bottom-left corner, and it rises to 0.1m above the bottom edge.
 
 The top and bottom boundaries, as well as the step are free-slip. The node at the bottom of the step (0.6, 0.0), has its velocity set to zero for numerical stability purposes. The right boundary is left open. The left boundary enforces same values as the initial conditions:
-* Density (&rho;): 1.4 _kg/m<sup>3</sup>
+* Density (&rho;): 1.4 _kg/m<sup>3</sup>_
 * Pressure (_p_): 1.0 _Pa_
 * Velocity (_v_): [3.0, 0.0] _m/s_
 * Temperature (_T_): 0.0024728 _K_
