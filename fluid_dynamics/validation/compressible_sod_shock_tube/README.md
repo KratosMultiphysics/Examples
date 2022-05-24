@@ -37,15 +37,15 @@ TODO: Change figures in this table
 </!-->
 
 <p align="center">
-  <img src="data/transonic_naca_0012_mach.png" alt="Transonic flow around a NACA0012 profile Mach number field." style="width: 600px;"/>
+  <img src="data/density.png" alt="Sod shock tube density field." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/transonic_naca_0012_density.png" alt="Transonic flow around a NACA0012 profile density field [Kg/m<sup>3</sup>]." style="width: 600px;"/>
+  <img src="data/pressure.png" alt="Sod shock tube pressure field." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/transonic_naca_0012_shock_sensor.png" alt="Transonic flow around a NACA0012 profile shock sensor field." style="width: 600px;"/>
+  <img src="data/velocity.png" alt="Sod shock tube x-velocity field." style="width: 600px;"/>
 </p>
 
 ## References
