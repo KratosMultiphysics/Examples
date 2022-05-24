@@ -36,7 +36,7 @@ Current implementation fails to solve this case, due to insufficient artifficial
 
 
 ## References
-(1) Woodward, P., & Colella, P. (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. Journal of computational physics, 54(1), 115-173. [https://doi.org/10.1016/0021-9991(84)90142-6](https://doi.org/10.1016/0021-9991(84\)90142-6)
+(1) Woodward, P., & Colella, P. (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. Journal of computational physics, 54(1), 115-173. https://doi.org/10.1016/0021-9991(84)90142-6
 
 (2) Bayona Roa, C.A., Baiges, J. and Codina, R. (2016), Variational multi-scale finite element approximation of the compressible Navier-Stokes equations, International Journal of Numerical Methods for Heat & Fluid Flow, Vol. 26 No. 3/4, pp. 1240-1271. [https://doi.org/10.1108/HFF-11-2015-0483](https://doi.org/10.1108/HFF-11-2015-0483 )
 
