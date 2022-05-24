@@ -17,7 +17,7 @@ The top and bottom boundaries, as well as the step are free-slip. The node at th
 * Velocity (_v_): [3.0, 0.0] _m/s_
 * Temperature (_T_): 0.0024728 _K_
 
-The strange temperature is the truncated value is such that the speed of sound is 1.0 _m/s_.
+The strange temperature is the truncated value such that the speed of sound is 1.0 _m/s_.
 
 Concerning the material, a perfect fluid with the characteristic parameters listed below is used.
 * Dynamic viscosity (&mu;): 0
