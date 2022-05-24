@@ -30,7 +30,7 @@ An adaptive time step strategy based on the CFL is used.
 ## Results
 The problem is solved with a Variational Multi-Scale stabilized compressible Navier-Stokes formulation written in conservative variables (1). An explicit third order otal-variational-diminishing Runge-Kutta explicit strategy is used for the time discretization, see (2) for more details. The physics-based shock capturing technique described in (3) is also used.
 
-The computational domain is meshed with 36k linear triangular elements. Below are three snapshots depicting the density, velocity and temperature profiles at t=0.15. This case's is interest is in the featuring of three compressible phenomena, from left to right: a rarefication, a contact discontinuity and a normal shock.
+The computational domain is meshed with 36k linear triangular elements. Below are three snapshots depicting the density, velocity and x-velocity profiles at t=0.15. This case's is interest is in the featuring of three compressible phenomena, from left to right: a rarefication, a contact discontinuity and a normal shock.
 
 <!-- >
 TODO: Change figures in this table
