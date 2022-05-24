@@ -32,10 +32,6 @@ The problem is solved with a Variational Multi-Scale stabilized compressible Nav
 
 The computational domain is meshed with 36k linear triangular elements. Below are three snapshots depicting the density, velocity and x-velocity profiles at t=0.15. This case's is interest is in the featuring of three compressible phenomena, from left to right: a rarefication, a contact discontinuity and a normal shock.
 
-<!-- >
-TODO: Change figures in this table
-</!-->
-
 <p align="center">
   <img src="data/density.png" alt="Sod shock tube density field." style="width: 600px;"/>
 </p>
