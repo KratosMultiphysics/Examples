@@ -11,7 +11,7 @@ This is a 2D simulation of the classical Sod shock tube benchmark, using the Eul
 
 The problem geometry consists in a rectangular domain, 1 meter long and 0.1 meters wide, with free-slip conditions on log sides and open boundaries on the sort sides. The Sod shock problem is one-dimensional, which coincides with the X-axis in this case. Hence, no variations along the Y-axis are obseeerved.
 
-The initial condition is diferent on the left and right sides:
+The initial condition is diferent on the left and right sides. The separation is located at x=0.5.
 
 | Property      | Left side     | Right side    |
 | ------------- | ------------- | ------------- |
