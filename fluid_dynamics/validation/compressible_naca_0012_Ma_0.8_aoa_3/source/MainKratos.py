@@ -95,15 +95,24 @@ def set_conditions(project_parameters, density: float, mach: float, AoA: float, 
         initial_condition["Parameters"]["interval"][1].SetDouble(0.0)
         project_parameters["processes"]["initial_conditions_process_list"].Append(initial_condition)
 
-        boundary_condition = blank_condition.Clone()
-        boundary_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.Inlet")
-        boundary_condition["Parameters"]["variable_name"].SetString(variable)
-        boundary_condition["Parameters"]["value"].SetDouble(value)
-        boundary_condition["Parameters"]["constrained"].SetBool(True)
-        boundary_condition["Parameters"]["interval"][1].SetDouble(1e30)
-        project_parameters["processes"]["boundary_conditions_process_list"].Append(boundary_condition)
+        inlet_condition = blank_condition.Clone()
+        inlet_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.Inlet")
+        inlet_condition["Parameters"]["variable_name"].SetString(variable)
+        inlet_condition["Parameters"]["value"].SetDouble(value)
+        inlet_condition["Parameters"]["constrained"].SetBool(True)
+        inlet_condition["Parameters"]["interval"][1].SetDouble(1e30)
+        project_parameters["processes"]["boundary_conditions_process_list"].Append(inlet_condition)
 
-    for variable in ["MOMENTUM_Y"]:
+    for variable in ["DENSITY", "TOTAL_ENERGY"]:
+        outlet_condition = blank_condition.Clone()
+        outlet_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.Outlet")
+        outlet_condition["Parameters"]["variable_name"].SetString(variable)
+        outlet_condition["Parameters"]["value"].SetDouble(variables[variable])
+        outlet_condition["Parameters"]["constrained"].SetBool(True)
+        outlet_condition["Parameters"]["interval"][1].SetDouble(1e30)
+        project_parameters["processes"]["boundary_conditions_process_list"].Append(outlet_condition)
+
+    for variable in ["MOMENTUM_X", "MOMENTUM_Y"]:
         kutta_condition = blank_condition.Clone()
         kutta_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.GENERIC_Kutta")
         kutta_condition["Parameters"]["variable_name"].SetString(variable)
