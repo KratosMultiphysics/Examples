@@ -50,19 +50,24 @@ class FluidDynamicsAnalysisCompressible(FluidDynamicsAnalysis):
 
 def set_conditions(project_parameters, density: float, mach: float, AoA: float, temperature) -> None:
     """
-    This function modifies a project parameters to set a desired density, mach, angle of attack
-    and temperature.
+    This function modifies a project parameters to set a desired
+    - density (kg/m3)
+    - Mach
+    - Angle of attack (degrees)
+    - Temperature (K).
     """
     gamma = 1.4
     cv = 722.14
     R = cv * (gamma - 1)
+    angle_of_attack = AoA * math.pi / 180  # deg -> rad
 
     sound_speed = math.sqrt(gamma * R * temperature)
     pressure = density * R * temperature
     velocity = sound_speed * mach
 
-    momentum_x = velocity * density * math.cos(AoA * math.pi / 180)
-    momentum_y = velocity * density * math.sin(AoA * math.pi / 180)
+    momentum = density * velocity
+    momentum_x = momentum * math.cos(angle_of_attack)
+    momentum_y = momentum * math.sin(angle_of_attack)
 
     total_energy = density * (0.5 * velocity * velocity + cv * temperature)
 
@@ -87,14 +92,6 @@ def set_conditions(project_parameters, density: float, mach: float, AoA: float, 
     }""")
 
     for (variable, value) in variables.items():
-        initial_condition = blank_condition.Clone()
-        initial_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.FluidParts_Fluid")
-        initial_condition["Parameters"]["variable_name"].SetString(variable)
-        initial_condition["Parameters"]["value"].SetDouble(value)
-        initial_condition["Parameters"]["constrained"].SetBool(False)
-        initial_condition["Parameters"]["interval"][1].SetDouble(0.0)
-        project_parameters["processes"]["initial_conditions_process_list"].Append(initial_condition)
-
         inlet_condition = blank_condition.Clone()
         inlet_condition["Parameters"]["model_part_name"].SetString("FluidModelPart.Inlet")
         inlet_condition["Parameters"]["variable_name"].SetString(variable)
@@ -121,9 +118,22 @@ def set_conditions(project_parameters, density: float, mach: float, AoA: float, 
         kutta_condition["Parameters"]["interval"][1].SetDouble(1e30)
         project_parameters["processes"]["boundary_conditions_process_list"].Append(kutta_condition)
 
-    project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["freestream_density"].SetDouble(density)
-    project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["freestream_pressure"].SetDouble(pressure)
-    project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]["freestream_velocity"].SetDouble(velocity)
+    pressure_coeff_params = project_parameters["processes"]["auxiliar_process_list"][0]["Parameters"]
+    pressure_coeff_params["freestream_density"].SetDouble(density)
+    pressure_coeff_params["freestream_pressure"].SetDouble(pressure)
+    pressure_coeff_params["freestream_velocity"].SetDouble(velocity)
+
+    initial_condition_params = project_parameters["processes"]["initial_conditions_process_list"][0]["Parameters"]
+    initial_condition_params["properties"]["free_stream_density"].SetDouble(density)
+    initial_condition_params["properties"]["free_stream_momentum"].SetDouble(momentum)
+    initial_condition_params["properties"]["free_stream_energy"].SetDouble(total_energy)
+
+    for params in initial_condition_params["boundary_conditions_process_list"]:
+        if params["process_name"].GetString() != "FarFieldProcess":
+            continue
+        params["Parameters"]["angle_of_attack"].SetDouble(angle_of_attack)
+        params["Parameters"]["mach_infinity"].SetDouble(mach)
+        params["Parameters"]["speed_of_sound"].SetDouble(sound_speed)
 
 
 if __name__ == "__main__":

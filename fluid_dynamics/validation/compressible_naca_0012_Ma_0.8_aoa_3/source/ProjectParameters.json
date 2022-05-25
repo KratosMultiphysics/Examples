@@ -99,7 +99,9 @@
                         "process_name"  : "FarFieldProcess",
                         "Parameters"    : {
                             "model_part_name" : "initial_potential_process_model_part.Inlet",
-                            "angle_of_attack" : 0.0
+                            "angle_of_attack" : -1.0,
+                            "mach_infinity"   : -1.0,
+                            "speed_of_sound"  : -1.0
                         }
                     },{
                         "python_module" : "apply_far_field_process",
@@ -107,7 +109,9 @@
                         "process_name"  : "FarFieldProcess",
                         "Parameters"    : {
                             "model_part_name" : "initial_potential_process_model_part.Outlet",
-                            "angle_of_attack" : 0.0
+                            "angle_of_attack" : -1.0,
+                            "mach_infinity"   : -1.0,
+                            "speed_of_sound"  : -1.0
                         }
                     }
                 ]
