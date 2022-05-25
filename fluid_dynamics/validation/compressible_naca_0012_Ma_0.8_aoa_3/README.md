@@ -26,14 +26,14 @@ The problem is solved with a Variational Multi-Scale stabilized compressible Nav
 
 The computational domain is meshed with 56k linear triangular elements.
 
-Below three snapshots depicting the Mach number, density and shock sensor fields are shown. As it can be observed, the expected symmetric solution and shocks are obtained.
+Below three snapshots depicting the Mach number, pressure and shock sensor fields are shown. As it can be observed, the expected symmetric solution and shocks are obtained.
 
 <p align="center">
   <img src="data/mach.png" alt="Transonic flow around a NACA0012 profile Mach number field." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="data/density.png" alt="Transonic flow around a NACA0012 profile density field [Kg/m<sup>3</sup>]." style="width: 600px;"/>
+  <img src="data/pressure.png" alt="Transonic flow around a NACA0012 profile pressure field [Kg/m<sup>3</sup>]." style="width: 600px;"/>
 </p>
 
 <p align="center">
