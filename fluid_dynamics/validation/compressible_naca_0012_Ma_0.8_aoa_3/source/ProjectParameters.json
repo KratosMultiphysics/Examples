@@ -1,0 +1,146 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "naca_0012",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 0.1
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
+                "output_name"            : "naca0012",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"               : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"                  : "time",
+                        "output_control_type"         : "time",
+                        "output_interval"             : 0.001,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "nodal_results"               : ["MOMENTUM","DENSITY","TOTAL_ENERGY","PRESSURE","TEMPERATURE","VELOCITY"],
+                        "gauss_point_results"         : ["SHOCK_SENSOR","THERMAL_SENSOR","SHEAR_SENSOR"],
+                        "nodal_nonhistorical_results" : ["PRESSURE_COEFFICIENT", "SOUND_VELOCITY","ARTIFICIAL_BULK_VISCOSITY","ARTIFICIAL_DYNAMIC_VISCOSITY","ARTIFICIAL_CONDUCTIVITY","MACH"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }]
+    },
+    "solver_settings"  : {
+        "model_part_name"             : "FluidModelPart",
+        "domain_size"                 : 2,
+        "solver_type"                 : "CompressibleExplicit",
+        "model_import_settings"       : {
+            "input_type"     : "mdpa",
+            "input_filename" : "naca0012_ravioli"
+        },
+        "material_import_settings"    : {
+            "materials_filename" : "FluidMaterials.json"
+        },
+        "echo_level"                  : 1,
+        "compute_reactions"           : false,
+        "volume_model_part_name"      : "FluidParts_Fluid",
+        "skin_parts"                  : ["Slip2D"],
+        "no_skin_parts"               : [],
+        "time_scheme" : "RK3-TVD",
+        "time_stepping"               : {
+          "automatic_time_step"           : true,
+          "CFL_number"                    : 0.5,
+          "Viscous_Fourier_number"        : 0.5,
+          "Thermal_Fourier_number"        : 0.5,
+          "consider_artificial_diffusion" : true,
+          "nodal_density_formulation"     : true,
+          "minimum_delta_time"            : 1e-8,
+          "maximum_delta_time"            : 1e-3
+        },
+        "reform_dofs_at_each_step" : false,
+        "use_oss" : false,
+        "shock_capturing_settings" : {
+            "type" : "physics_based"
+        }
+    },
+    "processes"        : {
+        "initial_conditions_process_list"  : [
+        {
+            "Parameters" : {
+                "model_part_name": "FluidModelPart",
+                "volume_model_part_name": "FluidParts_Fluid",
+                "skin_parts": ["Inlet","Outlet"],
+                "properties" : {
+                    "free_stream_density" : -1.0,
+                    "free_stream_momentum" : -1.0,
+                    "free_stream_energy" : -1.0
+                },
+                "boundary_conditions_process_list": [
+                    {
+                        "python_module" : "define_wake_process_2d",
+                        "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+                        "process_name"  : "DefineWakeProcess2D",
+                        "Parameters"    : {
+                            "model_part_name" : "initial_potential_process_model_part.Slip2D.Slip2D_Airfoil"
+                        }
+                    },
+                    {
+                        "python_module" : "apply_far_field_process",
+                        "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+                        "process_name"  : "FarFieldProcess",
+                        "Parameters"    : {
+                            "model_part_name" : "initial_potential_process_model_part.Inlet",
+                            "angle_of_attack" : -1.0,
+                            "mach_infinity"   : -1.0,
+                            "speed_of_sound"  : -1.0
+                        }
+                    },{
+                        "python_module" : "apply_far_field_process",
+                        "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+                        "process_name"  : "FarFieldProcess",
+                        "Parameters"    : {
+                            "model_part_name" : "initial_potential_process_model_part.Outlet",
+                            "angle_of_attack" : -1.0,
+                            "mach_infinity"   : -1.0,
+                            "speed_of_sound"  : -1.0
+                        }
+                    }
+                ]
+            },
+            "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name": "InitializeWithCompressiblePotentialSolutionProcess",
+            "python_module": "initialize_with_compressible_potential_solution_process"
+        }
+        ],
+        "boundary_conditions_process_list" : [
+        {
+            "python_module" : "apply_slip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplySlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Slip2D"
+            }
+        }],
+        "gravity"                          : [],
+        "auxiliar_process_list"            : [{
+            "python_module" : "compute_pressure_coefficient_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name" : "ComputeAerodynamicCoefficientsProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.Slip2D",
+                "freestream_density": 1.0,
+                "freestream_pressure" : 78857.688,
+                "freestream_velocity": 266.67
+            }
+        }]
+    }
+}
