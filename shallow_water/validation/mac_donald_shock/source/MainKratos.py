@@ -18,21 +18,24 @@ if args.mode == "regular_analysis":
     model = KratosMultiphysics.Model()
     ShallowWaterAnalysis(model, parameters).Run()
 else:
+    modes = ['residual_viscosity','gradient_jump','flux_correction']
+    labels = ['rv','gj','fc']
     meshes = [2.0, 1.0, 0.5, 0.2, 0.1]
     steps = [0.005] * len(meshes)
     steps[-1] = 0.002
     input_base_name = 'mac_donald_{}'
-    output_base_name = 'shock'
-    output_base_path = '{}'
-    case = parameters.Clone()
-    for mesh, time_step in zip(meshes, steps):
-        input_name = input_base_name.format(mesh)
-        output_name = output_base_name.format(mesh)
-        output_path = output_base_path.format(mesh)
-        case['solver_settings']['model_import_settings']['input_filename'].SetString(input_name)
-        case['solver_settings']['time_stepping']['time_step'].SetDouble(time_step)
-        utils.GetProcessParameters(case['output_processes'], 'gid_output_process')['output_name'].SetString(output_path + '/' + output_name)
-        utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['file_name'].SetString(output_name)
-        utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['output_path'].SetString(output_path)
-        model = KratosMultiphysics.Model()
-        ShallowWaterAnalysis(model, parameters).Run()
+    for mode, label in zip(modes, labels):
+        for mesh, time_step in zip(meshes, steps):
+            case = parameters.Clone()
+            input_name = input_base_name.format(mesh)
+            case['solver_settings']['time_stepping']['automatic_time_step'].SetBool(True)
+            case['solver_settings']['time_stepping']['courant_number'].SetDouble(0.5)
+            case['solver_settings']['time_stepping']['time_step'].SetDouble(time_step)
+            utils.GetModelerParameters(case['modelers'], 'import_mdpa_modeler')['input_filename'].SetString(input_name)
+            utils.GetProcessParameters(case['output_processes'], 'convergence_output_process')['analysis_label'].SetString(label)
+            utils.KeepOnlyThisProcess(case['output_processes'], 'convergence_output_process')
+            model = KratosMultiphysics.Model()
+            try:
+                ShallowWaterAnalysis(model, case).Run()
+            except RuntimeError:
+                pass
