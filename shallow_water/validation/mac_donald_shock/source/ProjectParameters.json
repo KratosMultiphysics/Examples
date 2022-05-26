@@ -82,21 +82,9 @@
             "Parameters"      : {
                 "model_part_name"        : "model_part",
                 "file_name"              : "convergence",
-                "analysis_label"         : "all  ",
+                "analysis_label"         : "label",
                 "printing_times"         : [200],
                 "convergence_variables"  : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"]
-            }
-        },{
-            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
-            "python_module"   : "convergence_output_process",
-            "Parameters"      : {
-                "model_part_name"        : "model_part",
-                "file_name"              : "convergence",
-                "analysis_label"         : "local",
-                "printing_times"         : [200],
-                "convergence_variables"  : ["FREE_SURFACE_ERROR","EXACT_FREE_SURFACE","MOMENTUM_ERROR_X","EXACT_MOMENTUM_X"],
-                "low_corner"             : [65, 1],
-                "high_corner"            : [67, 4]
             }
         }]
     },
