@@ -1,10 +1,10 @@
 {
     "properties" : [{
-        "model_part_name" : "Structure.Parts_Parts_Auto1",
+        "model_part_name" : "Structure.Parts_Solid_Volume",
         "properties_id"   : 1,
         "Material"        : {
             "constitutive_law" : {
-                "name" : "LinearElastic3DLaw"
+                "name" : "KirchhoffSaintVenant3DLaw"
             },
             "Variables"        : {
                 "DENSITY"       : 2650.0,

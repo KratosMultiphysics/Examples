@@ -1,4 +1,5 @@
 {
+    "analysis_stage": "KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis",
     "problem_data"     : {
         "problem_name"  : "StanfordBunnyKratos",
         "parallel_type" : "OpenMP",
@@ -7,52 +8,53 @@
         "end_time"      : 30
     },
     "solver_settings"  : {
-        "solver_type"                        : "Static",
-        "model_part_name"                    : "Structure",
-        "domain_size"                        : 3,
-        "echo_level"                         : 0,
-        "analysis_type"                      : "linear",
-        "model_import_settings"              : {
+        "solver_type"                     : "Static",
+        "model_part_name"                 : "Structure",
+        "domain_size"                     : 3,
+        "echo_level"                      : 1,
+        "analysis_type"                   : "non_linear",
+        "model_import_settings"           : {
             "input_type"     : "mdpa",
             "input_filename" : "StanfordBunnyKratos"
         },
-        "material_import_settings"           : {
+        "material_import_settings"        : {
             "materials_filename" : "StructuralMaterials.json"
         },
-        "time_stepping"                      : {
+        "time_stepping"                   : {
             "time_step" : 1
         },
-        "line_search"                        : false,
-        "convergence_criterion"              : "residual_criterion",
-        "displacement_relative_tolerance"    : 0.0001,
-        "displacement_absolute_tolerance"    : 1e-9,
-        "residual_relative_tolerance"        : 0.0001,
-        "residual_absolute_tolerance"        : 1e-9,
-        "max_iteration"                      : 10,
-        "problem_domain_sub_model_part_list" : ["Parts_Parts_Auto1"],
-        "processes_sub_model_part_list"      : ["DISPLACEMENT_Displacement_Auto2","SurfaceLoad3D_Load_on_surfaces_Auto1","SurfacePressure3D_Pressure_on_surfaces_Auto4"],
-        "rotation_dofs"                      : false
+        "line_search"                     : false,
+        "convergence_criterion"           : "displacement_criterion",
+        "displacement_relative_tolerance" : 1e-9,
+        "displacement_absolute_tolerance" : 1e-15,
+        "residual_relative_tolerance"     : 1e-9,
+        "residual_absolute_tolerance"     : 1e-15,
+        "max_iteration"                   : 100,
+        "rotation_dofs"                   : false,
+        "volumetric_strain_dofs"          : false
     },
     "processes"        : {
         "constraints_process_list" : [{
             "python_module" : "assign_vector_variable_process",
             "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
             "Parameters"    : {
-                "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto2",
+                "model_part_name" : "Structure.DISPLACEMENT_FixedSupport",
                 "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
                 "constrained"     : [true,true,true],
-                "value"           : [0.0,0.0,0.0],
-                "interval"        : [0.0,"End"]
+                "value"           : [0.0,0.0,0.0]
             }
         }],
         "loads_process_list"       : [{
             "python_module" : "assign_scalar_variable_to_conditions_process",
             "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignScalarVariableToConditionProcess",
             "Parameters"    : {
-                "model_part_name" : "Structure.SurfacePressure3D_Pressure_on_surfaces_Auto4",
+                "model_part_name" : "Structure.SurfacePressure3D_FacePressure",
                 "variable_name"   : "POSITIVE_FACE_PRESSURE",
-                "value"           : "(-15000000*13) + t*15000000",
-                "interval"        : [0.0,"End"]
+                "interval"        : [0.0,"End"],
+                "value"           : "(-15000000*13) + t*15000000"
             }
         }],
         "list_other_processes"     : []
@@ -68,21 +70,22 @@
                 "output_name"            : "StanfordBunnyKratos",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
-                        "gidpost_flags"       : {
+                        "gidpost_flags"               : {
                             "GiDPostMode"           : "GiD_PostBinary",
                             "WriteDeformedMeshFlag" : "WriteDeformed",
                             "WriteConditionsFlag"   : "WriteConditions",
                             "MultiFileFlag"         : "SingleFile"
                         },
-                        "file_label"          : "step",
-                        "output_control_type" : "step",
-                        "output_frequency"    : 1,
-                        "body_output"         : true,
-                        "node_output"         : false,
-                        "skin_output"         : false,
-                        "plane_output"        : [],
-                        "nodal_results"       : ["DISPLACEMENT","REACTION"],
-                        "gauss_point_results" : ["VON_MISES_STRESS"]
+                        "file_label"                  : "step",
+                        "output_control_type"         : "step",
+                        "output_interval"             : 1,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "nodal_results"               : ["DISPLACEMENT","REACTION"],
+                        "gauss_point_results"         : ["VON_MISES_STRESS"],
+                        "nodal_nonhistorical_results" : []
                     },
                     "point_data_configuration"  : []
                 }
@@ -94,18 +97,19 @@
             "process_name"  : "VtkOutputProcess",
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
-                "model_part_name"                    : "Structure",
-                "output_control_type"                : "step",
-                "output_frequency"                   : 1,
-                "file_format"                        : "ascii",
-                "output_precision"                   : 7,
-                "output_sub_model_parts"             : true,
-                "folder_name"                        : "vtk_output",
-                "save_output_files_in_folder"        : true,
-                "nodal_solution_step_data_variables" : ["DISPLACEMENT","REACTION"],
-                "nodal_data_value_variables"         : [],
-                "element_data_value_variables"       : [],
-                "condition_data_value_variables"     : []
+                "model_part_name"                             : "Structure",
+                "output_control_type"                         : "step",
+                "output_interval"                             : 1,
+                "file_format"                                 : "ascii",
+                "output_precision"                            : 7,
+                "output_sub_model_parts"                      : false,
+                "output_path"                                 : "vtk_output",
+                "save_output_files_in_folder"                 : true,
+                "nodal_solution_step_data_variables"          : ["DISPLACEMENT","REACTION"],
+                "nodal_data_value_variables"                  : [],
+                "element_data_value_variables"                : [],
+                "condition_data_value_variables"              : [],
+                "gauss_point_variables_extrapolated_to_nodes" : ["VON_MISES_STRESS"]
             }
         }]
     }
