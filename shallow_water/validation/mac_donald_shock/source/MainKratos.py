@@ -31,6 +31,7 @@ else:
             case['solver_settings']['time_stepping']['automatic_time_step'].SetBool(True)
             case['solver_settings']['time_stepping']['courant_number'].SetDouble(0.5)
             case['solver_settings']['time_stepping']['time_step'].SetDouble(time_step)
+            case['solver_settings']['shock_capturing_type'].SetString(mode)
             utils.GetModelerParameters(case['modelers'], 'import_mdpa_modeler')['input_filename'].SetString(input_name)
             utils.GetProcessParameters(case['output_processes'], 'convergence_output_process')['analysis_label'].SetString(label)
             utils.KeepOnlyThisProcess(case['output_processes'], 'convergence_output_process')
