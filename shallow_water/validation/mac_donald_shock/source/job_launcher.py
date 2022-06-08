@@ -9,13 +9,16 @@ steps = [0.005] * len(meshes)
 steps[-1] = 0.002
 input_filename_pattern = 'mac_donald_{}'
 
+command_execution = 'sbatch --job-name {} run.sh'  # parallel run
+#command_execution = 'python3 MainKratos.py'        # serial run
+
 count = 0
 for mode, label in zip(modes, labels):
     for mesh, time_step in zip(meshes, steps):
         count += 1
         input_filename = input_filename_pattern.format(mesh)
         job_name = f'mac_donald_conv_analysis_{count}'
-        command  = f'sbatch --job-name {job_name} run.sh'
+        command  = command_execution.format(job_name)
         command += f' --automatic_time_step {automatic_time_step}'
         command += f' --courant_number {courant_number}'
         command += f' --time_step {time_step}'
