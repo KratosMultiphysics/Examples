@@ -4,6 +4,7 @@ import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
+import progress.bar as bar
 
 
 parser = argparse.ArgumentParser()
@@ -98,11 +99,13 @@ elif args.mode == 'compute_matrix':
     base_filename_1 = 'reflection_coefficient/time_series_{}long_{}damp_1.dat'
     base_filename_2 = 'reflection_coefficient/time_series_{}long_{}damp_1.dat'
 
-    relative_dampings = 10**np.linspace(-.5, 1, 15)
+    relative_dampings = 10**np.linspace(-1, 2, 20)
     relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
 
     coefficients = np.zeros(shape=(len(relative_wavelengths), len(relative_dampings)), dtype=float)
 
+    num_items = len(relative_dampings) * len(relative_wavelengths)
+    progress_bar = bar.IncrementalBar('Processing', max=num_items)
     for l, rel_dist in enumerate(relative_wavelengths):
         for d, rel_damping in enumerate(relative_dampings):
 
@@ -114,11 +117,14 @@ elif args.mode == 'compute_matrix':
 
             coefficients[l,d] = max(coeff_1, coeff_2)
 
+            progress_bar.next()
+
     np.savetxt('coefficients_matrix.dat', coefficients)
+    progress_bar.finish()
 
 elif args.mode == 'print_matrix':
     coefficients = np.loadtxt('coefficients_matrix.dat')
-    relative_dampings = 10**np.linspace(-.5, 1, 15)
+    relative_dampings = 10**np.linspace(-1, 2, 20)
     relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
     x, y = np.meshgrid(relative_dampings, relative_wavelengths)
 
