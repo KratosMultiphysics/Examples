@@ -145,7 +145,8 @@
                 "relative_damping"          : 2.0,
                 "wave_specifications"       : {
                     "wave_theory"         : "boussinesq",
-                    "period"              : 2.0
+                    "period"              : 2.0,
+                    "amplitude"           : 0.1
                 }
             }
         }]
