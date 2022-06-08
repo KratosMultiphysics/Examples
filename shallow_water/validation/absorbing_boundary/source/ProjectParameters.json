@@ -73,10 +73,7 @@
                     "time_frequency"          : 30
                 }
             }
-        }]
-    },
-    "processes" : {
-        "auxiliary_process_list"    : [{
+        },{
             "kratos_module"   : "KratosMultiphysics",
             "python_module"   : "multiple_points_output_process",
             "Parameters"      : {
@@ -91,7 +88,10 @@
                     "output_path"          : "reflection_coefficient"
                 }
             }
-        },{
+        }]
+    },
+    "processes" : {
+        "auxiliary_process_list"    : [{
             "kratos_module"   : "KratosMultiphysics",
             "python_module"   : "timer_process"
         }],
