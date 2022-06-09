@@ -10,13 +10,14 @@ import progress.bar as bar
 parser = argparse.ArgumentParser()
 mode = parser.add_mutually_exclusive_group()
 mode.add_argument("-s", "--compute_single", action="store_const", dest="mode", const="compute_single", default="compute_single")
-mode.add_argument("-m", "--compute_matrix", action="store_const", dest="mode", const="compute_matrix")
+mode.add_argument("-c", "--compute_matrix", action="store_const", dest="mode", const="compute_matrix")
 mode.add_argument("-p", "--print_matrix",   action="store_const", dest="mode", const="print_matrix")
 args = parser.parse_args()
 
 
 def read_data(filename):
     df = pd.read_csv(filename, header=None, delimiter=r'\s+', skiprows=2, names=['t', 'f', 'u', 'v', 'w'])
+    df = df.fillna(0)
     return df
 
 
@@ -70,12 +71,15 @@ def compute_reflection_coefficient(filename, print_on_screen=False, make_plot=Fa
     reflected_amplitudes = amplitudes * reflected_range
     reflected_amplitude = max(reflected_amplitudes) - min(reflected_amplitudes)
 
-    reflection_coefficient = reflected_amplitude / incident_amplitude
+    try:
+        reflection_coefficient = reflected_amplitude / incident_amplitude
+    except ZeroDivisionError:
+        reflection_coefficient = 0.99
 
     if print_on_screen:
         print('reflected amplitude', reflected_amplitude)
         print('incident amplitudes', incident_amplitude)
-        print('reflection coefficient', )
+        print('reflection coefficient', reflection_coefficient)
 
     if make_plot:
         ax0 = plt.subplot(511)
