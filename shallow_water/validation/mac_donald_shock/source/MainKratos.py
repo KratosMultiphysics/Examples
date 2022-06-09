@@ -16,8 +16,6 @@ parser.add_argument("--analysis_label", type=str)
 parser.add_argument("--remove_output", type=bool, default=False)
 args = parser.parse_args()
 
-print(args)
-
 with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
