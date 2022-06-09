@@ -103,7 +103,7 @@ elif args.mode == 'compute_matrix':
     base_filename_1 = 'reflection_coefficient/time_series_{}long_{}damp_1.dat'
     base_filename_2 = 'reflection_coefficient/time_series_{}long_{}damp_1.dat'
 
-    relative_dampings = 10**np.linspace(-1, 2, 20)
+    relative_dampings = 10**np.linspace(-0.5, 1, 15)
     relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
 
     coefficients = np.zeros(shape=(len(relative_wavelengths), len(relative_dampings)), dtype=float)
@@ -128,7 +128,7 @@ elif args.mode == 'compute_matrix':
 
 elif args.mode == 'print_matrix':
     coefficients = np.loadtxt('coefficients_matrix.dat')
-    relative_dampings = 10**np.linspace(-1, 2, 20)
+    relative_dampings = 10**np.linspace(-0.5, 1, 15)
     relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
     x, y = np.meshgrid(relative_dampings, relative_wavelengths)
 

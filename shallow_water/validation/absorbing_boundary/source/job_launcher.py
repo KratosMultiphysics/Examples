@@ -7,7 +7,7 @@ command_execution = 'sbatch --job-name {} run.sh'  # parallel run
 count = 0
 
 output_base_name = 'time_series_{}long_{}damp'
-relative_dampings = 10**np.linspace(-1, 2, 20)
+relative_dampings = 10**np.linspace(-0.5, 1, 15)
 relative_wavelengths = np.array([0.5, 0.7, 1.0, 2.0, 3.0, 5.0])
 
 for l, rel_distance in enumerate(relative_wavelengths):
