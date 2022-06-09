@@ -31,10 +31,10 @@ class ConvergenceAnalysis:
         self.filter = self._TrueFilter()
 
 
-    def SetFilter(self, *, label=None, time=None):
+    def SetFilter(self, *, time=None, **kwargs):
         '''Override the current filter.'''
         self.filter = self._TrueFilter()
-        self.AddFilter(label=label, time=time)
+        self.AddFilter(time=time, **kwargs)
 
 
     def AddFilter(self, *, time=None, **kwargs):
@@ -146,7 +146,7 @@ class ConvergenceAnalysis:
     @staticmethod
     def _ReadData(filename):
         path = Path(filename).with_suffix('.dat')
-        df = pd.read_csv(path, delimiter=r'\s+|\t+|\s+\t+|\t+\s+', skiprows=1, escapechar="#", engine='python')
+        df = pd.read_csv(path, delim_whitespace=True, comment='#')
         return df
 
 
