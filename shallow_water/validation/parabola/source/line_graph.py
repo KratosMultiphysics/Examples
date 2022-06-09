@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def ReadDataFrame(file_name):
-    df = pd.read_csv(file_name, sep='\s+', skiprows=1)
-    df.columns = df.columns.str.replace('#', '')
+    df = pd.read_csv(file_name, sep='\s+', skiprows=1, escapechar='#')
     return df
 
 time = '1.0'

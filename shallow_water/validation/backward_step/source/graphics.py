@@ -8,10 +8,7 @@ sys.path.append('/graphics/')
 time = 0.5
 
 def ReadDataFrame(file_name):
-    rows = 5
-    df = pd.read_csv(file_name, sep='\s+', skiprows=5)
-    df.columns = df.columns.str.replace('[#,@,&]', '', regex=True)
-    df.sort_values('position', inplace=True)
+    df = pd.read_csv(file_name, sep='\s+', skiprows=1, escapechar="#")
     return df
 
 times = [0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0]
@@ -32,7 +29,7 @@ ax.plot([5,5], [-0.003,0.025], color='lightgray', linewidth=5)
 for i in range(0, len(times)):
     c = colors[i]
     l = '$t={}$'.format(times[i])
-    df[i].plot(x='position', y='FREE_SURFACE_ELEVATION', ax=ax, color=c, label=l)
+    df[i].plot(x='X', y='FREE_SURFACE_ELEVATION', ax=ax, color=c, label=l)
 
 ax.legend(bbox_to_anchor=(1.15, 1.05))
 ax.set_xlabel('Position $[m]$')

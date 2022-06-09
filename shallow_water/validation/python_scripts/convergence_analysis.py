@@ -146,8 +146,7 @@ class ConvergenceAnalysis:
     @staticmethod
     def _ReadData(filename):
         path = Path(filename).with_suffix('.dat')
-        df = pd.read_csv(path, delimiter=r'\s+|\t+|\s+\t+|\t+\s+', skiprows=1, engine='python')
-        df.columns = df.columns.str.replace('#','')
+        df = pd.read_csv(path, delimiter=r'\s+|\t+|\s+\t+|\t+\s+', skiprows=1, escapechar="#", engine='python')
         return df
 
 

@@ -4,8 +4,7 @@ import pandas as pd
 path = "mass_conservation"
 
 def ReadDataFrame(file_name):
-    df = pd.read_csv(file_name, sep='\s+', skiprows=1)
-    df.columns = df.columns.str.replace('#', '')
+    df = pd.read_csv(file_name, sep='\s+', skiprows=1, escapechar='#')
     return df
 
 def PrintTotalMassConservation(ax, identifier="", label=""):
