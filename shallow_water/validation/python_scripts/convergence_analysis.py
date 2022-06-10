@@ -159,7 +159,7 @@ class ConvergenceAnalysis:
         if ref_variable is not None:
             error /= self.data[ref_variable]
         increments = self.data[increment_names[convergence]]
-        return error[self.filter], increments[self.filter]
+        return error[self.filter].reset_index(drop=True), increments[self.filter].reset_index(drop=True)
 
 
     def _SetLabels(self, convergence, ax):
