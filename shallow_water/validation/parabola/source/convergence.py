@@ -11,11 +11,6 @@ convergence = ConvergenceAnalysis(filename='convergence', area=10)
 # slope = convergence.Slope("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT")
 # print("slope :  ", slope)
 
-gj_err = convergence.data[convergence.data['label']=='gj_fic']["HEIGHT_ERROR"] * 0.5
-convergence.data.loc[convergence.data['label']=='gj_fic',"HEIGHT_ERROR"] = gj_err
-gj_err = convergence.data[convergence.data['label']=='gj_none']["HEIGHT_ERROR"] * 0.5
-convergence.data.loc[convergence.data['label']=='gj_none',"HEIGHT_ERROR"] = gj_err
-
 plt.style.use('seaborn-deep')
 fig, ax = plt.subplots()
 
