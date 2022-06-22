@@ -58,8 +58,8 @@ def HROM():
 
 
 if __name__ == "__main__":
-    #FOM()
+    FOM()
     #TrainROM()
-    ROM()
+    #ROM()
     #TrainHROM()
     #HROM()
