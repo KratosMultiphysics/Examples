@@ -6,31 +6,35 @@ from KratosMultiphysics.ShallowWaterApplication.shallow_water_analysis import Sh
 from KratosMultiphysics.ShallowWaterApplication.utilities import benchmarking_utilities as utils
 
 parser = argparse.ArgumentParser()
-mode = parser.add_mutually_exclusive_group()
-mode.add_argument("-r", "--regular_analysis", action="store_const", dest="mode", const="regular_analysis", default="regular_analysis")
-mode.add_argument("-c", "--convergence_analysis", action="store_const", dest="mode", const="convergence_analysis")
+parser.add_argument("--time_step", type=float)
+parser.add_argument("--courant_number", type=float)
+parser.add_argument("--automatic_time_step", type=bool)
+parser.add_argument("--shock_capturing_type", type=str)
+parser.add_argument("--input_filename", type=str)
+parser.add_argument("--output_filename", type=str)
+parser.add_argument("--analysis_label", type=str)
+parser.add_argument("--remove_output", type=bool, default=False)
 args = parser.parse_args()
 
 with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
-if args.mode == "regular_analysis":
-    utils.RunCase(ShallowWaterAnalysis, parameters)
-else:
-    meshes = [2.0, 1.0, 0.5, 0.2, 0.1]
-    steps = [0.005] * len(meshes)
-    steps[-1] = 0.002
-    input_base_name = 'mac_donald_{}'
-    output_base_name = 'shock'
-    output_base_path = '{}'
-    case = parameters.Clone()
-    for mesh, time_step in zip(meshes, steps):
-        input_name = input_base_name.format(mesh)
-        output_name = output_base_name.format(mesh)
-        output_path = output_base_path.format(mesh)
-        case['solver_settings']['model_import_settings']['input_filename'].SetString(input_name)
-        case['solver_settings']['time_stepping']['time_step'].SetDouble(time_step)
-        utils.GetProcessParameters(case['output_processes'], 'gid_output_process')['output_name'].SetString(output_path + '/' + output_name)
-        utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['file_name'].SetString(output_name)
-        utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['output_path'].SetString(output_path)
-        utils.RunCase(ShallowWaterAnalysis, case)
+if args.time_step is not None:
+    parameters['solver_settings']['time_stepping']['time_step'].SetDouble(args.time_step)
+if args.courant_number is not None:
+    parameters['solver_settings']['time_stepping']['courant_number'].SetDouble(args.courant_number)
+if args.automatic_time_step is not None:
+    parameters['solver_settings']['time_stepping']['automatic_time_step'].SetBool(args.automatic_time_step)
+if args.shock_capturing_type is not None:
+    parameters['solver_settings']['shock_capturing_type'].SetString(args.shock_capturing_type)
+if args.input_filename is not None:
+    utils.GetModelerParameters(parameters['modelers'], 'import_mdpa_modeler')['input_filename'].SetString(args.input_filename)
+if args.output_filename is not None:
+    utils.GetProcessParameters(parameters['output_processes'], 'convergence_output_process')['file_name'].SetString(args.output_filename)
+if args.analysis_label is not None:
+    utils.GetProcessParameters(parameters['output_processes'], 'convergence_output_process')['analysis_label'].SetString(args.analysis_label)
+if args.remove_output:
+    utils.KeepOnlyThisProcess(parameters['output_processes'], 'convergence_output_process')
+
+model = KratosMultiphysics.Model()
+ShallowWaterAnalysis(model, parameters).Run()

@@ -1,22 +1,30 @@
 # exclude the custom post process files
 *.dat
-*.hdf5
 *.pdf
 *.png
-*.grf
+
+# exclude execution files
+*.out
+*.err
+*.sh
 
 # exclude the auxiliary GiD files
-**/*gid/*.err
 **/*gid/*.info
+**/*gid/*.err
 **/*gid/*.msh
 **/*gid/*.png
-**/*gid/*.vv
 
-# and exclude the GiD pre-process files
+# exclude the GiD pre-process files
 **/*gid/*.json
 **/*gid/*.mdpa
 **/*gid/*.py
 
-# and include a data folder
-!**/data/*.png
-!**/data/*.pdf
+# exclude other GiD and graphical files
+*.grf
+*.svg
+*.vv
+
+# and reinclude useful files in the data folder
+!**/data/**/*.dat
+!**/data/**/*.png
+!**/data/**/*.pdf

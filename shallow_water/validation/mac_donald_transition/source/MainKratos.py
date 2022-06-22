@@ -15,7 +15,8 @@ with open("ProjectParameters.json",'r') as parameter_file:
     parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
 if args.mode == "regular_analysis":
-    utils.RunCase(ShallowWaterAnalysis, parameters)
+    model = KratosMultiphysics.Model()
+    ShallowWaterAnalysis(model, parameters).Run()
 else:
     meshes = [2.0, 1.0, 0.5, 0.2, 0.1]
     steps = [0.005] * len(meshes)
@@ -33,4 +34,5 @@ else:
         utils.GetProcessParameters(case['output_processes'], 'gid_output_process')['output_name'].SetString(output_path + '/' + output_name)
         utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['file_name'].SetString(output_name)
         utils.GetProcessParameters(case['output_processes'], 'nodes_output_process')['output_path'].SetString(output_path)
-        utils.RunCase(ShallowWaterAnalysis, case)
+        model = KratosMultiphysics.Model()
+        ShallowWaterAnalysis(model, case).Run()

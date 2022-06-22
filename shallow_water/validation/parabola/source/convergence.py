@@ -1,26 +1,37 @@
 import matplotlib.pyplot as plt
-from KratosMultiphysics.ShallowWaterApplication.benchmarks.tools.convergence_plotter import ConvergencePlotter
+import sys, os
+sys.path.append(os.path.join('..','..'))
+from python_scripts.convergence_analysis import ConvergenceAnalysis
 
-convergence = ConvergencePlotter(file_name='gjv/convergence', area=10)
-convergence.AddFilter(time=1.0)
-convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", marker='o')
-convergence.PrintLatexTable("HEIGHT_ERROR", "EXACT_HEIGHT")
 
+convergence = ConvergenceAnalysis(filename='convergence', area=10)
+# convergence.AddFilter(label='label', time=1.0)
+# convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", marker='o')
+# convergence.PrintLatexTable("HEIGHT_ERROR", "EXACT_HEIGHT")
+# slope = convergence.Slope("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT")
+# print("slope :  ", slope)
+
+plt.style.use('seaborn-deep')
+fig, ax = plt.subplots()
+
+convergence.AddFilter(label='rv_fic', time=1.0)
+convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='o', label='RV')
+
+convergence.SetFilter(label='gj_fic', time=1.0)
+convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='^', label='GJV')
+
+convergence.SetFilter(label='fc_fic', time=1.0)
+convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='s', label='FC')
+
+# convergence.SetFilter(label='rv_none', time=1.0)
+# convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='o', label='RV w/o stab', color='C0', linestyle='--')
+
+convergence.SetFilter(label='gj_none', time=1.0)
+convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='^', label='GJV w/o stab', color='C1', linestyle='--', alpha=.5)
+
+convergence.SetFilter(label='fc_none', time=1.0)
+convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", ax=ax, marker='s', label='FC w/o stab', color='C2', linestyle='--', alpha=.5)
+
+fig.tight_layout()
+ax.legend()
 plt.show()
-
-# rv_convergence = ConvergencePlotter(file_name='rv/convergence', area=area)
-# rv_results = rv_convergence.TimeFilter(time=time)
-# rv_slope = rv_convergence.Slope("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", filter=rv_results)
-# rv_convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", filter=rv_results, marker='o', label='RV')
-
-# gjv_convergence = ConvergencePlotter(file_name='gjv/convergence', area=area)
-# gjv_results = gjv_convergence.TimeFilter(time=time)
-# gjv_slope = gjv_convergence.Slope("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", filter=gjv_results)
-# gjv_convergence.Plot("spatial", "HEIGHT_ERROR", "EXACT_HEIGHT", filter=gjv_results, marker='^', label='GJV', linestyle='dashed')
-
-# print("slope rv:  ", rv_slope)
-# print("slope gjv: ", gjv_slope)
-
-# plt.tight_layout()
-# plt.legend()
-# plt.show()

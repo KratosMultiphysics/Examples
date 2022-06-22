@@ -3,7 +3,7 @@
         "problem_name"               : "solitary_wave",
         "parallel_type"              : "OpenMP",
         "start_time"                 : 0.0,
-        "end_time"                   : 20.0,
+        "end_time"                   : 60.0,
         "echo_level"                 : 0
     },
     "modelers"                   : [{
@@ -47,7 +47,7 @@
             "python_module"   : "set_topography_process",
             "Parameters"      : {
                 "model_part_name"  : "main_model_part.Topography_topography2",
-                "value"            : "-1.0 + 0.008 * (x-100)"
+                "value"            : "-1.0" // + 0.008 * (x-100)"
             }
         }],
         "initial_conditions_process_list"  : [{
@@ -91,46 +91,29 @@
                 "value"           : [0.0,null,null]
             }
         }],
-        "gauges_process_list" : [{
-            "python_module"   : "point_output_process",
+        "auxiliary_process_list" : [{
+            "python_module"   : "multiple_points_output_process",
             "kratos_module"   : "KratosMultiphysics",
             "Parameters"      : {
                 "model_part_name"      : "main_model_part",
-                "position"             : [20.0, 0.0, 0.0],
+                "positions"            : [
+                    [ 20.0, 0.0, 0.0],
+                    [ 50.0, 0.0, 0.0],
+                    [150.0, 0.0, 0.0]
+                ],
                 "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
                 "output_file_settings" : {
-                    "file_name"            : "gauge_20",
+                    "file_name"            : "gauge",
                     "output_path"          : "gauges"
                 }
             }
         },{
-            "python_module"   : "point_output_process",
-            "kratos_module"   : "KratosMultiphysics",
-            "Parameters"      : {
-                "model_part_name"      : "main_model_part",
-                "position"             : [50.0, 0.0, 0.0],
-                "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
-                "output_file_settings" : {
-                    "file_name"            : "gauge_50",
-                    "output_path"          : "gauges"
-                }
-            }
-        },{
-            "python_module"   : "point_output_process",
-            "kratos_module"   : "KratosMultiphysics",
-            "Parameters"      : {
-                "model_part_name"      : "main_model_part",
-                "position"             : [150.0, 0.0, 0.0],
-                "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
-                "output_file_settings" : {
-                    "file_name"            : "gauge_150",
-                    "output_path"          : "gauges"
-                }
-            }
+            "python_module"   : "timer_process",
+            "kratos_module"   : "KratosMultiphysics"
         }]
     },
     "output_processes" : {
-        "gid_output" : [{
+        "output" : [{
             "python_module" : "gid_output_process",
             "kratos_module" : "KratosMultiphysics",
             "Parameters"    : {
@@ -150,8 +133,7 @@
                     }
                 }
             }
-        }],
-        "custom_output" : [{
+        },{
             "python_module" : "line_graph_output_process",
             "kratos_module" : "KratosMultiphysics.ShallowWaterApplication.postprocess",
             "Parameters"    : {
@@ -162,13 +144,12 @@
                 "end_point"               : [80.0, 0.5, 0.0],
                 "sampling_points"         : 200,
                 "output_variables"        : ["FREE_SURFACE_ELEVATION"],
-                "historical_value"        : true,
                 "search_configuration"    : "initial",
                 "search_tolerance"        : 1e-6,
                 "print_format"            : "{:.6f}",
                 "time_format"             : "{:.1f}",
                 "output_file_settings"    : {
-                    "file_name"               : "boussinesq",
+                    "file_name"               : "line_graph",
                     "output_path"             : "line_graph"
                 },
                 "output_control_settings" : {
