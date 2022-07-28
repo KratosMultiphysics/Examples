@@ -55,7 +55,7 @@ In oder to obtain such a ROM, a campain of expensive Full Order Model FOM simula
 
 ## The workflow
 
-We have defined 5 stages of the workflow, each of which finds a one-to-one correspondance to the functions included in the file [WorkflowExample.py](https://github.com/KratosMultiphysics/Examples/blob/eFlows4HPC_M20/eFlows4HPC/ROM_workflow/WorkflowExample.py)
+We have defined 5 stages of the workflow, each of which finds a one-to-one correspondance to the functions included in the file [WorkflowExample.py](./WorkflowExample.py) 
 
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/workflowcorrect.png"></p>
