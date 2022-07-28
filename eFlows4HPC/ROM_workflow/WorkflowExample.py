@@ -589,7 +589,7 @@ if __name__ == '__main__':
     - stores the results in a distributed array
     """
 
-    #compare_FOM_vs_ROM(SnapshotsMatrix, SnapshotsMatrixROM)
+    compare_FOM_vs_ROM(SnapshotsMatrix, SnapshotsMatrixROM)
     """
     - Computes the Frobenius norm of the difference of Snapshots FOM and ROM
     - TODO add more parameters in a smart way if norm is above a given threshold
@@ -612,7 +612,7 @@ if __name__ == '__main__':
     """
 
 
-    #compare_ROM_vs_HROM(SnapshotsMatrixROM, SnapshotsMatrixHROM)
+    compare_ROM_vs_HROM(SnapshotsMatrixROM, SnapshotsMatrixHROM)
     """
     - Computes the Frobenius norm of the difference of Snapshots ROM and HROM
     - TODO add more parameters in a smart way if norm is above a given threshold
