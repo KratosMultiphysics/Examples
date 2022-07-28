@@ -153,4 +153,16 @@ enqueue_compss \
 
 ## Checking the results
 
+The graph of the job allows to see the execution order of the tasks.
+
+In this example the graph generated looks like this
+
+<p align=center><img height="72.125%" width="72.125%" src="./data/workflow_graph.JPG"></p>
+
+Where the coloured circles represent the following tasks
+
+<p align=center><img height="50.125%" width="50.125%" src="./data/tasks.png"></p>
+
+
+Moreover, two numpy files are obtained representing each of the two validation stages in [the workflow](https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#the-workflow)
 
