@@ -175,7 +175,28 @@ To run with 4 processors, do
 ```shell
 mpirun -n 4 python3 test_rsvd_mpi.py
 ```
-
+The console should print something similar to:
+```shell
+ |  /           |
+ ' /   __| _` | __|  _ \   __|
+ . \  |   (   | |   (   |\__ \
+_|\_\_|  \__,_|\__|\___/ ____/
+           Multi-Physics 9.1."3"-f669edb4d6-Release
+Compiled with threading and MPI support.
+Maximum number of threads: 2.
+MPI world size:         2.
+Importing    KratosRomApplication 
+Initializing KratosRomApplication...
+iter =  1  nC =  714.323228197348  dR =  1  R =  1
+iter =  2  nC =  9.623625390346358  dR =  20  R =  21
+iter =  3  nC =  0.3828880350912341  dR =  41  R =  62
+iter =  4  nC =  0.012828323622548663  dR =  72  R =  134
+iter =  5  nC =  0.002350716215624348  dR =  47  R =  181
+iter =  6  nC =  0.002344995353217843  dR =  20  R =  201
+iter =  7  nC =  7.641184106737887e-05  dR =  100  R =  301
+The error or reconstruction is:  9.960262742467666e-07
+```
+And a file called "LeftSingularVectors.npy" must apper. This is the matrix $U$.
 
 
 
