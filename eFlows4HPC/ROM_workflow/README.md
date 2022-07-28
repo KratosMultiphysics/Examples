@@ -124,7 +124,7 @@ pip install dislib
 
 In you own computer, use the `runcompss` command to launch the workflow. 
 
-The [WorkflowExample.py](https://github.com/KratosMultiphysics/Examples/blob/eFlows4HPC_M20/eFlows4HPC/ROM_workflow/WorkflowExample.py) expects the directory to be passed, since COMPSs works with absolute paths.
+The [WorkflowExample.py](./WorkflowExample.py) expects the directory to be passed, since COMPSs works with absolute paths.
 
 Activate tracing `-t` and graph `-g` generation flags to better analyse the results
 
