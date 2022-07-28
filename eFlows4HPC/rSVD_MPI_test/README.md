@@ -1,53 +1,32 @@
-### This HPC Workflow uses [COMPSs](https://compss-doc.readthedocs.io/en/stable/) and [dislib](https://dislib.readthedocs.io/en/release-0.7/) for the parallelization of a projection-based Reduced Order Model using the [RomApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/RomApplication) of Kratos.
+### This is a "How to?" example for using a MPI Randomized Singular Value Decomposition (rSVD).
+To test the rSVD, it is needed to compile the [RomApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/RomApplication) of Kratos.
 
+This tool can be tested through two options:
+* Using Kratos Multiphysics.
+  * Build and write the snapshots matrix with Kratos Multiphysics capabilities ([FluidDynamicsApplication (https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication)). 
+  * Read the snapshots matrix.
+  * Perform the rSVD.
+* As a blackbox.
+  * Read the snapshots matrix.
+  * Perform the rSVD.
 #### The toy model used for this example:
 
-Flow pass a cylinder in 2D
+Flow pass a cylinder in 2D (for more details [Body-fitted 100 Re cylinder](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/body_fitted_cylinder_100Re/README.md))
 
 <p align="center">
   <img src="https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/body_fitted_cylinder_100Re/data/body_fitted_cylinder_100Re_v.gif" alt="Body-fitted 100 Re cylinder velocity field [m/s]." style="width: 600px;"/>
 </p>
 
-#### The Reduced Order Model
+## How to launch the example
+### Using Kratos Multiphysics
 
 The goal of the ROM is to cheaply and fastly evaluate the solution for a given parameter of interest $\boldsymbol{\mu}$ (in this example, the inlet velocity of the fluid) 
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/surrogate.png"></p>
 
-In oder to obtain such a ROM, a campain of expensive Full Order Model FOM simulations should be launched and the collected data should be analysed.
+To obtain such a ROM, a costly Full Order Model FOM simulation campaign should be launched, and the collected data should be analyzed using a Singular Value Decomposition. The models can be found in a high-dimensional space, requiring the use of HPC (High Performance Computing) tools such as the MPI version of the Randomized Singular Value Decomposition.
 
-
-
-
-#### The workflow
-
-We have defined 5 stages of the workflow, each of which finds a one-to-one correspondance to the functions included in the file [WorkflowExample.py](https://github.com/KratosMultiphysics/Examples/blob/eFlows4HPC_M20/eFlows4HPC/ROM_workflow/WorkflowExample.py)
-
-~~~python
-simulations_data = Stage0_GetDataForSimulations()
-SnapshotsMatrix = Stage1_RunFOM(parameters, simulations_data)
-Stage2_rSVD(SnapshotsMatrix, simulations_data)
-SnapshotsMatrixROM = Stage3_RunROM(parameters, simulations_data)
-compare_FOM_vs_ROM(SnapshotsMatrix, SnapshotsMatrixROM)
-Stage4_TrainHROM(parameters, simulations_data)
-SnapshotsMatrixHROM = Stage5_RunHROM(parameters,simulations_data)
-compare_ROM_vs_HROM(SnapshotsMatrixROM, SnapshotsMatrixHROM)
-~~~
-
-
-
-<p align=center><img height="72.125%" width="72.125%" src="./data/workflow.png"></p>
-
-
-The parallelization of the Kratos simulations is done using [COMPSs](https://compss-doc.readthedocs.io/en/stable/)
-
-<p align=center><img height="72.125%" width="72.125%" src="./data/simulations_parallel.png"></p>
-
-
-Moreover, the fixed-rank randomized svd used in this workflow is implemented using [dislib](https://dislib.readthedocs.io/en/release-0.7/) and can be found HERE (PUT HERE PATH TO PARALLEL SVD ONCE IT'S MERGED)
-
-
-## How to launch the example
+To test this tool, first it is needed to build the data from the full order model.
 
 ### Requirements
 
@@ -59,13 +38,13 @@ If you compiled Kratos, add both these application to the Kratos configure file.
 
 Linux:
 ```shell
-add_app ${KRATOS_APP_DIR}/StructuralMechanicsApplication
+add_app ${KRATOS_APP_DIR}/FluidDynamicsApplication
 add_app ${KRATOS_APP_DIR}/RomApplication
 ```
 
 Windows:
 ```shell
-CALL :add_app %KRATOS_APP_DIR%/StructuralMechanicsApplication
+CALL :add_app %KRATOS_APP_DIR%/FluidDynamicsApplication
 CALL :add_app %KRATOS_APP_DIR%/RomApplication
 ```
 
@@ -75,63 +54,52 @@ pip:
 ```shell
 pip install KratosRomApplication KratosFluidDynamicsApplication
 ```
+For more details, please refear to [Kratos Multiphysics Installation](https://github.com/KratosMultiphysics/Kratos/blob/master/INSTALL.md).
 
-#### COMPSs
+The files needed to launch the simulations are the following:
+* MainKratos.py (Import Kratos, run simulation, and write snapshots matrix).
+* ProjectParameters.json (Configuration settings for solvers, processes or utilities).
+* FluidMaterials.json (Material properties).
+* Flow_past_a_cylinder.mdpa (Mesh and geometry properties).
 
-The latest version of COMPSs can be obtained [here](https://www.bsc.es/research-and-development/software-and-apps/software-list/comp-superscalar/downloads). 
-
-Building it in your local machine is a bit tricky, but a docker image is also available. 
-
-In case of doubts, or to install in a cluster, get in touch with the developers Jorge Ejarque (jorge.ejarque@bsc.es), Rosa M. Badia (rosa.m.badia@bsc.es), Support mailing list (support-compss@bsc.es).
-
-
-
-
-#### Dislib
-
-The latest version of dislib can be obtained from [here](https://github.com/bsc-wdc/dislib)
-
-Else, you can use pip
+To launch simulation, do
 
 ```shell
-pip install dislib
+python3 MainKratos.py
 ```
+The simulation must generate "SnapshotsMatrix.npy" files containing the solution of all degrees of freedom's velocity and pressure for all time steps.
+
+### Read the snapshots matrix
+
+Once the simulation was performed (or a given "SnapshotsMatrix.npy" files is given), an MPI Randomized Singular Value Decomposition can be applied.
+
+Let us refer to the "SnapshotsMatrix.npy" as $A\in\mathbb{R}^{n\timesm}$. The fixed rank SVD is already incorporated into the HPC workflow, and the workflow is presented next.
+#### STEP 1 (DISTRIBUTED): The first step is to build a random test matrix  to sample the column space of $A$:
+$$Y=A\Omega$$
+#### STEP 2 (DISTRIBUTED): For this step, a distributed tall and skinny QR described in (Citar a Demmel) and developed by the BSC group, was coupled with the randomized SVD algorithm. A brief summary of the algorithm is depicted in Figure x and explained here:
+For instance, let us consider the matrix $Y$ partitioned into 4 tasks:
+$$Y=\left(\begin{array}{c}
+Y_1\\
+Y_2\\
+Y_3\\
+Y_4
+\end{array}\right)$$
+Compute the serial QR decomposition on each task:
+
+Collect into a single task the R factors and perform a serial QR decomposition:
+
+Scatter the  factors to the different tasks and multiply them to emit the final :
 
 
-### Launching the example
+#### STEP 3 (DISTRIBUTED): It is now possible to project  into a much smaller space with the help of :
 
-#### Local machine
+.
+#### STEP 4 (SERIAL): Obtain the economy SVD on  and truncate the desired rank :
 
-In you own computer, use the runcompss command to launch the workflow. 
+.
+#### STEP 5 (DISTRIBUTED): Obtain the left singular vectors of  of the desired rank  by projecting  into :
 
-The [WorkflowExample.py](https://github.com/KratosMultiphysics/Examples/blob/eFlows4HPC_M20/eFlows4HPC/ROM_workflow/WorkflowExample.py) expects the directory to be passed, since COMPSs works with absolute paths.
+.
 
-Activate tracing -t and graph -g generation flags to better analyse the results
-
-So, in order to launch the workflow, do
-
-```shell
-runcompss --lang=python --python_interpreter=python3 -g WorkflowExample.py $PWD
-```
-
-
-#### Cluster
-
-In a cluster, use the enqueue_compss command with the appropriate flags. For example: 
-
-```shell
-enqueue_compss \
- --qos=$queue \
- -t -g \
- --log_level=info \
- --base_log_dir=${base_log_dir} \
- --worker_in_master_cpus=0 \
- --max_tasks_per_node=12 \
- --exec_time=$time_limit \
- --python_interpreter=python3 \
- --num_nodes=$num_nodes WorkflowExample.py $PWD
- ```
-
-### Checking the results
 
 
