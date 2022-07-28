@@ -69,37 +69,113 @@ python3 MainKratos.py
 ```
 The simulation must generate "SnapshotsMatrix.npy" files containing the solution of all degrees of freedom's velocity and pressure for all time steps.
 
-### Read the snapshots matrix
+### Fixed Rank rSVD
 
-Once the simulation was performed (or a given "SnapshotsMatrix.npy" files is given), an MPI Randomized Singular Value Decomposition can be applied.
-
-Let us refer to the "SnapshotsMatrix.npy" as $A\in\mathbb{R}^{n\timesm}$. The fixed rank SVD is already incorporated into the HPC workflow, and the workflow is presented next.
+Let us refer to the "SnapshotsMatrix.npy" as $A\in\mathbb{R}^{n\times m}$. The fixed rank SVD is already incorporated into the HPC workflow, and the workflow is presented next.
 #### STEP 1 (DISTRIBUTED): The first step is to build a random test matrix  to sample the column space of $A$:
 $$Y=A\Omega$$
-#### STEP 2 (DISTRIBUTED): For this step, a distributed tall and skinny QR described in (Citar a Demmel) and developed by the BSC group, was coupled with the randomized SVD algorithm. A brief summary of the algorithm is depicted in Figure x and explained here:
+#### STEP 2 (DISTRIBUTED): For this step, a distributed tall and skinny QR described in (Citar a Demmel) and developed by the BSC group, was coupled with the randomized SVD algorithm. A brief summary of the algorithm is explained here:
 For instance, let us consider the matrix $Y$ partitioned into 4 tasks:
-$$Y=\left(\begin{array}{c}
+
+$$
+Y=
+\begin{bmatrix}
 Y_1\\
 Y_2\\
 Y_3\\
 Y_4
-\end{array}\right)$$
+\end{bmatrix}
+$$
+
 Compute the serial QR decomposition on each task:
+
+$$
+Y=
+\begin{bmatrix}
+Q_{11} & 0 & 0 & 0 \\
+0 & Q_{21} & 0 & 0 \\
+0 & 0 & Q_{31} & 0 \\
+0 & 0 & 0 & Q_{41} 
+\end{bmatrix}
+\begin{bmatrix}
+R_1\\
+R_2\\
+R_3\\
+R_4
+\end{bmatrix}
+$$
 
 Collect into a single task the R factors and perform a serial QR decomposition:
 
-Scatter the  factors to the different tasks and multiply them to emit the final :
+$$
+\begin{bmatrix}
+R_1\\
+R_2\\
+R_3\\
+R_4
+\end{bmatrix}=
+\begin{bmatrix}
+Q_{12}\\
+Q_{22}\\
+Q_{32}\\
+Q_{42}
+\end{bmatrix}
+\tilde{R}
+$$
+
+Scatter the $Q_{i2}$ factors to the different tasks and multiply them to emit the final $Q$:
+
+$$
+Q=
+\begin{bmatrix}
+Q_{11} & 0 & 0 & 0 \\
+0 & Q_{21} & 0 & 0 \\
+0 & 0 & Q_{31} & 0 \\
+0 & 0 & 0 & Q_{41} 
+\end{bmatrix}
+\begin{bmatrix}
+Q_{12}\\
+Q_{22}\\
+Q_{32}\\
+Q_{42}
+\end{bmatrix}=
+\begin{bmatrix}
+Q_{11} & Q_{12}\\
+Q_{21} & Q_{22}\\
+Q_{31} & Q_{12}\\
+Q_{41} & Q_{42}
+\end{bmatrix}
+$$
 
 
-#### STEP 3 (DISTRIBUTED): It is now possible to project  into a much smaller space with the help of :
+#### STEP 3 (DISTRIBUTED): It is now possible to project $A$ into a much smaller space with the help of $Q$:
+$$Y=Q\tilde{R}$$
 
-.
-#### STEP 4 (SERIAL): Obtain the economy SVD on  and truncate the desired rank :
+#### STEP 4 (SERIAL): Obtain the economy SVD on $B$ and truncate the desired rank r:
 
-.
-#### STEP 5 (DISTRIBUTED): Obtain the left singular vectors of  of the desired rank  by projecting  into :
+$$
+B=Q^TA
+$$
 
-.
+#### STEP 5 (DISTRIBUTED): Obtain the left singular vectors of $A$ of the desired rank $r$ by projecting $\tilde{U}_B$ into $Q$:
+$$B=U_B\Sigma_B V^T_B\approx \tilde{U}_b \tilde{\Sigma}_B \tilde{V}^T_B$$
+
+### Fixed Precision rSVD
+The fixed precision SVD is already implemented to be used as a blackbox for data in MPI. However, it is not yet incorporated into the PyCOMPSs workflow. The crucial difference is that the random test matrix is now incremental $\Omega => \Delta \Omega$, such that in step 3, one can check for a given error tolerance $\epsilon_u$, if the following condition is satisfied:
+$$\|A-QQ^TA\|_F\leq \epsilon_u \|A\|_F$$
+Note that $\|A-QQ^TA\|_F\leq \epsilon_u \|A\|_F$ is an expensive computation, and therefore, this check is only performed on the increments (orthogonal complements). 
+
+
+### Read the snapshots matrix and run the rSVD with MPI
+Once the simulation was performed (or a given "SnapshotsMatrix.npy" files is given), an MPI Randomized Singular Value Decomposition can be applied.
+The file that calls the implementation is:
+* test_rsvd_mpi.py
+
+To run with 4 processors, do
+```shell
+mpirun -n 4 python3 test_rsvd_mpi.py
+```
+
 
 
 
