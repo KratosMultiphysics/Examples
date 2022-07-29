@@ -1,8 +1,8 @@
-### This is a "How to?" example for using a MPI Randomized Singular Value Decomposition (rSVD).
+### This is a "How-to" example for testing the MPI Randomized Singular Value Decomposition (rSVD).
 To test the rSVD, it is needed to compile the [RomApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/RomApplication) of Kratos.
 This tool can be tested through two options:
 * Using Kratos Multiphysics.
-  * Build and write the snapshots matrix with Kratos Multiphysics capabilities ([FluidDynamicsApplication (https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication)). 
+  * Build and write the snapshots matrix with Kratos Multiphysics capabilities ([FluidDynamicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication)). 
   * Read the snapshots matrix.
   * Perform the rSVD.
 * As a blackbox.
@@ -85,7 +85,7 @@ To launch simulation, do
 ```shell
 python3 MainKratos.py
 ```
-The simulation must generate "SnapshotsMatrix.npy" files containing the solution of all degrees of freedom's velocity and pressure for all time steps.
+The simulation must generate a "SnapshotsMatrix.npy" file containing the solution of all degrees of freedom's velocity and pressure for all time steps.
 
 ### Fixed Rank rSVD
 
@@ -185,7 +185,7 @@ Note that $\|A-QQ^TA\|_F\leq \epsilon_u \|A\|_F$ is an expensive computation, an
 
 
 ### Read the snapshots matrix and run the rSVD with MPI
-Once the simulation was performed (or a given "SnapshotsMatrix.npy" files is given), an MPI Randomized Singular Value Decomposition can be applied.
+Once the simulation was performed (or a given "SnapshotsMatrix.npy" file is given), an MPI Randomized Singular Value Decomposition can be applied.
 The file that calls the implementation is:
 * test_rsvd_mpi.py
 
