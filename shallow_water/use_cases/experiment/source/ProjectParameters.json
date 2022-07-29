@@ -71,6 +71,25 @@
                     }
                 }
             }
+        },{
+            "python_module"   : "multiple_points_output_process",
+            "kratos_module"   : "KratosMultiphysics",
+            "Parameters"      : {
+                "model_part_name"      : "model_part",
+                "positions"            : [
+                    [ 2.65,  1.15, 0.0],
+                    [ 2.65, -0.60, 0.0],
+                    [ 4.00,  1.15, 0.0],
+                    [ 4.00, -0.80, 0.0],
+                    [ 5.20,  0.30, 0.0],
+                    [-1.87,  1.10, 0.0]
+                ],
+                "output_variables"     : ["HEIGHT","VELOCITY"],
+                "output_file_settings" : {
+                    "file_name"               : "gauge",
+                    "output_path"             : ""
+                }
+            }
         }]
     },
     "processes"    : {
@@ -197,25 +216,6 @@
             }
         }],
         "auxiliary_process_list" : [{
-            "python_module"   : "multiple_points_output_process",
-            "kratos_module"   : "KratosMultiphysics",
-            "Parameters"      : {
-                "model_part_name"      : "model_part",
-                "positions"            : [
-                    [ 2.65,  1.15, 0.0],
-                    [ 2.65, -0.60, 0.0],
-                    [ 4.00,  1.15, 0.0],
-                    [ 4.00, -0.80, 0.0],
-                    [ 5.20,  0.30, 0.0],
-                    [-1.87,  1.10, 0.0]
-                ],
-                "output_variables"     : ["HEIGHT","VELOCITY"],
-                "output_file_settings" : {
-                    "file_name"               : "gauge",
-                    "output_path"             : ""
-                }
-            }
-        },{
             "kratos_module" : "KratosMultiphysics.ShallowWaterApplication.postprocess",
             "python_module" : "auxiliary_nodes_visualization_process",
             "Parameters"    : {
