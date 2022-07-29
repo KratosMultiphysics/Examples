@@ -1,11 +1,5 @@
 ### This is a "How to?" example for using a MPI Randomized Singular Value Decomposition (rSVD).
 To test the rSVD, it is needed to compile the [RomApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/RomApplication) of Kratos.
-
-# Content
-* [How to launch the example][presentation]
-    
-[presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#How-to-launch-the-example
-
 This tool can be tested through two options:
 * Using Kratos Multiphysics.
   * Build and write the snapshots matrix with Kratos Multiphysics capabilities ([FluidDynamicsApplication (https://github.com/KratosMultiphysics/Kratos/tree/master/applications/FluidDynamicsApplication)). 
@@ -14,7 +8,26 @@ This tool can be tested through two options:
 * As a blackbox.
   * Read the snapshots matrix.
   * Perform the rSVD.
-#### The toy model used for this example:
+
+# Content
+* [Toy model used for this example][toy_model]
+* [How to launch the example][presentation]
+  * [Using Kratos Multiphysics][using_kratos]
+  * [Requirements][requirements]
+* [Fixed Rank rSVD][fixed_rank_rsvd]
+  * [Fixed Precision rSVD][fixed_precision_rsvd]
+* [Read the snapshots matrix and run the rSVD with MPI][read_and_test]
+    
+[toy_model]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Toy-model-used-for-this-example
+[presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#How-to-launch-the-example
+[using_kratos]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Using-kratos-multiphysics
+[requirements]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Requirements
+[fixed_rank_rsvd]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Fixed-rank-rsvd
+[fixed_precision_rsvd]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Fixed-precision-rsvd
+[read_and_test]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/rSVD_MPI_test#Read-the-snapshots-matrix-and-run-the-rSVD-with-MPI
+
+
+#### The toy model used for this example
 
 Flow pass a cylinder in 2D (for more details [Body-fitted 100 Re cylinder](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/body_fitted_cylinder_100Re/README.md))
 
@@ -165,7 +178,7 @@ $$
 #### STEP 5 (DISTRIBUTED): Obtain the left singular vectors of $A$ of the desired rank $r$ by projecting $\tilde{U}_B$ into $Q$:
 $$B=U_B\Sigma_B V^T_B\approx \tilde{U}_b \tilde{\Sigma}_B \tilde{V}^T_B$$
 
-### Fixed Precision rSVD
+#### Fixed Precision rSVD
 The fixed precision SVD is already implemented to be used as a blackbox for data in MPI. However, it is not yet incorporated into the PyCOMPSs workflow. The crucial difference is that the random test matrix is now incremental $\Omega => \Delta \Omega$, such that in step 3, one can check for a given error tolerance $\epsilon_u$, if the following condition is satisfied:
 $$\|A-QQ^TA\|_F\leq \epsilon_u \|A\|_F$$
 Note that $\|A-QQ^TA\|_F\leq \epsilon_u \|A\|_F$ is an expensive computation, and therefore, this check is only performed on the increments (orthogonal complements). 
