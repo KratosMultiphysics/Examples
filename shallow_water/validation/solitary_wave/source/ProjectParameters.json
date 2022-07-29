@@ -19,12 +19,15 @@
         "model_part_name"            : "main_model_part",
         "domain_size"                : 2,
         "gravity"                    : 9.81,
+        "time_integration_scheme"    : "Adams-Moulton",
+        "time_integration_order"     : 4,
         "material_import_settings"   : {
             "materials_filename"         : "TopographyMaterials.json"
         },
         "maximum_iterations"         : 5,
         "echo_level"                 : 0,
-        "stabilization_factor"       : 0.05,
+        "stabilization_factor"       : 0.005,
+        "shock_capturing_factor"     : 0.0,
         "linear_solver_settings"     : {
             "solver_type"                : "amgcl"
         },
@@ -92,22 +95,6 @@
             }
         }],
         "auxiliary_process_list" : [{
-            "python_module"   : "multiple_points_output_process",
-            "kratos_module"   : "KratosMultiphysics",
-            "Parameters"      : {
-                "model_part_name"      : "main_model_part",
-                "positions"            : [
-                    [ 20.0, 0.0, 0.0],
-                    [ 50.0, 0.0, 0.0],
-                    [150.0, 0.0, 0.0]
-                ],
-                "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
-                "output_file_settings" : {
-                    "file_name"            : "gauge",
-                    "output_path"          : "gauges"
-                }
-            }
-        },{
             "python_module"   : "timer_process",
             "kratos_module"   : "KratosMultiphysics"
         }]
@@ -127,7 +114,7 @@
                         "body_output"                 : true,
                         "node_output"                 : false,
                         "skin_output"                 : false,
-                        "nodal_results"               : ["VELOCITY","FREE_SURFACE_ELEVATION","ACCELERATION","VELOCITY_LAPLACIAN","TOPOGRAPHY"],
+                        "nodal_results"               : ["VELOCITY","FREE_SURFACE_ELEVATION","ACCELERATION","DISPERSION_H","DISPERSION_V","TOPOGRAPHY"],
                         "gauss_point_results"         : [],
                         "nodal_nonhistorical_results" : []
                     }
@@ -155,6 +142,22 @@
                 "output_control_settings" : {
                     "output_control_type"     : "time",
                     "time_frequency"          : 2.0
+                }
+            }
+        },{
+            "python_module"   : "multiple_points_output_process",
+            "kratos_module"   : "KratosMultiphysics",
+            "Parameters"      : {
+                "model_part_name"      : "main_model_part",
+                "positions"            : [
+                    [ 20.0, 0.0, 0.0],
+                    [ 50.0, 0.0, 0.0],
+                    [150.0, 0.0, 0.0]
+                ],
+                "output_variables"     : ["FREE_SURFACE_ELEVATION","VELOCITY"],
+                "output_file_settings" : {
+                    "file_name"            : "gauge",
+                    "output_path"          : "gauges"
                 }
             }
         }]

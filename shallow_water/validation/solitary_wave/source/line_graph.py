@@ -8,6 +8,7 @@ import KratosMultiphysics.ShallowWaterApplication.utilities.solitary_wave_utilit
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-t','--time', help="time or array of times", default=[4, 8, 12], nargs='+')
+parser.add_argument('-p','--path', help="the path to the files", default="line_graph", type=str)
 parser.add_argument('--analytical',    dest='analytical', action='store_true')
 parser.add_argument('--no-analytical', dest='analytical', action='store_false')
 parser.set_defaults(analytical=False)
@@ -17,7 +18,7 @@ args = parser.parse_args()
 amplitude = 0.1
 x_shift = 0
 x_end = 73
-results_pattern = 'line_graph/line_graph_{:.1f}.dat'
+results_pattern = '{}/line_graph_{:.1f}.dat'
 
 
 def plot_data(data, ax, **kwargs):
@@ -38,9 +39,9 @@ def analytical_data(time):
     return df
 
 
-def plot_gauge(time, ax, **kwarg):
+def plot_gauge(time, ax, path, **kwarg):
 
-    data = read_data(results_pattern.format(time), skiprows=2, names=['x', 'y', 'z', 'f'])
+    data = read_data(results_pattern.format(path, time), skiprows=2, names=['x', 'y', 'z', 'f'])
     plot_data(data, ax, **kwarg)    
 
     if args.analytical:
@@ -56,9 +57,9 @@ mpl.style.use('seaborn-muted')
 fig, axes = plt.subplots(figsize=(8, 3))
 if hasattr(args.time, '__iter__'):
     for time in args.time:
-        plot_gauge(float(time), axes, color='k', linewidth=1)
+        plot_gauge(float(time), axes, args.path, color='k', linewidth=1)
 else:
-    plot_gauge(float(args.time), axes)
+    plot_gauge(float(args.time), axes, args.path)
 axes.set_xlabel('')
 axes.set_ylabel('')
 axes.set_xticks([])
