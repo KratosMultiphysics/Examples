@@ -70,6 +70,6 @@ An example of power sums and h-statistics of drag force, base moment, pressure f
 
 ## Refrences
 
-[1] Makarashvili, V., Merzari, E., Obabko, A., Siegel, A., & Fischer, P. (2017). A performance analysis of ensemble averaging for high fidelity turbulence simulations at the strong scaling limit. Computer Physics Communications. https://doi.org/10.1016/j.cpc.2017.05.023
+[1] Tosi, R., Núñez, M., Pons-Prats, J., Principe, J. & Rossi, R. (2022). On the use of ensemble averaging techniques to accelerate the Uncertainty Quantification of CFD predictions in wind engineering. Journal of Wind Engineering and Industrial Aerodynamics. https://doi.org/10.1016/j.jweia.2022.105105
 
 [2] Tosi, R., Amela, R., Badia, R., & Rossi, R. (2021). A parallel dynamic asynchronous framework for Uncertainty Quantification by hierarchical Monte Carlo algorithms. Journal of Scientific Computing, 89(28), 25. https://doi.org/10.1007/s10915-021-01598-6

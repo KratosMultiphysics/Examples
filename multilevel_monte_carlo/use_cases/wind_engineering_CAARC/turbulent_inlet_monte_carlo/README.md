@@ -18,7 +18,7 @@ We solve the [fluid dynamics problem](https://github.com/KratosMultiphysics/Krat
 * turbulent (wind gusts) and deterministic wind mean velocity profile inlet boundary conditions,
 * turbulent (wind gusts) and stochastic wind mean velocity profile inlet boundary conditions: reference velocity and/or roughness height are random.
 
-To reduce the time to solution, ensemble average (see [2]) can be applied to each realization with fixed boundary conditions.
+To reduce the time to solution, ensemble average (see [1]) can be applied to each realization with fixed boundary conditions.
 
 The problem can be run with two different algorithms:
 
@@ -43,10 +43,8 @@ The velocity field of the problem is shown next.
 
 An example of power sums and h-statistics of both time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
 
-In addition,a literature comparison with respect to [1] has been performed, to ensure the correctness and accuracy of our solution.
+A literature comparison has been performed to ensure the correctness and accuracy of our solution; we refer to [1] for details.
 
 ## Refrences
 
-[1] Braun, A. L., & Awruch, A. M. (2009). Aerodynamic and aeroelastic analyses on the CAARC standard tall building model using numerical simulation. Computers and Structures, 87(9–10), 564–581. https://doi.org/10.1016/j.compstruc.2009.02.002
-
-[2] Makarashvili, V., Merzari, E., Obabko, A., Siegel, A., & Fischer, P. (2017). A performance analysis of ensemble averaging for high fidelity turbulence simulations at the strong scaling limit. Computer Physics Communications. https://doi.org/10.1016/j.cpc.2017.05.023
+[1] Tosi, R., Núñez, M., Pons-Prats, J., Principe, J. & Rossi, R. (2022). On the use of ensemble averaging techniques to accelerate the Uncertainty Quantification of CFD predictions in wind engineering. Journal of Wind Engineering and Industrial Aerodynamics. https://doi.org/10.1016/j.jweia.2022.105105
