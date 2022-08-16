@@ -49,11 +49,11 @@ Three cases are run:
 
 The power sums and the h-statistics of both the time averaged and time series drag force, base moment and pressure field can be found [here](source/power_sums_outputs).
 
-We remark that the drag coefficient we estimate from the drag force is consistent with literature [3].
+The drag coefficient we estimate from the drag force is consistent with literature [3].
 
 ## References
 
-[1] Makarashvili, V., Merzari, E., Obabko, A., Siegel, A., & Fischer, P. (2017). A performance analysis of ensemble averaging for high fidelity turbulence simulations at the strong scaling limit. Computer Physics Communications. https://doi.org/10.1016/j.cpc.2017.05.023
+[1] Tosi, R., Núñez, M., Pons-Prats, J., Principe, J. & Rossi, R. (2022). On the use of ensemble averaging techniques to accelerate the Uncertainty Quantification of CFD predictions in wind engineering. Journal of Wind Engineering and Industrial Aerodynamics. https://doi.org/10.1016/j.jweia.2022.105105
 
 [2] Ayoul-Guilmard, Q., Núñez, M., Ganesh, S., Nobile, F., Rossi, R., & Tosi, R. (2020). D5.3 Report on theoretical work to allow the use of MLMC with adaptive mesh refinement.
 
