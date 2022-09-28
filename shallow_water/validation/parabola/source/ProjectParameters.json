@@ -11,7 +11,7 @@
         "modeler_name"             : "import_mdpa_modeler",
         "Parameters"               : {
             "model_part_name"          : "model_part",
-            "input_filename"           : "rectangle_0.1"
+            "input_filename"           : "rectangle_0.03"
         }
     }],
     "solver_settings"          : {
@@ -86,7 +86,24 @@
                         "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT"],
                         "nodal_flags_results"   : [],
                         "gauss_point_results"   : [],
-                        "nodal_nonhistorical_results" : ["HEIGHT_ERROR"]
+                        "nodal_nonhistorical_results" : ["HEIGHT_ERROR","DISPLACEMENT","FREE_SURFACE_ELEVATION"]
+                    }
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "gid_output_process",
+            "Parameters"      : {
+                "model_part_name"            : "topographic_model_part",
+                "output_name"                : "parabola_topography",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "output_control_type"   : "time",
+                        "output_interval"       : 0.02,
+                        "nodal_results"         : ["TOPOGRAPHY"],
+                        "nodal_flags_results"   : [],
+                        "gauss_point_results"   : [],
+                        "nodal_nonhistorical_results" : ["DISPLACEMENT"]
                     }
                 }
             }
@@ -164,6 +181,19 @@
         },{
             "kratos_module" : "KratosMultiphysics",
             "python_module" : "timer_process"
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "visualization_mesh_process",
+            "Parameters"      : {
+                "model_part_name"                : "model_part",
+                "topographic_model_part_name"    : "topographic_model_part",
+                "free_surface_deformation_mode"  : "nodal_displacement",
+                "topography_deformation_mode"    : "nodal_displacement",
+                "nodal_historical_displacement"  : false,
+                "mean_water_level"               : 0.0,
+                "nodal_variables_to_transfer"    : ["TOPOGRAPHY"],
+                "nonhistorical_variables_to_transfer" : []
+            }
         }]
     }
 }

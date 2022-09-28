@@ -53,7 +53,24 @@
                         "nodal_results"         : ["MOMENTUM","VELOCITY","HEIGHT","TOPOGRAPHY"],
                         "nodal_flags_results"   : [],
                         "gauss_point_results"   : [],
-                        "nodal_nonhistorical_results" : ["FREE_SURFACE_ERROR","FROUDE"]
+                        "nodal_nonhistorical_results" : ["FREE_SURFACE_ERROR","FROUDE","FREE_SURFACE_ELEVATION","DISPLACEMENT"]
+                    }
+                }
+            }
+        },{
+            "kratos_module"   : "KratosMultiphysics",
+            "python_module"   : "gid_output_process",
+            "Parameters"      : {
+                "model_part_name"            : "topographic_model_part",
+                "output_name"                : "mac_donald_topography",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "output_control_type"   : "time",
+                        "output_interval"       : 0.02,
+                        "nodal_results"         : ["TOPOGRAPHY"],
+                        "nodal_flags_results"   : [],
+                        "gauss_point_results"   : [],
+                        "nodal_nonhistorical_results" : ["DISPLACEMENT"]
                     }
                 }
             }
@@ -125,6 +142,19 @@
         },{
             "kratos_module" : "KratosMultiphysics",
             "python_module" : "timer_process"
+        },{
+            "kratos_module"   : "KratosMultiphysics.ShallowWaterApplication.postprocess",
+            "python_module"   : "visualization_mesh_process",
+            "Parameters"      : {
+                "model_part_name"                : "model_part",
+                "topographic_model_part_name"    : "topographic_model_part",
+                "free_surface_deformation_mode"  : "nodal_displacement",
+                "topography_deformation_mode"    : "nodal_displacement",
+                "nodal_historical_displacement"  : false,
+                "mean_water_level"               : 0.0,
+                "nodal_variables_to_transfer"    : ["TOPOGRAPHY"],
+                "nonhistorical_variables_to_transfer" : []
+            }
         }]
     }
 }
