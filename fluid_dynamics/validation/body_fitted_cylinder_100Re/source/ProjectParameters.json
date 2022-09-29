@@ -109,7 +109,7 @@
                 "variable_name"   : "VELOCITY",
                 "modulus"         : "6*y*(1-y)",
                 "direction"       : "automatic_inwards_normal",
-                "interval"        : [0,"End"]
+                "interval"        : [1,"End"]
             }
         },{
             "python_module" : "apply_outlet_process",
