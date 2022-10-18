@@ -105,7 +105,7 @@
             "process_name"  : "ParticleVTKOutputProcess",
             "Parameters"    : {
                 "model_part_name"        : "MPM_Material",
-                "folder_name"            : "granular_flow_2D_Body",
+                "output_path"            : "granular_flow_2D_Body",
                 "output_control_type"    : "time",
                 "output_interval"        : 0.01,
                 "gauss_point_results"    : ["MP_VELOCITY","MP_DISPLACEMENT"]
@@ -147,7 +147,7 @@
             "process_name"  : "VTKOutputProcess",
             "Parameters"    : {
                 "model_part_name"        : "Background_Grid",
-                "folder_name"            : "granular_flow_2D_Grid",
+                "output_path"            : "granular_flow_2D_Grid",
                 "output_control_type"    : "time",
                 "output_interval"        : 0.01,
                 "nodal_solution_step_data_variables"    : ["DISPLACEMENT","REACTION"]
