@@ -150,7 +150,7 @@
                 "folder_name"            : "granular_flow_2D_Grid",
                 "output_control_type"    : "time",
                 "output_interval"        : 0.01,
-                "nodal_solution_step_data_variables"    : ["DISPLACEMENT"]
+                "nodal_solution_step_data_variables"    : ["DISPLACEMENT","REACTION"]
             }
         }
     ]
