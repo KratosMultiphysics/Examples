@@ -88,7 +88,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_interval"    : 0.01,
+                        "output_interval"     : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -98,7 +98,20 @@
                     "point_data_configuration"  : []
                 }
             }
-        }],
+        },
+        {
+            "python_module" : "particle_vtk_output_process",
+            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
+            "process_name"  : "ParticleVTKOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "MPM_Material",
+                "folder_name"            : "granular_flow_2D_Body",
+                "output_control_type"    : "time",
+                "output_interval"        : 0.01,
+                "gauss_point_results"    : ["MP_VELOCITY","MP_DISPLACEMENT"]
+            }
+        }
+        ],
         "grid_output_process" : [{
             "python_module" : "gid_output_process",
             "kratos_module" : "KratosMultiphysics",
@@ -117,7 +130,7 @@
                         },
                         "file_label"          : "step",
                         "output_control_type" : "time",
-                        "output_interval"    : 0.01,
+                        "output_interval"     : 0.01,
                         "body_output"         : true,
                         "node_output"         : false,
                         "skin_output"         : false,
@@ -127,6 +140,19 @@
                     "point_data_configuration"  : []
                 }
             }
-        }]
+        },
+        {
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VTKOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "Background_Grid",
+                "folder_name"            : "granular_flow_2D_Grid",
+                "output_control_type"    : "time",
+                "output_interval"        : 0.01,
+                "nodal_solution_step_data_variables"    : ["DISPLACEMENT"]
+            }
+        }
+    ]
     }
 }
