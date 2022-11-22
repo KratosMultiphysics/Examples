@@ -69467,10 +69467,6 @@ Begin Elements Element2D3N// GUI group identifier: Grid Auto1
     39946          0 16895 17011 17137 
 End Elements
 
-Begin Conditions MPMGridPointLoadCondition2D1N// GUI group identifier: Load on points Auto1
-    1 0 22354
-End Conditions
-
 Begin Conditions LineCondition2D2N// GUI group identifier: Slip Auto1
     2 0 29405 27070
     3 0 27070 23315
@@ -129770,16 +129766,6 @@ Begin SubModelPart Parts_Grid_Grid_Auto1 // Group Grid Auto1 // Subtree Parts_Gr
         39946
     End SubModelPartElements
     Begin SubModelPartConditions
-    End SubModelPartConditions
-End SubModelPart
-Begin SubModelPart PointLoad2D_Load_on_points_Auto1 // Group Load on points Auto1 // Subtree PointLoad2D
-    Begin SubModelPartNodes
-        22354
-    End SubModelPartNodes
-    Begin SubModelPartElements
-    End SubModelPartElements
-    Begin SubModelPartConditions
-            1
     End SubModelPartConditions
 End SubModelPart
 Begin SubModelPart Slip2D_Slip_Auto1 // Group Slip Auto1 // Subtree Slip2D
