@@ -1,58 +1,39 @@
-#!/usr/bin/env python
-
-import time
 import sys
-import pathlib
+import time
+import importlib
 
 import KratosMultiphysics
-import KratosMultiphysics.FluidDynamicsApplication
-from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis \
-    import FluidDynamicsAnalysis
 
+def CreateAnalysisStageWithFlushInstance(cls, global_model, parameters):
+    class AnalysisStageWithFlush(cls):
 
-def abs_filepath(relative_filepath: str) -> str:
-    return str(pathlib.Path(__file__).parent.resolve()) + "/" \
-        + relative_filepath
-
-
-class FluidDynamicsAnalysisCompressible(FluidDynamicsAnalysis):
-    """
-    Modified FluidDynamicsAnalysis in order to:
-    - Print at the first step
-    - Force stdout to flush at regular intervals
-    """
-
-    def __init__(self, model, parameters, flush_frequency=10.0):
-        super().__init__(model, parameters)
-        self.flush_frequency = flush_frequency
-        self.last_flush = time.time()
-        sys.stdout.flush()
-
-    def Initialize(self):
-        super().Initialize()
-        sys.stdout.flush()
-        self.OutputSolutionStep()
-
-    def OutputSolutionStep(self):
-        self.Flush()
-        super().OutputSolutionStep()
-
-    def Flush(self, force=False):
-        if not force and self.parallel_type != "OpenMP":
-            return
-
-        now = time.time()
-        if not force and (now - self.last_flush < self.flush_frequency):
-            return
-
-        sys.stdout.flush()
-        self.last_flush = now
-
+        def __init__(self, model,project_parameters, flush_frequency=10.0):
+            super().__init__(model,project_parameters)
+            self.flush_frequency = flush_frequency
+            self.last_flush = time.time()
+            sys.stdout.flush()
+         
+        def Flush(self):
+            if self.parallel_type == "OpenMP":
+                now = time.time()
+                if now - self.last_flush > self.flush_frequency:
+                    sys.stdout.flush()
+                    self.last_flush = now
+        
+    return AnalysisStageWithFlush(global_model, parameters)
 
 if __name__ == "__main__":
-    with open(abs_filepath("ProjectParameters.json"), 'r') as parameter_file:
-        project_parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
-        global_model = KratosMultiphysics.Model()
-        simulation = FluidDynamicsAnalysisCompressible(global_model, project_parameters)
-        simulation.Run()
+    with open("ProjectParameters.json", 'r') as parameter_file:
+        parameters = KratosMultiphysics.Parameters(parameter_file.read())
+
+    analysis_stage_module_name = parameters["analysis_stage"].GetString()
+    analysis_stage_class_name = analysis_stage_module_name.split('.')[-1]
+    analysis_stage_class_name = ''.join(x.title() for x in analysis_stage_class_name.split('_'))
+
+    analysis_stage_module = importlib.import_module(analysis_stage_module_name)
+    analysis_stage_class = getattr(analysis_stage_module, analysis_stage_class_name)
+
+    global_model = KratosMultiphysics.Model()
+    simulation = CreateAnalysisStageWithFlushInstance(analysis_stage_class, global_model, parameters)
+    simulation.Run()
