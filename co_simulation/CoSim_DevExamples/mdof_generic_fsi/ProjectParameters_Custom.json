@@ -45,7 +45,7 @@
             },
             "file_label"          : "step",
             "output_control_type" : "step",
-            "output_frequency"    : 5,
+            "output_interval"     : 5,
             "body_output"         : false,
             "node_output"         : true,
             "skin_output"         : false,

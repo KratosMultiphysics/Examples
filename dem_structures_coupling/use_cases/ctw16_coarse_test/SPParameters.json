@@ -5,7 +5,7 @@
         "axis"    : [0.0,0.0,1.0]
     },
     "post_process_tool":{
-        "output_frequency": 1
+        "output_interval" : 1
     }
 }
 

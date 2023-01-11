@@ -18,7 +18,7 @@
             },
             "file_label"          : "time",
             "output_control_type" : "step",
-            "output_frequency"    : 10,
+            "output_interval"     : 10,
             "body_output"         : true,
             "node_output"         : false,
             "skin_output"         : false,
