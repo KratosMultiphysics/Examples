@@ -94,7 +94,7 @@ for i in range(iterations):
         "file_format"                        : "ascii",
         "output_precision"                   : 7,
         "output_control_type"                : "step",
-        "output_frequency"                   : 1.0,
+        "output_interval"                    : 1.0,
         "output_sub_model_parts"             : false,
         "save_output_files_in_folder"        : false,
         "custom_name_prefix"                 : "",
