@@ -41,7 +41,7 @@ The computational domain is meshed with 36k linear triangular elements. Below ar
 </p>
 
 <p align="center">
-  <img src="data/linegraps.png" alt="Sod shock tube line graphs." style="width: 600px;"/>
+  <img src="data/linegraphs.png" alt="Sod shock tube line graphs." style="width: 600px;"/>
 </p>
 
 ## References
