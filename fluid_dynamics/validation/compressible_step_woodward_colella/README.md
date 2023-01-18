@@ -2,7 +2,7 @@
 
 **Author:** [Eduard Gómez](https://github.com/EduardGomezEscandell)
 
-**Kratos version:** 9.1
+**Kratos version:** 9.2
 
 **Source files:** [Woodward and Colella's step](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_step_woodward_colella/source)
 
@@ -32,8 +32,27 @@ The problem is solved with a Variational Multi-Scale stabilized compressible Nav
 
 The computational domain is meshed with 100k linear triangular elements.
 
-Current implementation fails to solve this case, due to insufficient artifficial difusivity.
+<p align="center">
+  <img src="data/step_woodward.gif" alt="Step density field." style="width: 600px;"/>
+</p>
 
+<p align="center">
+  <img src="data/Step_05.png" alt="Step density field." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/Step_15.png" alt="Step density field." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/Step_25.png" alt="Step density field." style="width: 600px;"/>
+</p>
+
+<p align="center">
+  <img src="data/Step_40.png" alt="Step density field." style="width: 600px;"/>
+</p>
+
+The values obtained are consistent with literature results [1].
 
 ## References
 (1) Woodward, P., & Colella, P. (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. Journal of computational physics, 54(1), 115-173. https://doi.org/10.1016/0021-9991(84)90142-6

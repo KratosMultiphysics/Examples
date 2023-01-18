@@ -1,6 +1,7 @@
 import sys
 import time
 import importlib
+import math
 
 import KratosMultiphysics
 
@@ -37,6 +38,25 @@ def CreateAnalysisStageWithFlushInstance(cls, global_model, parameters):
             node.Fix(KratosMultiphysics.MOMENTUM_X)
             node.Fix(KratosMultiphysics.MOMENTUM_Y)
             super().InitializeSolutionStep()
+            
+        def FinalizeSolutionStep(self):
+            super().FinalizeSolutionStep()
+            self.Flagg()
+    
+        def Flagg(self):
+            step = self._GetSolver().GetComputingModelPart().ProcessInfo.GetValue(KratosMultiphysics.STEP)
+            if  step > 1 :
+                e_totalEnergy = 0
+                n_totalEnergy = 0
+                for node in self._GetSolver().GetComputingModelPart().Nodes:
+                    e_totalEnergy = e_totalEnergy + (node.GetSolutionStepValue(KratosMultiphysics.TOTAL_ENERGY,1)-node.GetSolutionStepValue(KratosMultiphysics.TOTAL_ENERGY))**2
+                    n_totalEnergy = n_totalEnergy + (node.GetSolutionStepValue(KratosMultiphysics.TOTAL_ENERGY,1))**2 
+
+                e_totalEnergy = (e_totalEnergy/n_totalEnergy)**0.5
+                
+                if math.isnan(e_totalEnergy):
+                    KratosMultiphysics.Logger.Print("               NaN value in TOTAL ENERGY EQUATION")
+                    sys.exit('               STOP')
          
         def Flush(self):
             if self.parallel_type == "OpenMP":

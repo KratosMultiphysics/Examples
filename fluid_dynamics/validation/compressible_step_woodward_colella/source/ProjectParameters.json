@@ -28,17 +28,27 @@
         "compute_reactions": false,
         "shock_capturing_settings": {
             "type" : "physics_based",
-            "Parameters" : {}
+            "Parameters" : {
+                            "artificial_bulk_viscosity_constant": 1.5,
+                            "artificial_conductivity_constant": 300000.0,
+                            "artificial_dynamic_viscosity_constant": 30.0,
+                            "calculate_nodal_area_at_each_step": false,
+                            "far_field_prandtl_number": 0.0,
+                            "shear_sensor": true,
+                            "shock_sensor": true,
+                            "thermal_sensor": true,
+                            "thermally_coupled_formulation": true
+                            }
         },
         "time_scheme" : "RK4",
         "use_oss": false,
         "volume_model_part_name": "FluidParts_Fluid",
-        "skin_parts": ["Slip2D"],
+        "skin_parts": ["Slip2D","Inlet"],
         "no_skin_parts": [],
         "time_stepping": {
             "automatic_time_step": true,
             "minimum_delta_time"  : 1e-8,
-            "CFL_number": 0.2
+            "CFL_number": 0.7
         },
         "reform_dofs_at_each_step": false
     },
@@ -60,28 +70,15 @@
             },
             {
                 "kratos_module": "KratosMultiphysics",
-                "process_name": "AssignScalarVariableProcess",
-                "python_module": "assign_scalar_variable_process",
+                "process_name": "AssignVectorVariableProcess",
+                "python_module": "assign_vector_variable_process",
                 "Parameters":
                 {
                     "model_part_name": "FluidModelPart.FluidParts_Fluid",
-                    "variable_name": "MOMENTUM_X",
+                    "variable_name": "MOMENTUM",
                     "interval": [0.0, 0.0],
-                    "constrained": false,
-                    "value": 4.2
-                }
-            },
-            {
-                "kratos_module": "KratosMultiphysics",
-                "process_name": "AssignScalarVariableProcess",
-                "python_module": "assign_scalar_variable_process",
-                "Parameters":
-                {
-                    "model_part_name": "FluidModelPart.FluidParts_Fluid",
-                    "variable_name": "MOMENTUM_Y",
-                    "interval": [0.0, 0.0],
-                    "constrained": false,
-                    "value": 0.0
+                    "constrained": [false,false,false],
+                    "value": ["1.4*(3.0*(1.4*286.9*0.002489668)**0.5)",0.0,null]
                 }
             },
             {
@@ -94,7 +91,7 @@
                     "variable_name": "TOTAL_ENERGY",
                     "interval": [0.0, 0.0],
                     "constrained": false,
-                    "value": 8.8
+                    "value":  "1.4*(722.14*0.002489668+0.5*(3.0*(1.4*286.9*0.002489668)**0.5)**2.0)"
                 }
             }
         ],
@@ -124,28 +121,15 @@
             },
             {
                 "kratos_module": "KratosMultiphysics",
-                "process_name": "AssignScalarVariableProcess",
-                "python_module": "assign_scalar_variable_process",
+                "process_name": "AssignVectorVariableProcess",
+                "python_module": "assign_vector_variable_process",
                 "Parameters":
                 {
                     "model_part_name": "FluidModelPart.Inlet",
-                    "variable_name": "MOMENTUM_X",
+                    "variable_name": "MOMENTUM",
                     "interval": [0.0, "End"],
-                    "constrained": true,
-                    "value": 4.2
-                }
-            },
-            {
-                "kratos_module": "KratosMultiphysics",
-                "process_name": "AssignScalarVariableProcess",
-                "python_module": "assign_scalar_variable_process",
-                "Parameters":
-                {
-                    "model_part_name": "FluidModelPart.Inlet",
-                    "variable_name": "MOMENTUM_Y",
-                    "interval": [0.0, "End"],
-                    "constrained": true,
-                    "value": 0.0
+                    "constrained": [true,true,false]
+                    "value": ["1.4*(3.0*(1.4*286.9*0.002489668)**0.5)",0.0,null]
                 }
             },
             {
@@ -158,11 +142,12 @@
                     "variable_name": "TOTAL_ENERGY",
                     "interval": [0.0, "End"],
                     "constrained": true,
-                    "value": 8.8
+                    "value":  "1.4*(722.14*0.002489668+0.5*(3.0*(1.4*286.9*0.002489668)**0.5)**2.0)"
                 }
             }
         ],
-        "auxiliar_process_list": []
+        "auxiliar_process_list": [
+        ]
     },
     "output_processes": {
         "gid_output": [
@@ -184,7 +169,7 @@
                             },
                             "file_label": "time",
                             "output_control_type": "time",
-                            "output_interval":  0.1,
+                            "output_interval":  0.05,
                             "body_output": true,
                             "node_output": false,
                             "skin_output": false,
