@@ -2,7 +2,7 @@
 
 **Author:** [Eduard Gómez](https://github.com/EduardGomezEscandell)
 
-**Kratos version:** 9.1
+**Kratos version:** 9.2
 
 **Source files:** [Sod shock tube](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_sod_shock_tube/source)
 
@@ -41,7 +41,7 @@ The computational domain is meshed with 36k linear triangular elements. Below ar
 </p>
 
 <p align="center">
-  <img src="data/velocity.png" alt="Sod shock tube x-velocity field." style="width: 600px;"/>
+  <img src="data/linegraps.png" alt="Sod shock tube line graphs." style="width: 600px;"/>
 </p>
 
 ## References
