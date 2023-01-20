@@ -1,0 +1,19 @@
+{
+    "properties" : [{
+        "model_part_name" : "FluidModelPart.FluidParts_Fluid",
+        "properties_id"   : 1,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "Newtonian2DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"             : 1.225,
+                "DYNAMIC_VISCOSITY"   : 1.78e-5,
+                "CONDUCTIVITY"        : 0.001,
+                "SPECIFIC_HEAT"       : 717.25,
+                "HEAT_CAPACITY_RATIO" : 1.4
+            },
+            "Tables"           : {}
+        }
+    }]
+}
