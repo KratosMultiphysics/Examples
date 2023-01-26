@@ -128,7 +128,7 @@
                     "model_part_name": "FluidModelPart.Inlet",
                     "variable_name": "MOMENTUM",
                     "interval": [0.0, "End"],
-                    "constrained": [true,true,false]
+                    "constrained": [true,true,false],
                     "value": ["1.4*(3.0*(1.4*286.9*0.002489668)**0.5)",0.0,null]
                 }
             },
