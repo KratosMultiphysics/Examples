@@ -49,7 +49,7 @@ class gauges:
         res = pd.read_csv(results_file_name, header=None, skiprows=2, delimiter=r'\s+', names=['time', 'h', 'u1', 'u2', 'u3'])
         res.plot(x='time', y=var, ax=ax, **kwargs)
 
-    def plot_image(self, ax, gauge_id, inset_pos=[0.62, 0.6, 0.4, 0.35]):
+    def plot_image(self, ax, gauge_id, inset_pos=[0.60, 0.6, 0.4, 0.35]):
         arr_img = plt.imread(self.image_file_name_pattern.format(gauge_id))
         ax_in = ax.inset_axes(inset_pos) # relative position, relative size
         ax_in.imshow(arr_img)
@@ -63,6 +63,8 @@ class gauges:
     def set_layout(self, ax, gauge_id, var, index=0):
         if var == 'h' or var == 'u1':
             self.plot_image(ax, gauge_id)
+        else:
+            self.plot_image(ax, gauge_id, inset_pos=[0.03, 0.6, 0.4, 0.35])
 
         if self.set_ylabel(index):
             if var == 'h':
@@ -79,7 +81,7 @@ class gauges:
             ax.legend().remove()
 
         if var == 'h':
-            ax.set_title(f'Gauge {gauge_id}')
+            ax.set_title(f'Gauge {gauge_id} $h$')
         elif var == 'u1':
             ax.set_title(f'Gauge {gauge_id} $u_1$')
         elif var == 'u2':
@@ -104,7 +106,7 @@ class gauges:
                     self.set_layout(ax, gauge_id, 'h', i)
 
             else:
-                fig, axes = plt.subplots()
+                fig, axes = plt.subplots(figsize=(3.7, 3))
                 self.plot_gauge(axes, gauge_id, 'h', path_list, labels_list)
                 self.set_layout(axes, gauge_id, 'h')
 
@@ -117,6 +119,10 @@ class gauges:
                 self.plot_gauge(axes[1], gauge_id, 'u2', path_list, labels_list)
                 self.set_layout(axes[0], gauge_id, 'u1')
                 self.set_layout(axes[1], gauge_id, 'u2')
+        else:
+            fig, axes = plt.subplots(figsize=(3.7, 3))
+            self.plot_gauge(axes, gauge_id, variable, path_list, labels_list)
+            self.set_layout(axes, gauge_id, variable)
 
         fig.tight_layout()
 
@@ -128,4 +134,5 @@ else:
     labels = args.label
 plt.style.use("seaborn-deep")
 gauges().plot(args.gauge_id, args.variable, args.path, labels)
+plt.savefig(f'gauge-{args.gauge_id}-{args.variable}.png', transparent=True)
 plt.show()
