@@ -34,7 +34,7 @@ if __name__ == "__main__":
         recvbuf,comm,svd_truncation_tolerance,1)
     U_final,s,v = KratosMultiphysics.RomApplication.tsqr.svd_parallel(Qi, Bi, comm,
         epsilon=svd_truncation_tolerance)
-    
+
     U_global = None
     U_global = np.array(comm.gather(U_final, root=0))
 
@@ -51,3 +51,6 @@ if __name__ == "__main__":
 
         #Check that the difference of the reconstruction is below a tolerance
         print( "The error or reconstruction is: ", np.linalg.norm(Randomized_Reconstruction - TestMatrix)/np.linalg.norm(TestMatrix))
+
+        # Wirte the left singular values
+        np.save("LeftSingularVectors.npy", U_local)
