@@ -16,9 +16,9 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
 
-  steps:
-  - uses: actions/checkout@v3
-  
-  - name: Running examples
-    shell: bash
-    run: echo "Hi!"
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Running examples
+      shell: bash
+      run: echo "Hi!"
