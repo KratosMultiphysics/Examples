@@ -89,7 +89,7 @@
                 "file_format"                        : "binary",
                 "output_precision"                   : 7,
                 "output_sub_model_parts"             : false,
-                "folder_name"                        : "vtk_output_HROM",
+                "output_path"                        : "vtk_output_HROM",
                 "save_output_files_in_folder"        : true,
                 "nodal_solution_step_data_variables" : ["DISPLACEMENT"],
                 "nodal_data_value_variables"         : [],
