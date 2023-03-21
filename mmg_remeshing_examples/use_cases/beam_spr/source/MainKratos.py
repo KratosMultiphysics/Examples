@@ -1,5 +1,4 @@
 
-# Importing Kratos
 import KratosMultiphysics as KM
 import KratosMultiphysics.MeshingApplication as MA
 import KratosMultiphysics.StructuralMechanicsApplication as SMA

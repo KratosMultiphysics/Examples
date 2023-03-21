@@ -1,5 +1,4 @@
 
-# Importing Kratos
 import KratosMultiphysics as KM
 
 from KratosMultiphysics.ContactStructuralMechanicsApplication.adaptive_remeshing.adaptative_remeshing_contact_structural_mechanics_analysis import AdaptativeRemeshingContactStructuralMechanicsAnalysis

@@ -2,7 +2,6 @@
 import numpy as np
 import time
 
-# Importing Kratos
 import KratosMultiphysics
 import KratosMultiphysics.FluidDynamicsApplication
 import KratosMultiphysics.ExaquteSandboxApplication
