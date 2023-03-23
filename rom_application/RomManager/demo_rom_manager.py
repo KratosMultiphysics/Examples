@@ -56,9 +56,6 @@ def UpdateProjectParameters(parameters, mu=None):
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#TODO comprese all simulation calls into as few as possible
-#TODO paralelise
-
 
 
 def GetRomManagerParameters():
