@@ -35,8 +35,6 @@
             "residual_relative_tolerance"        : 1e-5,
             "residual_absolute_tolerance"        : 1e-7,
             "max_iteration"                      : 10,
-            "problem_domain_sub_model_part_list" : ["Parts_Structure"],
-            "processes_sub_model_part_list"      : ["DISPLACEMENT_FixedDisplacement","StructureInterface2D_StructureInterface"],
             "rotation_dofs"                      : false
         },
         "fluid_solver_settings":{
@@ -68,7 +66,7 @@
                 "time_step": 0.1
             },
             "formulation": {
-                "element_type": "embedded_symbolic_navier_stokes",
+                "element_type": "embedded_weakly_compressible_navier_stokes",
                 "is_slip": false,
                 "penalty_coefficient": 0.05,
                 "dynamic_tau": 1.0
@@ -76,6 +74,8 @@
             "fm_ale_settings": {
                 "fm_ale_step_frequency": 1,
                 "mesh_movement": "implicit",
+		//"embedded_velocity_calculation" : "from_structure_velocity_rbf_interpolation",
+		//"rbf_interpolation_search_radius" : 0.005,
                 "fm_ale_solver_settings": {
                     "structure_model_part_name": "FSICouplingInterfaceFluid",
                     "virtual_model_part_name": "VirtualModelPart",
@@ -266,7 +266,7 @@
                         "node_output"         : false,
                         "skin_output"         : false,
                         "plane_output"        : [],
-                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","LINE_LOAD"],
+                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","POSITIVE_FACE_PRESSURE"],
                         "gauss_point_results" : []
                     },
                     "point_data_configuration"  : []
@@ -295,7 +295,7 @@
                         "skin_output": false,
                         "plane_output": [],
                         "nodal_results": ["VELOCITY","PRESSURE","MESH_VELOCITY","DISTANCE","EMBEDDED_WET_VELOCITY"],
-                        "nodal_nonhistorical_results": [],
+                        "nodal_nonhistorical_results": ["EMBEDDED_VELOCITY"],
                         "elemental_conditional_flags_results": [],
                         "gauss_point_results": []
                     },
