@@ -11,9 +11,9 @@ import warnings
 from KratosMultiphysics import *
 
 try:
-    from KratosMultiphysics.ExternalSolversApplication import *
+    from KratosMultiphysics.LinearSolversApplication import *
 except ImportError:
-    warnings.warn('Package ExternalSolversApplication could not be loaded. Make sure to compile it if needed.', ImportWarning)
+    warnings.warn('Package LinearSolversApplication could not be loaded. Make sure to compile it if needed.', ImportWarning)
 
 from KratosMultiphysics.DEMApplication import *
 from KratosMultiphysics.FluidDynamicsApplication import *

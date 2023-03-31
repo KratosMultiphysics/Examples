@@ -6,7 +6,7 @@ domain_size = 2  # 2D problem
 #including kratos path
 from KratosMultiphysics import *    #we import the KRATOS
 from KratosMultiphysics.PFEM2Application import *        #and now our application. note that we can import as many as we need to solve our specific problem
-from KratosMultiphysics.ExternalSolversApplication import *        #and now our application. note that we can import as many as we need to solve our specific problem
+from KratosMultiphysics.LinearSolversApplication import *        #and now our application. note that we can import as many as we need to solve our specific problem
 #from KratosMultiphysics.OpenCLApplication import *        #in case you want to use the gpu to solve the system
 
 #defining a model part

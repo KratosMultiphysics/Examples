@@ -6,7 +6,7 @@ domain_size = 3  # 2D problem
 #including kratos path
 from KratosMultiphysics import *    #we import the KRATOS
 from KratosMultiphysics.PFEM2Application import *        #and now our application. note that we can import as many as we need to solve our specific problem
-from KratosMultiphysics.ExternalSolversApplication import *
+from KratosMultiphysics.LinearSolversApplication import *
 #defining a model part
 model = Model()
 model_part = model.CreateModelPart("ExampleModelPart");  #we create a model part

@@ -14,7 +14,7 @@ For the DEM-only examples, the only application that must be active is:
 
 Nevertheless, when using the Swimming DEM application, the following applications must be also added:
 
-* ExternalSolversApplication
+* LinearSolversApplication
 * FluidDynamicsApplication
 * IncompressibleFluidApplication
 * SwimmingDEMApplication

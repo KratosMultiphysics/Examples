@@ -10,7 +10,7 @@ import sys
 
 # Kratos
 from KratosMultiphysics import *
-from KratosMultiphysics.ExternalSolversApplication   import *
+from KratosMultiphysics.LinearSolversApplication   import *
 from KratosMultiphysics.DEMApplication import *
 from KratosMultiphysics.FluidDynamicsApplication import *
 from KratosMultiphysics.SwimmingDEMApplication import *

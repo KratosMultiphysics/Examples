@@ -1,6 +1,6 @@
 
 from KratosMultiphysics import *
-from KratosMultiphysics.ExternalSolversApplication  import *
+from KratosMultiphysics.LinearSolversApplication  import *
 from KratosMultiphysics.StructuralMechanicsApplication  import *
 
 ## Import define_output
