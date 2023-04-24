@@ -91,13 +91,13 @@
         }
     ]
         ,
-        "operations" : [{
-             "operation" : "potential_to_compressible_Navier_Stokes_operation",
-             "name" : "KratosMultiphysics.FluidDynamicsApplication.operations.potential_to_compressible_navier_stokes_operation.PotentialToCompressibleNavierStokesOperation",
+        "operations" : [
+            {
+             "name" : "KratosMultiphysics.CompressiblePotentialFlowApplication.PotentialToCompressibleNavierStokesOperation",
              "Parameters" : {
                 "origin_model_part" : "FluidModelPart",
-                "destination_model_part" : "MainModelPart",
-                "variable_names_to_pass" : ["VELOCITY","PRESSURE"]}
+                "destination_model_part" : "MainModelPart"
+            }
          }]
         },
         "analysis_stage"   : "KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis",
