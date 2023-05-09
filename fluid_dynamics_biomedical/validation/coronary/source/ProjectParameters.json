@@ -82,7 +82,7 @@
                 "inlet_model_part_name" : "FluidModelPart.Inlet",
                 "wall_model_part_name" : "FluidModelPart.Walls",
                 "interval" : [0.0,"End"],
-                "parabola_vertex_value" : 1.0
+                "value" : 1.0
             }
         },{
             "python_module" : "apply_outlet_process",
