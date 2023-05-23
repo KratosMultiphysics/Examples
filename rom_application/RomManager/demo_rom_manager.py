@@ -1,6 +1,6 @@
 import KratosMultiphysics
 from KratosMultiphysics.RomApplication.rom_manager import RomManager
-
+import json
 
 
 
@@ -53,9 +53,22 @@ def UpdateProjectParameters(parameters, mu=None):
 
     return parameters
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+def UpdateMaterialParametersFile(material_parametrs_file_name, mu):
+    pass
+    # with open(material_parametrs_file_name, mode="r+") as f:
+    #     data = json.load(f)
+    #     #change the angles of 1st and 2nd layer
+    #     data["properties"][0]["Material"]["Variables"]["EULER_ANGLES"][0] = mu[0]
+    #     data["properties"][1]["Material"]["Variables"]["EULER_ANGLES"][0] = mu[1]
+    #     #write to file and save file
+    #     f.seek(0)
+    #     json.dump(data, f, indent=4)
+    #     f.truncate()
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 
 
 def GetRomManagerParameters():
@@ -130,7 +143,7 @@ if __name__ == "__main__":
     general_rom_manager_parameters = GetRomManagerParameters()
     project_parameters_name = "ProjectParameters.json"
 
-    rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters)
+    rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters,UpdateMaterialParametersFile)
 
     """if no list "mu" is passed, the case already contained in the ProjectParametes and CustomSimulation is launched (useful for example for a single time dependent simulation)"""
     rom_manager.Fit(mu_train) #pass list of lists mu_train
