@@ -20,14 +20,14 @@ def CustomizeSimulation(cls, global_model, parameters):
         def Initialize(self):
 
             angle_of_attack = parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["angle_of_attack"].GetDouble()
-            parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["angle_of_attack"].SetDouble(0.0) 
+            parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["angle_of_attack"].SetDouble(0.0)
             with open("ProjectParametersMeshMoving.json",'r') as parameter_file:
-                mesh_parameters = KratosMultiphysics.Parameters(parameter_file.read()) 
+                mesh_parameters = KratosMultiphysics.Parameters(parameter_file.read())
             mesh_parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["rotation_angle"].SetDouble(angle_of_attack)
             mesh_simulation = MeshMovingAnalysis(self.model,mesh_parameters)
 
             super().Initialize()
-            
+
             mesh_simulation.Run()
 
         def FinalizeSolutionStep(self):
@@ -44,6 +44,22 @@ def UpdateProjectParameters(parameters, mu=None):
     parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["angle_of_attack"].SetDouble(mu[0])
     parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["mach_infinity"].SetDouble(mu[1])
     return parameters
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+def UpdateMaterialParametersFile(material_parametrs_file_name, mu):
+    pass
+    # with open(material_parametrs_file_name, mode="r+") as f:
+    #     data = json.load(f)
+    #     #change the angles of 1st and 2nd layer
+    #     data["properties"][0]["Material"]["Variables"]["EULER_ANGLES"][0] = mu[0]
+    #     data["properties"][1]["Material"]["Variables"]["EULER_ANGLES"][0] = mu[1]
+    #     #write to file and save file
+    #     f.seek(0)
+    #     json.dump(data, f, indent=4)
+    #     f.truncate()
+
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -83,7 +99,7 @@ def GetRomManagerParameters():
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # mult params
-#    
+#
 def get_multiple_params_by_Halton_test(number_of_values):
     sampler = qmc.Halton(d=2)
     sample = sampler.random(number_of_values)
@@ -123,7 +139,7 @@ def get_multiple_params_by_Halton_train(number_of_values):
         #Angle of attack , Mach infinit
         mu.append([values[i,0] * math.pi / 180.0, values[i,1]])
     return mu
-    
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 def plot_mu_values(mu_train,mu_test):
@@ -153,8 +169,8 @@ def plot_mu_values(mu_train,mu_test):
 if __name__ == "__main__":
     KratosMultiphysics.kratos_utilities.DeleteDirectoryIfExisting('Results')
 
-    mu_train = get_multiple_params_by_Halton_train(15) 
-    mu_test  = get_multiple_params_by_Halton_test(15) 
+    mu_train = get_multiple_params_by_Halton_train(15)
+    mu_test  = get_multiple_params_by_Halton_test(15)
 
     plot_mu_values(mu_train,mu_test)
 
@@ -162,11 +178,11 @@ if __name__ == "__main__":
 
     project_parameters_name = "ProjectParametersPrimalROM.json"
 
-    rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters)
+    rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters, UpdateMaterialParametersFile)
 
-    rom_manager.Fit(mu_train) 
+    rom_manager.Fit(mu_train)
 
-    rom_manager.Test(mu_test) 
+    rom_manager.Test(mu_test)
 
     rom_manager.PrintErrors()
 
