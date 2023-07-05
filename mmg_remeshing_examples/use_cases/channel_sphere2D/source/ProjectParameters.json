@@ -15,8 +15,12 @@
         "model_part_name"              : "FluidModelPart",
         "domain_size"                  : 2,
         "echo_level"                   : 1,
+        "maximum_velocity_iterations"  : 10,
+        "maximum_pressure_iterations"  : 10,
+        "velocity_tolerance"           : 0.001,
+        "pressure_tolerance"           : 0.001,
         "compute_reactions"            : false,
-        "reform_dofs_at_each_step"     : false,
+        "reform_dofs_at_each_step"     : true,
         "time_order"                   : 2,
         "dynamic_tau"                  : 0.001,
         "volume_model_part_name"       : "Parts_Parts_Auto1",
@@ -29,7 +33,8 @@
     },
     "processes" : {
         "initial_conditions_process_list"  : [],
-        "boundary_conditions_process_list" : [{
+        "boundary_conditions_process_list" : [
+        {
             "python_module" : "assign_vector_by_direction_process",
             "kratos_module" : "KratosMultiphysics",
             "help"          : [],
@@ -108,15 +113,15 @@
             "process_name"  : "GiDOutputProcess",
             "help"          : "This process writes postprocessing files for GiD",
             "Parameters"    : {
-                "model_part_name"        : "FluidModelPart.",
-                "output_name"            : "fluid",
+                "model_part_name"        : "FluidModelPart",
+                "output_name"            : "GiD_output/fluid",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
                         "gidpost_flags"       : {
                             "GiDPostMode"           : "GiD_PostBinary",
                             "WriteDeformedMeshFlag" : "WriteDeformed",
                             "WriteConditionsFlag"   : "WriteConditions",
-                            "MultiFileFlag"         : "SingleFile"
+                            "MultiFileFlag"         : "MultipleFiles"
                         },
                         "file_label"          : "time",
                         "output_control_type" : "step",
@@ -126,7 +131,7 @@
                         "skin_output"         : false,
                         "plane_output"        : [],
                         "nodal_results"       : ["VELOCITY","PRESSURE"],
-                        "nodal_nonhistorical_results" : ["NODAL_H"],
+                        "nodal_nonhistorical_results" : [],
                         "gauss_point_results" : []
                     },
                     "point_data_configuration"  : []
@@ -139,7 +144,7 @@
             "process_name"  : "VtkOutputProcess",
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
-                "model_part_name"                    : "FluidModelPart.",
+                "model_part_name"                    : "FluidModelPart",
                 "output_control_type"                : "step",
                 "output_interval"                    : 1,
                 "file_format"                        : "ascii",
