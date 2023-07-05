@@ -9,7 +9,7 @@
 ## Case Specification
 This is a 2D simulation of a NACA0012 profile under transonic flow conditions (Ma = 0.8).
 
-The same case as [Transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8/source) solved using multistage Kratos's tool. The first stage, CompressiblePotentialFlowApplication, solve a steady problem. This solution is pased from a Potential Model Part to a Navier Stokes Model Part using an operation to pass from potential variables to conservative variables.
+The same case as [Transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8/source) solved using the Kratos multistage tool. The first stage, CompressiblePotentialFlowApplication, solve a steady problem. This solution is pased from a Potential Model Part to a Navier Stokes Model Part using an operation to pass from potential variables to conservative variables.
 
 The problem geometry consists in a rectangular 20x25m channel with a 12.5m radius semicilinder attached to its left edge. The front tip of the unit length NACA0012 profile is located at the (0.0,0.0)m coordinates.
 
