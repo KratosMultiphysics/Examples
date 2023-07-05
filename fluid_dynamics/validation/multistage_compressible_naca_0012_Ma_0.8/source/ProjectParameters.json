@@ -24,24 +24,12 @@
             "formulation": {
                 "element_type" : "compressible"
             },
-            "maximum_iterations"       : 10,
-            "echo_level"               : 0,
+            "maximum_iterations"       : 50,
+            "echo_level"               : 1,
             "volume_model_part_name"   : "FluidParts_Fluid",
             "skin_parts"               : ["AutomaticInlet2D_Left","Outlet2D_Right","NoSlip2D_Top","NoSlip2D_Bottom","NoSlip2D_Aerofoil"],
             "no_skin_parts"            : [],
-            "reform_dofs_at_each_step" : false,
-            "linear_solver_settings"  : {
-                "solver_type": "amgcl",
-                "max_iteration": 400,
-                "gmres_krylov_space_dimension": 100,
-                "smoother_type":"ilu0",
-                "coarsening_type":"ruge_stuben",
-                "coarse_enough" : 5000,
-                "krylov_type": "lgmres",
-                "tolerance": 1e-9,
-                "verbosity": 0,
-                "scaling": false
-                }
+            "reform_dofs_at_each_step" : false
         },
         "processes"        : {
             "boundary_conditions_process_list" : [
@@ -105,7 +93,7 @@
             "problem_name"  : "naca0012_NS",
             "parallel_type" : "OpenMP",
             "start_time"    : 0.0,
-            "end_time"      : 0.05,
+            "end_time"      : 0.025,
             "echo_level"    : 0
         },
         "solver_settings"  : {
@@ -122,7 +110,7 @@
             "compute_reactions"     : false,
             "volume_model_part_name": "FluidParts_Fluid",
             "skin_parts"            : ["AutomaticInlet2D_Left","Outlet2D_Right","NoSlip2D_Aerofoil","NoSlip2D_Top","NoSlip2D_Bottom"],
-            "time_scheme"              : "RK4",
+            "time_scheme"           : "RK4",
             "time_stepping"         : {
               "automatic_time_step" : true,
               "CFL_number"          : 1.0,
@@ -191,7 +179,7 @@
                             },
                             "file_label"                  : "time",
                             "output_control_type"         : "time",
-                            "output_interval"             : 0.0005,
+                            "output_interval"             : 0.00001,
                             "body_output"                 : true,
                             "node_output"                 : false,
                             "skin_output"                 : false,
