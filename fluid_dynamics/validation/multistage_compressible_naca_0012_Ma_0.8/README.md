@@ -1,13 +1,15 @@
-# Transonic flow around a NACA0012 profile
+# Multistage transonic flow around a NACA0012 profile
 
-**Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla)
+**Author:** [Marco Antonio Zuñiga Perez](https://github.com/marco1410)
 
 **Kratos version:** 8.1
 
-**Source files:** [Transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8/source)
+**Source files:** [Multistage transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/multistage_compressible_naca_0012_Ma_0.8/source)
 
 ## Case Specification
 This is a 2D simulation of a NACA0012 profile under transonic flow conditions (Ma = 0.8).
+
+The same case as [Transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8/source) solved using multistage Kratos's tool. The first stage, CompressiblePotentialFlowApplication, solve a steady problem. This solution is pased from a Potential Model Part to a Navier Stokes Model Part using an operation to pass from potential variables to conservative variables.
 
 The problem geometry consists in a rectangular 20x25m channel with a 12.5m radius semicilinder attached to its left edge. The front tip of the unit length NACA0012 profile is located at the (0.0,0.0)m coordinates.
 
@@ -25,6 +27,8 @@ An adaptive time step strategy based on the CFL and Fourier numbers is used.
 The problem is solved with a Variational Multi-Scale stabilized compressible Navier-Stokes formulation written in conservative variables (1). An explicit 4th order Runge-Kutta explicit strategy is used for the time discretization. The physics-based shock capturing technique described in (2) is also used. The solution from the resolution of an incompressible potential flow problem is used as initial condition.
 
 The computational domain is meshed with 42k linear triangular elements. Below three snapshots depicting the Mach number, density and shock sensor fields are shown. As it can be observed, the expected symmetric solution and shocks are obtained.
+
+It is interesting add that in this case is not necessary change the shock capturing default's settings to improve the stabilility of problem.
 
 <p align="center">
   <img src="data/transonic_naca_0012_mach.png" alt="Transonic flow around a NACA0012 profile Mach number field." style="width: 600px;"/>
