@@ -1,34 +1,24 @@
 import sys
-import time
+import importlib
 import KratosMultiphysics
-from KratosMultiphysics.multistage_analysis import MultistageAnalysis
-
-class FluidDynamicsAnalysisWithFlush(MultistageAnalysis):
-
-    def __init__(self, model, project_parameters, flush_frequency=10.0):
-        super().__init__(model, project_parameters)
-        self.flush_frequency = flush_frequency
-        self.last_flush = time.time()
-        sys.stdout.flush()
-
-    def Initialize(self):
-        super().Initialize()
-        sys.stdout.flush()
-
-    def FinalizeSolutionStep(self):
-        super().FinalizeSolutionStep()
-
-        if self.parallel_type == "OpenMP":
-            now = time.time()
-            if now - self.last_flush > self.flush_frequency:
-                sys.stdout.flush()
-                self.last_flush = now
+from KratosMultiphysics.project import Project
 
 if __name__ == "__main__":
 
-    with open("ProjectParameters.json", 'r') as parameter_file:
-        parameters = KratosMultiphysics.Parameters(parameter_file.read())
+    # Check if a custom project parameters filename is provided
+    if len(sys.argv) == 1:
+        project_parameters_filename = "ProjectParameters.json"
+    else:
+        project_parameters_filename = str(sys.argv[1])
 
-    global_model = KratosMultiphysics.Model()
-    multistage_simulation = FluidDynamicsAnalysisWithFlush(global_model, parameters)
-    multistage_simulation.Run()
+    # Parse simulation settings and run simulation
+    with open(project_parameters_filename, 'r') as parameter_file:
+        project_parameters = KratosMultiphysics.Parameters(parameter_file.read())
+
+        project = Project(project_parameters)
+
+        orchestrator_reg_entry = KratosMultiphysics.Registry[project.GetSettings()["orchestrator"]["name"].GetString()]
+        orchestrator_module = importlib.import_module(orchestrator_reg_entry["ModuleName"])
+        orchestrator_class = getattr(orchestrator_module, orchestrator_reg_entry["ClassName"])
+        orchestrator_instance = orchestrator_class(project)
+        orchestrator_instance.Run()
