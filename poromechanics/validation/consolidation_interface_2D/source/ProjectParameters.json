@@ -1,8 +1,8 @@
 {
     "problem_data": {
-        "problem_name":         "fluid_pumping_2D",
+        "problem_name":         "consolidation_interface_2D",
         "start_time":           0.0,
-        "end_time":             1.0e-3,
+        "end_time":             302.5,
         "echo_level":           1,
         "parallel_type":        "OpenMP",
         "fracture_utility":     false
@@ -12,10 +12,10 @@
         "model_part_name":    "PorousModelPart",
         "domain_size":    2,
         "start_time":    0.0,
-        "time_step":    1.0e-5,
+        "time_step":    0.5,
         "model_import_settings":              {
             "input_type":    "mdpa",
-            "input_filename":    "fluid_pumping_2D"
+            "input_filename":    "consolidation_interface_2D"
         },
         "material_import_settings": {
             "materials_filename":    "PoroMaterials.json"
@@ -33,9 +33,9 @@
         "block_builder":    false,
         "solution_type":    "implicit_quasi_static",
         "scheme_type":    "Newmark",
-        "newmark_beta":    0.25,
-        "newmark_gamma":    0.5,
-        "newmark_theta":    0.5,
+        "newmark_beta":    1.0,
+        "newmark_gamma":    1.0,
+        "newmark_theta":    1.0,
         "calculate_alpha_beta":    false,
         "omega_1":    1.0,
         "omega_n":    10.0,
@@ -44,22 +44,22 @@
         "rayleigh_alpha":    0.0,
         "rayleigh_beta":    0.0,
         "strategy_type":    "newton_raphson",
-        "convergence_criterion":    "And_criterion",
-        "displacement_relative_tolerance":    1.0E-3,
-        "displacement_absolute_tolerance":    1.0E-8,
-        "residual_relative_tolerance":    1.0E-3,
-        "residual_absolute_tolerance":    1.0E-8,
+        "convergence_criterion":    "Residual_criterion",
+        "displacement_relative_tolerance":    1.0E-4,
+        "displacement_absolute_tolerance":    1.0E-9,
+        "residual_relative_tolerance":    1.0E-4,
+        "residual_absolute_tolerance":    1.0E-9,
         "max_iteration":    15,
         "desired_iterations":    4,
-        "max_radius_factor":    20.0,
-        "min_radius_factor":    0.5,
+        "max_radius_factor":    10.0,
+        "min_radius_factor":    0.1,
         "nonlocal_damage":    false,
         "characteristic_length":    0.05,
         "linear_solver_settings":             {
             "solver_type":   "LinearSolversApplication.sparse_lu"
         },
-        "problem_domain_sub_model_part_list": ["Body_Part-auto-1","Interface_Part-auto-1","Interface_Part-auto-2"],
-        "processes_sub_model_part_list":      ["Solid_Displacement-auto-1","Solid_Displacement-auto-2","Solid_Displacement-auto-3","Fluid_Pressure-auto-1","Interface_Normal_Fluid_Flux-auto-1"],
+        "problem_domain_sub_model_part_list": ["Body_Part-auto-1","Interface_Part-auto-1"],
+        "processes_sub_model_part_list":      ["Disp_XY_linefixed","Disp_X_linefixed","Disp_XY_pointfixed","Fluid_Pressure-auto-1","Face_Load-auto-1"],
         "body_domain_sub_model_part_list":    ["Body_Part-auto-1"]
     },
     "output_processes": {
@@ -69,7 +69,7 @@
             "process_name": "GiDOutputProcess",
             "Parameters":    {
                 "model_part_name": "PorousModelPart.porous_computational_model_part",
-                "output_name": "fluid_pumping_2D",
+                "output_name": "consolidation_interface_2D",
                 "postprocess_parameters": {
                     "result_file_configuration": {
                         "gidpost_flags":       {
@@ -85,9 +85,9 @@
                         "node_output":         false,
                         "skin_output":         false,
                         "plane_output":        [],
-                        "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","REACTION","REACTION_WATER_PRESSURE","NORMAL_FLUID_FLUX"],
+                        "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","REACTION","REACTION_WATER_PRESSURE","FACE_LOAD"],
                         "nodal_nonhistorical_results": [],
-                        "gauss_point_results": ["EFFECTIVE_STRESS_TENSOR","FLUID_FLUX_VECTOR","DAMAGE_VARIABLE","JOINT_WIDTH"]
+                        "gauss_point_results": ["EFFECTIVE_STRESS_TENSOR","FLUID_FLUX_VECTOR","JOINT_WIDTH","CONTACT_STRESS_VECTOR","LOCAL_RELATIVE_DISPLACEMENT_VECTOR"]
                     },
                     "point_data_configuration":  []
                 }
@@ -99,10 +99,10 @@
             "python_module": "apply_vector_constraint_table_process",
             "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
             "Parameters":    {
-                "model_part_name": "PorousModelPart.Solid_Displacement-auto-2",
+                "model_part_name": "PorousModelPart.Disp_XY_linefixed",
                 "variable_name":   "DISPLACEMENT",
-                "active":          [false,true,false],
-                "is_fixed":        [false,true,false],
+                "active":          [true,true,false],
+                "is_fixed":        [true,true,false],
                 "value":           [0.0,0.0,0.0],
                 "table":           [0,0,0]
             }
@@ -110,7 +110,7 @@
             "python_module": "apply_vector_constraint_table_process",
             "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
             "Parameters":    {
-                "model_part_name": "PorousModelPart.Solid_Displacement-auto-3",
+                "model_part_name": "PorousModelPart.Disp_X_linefixed",
                 "variable_name":   "DISPLACEMENT",
                 "active":          [true,false,false],
                 "is_fixed":        [true,false,false],
@@ -121,7 +121,7 @@
             "python_module": "apply_vector_constraint_table_process",
             "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
             "Parameters":    {
-                "model_part_name": "PorousModelPart.Solid_Displacement-auto-1",
+                "model_part_name": "PorousModelPart.Disp_XY_pointfixed",
                 "variable_name":   "DISPLACEMENT",
                 "active":          [true,true,false],
                 "is_fixed":        [true,true,false],
@@ -138,19 +138,20 @@
                 "value":                0.0,
                 "table":                0,
                 "hydrostatic":          false,
-                "gravity_direction":    2,
-                "reference_coordinate": 0.0,
+                "gravity_direction":    1,
+                "reference_coordinate": 1,
                 "specific_weight":      10000.0
             }
         }],
         "loads_process_list": [{
-            "python_module": "apply_scalar_constraint_table_process",
+            "python_module": "apply_vector_constraint_table_process",
             "kratos_module": "KratosMultiphysics.PoromechanicsApplication",
             "Parameters":    {
-                "model_part_name": "PorousModelPart.Interface_Normal_Fluid_Flux-auto-1",
-                "variable_name":   "NORMAL_FLUID_FLUX",
-                "value":           -1.0,
-                "table":           0
+                "model_part_name": "PorousModelPart.Face_Load-auto-1",
+                "variable_name":   "FACE_LOAD",
+                "active":          [false,true,false],
+                "value":           [0.0,-1.0e4,0.0],
+                "table":           [0,0,0]
             }
         }],
         "auxiliar_process_list": []

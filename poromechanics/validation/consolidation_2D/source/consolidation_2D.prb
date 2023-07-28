@@ -2,23 +2,21 @@ PROBLEM DATA
 TITLE: Problem_Data
 QUESTION: Domain_Size#CB#(2,3)
 VALUE: 2
+HELP: For 2.5D cases, select Domain_Size as 2 and define a 3D constitutive law.
 QUESTION: Start_Time
 VALUE: 0.0
 HELP: Units in IS: s
 QUESTION: End_Time
-VALUE: 2.0
+VALUE: 302.5
 HELP: Units in IS: s
 QUESTION: Delta_Time
-VALUE: 0.02
+VALUE: 0.5
 HELP: Units in IS: s
 QUESTION: Echo_Level
 VALUE: 1
 QUESTION: Parallel_Configuration#CB#(OpenMP,MPI)
 VALUE: OpenMP
 HELP: For the moment, MPI only works in Linux and requires compiling METIS_APPLICATION and TRILINOS_APPLICATION. Non-local_Damage and Fracture_Propagation do not work in MPI.
-DEPENDENCIES: (OpenMP,RESTORE,Number_of_threads,#CURRENT#)(MPI,HIDE,Number_of_threads,1)
-QUESTION: Number_of_threads
-VALUE: 1
 QUESTION: Periodic_Interface_Conditions#CB#(true,false)
 VALUE: false
 HELP: Define periodic conditions between the upper and lower nodes of interface elements (for dynamic activation of joints).
@@ -57,30 +55,59 @@ QUESTION: Initial_Stresses#CB#(true,false)
 VALUE: false
 HELP: Take into account initial stresses (only for linear elasticity for the moment).
 DEPENDENCIES: (true,RESTORE,Mode,#CURRENT#)(false,HIDE,Mode,#CURRENT#)
-QUESTION: Mode#CB#(save,load)
+QUESTION: Mode#CB#(save,load,external)
 VALUE: save
-HELP: Working mode: save initial stresses at the end of the calculation or load them at the beginning.
+HELP: save: save initial stresses at the end of the calculation, load: load them at the beginning, external: INITIAL_STRESS_TENSOR must be externally set
 TITLE: Solver_Settings
-QUESTION: Solution_Type#CB#(quasi_static,Dynamic)
-VALUE: quasi_static
-QUESTION: Scheme_Type#CB#(Newmark)
+QUESTION: Solution_Type#CB#(implicit_quasi_static,implicit_dynamic,explicit)
+VALUE: implicit_quasi_static
+HELP: For the moment, explicit solution type can only be used for purely solid mechanics problems and not for coupled solid-pore-fluid interaction problems.
+DEPENDENCIES: (implicit_quasi_static,RESTORE,Max_Iterations,#CURRENT#,RESTORE,Convergence_Criterion,#CURRENT#,RESTORE,Block_Builder,#CURRENT#,RESTORE,Solver_Type,#CURRENT#,RESTORE,Scaling,#CURRENT#,RESTORE,Verbosity,#CURRENT#,RESTORE,Strategy_Type,#CURRENT#,RESTORE,Displacement_Relative_Tolerance,#CURRENT#,RESTORE,Displacement_Absolute_Tolerance,#CURRENT#)(implicit_dynamic,RESTORE,Max_Iterations,#CURRENT#,RESTORE,Convergence_Criterion,#CURRENT#,RESTORE,Block_Builder,#CURRENT#,RESTORE,Solver_Type,#CURRENT#,RESTORE,Scaling,#CURRENT#,RESTORE,Verbosity,#CURRENT#,RESTORE,Strategy_Type,#CURRENT#,RESTORE,Displacement_Relative_Tolerance,#CURRENT#,RESTORE,Displacement_Absolute_Tolerance,#CURRENT#)(explicit,HIDE,Max_Iterations,#CURRENT#,HIDE,Convergence_Criterion,Displacement_criterion,HIDE,Block_Builder,#CURRENT#,HIDE,Solver_Type,#CURRENT#,HIDE,Scaling,#CURRENT#,HIDE,Verbosity,#CURRENT#,HIDE,Strategy_Type,newton_raphson,HIDE,Displacement_Relative_Tolerance,#CURRENT#,HIDE,Displacement_Absolute_Tolerance,#CURRENT#)
+QUESTION: Scheme_Type#CB#(Newmark,Explicit_Central_Differences,Explicit_Velocity_Verlet)
 VALUE: Newmark
+DEPENDENCIES: (Newmark,RESTORE,Newmark_Beta,#CURRENT#,RESTORE,Newmark_Gamma,#CURRENT#,RESTORE,Newmark_Theta,#CURRENT#,HIDE,g_factor,#CURRENT#,HIDE,Calculate_xi,#CURRENT#,HIDE,xi_1_factor,#CURRENT#)(Explicit_Central_Differences,HIDE,Newmark_Beta,#CURRENT#,HIDE,Newmark_Gamma,#CURRENT#,HIDE,Newmark_Theta,#CURRENT#,RESTORE,g_factor,#CURRENT#,RESTORE,Calculate_xi,#CURRENT#,RESTORE,xi_1_factor,#CURRENT#)(Explicit_Velocity_Verlet,HIDE,Newmark_Beta,#CURRENT#,HIDE,Newmark_Gamma,#CURRENT#,HIDE,Newmark_Theta,#CURRENT#,HIDE,g_factor,#CURRENT#,HIDE,Calculate_xi,#CURRENT#,HIDE,xi_1_factor,#CURRENT#)
 QUESTION: Newmark_Beta
-VALUE: 0.25
+VALUE: 1.0
 QUESTION: Newmark_Gamma
-VALUE: 0.5
+VALUE: 1.0
 QUESTION: Newmark_Theta
-VALUE: 0.5
+VALUE: 1.0
 HELP: 0: Forward Euler, 1: Backward Euler, 0.5: Crank-Nicolson
-QUESTION: Rayleigh_Mass
+QUESTION: g_factor
 VALUE: 0.0
-QUESTION: Rayleigh_Stiffness
+HELP: For g_factor >= 1.0 the Explicit_Central_Differences scheme with added mass is activated and so the critical time step can be larger than 2/wn.
+QUESTION: Calculate_Rayleigh_Alpha_Beta#CB#(true,false)
+VALUE: false
+HELP: Automatically calculate rayleigh coefficients or introduce them manually.
+DEPENDENCIES: (false,RESTORE,Rayleigh_Alpha,#CURRENT#,RESTORE,Rayleigh_Beta,#CURRENT#,HIDE,xi_1,#CURRENT#,HIDE,xi_n,#CURRENT#,HIDE,omega_1,#CURRENT#,HIDE,omega_n,#CURRENT#)(true,HIDE,Rayleigh_Alpha,#CURRENT#,HIDE,Rayleigh_Beta,#CURRENT#,RESTORE,xi_1,#CURRENT#,RESTORE,xi_n,#CURRENT#,RESTORE,omega_1,#CURRENT#,RESTORE,omega_n,#CURRENT#)
+QUESTION: Calculate_xi#CB#(true,false)
+VALUE: false
+HELP: Automatically calculate xi_1 and xi_n coefficients or introduce them manually.
+DEPENDENCIES: (false,HIDE,xi_1_factor,#CURRENT#,RESTORE,xi_1,#CURRENT#,RESTORE,xi_n,#CURRENT#)(true,RESTORE,xi_1_factor,#CURRENT#,HIDE,xi_1,#CURRENT#,HIDE,xi_n,#CURRENT#)
+QUESTION: omega_1
+VALUE: 1.0
+HELP: Angular frequency associated to the first mode of vibration of the structure (rad/s).
+QUESTION: omega_n
+VALUE: 10.0
+HELP: Angular frequency associated to the last mode of vibration of the structure (rad/s).
+QUESTION: xi_1_factor
+VALUE: 1.0
+HELP: Factor multiplying the damping ratio associated to the first mode of vibration of the structure. For critically damped structures use 1.0.
+QUESTION: xi_1
+VALUE: 1.0
+HELP: Damping ratio associated to the first mode of vibration of the structure.
+QUESTION: xi_n
+VALUE: 0.05
+HELP: Damping ratio associated to the last mode of vibration of the structure.
+QUESTION: Rayleigh_Alpha
+VALUE: 0.0
+QUESTION: Rayleigh_Beta
 VALUE: 0.0
 QUESTION: Strategy_Type#CB#(newton_raphson,arc_length)
 VALUE: newton_raphson
 DEPENDENCIES: (newton_raphson,HIDE,Desired_Iterations,#CURRENT#,HIDE,Max_Radius_Factor,#CURRENT#,HIDE,Min_Radius_Factor,#CURRENT#)(arc_length,RESTORE,Desired_Iterations,#CURRENT#,RESTORE,Max_Radius_Factor,#CURRENT#,RESTORE,Min_Radius_Factor,#CURRENT#)
 QUESTION: Convergence_Criterion#CB#(Displacement_criterion,Residual_criterion,And_criterion,Or_criterion)
-VALUE: And_criterion
+VALUE: Residual_criterion
 DEPENDENCIES: (Displacement_criterion,RESTORE,Displacement_Relative_Tolerance,#CURRENT#,RESTORE,Displacement_Absolute_Tolerance,#CURRENT#,HIDE,Residual_Relative_Tolerance,#CURRENT#,HIDE,Residual_Absolute_Tolerance,#CURRENT#)(Residual_criterion,HIDE,Displacement_Relative_Tolerance,#CURRENT#,HIDE,Displacement_Absolute_Tolerance,#CURRENT#,RESTORE,Residual_Relative_Tolerance,#CURRENT#,RESTORE,Residual_Absolute_Tolerance,#CURRENT#)(And_criterion,RESTORE,Displacement_Relative_Tolerance,#CURRENT#,RESTORE,Displacement_Absolute_Tolerance,#CURRENT#,RESTORE,Residual_Relative_Tolerance,#CURRENT#,RESTORE,Residual_Absolute_Tolerance,#CURRENT#)(Or_criterion,RESTORE,Displacement_Relative_Tolerance,#CURRENT#,RESTORE,Displacement_Absolute_Tolerance,#CURRENT#,RESTORE,Residual_Relative_Tolerance,#CURRENT#,RESTORE,Residual_Absolute_Tolerance,#CURRENT#)
 QUESTION: Displacement_Relative_Tolerance
 VALUE: 1.0E-4
@@ -96,10 +123,10 @@ QUESTION: Desired_Iterations
 VALUE: 4
 HELP: The larger this number, the larger the radius
 QUESTION: Max_Radius_Factor
-VALUE: 20.0
+VALUE: 10.0
 HELP: Times the initial radius. In order to use a constant radius, choose the same value for Min Radius Factor and Max Radius Factor
 QUESTION: Min_Radius_Factor
-VALUE: 0.5
+VALUE: 0.1
 HELP: Times the initial radius. In order to use a constant radius, choose the same value for Min Radius Factor and Max Radius Factor
 QUESTION: Reform_Dofs_At_Each_Step#CB#(true,false)
 VALUE: false
@@ -120,7 +147,7 @@ VALUE: true
 QUESTION: Write_Fluid_Pressure#CB#(true,false)
 VALUE: true
 QUESTION: Write_Reactions#CB#(true,false)
-VALUE: false
+VALUE: true
 QUESTION: Write_Force#CB#(true,false)
 VALUE: false
 QUESTION: Write_Face_Load#CB#(true,false)
@@ -136,7 +163,7 @@ VALUE: false
 QUESTION: Write_Strain#CB#(true,false)
 VALUE: false
 QUESTION: Write_Effective_Stress#CB#(true,false)
-VALUE: false
+VALUE: true
 QUESTION: Write_Total_Stress#CB#(true,false)
 VALUE: false
 QUESTION: Write_Initial_Stress#CB#(true,false)
@@ -144,12 +171,16 @@ VALUE: false
 QUESTION: Write_Von_Mises_Stress#CB#(true,false)
 VALUE: false
 QUESTION: Write_Fluid_Flux#CB#(true,false)
+VALUE: true
+QUESTION: Write_Fluid_Pressure_Gradient#CB#(true,false)
 VALUE: false
 QUESTION: Write_Permeability#CB#(true,false)
 VALUE: false
 QUESTION: Write_Damage#CB#(true,false)
 VALUE: false
 QUESTION: Write_Joint_Width#CB#(true,false)
+VALUE: false
+QUESTION: Write_Contact_Stress_Vector#CB#(true,false)
 VALUE: false
 QUESTION: Write_Local_Stress_Vector#CB#(true,false)
 VALUE: false
@@ -175,7 +206,7 @@ QUESTION: File_label#CB#(step,time)
 VALUE: step
 QUESTION: Output_control_type#CB#(step,time)
 VALUE: step
-QUESTION: Output_frequency
+QUESTION: Output_interval
 VALUE: 1
 QUESTION: Body_output#CB#(true,false)
 VALUE: true
