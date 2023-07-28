@@ -49,7 +49,7 @@
                 "DYNAMIC_VISCOSITY": 1.0e-3,
                 "THICKNESS": 1.0,
                 "DAMAGE_THRESHOLD": 1.0e-4,
-                "INITIAL_JOINT_WIDTH": 2.0e-3,
+                "INITIAL_JOINT_WIDTH": 4.0e-2,
                 "CRITICAL_DISPLACEMENT": 1.0e-2,
                 "YIELD_STRESS": 3.5e6,
                 "FRICTION_COEFFICIENT": 0.4,

@@ -26,7 +26,8 @@
                 "STRENGTH_RATIO": 10.0,
                 "FRACTURE_ENERGY": 100.0,
                 "RESIDUAL_STRENGTH": 0.8,
-                "SOFTENING_SLOPE": 9000.0
+                "SOFTENING_SLOPE": 9000.0,
+                "BIOT_COEFFICIENT": 0.6
             },
             "Tables": {}
         }
@@ -49,13 +50,16 @@
                 "DYNAMIC_VISCOSITY": 1.0e-3,
                 "THICKNESS": 1.0,
                 "DAMAGE_THRESHOLD": 1.0e-3,
-                "INITIAL_JOINT_WIDTH": 2.0e-3,
+                "INITIAL_JOINT_WIDTH": 4.001e-2,
                 "CRITICAL_DISPLACEMENT": 1.0e-4,
                 "YIELD_STRESS": 1.0,
                 "FRICTION_COEFFICIENT": 0.4,
                 "FRACTURE_ENERGY": 100.0,
                 "SHEAR_FRACTURE_ENERGY": 100.0,
-                "STATE_VARIABLE": 1.0e-12
+                "STATE_VARIABLE": 1.0e-12,
+                "TAU": 1.0,
+                "CURVE_FITTING_ETA": 1.0,
+                "BIOT_COEFFICIENT": 0.6
             },
             "Tables": {}
         }
@@ -78,13 +82,16 @@
                 "DYNAMIC_VISCOSITY": 1.0e-3,
                 "THICKNESS": 1.0,
                 "DAMAGE_THRESHOLD": 1.0e-3,
-                "INITIAL_JOINT_WIDTH": 2.0e-3,
+                "INITIAL_JOINT_WIDTH": 4.001e-2,
                 "CRITICAL_DISPLACEMENT": 1.0e-4,
-                "YIELD_STRESS": 0.0,
+                "YIELD_STRESS": 1.0,
                 "FRICTION_COEFFICIENT": 0.4,
                 "FRACTURE_ENERGY": 100.0,
                 "SHEAR_FRACTURE_ENERGY": 100.0,
-                "STATE_VARIABLE": 1.0e-12
+                "STATE_VARIABLE": 1.0e-12,
+                "TAU": 1.0,
+                "CURVE_FITTING_ETA": 1.0,
+                "BIOT_COEFFICIENT": 0.6
             },
             "Tables": {}
         }

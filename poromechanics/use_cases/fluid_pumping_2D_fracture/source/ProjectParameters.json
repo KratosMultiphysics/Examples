@@ -5,7 +5,6 @@
         "end_time":             3.0,
         "echo_level":           1,
         "parallel_type":        "OpenMP",
-        "number_of_threads":    1,
         "fracture_utility":     true
     },
     "solver_settings": {
@@ -29,14 +28,21 @@
         "periodic_interface_conditions":      false,
         "reform_dofs_at_each_step":           false,
         "nodal_smoothing":                    true,
+        "gp_to_nodal_variable_list": [],
+        "gp_to_nodal_variable_extrapolate_non_historical": false,
         "block_builder":                      false,
-        "solution_type":                      "quasi_static",
+        "solution_type":                      "implicit_quasi_static",
         "scheme_type":                        "Newmark",
         "newmark_beta":                       0.25,
         "newmark_gamma":                      0.5,
         "newmark_theta":                      0.5,
-        "rayleigh_m":                         0.0,
-        "rayleigh_k":                         0.0,
+        "calculate_alpha_beta":    false,
+        "omega_1":    1.0,
+        "omega_n":    10.0,
+        "xi_1":    1.0,
+        "xi_n":    0.05,
+        "rayleigh_alpha":                     0.0,
+        "rayleigh_beta":                      0.0,
         "strategy_type":                      "newton_raphson",
         "convergence_criterion":              "And_criterion",
         "displacement_relative_tolerance":    1.0E-4,
@@ -50,11 +56,7 @@
         "nonlocal_damage":                    true,
         "characteristic_length":              0.1,
         "linear_solver_settings":             {
-            "solver_type":         "bicgstab",
-            "tolerance":           1.0e-6,
-            "max_iteration":       100,
-            "scaling":             false,
-            "preconditioner_type": "ilu0"
+            "solver_type":   "LinearSolversApplication.sparse_lu"
         },
         "problem_domain_sub_model_part_list": ["Body_Part-auto-1","Interface_Part-auto-1"],
         "processes_sub_model_part_list":      ["Solid_Displacement-auto-2","Fluid_Pressure-auto-1","Normal_Fluid_Flux-auto-1","Interface_Normal_Fluid_Flux-auto-1"],
@@ -83,8 +85,8 @@
                         "node_output":         false,
                         "skin_output":         false,
                         "plane_output":        [],
-                        "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","NORMAL_FLUID_FLUX","NODAL_CAUCHY_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_WIDTH","NODAL_JOINT_DAMAGE"],
-                        "gauss_point_results": ["CAUCHY_STRESS_TENSOR","DAMAGE_VARIABLE","JOINT_WIDTH"]
+                        "nodal_results":       ["DISPLACEMENT","WATER_PRESSURE","NORMAL_FLUID_FLUX","NODAL_EFFECTIVE_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_WIDTH","NODAL_JOINT_DAMAGE"],
+                        "gauss_point_results": ["EFFECTIVE_STRESS_TENSOR","DAMAGE_VARIABLE","JOINT_WIDTH"]
                     },
                     "point_data_configuration":  []
                 }

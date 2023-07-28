@@ -84,8 +84,8 @@
                         "node_output":         false,
                         "skin_output":         false,
                         "plane_output":        [],
-                        "nodal_results":       ["DISPLACEMENT","REACTION","REACTION_WATER_PRESSURE","FACE_LOAD","NODAL_CAUCHY_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_DAMAGE"],
-                        "gauss_point_results": ["CAUCHY_STRESS_TENSOR","DAMAGE_VARIABLE"]
+                        "nodal_results":       ["DISPLACEMENT","REACTION","REACTION_WATER_PRESSURE","FACE_LOAD","NODAL_EFFECTIVE_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_DAMAGE"],
+                        "gauss_point_results": ["EFFECTIVE_STRESS_TENSOR","DAMAGE_VARIABLE"]
                     },
                     "point_data_configuration":  []
                 }
