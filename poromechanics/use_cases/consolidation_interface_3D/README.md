@@ -2,7 +2,7 @@
 
 **Author:** Ignasi de Pouplana
 
-**Kratos version:** 5.2
+**Kratos version:** 9.3
 
 **Source files:** [Consolidation interface 3D](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/use_cases/consolidation_interface_3D/source)
 
