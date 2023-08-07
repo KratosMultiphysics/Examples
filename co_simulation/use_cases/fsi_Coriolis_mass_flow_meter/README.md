@@ -45,7 +45,7 @@ The FSI simulation was performed after achieving developed fluid flow, reached f
 The displacement response at point S1 is plotted and demonstrated for free vibration (without interaction with fluid) and with strong interaction (FSI). The influence of the coupling is clearly visible in the magnitude and frequency of the response.
 
 <p align="center">
-  <img src="data/sensor_1_z_displ_hist.png" alt="eigen frequency analysis." style="width: 600px;"/>
+  <img src="data/sensor_1_z_displ_hist.png" alt="eigen frequency analysis." style="width: 100%;"/>
 </p>
 
 Lastly, the phase shift between displacements at S1 and S2 was calculated to be 7.2763 μs. The vibration of the tube under FSI and impulsive load is presented in the following:
