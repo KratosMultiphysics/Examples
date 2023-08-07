@@ -50,4 +50,4 @@ The displacement response at point S1 is plotted and demonstrated for free vibra
 
 Lastly, the phase shift between displacements at S1 and S2 was calculated to be 7.2763 μs. The vibration of the tube under FSI and impulsive load is presented in the following:
 
-![FSI vibration](https://github.com/KratosMultiphysics/Examples/tree/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/data/ffsi_vibration.gif)
+![FSI vibration](https://github.com/KratosMultiphysics/Examples/blob/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/data/fsi_vibration.gif)
