@@ -10,7 +10,7 @@
 
 ## Case Specification
 
-Here you will find the source and result files of the 3D full-scale FSI (Fluid-Structure Interaction) simulation of a U-shaped Coriolis mass flow meter. A U-shaped Coriolis mass flow meter is a device used to measure the mass flow rate of a fluid by utilizing the Coriolis effect. The U-shaped tube through which the fluid flows is set into oscillation at its bending natural resonant frequency. This oscillation is typically driven by an actuator. As the fluid flows through the oscillating U-shaped tube, the Coriolis effect induces a force that causes the tube to twist. The amount of this twisting is directly proportional to the mass flow rate of the fluid.
+Here you will find the source and result files of the 3D full-scale FSI (Fluid-Structure Interaction) simulation of a U-shaped Coriolis mass flow meter. A U-shaped Coriolis mass flow meter is a device used to measure the mass flow rate of a fluid by utilizing the Coriolis effect. The U-shaped tube through which the fluid flows is set into oscillation at its bending natural resonant frequency. This oscillation is typically driven by an actuator. As the fluid flows through the oscillating U-shaped tube, the Coriolis effect induces a force that causes the tube to twist. The amount of this twisting is directly proportional to the mass flow rate of the fluid. For more information on how Coriolis mass flow meters work, please check this publication (Birjandi, A. K., et al 2022).
 
 You can find the schematic description of the problem and its properties in the following:
 
@@ -51,3 +51,6 @@ The displacement response at point S1 is plotted and demonstrated for free vibra
 Lastly, the phase shift between displacements at S1 and S2 was calculated to be 7.2763 μs. The vibration of the tube under FSI and impulsive load is presented in the following:
 
 ![FSI vibration](https://github.com/KratosMultiphysics/Examples/blob/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/data/fsi_vibration.gif)
+
+## References
+Birjandi, A. K., et al. "Development of a high-fidelity partitioned Fluid–Structure Interaction model of an Omega-shaped Coriolis Mass Meter and comparison with experimental data." Journal of Fluids and Structures 110 (2022): 103510. (https://www.sciencedirect.com/science/article/abs/pii/S0889974622000068)
