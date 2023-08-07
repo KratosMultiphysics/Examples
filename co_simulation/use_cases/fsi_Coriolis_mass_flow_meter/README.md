@@ -1,6 +1,6 @@
 # U-shaped Coriolis mass flow meter
 
-**Author:** [Reza Najian Asl](https://github.com/RezaNajian)
+**Authors:** [Reza Najian Asl](https://github.com/RezaNajian) & [A.K. Birjandi](https://github.com/Maziarb)
 
 **Kratos version:** 9.3
 
