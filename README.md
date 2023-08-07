@@ -73,6 +73,9 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 
 ## Fluid-Structure Interaction (FSI)
 
+**Use cases**
+- [U-shaped Coriolis mass flow meter](https://github.com/KratosMultiphysics/Examples/blob/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/README.md)
+
 **Validation**
 - [FSI lid driven cavity](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/fsi_lid_driven_cavity/README.md)
 - [Mixer with flexible blades (embedded)](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_structure_interaction/validation/embedded_fsi_mixer_Y/README.md)
