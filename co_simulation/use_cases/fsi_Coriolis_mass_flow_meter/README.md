@@ -30,14 +30,14 @@ Sensors are positioned at strategic points on the U-tube. They measure the displ
 The U-tube structure is modeled here using linear triangular shell elements. Eigenfrequency analysis was performed to obtain the driver (bending) and Coriolis eigenvalues and modes. Refer to the figure below:
 
 <p align="center">
-  <img src="data/eigen_frequency_analysis.png" alt="eigen frequency analysis." style="width: 600px;"/>
+  <img src="data/eigen_frequency_analysis.png" alt="eigen frequency analysis." style="width: 100%;"/>
 </p>
 
 Furthermore, an impulsive load was applied to the indicated red area to excite the first bending mode. The free vibration analysis was performed with the StructuralMechanicsApplication using the Bossak time integration scheme, and the simulation lasted for 20 periods, with each period divided into 20 time steps. The peak frequency (bending frequency) was calculated to be 89.64 Hz using a sine function fitting as well as a discrete Fourier transform.
 
 Having studied the structural properties, a transient fluid simulation was performed using the VMS Galerkin solver of Kratos, with 1,338,240 cells utilized. The averaged Y+ value is around 6, and a time step of 0.00056179775 s was used, which is in agreement with the CFL condition. The fluid flow is at Reynolds number 65,208. A couple of time steps are visualized in the following:
 
-![transient fluid flow](https://github.com/KratosMultiphysics/Examples/tree/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/data/fluid_flow.gif)
+![transient fluid flow](https://github.com/KratosMultiphysics/Examples/blob/master/co_simulation/use_cases/fsi_Coriolis_mass_flow_meter/data/fluid_flow.gif)
 
 The FSI simulation was performed after achieving developed fluid flow, reached following 6,000 time steps. This means the FSI begins at 4.294488 seconds and continues for 20 periods, with each period divided into 20 time steps. The CoSimulation and Mapping applications within Kratos were utilized for the FSI simulation. Aitken relaxation served as the convergence accelerator in the partitioned strong coupling iteration of the Gauss-Seidel scheme. Since the interface meshes of the fluid and structure were matching, the nearest neighbor mapper was utilized.
 
