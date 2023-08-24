@@ -1287,13 +1287,13 @@ if __name__ == '__main__':
 
     #mu = get_multiple_params(10, 10) #we might need to use a function like this for sampling the parameters space, for now, input by hand
     mu = [
-    [50000, 200],         # 200 RPM, 5000 W/m�
-    [62500, 250],
-    [75000, 300],
-    [87500, 350],         # 350 RPM, 8750 W/m²
-    [100000, 400],        # 400 RPM, 10000 W/m�
-    [112500, 450],
-    [125000, 500]
+    [50000, 200],         # 200 RPM, 5000 W/m²
+    [62500, 250],         # 250 RPM, 62500 W/m²
+    [75000, 300],         # 300 RPM, 75000 W/m²
+    [87500, 350],         # 350 RPM, 87500 W/m²
+    [100000, 400],        # 400 RPM, 100000 W/m²
+    [112500, 450],        # 450 RPM, 112500 W/m²
+    [125000, 500]         # 500 RPM, 125000 W/m²
     ]
 
 
@@ -1301,7 +1301,7 @@ if __name__ == '__main__':
     analysis_directory_path = argv[1]
 
     # Define the RPM values for which we want to interpolate
-    interpolated_rpms = [250, 350]
+    interpolated_rpms = [250, 350, 450] # These are the RPMs that are not part of the CFD precomputed simulations.
 
     # Call the interpolate_parameters function to perform non-intrusive interpolation
     # for the defined RPM values using the given analysis directory
@@ -1407,8 +1407,8 @@ if __name__ == '__main__':
     """
 
 
-    # #This final part can be considered as the first step in the deployment stage
-    #StageFinal_CreateHROMModelParts(simulations_data,workflow_rom_parameters)
+    #This final part can be considered as the first step in the deployment stage
+    StageFinal_CreateHROMModelParts(simulations_data,workflow_rom_parameters)
     #compss_barrier()
     #_,_, = ROM(mu, simulations_data, "HHROM")
 
