@@ -35,7 +35,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 
 # Introducing the Workflow
 
-## Toy model used
+## Demo model used
 
 This example uses a flow pass a cylinder in 2D model. For a breve description of this example check [this page](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/body_fitted_cylinder_100Re)
 
