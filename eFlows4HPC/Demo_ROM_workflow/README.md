@@ -11,7 +11,8 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
     * [Requirements][requirements]
         * [Kratos][kratos]
         * [COMPSs][compss]
-        * [dislib][dislib]        
+        * [dislib][dislib]
+        * [EZyRB][EZyRB]       
     * [Launching in Local Machine][local]
     * [Launching in Cluster][cluster]
     * [Results][results]
@@ -130,6 +131,19 @@ Else, you can use pip
 pip install dislib
 ```
 
+### EZyRB
+
+The latest version of EZyRB can be obtained from [here](https://mathlab.github.io/EZyRB/)
+
+The official distribution is on GitHub, and you can clone the repository using
+```shell
+git clone https://github.com/mathLab/EZyRB
+```
+
+To install the package just type:
+```shell
+python setup.py install
+```
 
 ## Launching in Local Machine
 
