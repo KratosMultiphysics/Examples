@@ -80,7 +80,7 @@ Moreover, a fixed-precision randomized svd (using tall and skinny QR decompositi
 
 ### Kratos
 
-This example requires the RomApplication and the FluidDynamicsApplication.
+This example requires the RomApplication and the CoSimulationApplication.
 
 If you compiled Kratos, add both these application to the Kratos configure file. 
 
