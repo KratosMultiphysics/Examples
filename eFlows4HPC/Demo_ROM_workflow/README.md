@@ -18,19 +18,19 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
     
     
 
-[presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#introducing-the-workflow
-[launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#launching-the-example
-[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#toy-model-used
-[rom]://https:github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#the-reduced-order-model
-[workflow]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#the-workflow
-[launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#launching-the-example
-[requirements]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#requirements
-[kratos]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#kratos
-[compss]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#compss
-[dislib]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#dislib
-[local]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#launching-in-local-machine
-[cluster]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#launching-in-cluster
-[results]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#checking-the-results
+[presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#introducing-the-workflow
+[launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
+[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#toy-model-used
+[rom]://https:github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-reduced-order-model
+[workflow]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-workflow
+[launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
+[requirements]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#requirements
+[kratos]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#kratos
+[compss]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#compss
+[dislib]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#dislib
+[local]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-local-machine
+[cluster]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-cluster
+[results]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#checking-the-results
 
 # Introducing the Workflow
 
@@ -169,5 +169,5 @@ Where the coloured circles represent the following tasks
 <p align=center><img height="50.125%" width="50.125%" src="./data/tasks.png"></p>
 
 
-Moreover, two numpy files are obtained representing each of the two validation stages in [the workflow](https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/ROM_workflow#the-workflow)
+Moreover, two numpy files are obtained representing each of the two validation stages in [the workflow](https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-workflow)
 
