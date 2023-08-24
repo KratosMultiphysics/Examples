@@ -21,7 +21,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 
 [presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#introducing-the-workflow
 [launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
-[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#demo-model-used
+[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#demo-model
 [rom]://https:github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-reduced-order-model
 [workflow]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-workflow
 [launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
@@ -29,6 +29,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 [kratos]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#kratos
 [compss]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#compss
 [dislib]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#dislib
+[EZyRB]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#ezyrb
 [local]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-local-machine
 [cluster]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-cluster
 [results]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#checking-the-results
