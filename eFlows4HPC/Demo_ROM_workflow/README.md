@@ -80,9 +80,9 @@ Moreover, a fixed-precision randomized svd (using tall and skinny QR decompositi
 
 ### Kratos
 
-This example requires the RomApplication and the CoSimulationApplication.
+This example requires the LinearSolversApplication, ConvectionDiffusionApplication, CoSimulationApplication, RomApplication, and the MappingApplication.
 
-If you compiled Kratos, add both these application to the Kratos configure file. 
+If you compiled Kratos, add all of these applications to the Kratos configure file. 
 
 Linux:
 ```shell
@@ -106,7 +106,7 @@ If on the other hand, you are using the precompiled version of Kratos, do
 
 pip:
 ```shell
-pip install KratosRomApplication KratosFluidDynamicsApplication
+pip install KratosRomApplication KratosCoSimulationApplication
 ```
 
 ### COMPSs
