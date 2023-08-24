@@ -149,14 +149,14 @@ python setup.py install
 
 In you own computer, use the `runcompss` command to launch the workflow. 
 
-The [WorkflowExample.py](./WorkflowExample.py) expects the directory to be passed, since COMPSs works with absolute paths.
+The [Workflow.py](./Workflow.py) expects the directory to be passed, since COMPSs works with absolute paths.
 
 Activate tracing `-t` and graph `-g` generation flags to better analyse the results
 
 So, in order to launch the workflow, do
 
 ```shell
-runcompss --lang=python --python_interpreter=python3 -g WorkflowExample.py $PWD
+runcompss --lang=python --python_interpreter=python3 -g Workflow.py $PWD
 ```
 
 ## Launching in Cluster
@@ -173,7 +173,7 @@ enqueue_compss \
  --max_tasks_per_node=12 \
  --exec_time=$time_limit \
  --python_interpreter=python3 \
- --num_nodes=$num_nodes WorkflowExample.py $PWD
+ --num_nodes=$num_nodes Workflow.py $PWD
  ```
 
 ## Checking the results
@@ -181,13 +181,10 @@ enqueue_compss \
 The graph of the job allows to see the execution order of the tasks.
 
 In this example the graph generated looks like this
-
-<p align=center><img height="72.125%" width="72.125%" src="./data/workflow_graph.JPG"></p>
+<p align=center><img height="72.125%" width="72.125%" src="./data/GrapghColors.png"></p>
+<p align=center><img height="72.125%" width="72.125%" src="./data/Grapgh.png"></p>
 
 Where the coloured circles represent the following tasks
 
-<p align=center><img height="50.125%" width="50.125%" src="./data/tasks.png"></p>
-
-
-Moreover, two numpy files are obtained representing each of the two validation stages in [the workflow](https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-workflow)
+<p align=center><img height="50.125%" width="50.125%" src="./data/Trace.png"></p>
 
