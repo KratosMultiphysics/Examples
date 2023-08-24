@@ -58,15 +58,20 @@ In oder to obtain such a ROM, a campain of expensive Full Order Model FOM simula
 We have defined 5 stages of the workflow, each of which finds a one-to-one correspondance to the functions included in the file [WorkflowExample.py](./WorkflowExample.py) 
 
 
-<p align=center><img height="72.125%" width="72.125%" src="./data/workflowcorrect.png"></p>
+<p align=center><img height="72.125%" width="72.125%" src="./data/Steps.png"></p>
 
+The simulations in Kratos using the CoSimulation capabilities aim to store the outputs:
+<p align=center><img height="72.125%" width="72.125%" src="./data/CoSimLogic.png"></p>
 
-The parallelization of the Kratos simulations is done using [COMPSs](https://compss-doc.readthedocs.io/en/stable/)
+To accomplish parallelization on these simulations, Kratos simulations are done using [COMPSs](https://compss-doc.readthedocs.io/en/stable/)
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/simulations_parallel.png"></p>
 
+And the snapshots will be gathered in dislib ([dislib](https://dislib.readthedocs.io/en/release-0.7/) and can be found [here]) arrays:
+<p align=center><img height="72.125%" width="72.125%" src="./data/Snapshots_matrix.png"></p>
 
-Moreover, the fixed-rank randomized svd used in this workflow is implemented using [dislib](https://dislib.readthedocs.io/en/release-0.7/) and can be found [here](https://github.com/KratosMultiphysics/Kratos/blob/master/applications/RomApplication/python_scripts/parallel_svd.py)
+Moreover, a fixed-precision randomized svd (using tall and skinny QR decomposition) was used in this workflow to find the reduced basis and perform hyper-reduction. To delve into parallelization, partitioned hyper-reduction was implemented:
+<p align=center><img height="72.125%" width="72.125%" src="./data/PartitionedSVD.png"></p>
 
 
 # Launching the Example
