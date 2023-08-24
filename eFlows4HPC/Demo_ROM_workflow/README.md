@@ -38,7 +38,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 
 ## Demo model
 
-This example uses a flow pass a cylinder in 2D model. For a breve description of this example check [this page](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/body_fitted_cylinder_100Re)
+Our 2D stator-rotor model serves as a foundational representation of complex thermodynamic interactions within motor systems. Leveraging advanced computational methods, the model captures fluid dynamics and convection-diffusion processes. It's designed with precision to simulate real-world scenarios, providing insights into heat exchange and flow behaviors in motor assemblies. This 2D representation, while simplified, embodies key physical principles and serves as a robust starting point for more intricate 3D explorations.
 
 <p align="center">
   <img src="https://github.com/KratosMultiphysics/Examples/blob/master/eFlows4HPC/Demo_ROM_workflow/data/Animation_README.gif" alt="Temperature Field for [100000, 400] - RPM of 400 and heat flux of 100000 W/m^3." style="width: 600px;"/>
@@ -50,14 +50,14 @@ The goal of the ROM is to cheaply and fastly evaluate the solution for a given p
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/surrogate.png"></p>
 
-In oder to obtain such a ROM, a campain of expensive Full Order Model FOM simulations should be launched and the collected data should be analysed.
+In order to obtain such a ROM, a campaign of expensive Full Order Model FOM simulations should be launched, and the collected data should be analyzed.
 
 
 
 
 ## The workflow
 
-We have defined 5 stages of the workflow, each of which finds a one-to-one correspondance to the functions included in the file [WorkflowExample.py](./WorkflowExample.py) 
+We have defined 5 stages of the workflow, each of which finds a one-to-one correspondence to the functions included in the file [WorkflowExample.py](./WorkflowExample.py) 
 
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/Steps.png"></p>
@@ -148,11 +148,11 @@ python setup.py install
 
 ## Launching in Local Machine
 
-In you own computer, use the `runcompss` command to launch the workflow. 
+In your own computer, use the `runcompss` command to launch the workflow. 
 
-The [Workflow.py](./Workflow.py) expects the directory to be passed, since COMPSs works with absolute paths.
+The [Workflow.py](./Workflow.py) expects the directory to be passed since COMPSs work with absolute paths.
 
-Activate tracing `-t` and graph `-g` generation flags to better analyse the results
+Activate tracing `-t` and graph `-g` generation flags to better analyze the results
 
 So, in order to launch the workflow, do
 
@@ -181,11 +181,11 @@ enqueue_compss \
 
 The graph of the job allows to see the execution order of the tasks.
 
-In this example the graph generated looks like this
+In this example, the graph generated looks like this
 <p align=center><img height="72.125%" width="72.125%" src="./data/GrapghColors.png"></p>
 <p align=center><img height="72.125%" width="72.125%" src="./data/Grapgh.png"></p>
 
-Where the coloured circles represent the following tasks
+Where the colored circles represent the following tasks
 
 <p align=center><img height="50.125%" width="50.125%" src="./data/Trace.png"></p>
 
