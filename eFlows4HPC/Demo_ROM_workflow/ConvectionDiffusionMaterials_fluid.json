@@ -1,0 +1,21 @@
+{
+    "properties" : [{
+        "model_part_name" : "ThermalModelPart.CNVDFFParts_Fluid_part",
+        "properties_id"   : 1,
+        "Material"        : {
+            "Variables" : {
+                "DENSITY"       : 1.225,
+                "CONDUCTIVITY"  : 0.024,
+                "SPECIFIC_HEAT" : 1012.0
+            },
+            "Tables"    : {}
+        }
+    }]
+}
+// "DENSITY"       : 1000.0,
+// "CONDUCTIVITY"  : 0.58,
+// "SPECIFIC_HEAT" : 4181.3
+
+// "DENSITY"       : 1.225,
+// "CONDUCTIVITY"  : 0.024,
+// "SPECIFIC_HEAT" : 1012.0

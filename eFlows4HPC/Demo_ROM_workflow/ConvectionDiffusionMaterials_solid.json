@@ -1,0 +1,40 @@
+{
+    "properties" : [
+    {
+        "model_part_name" : "ThermalModelPart.GENERIC_Solid_stator",
+        "properties_id"   : 1,
+        "Material"        : {
+            "Variables" : {
+                "DENSITY"       :  8960.0,
+                "CONDUCTIVITY"  :  401.0,
+                "SPECIFIC_HEAT" : 385.0
+            },
+            "Tables"    : {}
+        }
+    }
+    ,{
+        "model_part_name" : "ThermalModelPart.GENERIC_Solid_rotor",
+        "properties_id"   : 2,
+        "Material"        : {
+            "Variables" : {
+                "DENSITY"       :  7900.0,
+                "CONDUCTIVITY"  :  16.3,
+                "SPECIFIC_HEAT" : 500.0
+            },
+            "Tables"    : {}
+        }
+    }
+    // {
+    //     "model_part_name" : "ThermalModelPart.CNVDFFParts_Solid_part",
+    //     "properties_id"   : 2,
+    //     "Material"        : {
+    //         "Variables" : {
+    //             "DENSITY"       :  8960.0,
+    //             "CONDUCTIVITY"  :  401.0,
+    //             "SPECIFIC_HEAT" : 385.0
+    //         },
+    //         "Tables"    : {}
+    //     }
+    // }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "rom_manager": true,
+    "train_hrom": false,
+    "run_hrom": true,
+    "projection_strategy": "galerkin",
+    "assembling_strategy": "global",
+    "rom_format": "numpy",
+    "train_petrov_galerkin": {
+        "train": false,
+        "basis_strategy": "residuals",
+        "include_phi": false,
+        "svd_truncation_tolerance": 1e-06
+    },
+    "rom_settings": {
+        "nodal_unknowns": [
+            "TEMPERATURE"
+        ],
+        "number_of_rom_dofs": 19,
+        "petrov_galerkin_number_of_rom_dofs": 0
+    },
+    "hrom_settings": {
+        "hrom_format": "numpy",
+        "include_conditions_model_parts_list": [
+            "ThermalModelPart.GENERIC_Interface_fluid"
+        ],
+        "include_nodal_neighbouring_elements_model_parts_list": [
+            "ThermalModelPart.GENERIC_Interface_fluid"
+        ],
+        "create_hrom_visualization_model_part": false,
+        "include_elements_model_parts_list": [],
+        "include_minimum_condition": false,
+        "include_condition_parents": true
+    },
+    "nodal_modes": {},
+    "elements_and_weights": {},
+    "rom_basis_output_folder": "rom_data"
+}

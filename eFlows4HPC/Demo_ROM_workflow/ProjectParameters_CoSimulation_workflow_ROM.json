@@ -1,0 +1,138 @@
+{
+    "problem_data": {
+        "start_time": 0.0,
+        "end_time": 5000.0,
+        "echo_level": 3,
+        "print_colors": true,
+        "parallel_type": "OpenMP"
+    },
+    "solver_settings": {
+        "type": "coupled_solvers.gauss_seidel_strong",
+        "echo_level": 1,
+        "num_coupling_iterations": 100,
+        "predictors": [
+            {
+                "type": "average_value_based",
+                "solver": "solid",
+                "data_name": "flux"
+            }
+        ],
+        "convergence_accelerators": [
+            {
+                "type": "aitken",
+                "solver": "fluid",
+                "data_name": "flux"
+            }
+        ],
+        "convergence_criteria": [
+            {
+                "type": "relative_norm_initial_residual",
+                "solver": "solid",
+                "data_name": "temp",
+                "abs_tolerance": 1e-06,
+                "rel_tolerance": 1e-06
+            }
+        ],
+        "data_transfer_operators": {
+            "mapper": {
+                "type": "kratos_mapping",
+                "mapper_settings": {
+                    "mapper_type": "nearest_neighbor"
+                }
+            }
+        },
+        "coupling_operations": {
+            "distribute_point_values": {
+                "type": "distribute_point_values",
+                "solver": "fluid",
+                "redistribution_iterations": 100,
+                "redistribution_tolerance": 1e-06,
+                "data_point_values": "flux",
+                "data_distributed_values": "aux_flux",
+                "entities": "conditions"
+            }
+        },
+        "coupling_sequence": [
+            {
+                "name": "solid",
+                "input_data_list": [
+                    {
+                        "data": "face_flux",
+                        "from_solver": "fluid",
+                        "from_solver_data": "aux_flux",
+                        "data_transfer_operator": "mapper",
+                        "data_transfer_operator_options": [
+                            "swap_sign"
+                        ],
+                        "before_data_transfer_operations": [
+                            "distribute_point_values"
+                        ]
+                    }
+                ],
+                "output_data_list": [
+                    {
+                        "data": "temp",
+                        "to_solver": "fluid",
+                        "to_solver_data": "temp",
+                        "data_transfer_operator": "mapper"
+                    }
+                ]
+            },
+            {
+                "name": "fluid",
+                "output_data_list": [],
+                "input_data_list": []
+            }
+        ],
+        "solvers": {
+            "fluid": {
+                "type": "solver_wrappers.kratos.rom_wrapper",
+                "solver_wrapper_settings": {
+                    "input_file": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ProjectParameters_fluid_workflow"
+                },
+                "data": {
+                    "temp": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_fluid",
+                        "variable_name": "TEMPERATURE"
+                    },
+                    "face_flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_fluid",
+                        "variable_name": "FACE_HEAT_FLUX"
+                    },
+                    "flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_fluid",
+                        "variable_name": "REACTION_FLUX"
+                    },
+                    "aux_flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_fluid",
+                        "variable_name": "AUX_FLUX"
+                    }
+                }
+            },
+            "solid": {
+                "type": "solver_wrappers.kratos.rom_wrapper",
+                "solver_wrapper_settings": {
+                    "input_file": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ProjectParameters_solid_workflow"
+                },
+                "data": {
+                    "temp": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_solid",
+                        "variable_name": "TEMPERATURE"
+                    },
+                    "flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_solid",
+                        "variable_name": "REACTION_FLUX"
+                    },
+                    "aux_flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_solid",
+                        "variable_name": "AUX_FLUX"
+                    },
+                    "face_flux": {
+                        "model_part_name": "ThermalModelPart.GENERIC_Interface_solid",
+                        "variable_name": "FACE_HEAT_FLUX"
+                    }
+                }
+            }
+        }
+    }
+}
