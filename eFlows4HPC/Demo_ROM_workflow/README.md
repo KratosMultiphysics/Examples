@@ -39,7 +39,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 This example uses a flow pass a cylinder in 2D model. For a breve description of this example check [this page](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/body_fitted_cylinder_100Re)
 
 <p align="center">
-  <img src="https://github.com/KratosMultiphysics/Examples/eFlows4HPC/Demo_ROM_Workflow/data/Animation_README.gif" alt="Temperature Field for [100000, 400] - RPM of 400 and heat flux of 100000 W/m^3." style="width: 600px;"/>
+  <img src="https://github.com/KratosMultiphysics/Examples/eFlows4HPC/Demo_ROM_workflow/data/Animation_README.gif" alt="Temperature Field for [100000, 400] - RPM of 400 and heat flux of 100000 W/m^3." style="width: 600px;"/>
 </p>
 
 ## The Reduced Order Model
