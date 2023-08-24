@@ -3,7 +3,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 
 # Content
 * [Introducing the Workflow][presentation]
-    * [Toy Example][example]
+    * [Demo Model][example]
     * [The Reduced Order Model][rom]
     * [The Workflow][workflow]
     
@@ -20,7 +20,7 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 
 [presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#introducing-the-workflow
 [launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
-[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#toy-model-used
+[example]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#demo-model-used
 [rom]://https:github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-reduced-order-model
 [workflow]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#the-workflow
 [launching]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-the-example
@@ -86,14 +86,20 @@ If you compiled Kratos, add both these application to the Kratos configure file.
 
 Linux:
 ```shell
-add_app ${KRATOS_APP_DIR}/FluidDynamicsApplication
+add_app ${KRATOS_APP_DIR}/LinearSolversApplication
+add_app ${KRATOS_APP_DIR}/ConvectionDiffusionApplication
+add_app ${KRATOS_APP_DIR}/CoSimulationApplication
 add_app ${KRATOS_APP_DIR}/RomApplication
+add_app ${KRATOS_APP_DIR}/MappingApplication
 ```
 
 Windows:
 ```shell
-CALL :add_app %KRATOS_APP_DIR%/FluidDynamicsApplication
+CALL :add_app %KRATOS_APP_DIR%/LinearSolversApplication
+CALL :add_app %KRATOS_APP_DIR%/ConvectionDiffusionApplication
+CALL :add_app %KRATOS_APP_DIR%/CoSimulationApplication
 CALL :add_app %KRATOS_APP_DIR%/RomApplication
+CALL :add_app %KRATOS_APP_DIR%/MappingApplication
 ```
 
 If on the other hand, you are using the precompiled version of Kratos, do
