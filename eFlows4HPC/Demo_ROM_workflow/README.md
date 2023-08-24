@@ -182,10 +182,12 @@ enqueue_compss \
 The graph of the job allows to see the execution order of the tasks.
 
 In this example, the graph generated looks like this
-<p align=center><img height="72.125%" width="72.125%" src="./data/GrapghColors.png"></p>
-<p align=center><img height="72.125%" width="72.125%" src="./data/Grapgh.png"></p>
+<p align=center><img height="72.125%" width="72.125%" src="./data/Graph.png"></p>
 
 Where the colored circles represent the following tasks
+<p align=center><img height="72.125%" width="72.125%" src="./data/GraphColors.png"></p>
+
+Here is an example trace:
 
 <p align=center><img height="50.125%" width="50.125%" src="./data/Trace.png"></p>
 
