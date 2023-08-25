@@ -205,4 +205,28 @@ Replace [path_to_analysis_directory] with the path to your analysis directory or
 ```bash
 python3 rpm_interpolation_tool.py $PWD
 ```
+## Launching Serial Model
 
+To execute the `LaunchSerialModel.py` script and run a specific model (or set of models) in serial, follow the steps below:
+### Run the script using the following command:
+
+```bash
+python LaunchSerialModel.py $PWD [<models_to_run>]
+```
+
+Where:
+
+* `$PWD` represents the current directory path.
+* `<models_to_run>` is an optional comma-separated list of models you'd like to run. Options include: FOM, ROM, HROM, and HHROM. If you don't specify this parameter, the script defaults to running all models.
+
+For example, to run only the FOM and ROM models, use:
+
+```bash
+python LaunchSerialModel.py $PWD FOM,HHROM
+```
+
+If you'd like to run all models:
+
+```bash
+python LaunchSerialModel.py $PWD
+```
