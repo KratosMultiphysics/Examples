@@ -191,3 +191,18 @@ Here is an example trace:
 
 <p align=center><img height="50.125%" width="50.125%" src="./data/Trace.png"></p>
 
+## Running the RPM Interpolation Tool
+
+To run the RPM interpolation tool, use the following command:
+
+```bash
+python3 rpm_interpolation_tool.py [path_to_analysis_directory]
+```
+
+Replace [path_to_analysis_directory] with the path to your analysis directory or $PWD.
+
+### Example
+```bash
+python3 rpm_interpolation_tool.py $PWD
+```
+
