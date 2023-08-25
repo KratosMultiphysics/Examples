@@ -88,7 +88,7 @@
             "fluid": {
                 "type": "solver_wrappers.kratos.convection_diffusion_wrapper",
                 "solver_wrapper_settings": {
-                    "input_file": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ProjectParameters_fluid_workflow"
+                    "input_file": "ProjectParameters_fluid_workflow"
                 },
                 "data": {
                     "temp": {
@@ -112,7 +112,7 @@
             "solid": {
                 "type": "solver_wrappers.kratos.convection_diffusion_wrapper",
                 "solver_wrapper_settings": {
-                    "input_file": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ProjectParameters_solid_workflow"
+                    "input_file": "ProjectParameters_solid_workflow"
                 },
                 "data": {
                     "temp": {
