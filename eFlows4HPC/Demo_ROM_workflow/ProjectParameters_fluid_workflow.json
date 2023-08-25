@@ -48,7 +48,7 @@
                     ],
                     "rom_basis_output_format": "numpy",
                     "rom_basis_output_name": "RomParameters",
-                    "rom_basis_output_folder": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/fluid",
+                    "rom_basis_output_folder": "fluid",
                     "svd_truncation_tolerance": 1e-06
                 }
             }
@@ -178,7 +178,7 @@
         },
         "max_iteration": 10,
         "model_import_settings": {
-            "input_filename": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/fluidHROM",
+            "input_filename": "fluid",
             "input_type": "mdpa"
         },
         "model_part_name": "ThermalModelPart",
