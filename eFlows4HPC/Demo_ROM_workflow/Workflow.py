@@ -1285,7 +1285,6 @@ def get_multiple_params(number_of_params_1, number_of_params_2):
 
 if __name__ == '__main__':
 
-    #mu = get_multiple_params(10, 10) #we might need to use a function like this for sampling the parameters space, for now, input by hand
     mu = [
     [50000, 200],         # 200 RPM, 5000 W/m²
     [62500, 250],         # 250 RPM, 62500 W/m²
@@ -1301,7 +1300,8 @@ if __name__ == '__main__':
     analysis_directory_path = argv[1]
 
     # Define the RPM values for which we want to interpolate
-    interpolated_rpms = [250, 350, 450] # These are the RPMs that are not part of the CFD precomputed simulations.
+    # Exclude RPM values of 200, 300, 400, and 500 from mu[i][1]
+    interpolated_rpms = [value[1] for value in mu if value[1] not in [200, 300, 400, 500]] # These are the RPMs that are not part of the CFD precomputed simulations [200, 300, 400, 500].
 
     # Call the interpolate_parameters function to perform non-intrusive interpolation
     # for the defined RPM values using the given analysis directory
