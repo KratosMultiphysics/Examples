@@ -16,7 +16,8 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
     * [Launching in Local Machine][local]
     * [Launching in Cluster][cluster]
     * [Results][results]
-    
+    * [Running the RPM Interpolation Tool][interpolation]
+    * [Launching Serial Model][serial]
     
 
 [presentation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#introducing-the-workflow
@@ -33,6 +34,8 @@ This example presents the HPC workflow implemented using the [COMPSs](https://co
 [local]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-local-machine
 [cluster]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-in-cluster
 [results]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#checking-the-results
+[interpolation]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#running-the-rpm-interpolation-tool
+[serial]:https://github.com/KratosMultiphysics/Examples/tree/master/eFlows4HPC/Demo_ROM_workflow#launching-serial-model
 
 # Introducing the Workflow
 
