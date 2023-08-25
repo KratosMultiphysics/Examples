@@ -114,21 +114,21 @@ def prepare_files_physical_problem(physics_project_parameters_name, solver, simu
     """pre-pending the absolut path of the files in the Project Parameters"""
     with open(physics_project_parameters_name+'.json','r') as f:
         updated_project_parameters = json.load(f)
-        file_input_name = updated_project_parameters["solver_settings"]["model_import_settings"]["input_filename"]
-        materials_filename = updated_project_parameters["solver_settings"]["material_import_settings"]["materials_filename"]
+        materials_filename = f"ConvectionDiffusionMaterials_{solver}.json"
         working_path = argv[1]
         updated_project_parameters["output_processes"]["rom_output"] = [get_rom_output_defaults()]
         updated_project_parameters["output_processes"]["rom_output"][0]["Parameters"]["model_part_name"] = workflow_rom_parameters[solver]["ROM"]["model_part_name"].GetString()
         updated_project_parameters["output_processes"]["rom_output"][0]["Parameters"]["nodal_unknowns"] = workflow_rom_parameters[solver]["ROM"]["nodal_unknowns"].GetStringArray()
         updated_project_parameters["output_processes"]["rom_output"][0]["Parameters"]["rom_basis_output_folder"] = working_path+ '/' + solver
         if simulation_to_run=="FOM":
-            updated_project_parameters["solver_settings"]["model_import_settings"]["input_filename"] = working_path + '/'+ file_input_name
-            updated_project_parameters["solver_settings"]["material_import_settings"]["materials_filename"] = working_path +'/'+ materials_filename
+            updated_project_parameters["solver_settings"]["model_import_settings"]["input_filename"] = solver
+            updated_project_parameters["solver_settings"]["material_import_settings"]["materials_filename"] = materials_filename
             with open(f'{physics_project_parameters_name}_workflow.json','w') as f:
                 json.dump(updated_project_parameters, f, indent = 4)
         else:
             if simulation_to_run=="ROM" or simulation_to_run=="HROM":
                 updated_project_parameters["solver_settings"]["model_import_settings"]["input_filename"] = solver
+            updated_project_parameters["solver_settings"]["material_import_settings"]["materials_filename"] = materials_filename
             if simulation_to_run=="HHROM":
                 updated_project_parameters["solver_settings"]["model_import_settings"]["input_filename"] = solver+"HROM"
             with open(f'{physics_project_parameters_name}.json','w') as f:
@@ -138,25 +138,26 @@ def prepare_files_cosim(workflow_rom_parameters, simulation_to_run):
     """pre-pending the absolut path of the files in the Project Parameters"""
 
     if simulation_to_run == "FOM":
-        with open('ProjectParameters_CoSimulation.json','r') as f:
+        with open('ProjectParameters_CoSimulation_workflow.json','r') as f:
             working_path = argv[1]
             updated_project_parameters = json.load(f)
             solver_keys = updated_project_parameters["solver_settings"]["solvers"].keys()
             for solver in solver_keys:
-                file_input_name = updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"]
+                file_input_name = f"{working_path}/ProjectParameters_{solver}_workflow."
+                updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"] = file_input_name
                 prepare_files_physical_problem(file_input_name, solver, simulation_to_run, workflow_rom_parameters)
-                updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"] = working_path + '/'+ file_input_name + '_workflow'
 
         with open('ProjectParameters_CoSimulation_workflow.json','w') as f:
             json.dump(updated_project_parameters, f, indent = 4)
 
     else:
-        with open('ProjectParameters_CoSimulation.json','r') as f:
+        with open('ProjectParameters_CoSimulation_workflow.json','r') as f:
             working_path = argv[1]
             updated_project_parameters = json.load(f)
             solver_keys = updated_project_parameters["solver_settings"]["solvers"].keys()
             for solver in solver_keys:
-                file_input_name = updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"]
+                file_input_name = f"{working_path}/ProjectParameters_{solver}_workflow"
+                updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"] = file_input_name
                 prepare_files_physical_problem(file_input_name, solver, simulation_to_run, workflow_rom_parameters)
                 updated_project_parameters["solver_settings"]["solvers"][solver]["type"] = 'solver_wrappers.kratos.rom_wrapper'
 
@@ -324,6 +325,6 @@ if __name__ == '__main__':
     # Get the analysis directory path from the command line argument
     analysis_directory_path = argv[1]
 
-    print_control_output = True
+    print_control_output = False
 
-    SerialTest(mu[int(argv[2])], ["HHROM"], print_control_output) #This should launch a single scenario of the parameters and store the results in vtk format for comparison
+    SerialTest(mu[int(argv[2])], ["ROM"], print_control_output) #This should launch a single scenario of the parameters and store the results in vtk format for comparison
