@@ -60,7 +60,7 @@ In order to obtain such a ROM, a campaign of expensive Full Order Model FOM simu
 
 ## The workflow
 
-We have defined 5 stages of the workflow, each of which finds a one-to-one correspondence to the functions included in the file [WorkflowExample.py](./WorkflowExample.py) 
+We have defined 5 stages of the workflow, each of which finds a one-to-one correspondence to the functions included in the file [Workflow.py](./Workflow.py) 
 
 
 <p align=center><img height="72.125%" width="72.125%" src="./data/Steps.png"></p>
