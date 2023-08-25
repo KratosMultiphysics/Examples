@@ -143,7 +143,7 @@ def prepare_files_cosim(workflow_rom_parameters, simulation_to_run):
             updated_project_parameters = json.load(f)
             solver_keys = updated_project_parameters["solver_settings"]["solvers"].keys()
             for solver in solver_keys:
-                file_input_name = f"{working_path}/ProjectParameters_{solver}_workflow."
+                file_input_name = f"{working_path}/ProjectParameters_{solver}_workflow"
                 updated_project_parameters["solver_settings"]["solvers"][solver]["solver_wrapper_settings"]["input_file"] = file_input_name
                 prepare_files_physical_problem(file_input_name, solver, simulation_to_run, workflow_rom_parameters)
 
@@ -320,11 +320,14 @@ def SerialTest(single_case, list_of_simulations_to_launch_in_serial, print_contr
 
 if __name__ == '__main__':
 
-    mu = [[100000, 400]] # 400 RPM, 10000 W/m^3
+    mu = [100000, 400]  # 400 RPM, 10000 W/m^3
 
     # Get the analysis directory path from the command line argument
     analysis_directory_path = argv[1]
+    
+    # Get the list of models to run from command line argument, or use default
+    models_to_run = argv[2].split(",") if len(argv) > 2 else ["FOM", "ROM", "HROM", "HHROM"]
 
     print_control_output = False
 
-    SerialTest(mu[int(argv[2])], ["ROM"], print_control_output) #This should launch a single scenario of the parameters and store the results in vtk format for comparison
+    SerialTest(mu, models_to_run, print_control_output)  # This should launch a single scenario of the parameters and store the results in vtk format for comparison
