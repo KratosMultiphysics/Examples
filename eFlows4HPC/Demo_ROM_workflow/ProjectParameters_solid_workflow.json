@@ -48,7 +48,7 @@
                     ],
                     "rom_basis_output_format": "numpy",
                     "rom_basis_output_name": "RomParameters",
-                    "rom_basis_output_folder": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/solid",
+                    "rom_basis_output_folder": "solid",
                     "svd_truncation_tolerance": 1e-06
                 }
             }
@@ -116,11 +116,11 @@
             "solver_type": "LinearSolversApplication.sparse_lu"
         },
         "material_import_settings": {
-            "materials_filename": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ConvectionDiffusionMaterials_solid.json"
+            "materials_filename": "ConvectionDiffusionMaterials_solid.json"
         },
         "max_iteration": 10,
         "model_import_settings": {
-            "input_filename": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/solidHROM",
+            "input_filename": "solid",
             "input_type": "mdpa"
         },
         "model_part_name": "ThermalModelPart",
