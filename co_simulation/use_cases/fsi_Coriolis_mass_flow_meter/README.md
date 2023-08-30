@@ -10,7 +10,7 @@
 
 ## Case Specification
 
-Here you will find the source and result files of the 3D full-scale FSI (Fluid-Structure Interaction) simulation of a U-shaped Coriolis mass flow meter. A U-shaped Coriolis mass flow meter is a device used to measure the mass flow rate of a fluid by utilizing the Coriolis effect. The U-shaped tube through which the fluid flows is set into oscillation at its bending natural resonant frequency. This oscillation is typically driven by an actuator. As the fluid flows through the oscillating U-shaped tube, the Coriolis effect induces a force that causes the tube to twist. The amount of this twisting is directly proportional to the mass flow rate of the fluid. For more information on how Coriolis mass flow meters work, please check this publication [Birjandi, A. K., et al 2022](https://www.sciencedirect.com/science/article/abs/pii/S0889974622000068).
+Here you will find the source and result files of the 3D full-scale partinioed FSI (Fluid-Structure Interaction) simulation of a U-shaped Coriolis mass flow meter. A U-shaped Coriolis mass flow meter is a device used to measure the mass flow rate of a fluid by utilizing the Coriolis effect. The U-shaped tube through which the fluid flows is set into oscillation at its bending natural resonant frequency. This oscillation is typically driven by an actuator. As the fluid flows through the oscillating U-shaped tube, the fluid induces a force on the structure due to the Coriolis effect that causes the tube to twist. The amount of this twisting is directly proportional to the mass flow rate of the fluid. For more information on how Coriolis mass flow meters work, please check this publication [Birjandi, A. K., et al 2022](https://www.sciencedirect.com/science/article/abs/pii/S0889974622000068).
 
 You can find the schematic description of the problem and its properties in the following:
 
@@ -25,7 +25,7 @@ You can find the schematic description of the problem and its properties in the 
   </tr>
 </table>
 
-Sensors are positioned at strategic points on the U-tube. They measure the displacement of the tube. As the tube twists due to the Coriolis force, there is a phase shift between the displacements at these two points. Finally, the phase shift is directly proportional to the mass flow rate of the fluid.
+Sensors for detecting the tube's motion are positioned at strategic points on the U-tube. They measure the displacement/velocity of the tube. As the tube twists due to the Coriolis force, there is a phase shift between the displacements at these two points. Finally, the phase shift is directly proportional to the mass flow rate of the fluid.
 
 The U-tube structure is modeled here using linear triangular shell elements. Eigenfrequency analysis was performed to obtain the driver (bending) and Coriolis eigenvalues and modes. Refer to the figure below:
 
