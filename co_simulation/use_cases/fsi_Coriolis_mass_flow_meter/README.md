@@ -25,7 +25,7 @@ You can find the schematic description of the problem and its properties in the 
   </tr>
 </table>
 
-Sensors for detecting the tube's motion are positioned at strategic points on the U-tube. They measure the displacement/velocity of the tube. As the tube twists due to the Coriolis force, there is a phase shift between the displacements at these two points. Finally, the phase shift is directly proportional to the mass flow rate of the fluid.
+Sensors for detecting the tube's motion are positioned at strategic points on the U-tube. They measure the displacement/velocity of the tube. As the tube twists due to the Coriolis force, there is a phase shift between the motions at these two points. Finally, the phase shift is directly proportional to the mass flow rate of the fluid.
 
 The U-tube structure is modeled here using linear triangular shell elements. Eigenfrequency analysis was performed to obtain the driver (bending) and Coriolis eigenvalues and modes. Refer to the figure below:
 
