@@ -86,9 +86,9 @@ def GetRomManagerParameters():
             "save_vtk_output": false,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "output_name": "id",                         // "id" , "mu"
             "ROM":{
-                "svd_truncation_tolerance": 1e-3,
-                "model_part_name": "FluidModelPart",                            // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
-                "nodal_unknowns": ["VELOCITY_X","VELOCITY_Y","PRESSURE"],     // Main unknowns. Snapshots are taken from these
+                "svd_truncation_tolerance": 1e-6,
+                "model_part_name": "Structure",                            // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
+                "nodal_unknowns": ["DISPLACEMENT_X","DISPLACEMENT_Y"],     // Main unknowns. Snapshots are taken from these
                 "rom_basis_output_format": "numpy",                         
                 "rom_basis_output_name": "RomParameters",
                 "rom_basis_output_folder": "rom_data",
