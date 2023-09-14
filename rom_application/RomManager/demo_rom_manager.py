@@ -77,26 +77,33 @@ def GetRomManagerParameters():
     The returned KratosParameter object is seamlessly used inside the RomManager.
     """
     general_rom_manager_parameters = KratosMultiphysics.Parameters("""{
-            "rom_stages_to_train" : ["ROM"],             // ["ROM","HROM"]
+            "rom_stages_to_train" : ["ROM","HROM"],             // ["ROM","HROM"]
             "rom_stages_to_test" : [],              // ["ROM","HROM"]
             "paralellism" : null,                        // null, TODO: add "compss"
-            "projection_strategy": "lspg",                  // "lspg", "galerkin", "petrov_galerkin"
+            "projection_strategy": "petrov_galerkin",            // "lspg", "galerkin", "petrov_galerkin"
+            "assembling_strategy": "global",            // "global", "elemental"
             "save_gid_output": true,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "save_vtk_output": false,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "output_name": "id",                         // "id" , "mu"
             "ROM":{
-                "svd_truncation_tolerance": 1e-6,
-                "model_part_name": "Structure",                            // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
-                "nodal_unknowns": ["DISPLACEMENT_X","DISPLACEMENT_Y"],     // Main unknowns. Snapshots are taken from these
-                "rom_basis_output_format": "numpy",                         //TODO: add "numpy"
+                "svd_truncation_tolerance": 1e-3,
+                "model_part_name": "FluidModelPart",                            // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
+                "nodal_unknowns": ["VELOCITY_X","VELOCITY_Y","PRESSURE"],     // Main unknowns. Snapshots are taken from these
+                "rom_basis_output_format": "numpy",                         
                 "rom_basis_output_name": "RomParameters",
+                "rom_basis_output_folder": "rom_data",
                 "snapshots_control_type": "step",                          // "step", "time"
                 "snapshots_interval": 1,
-                "petrov_galerkin_training_parameters":{
-                    "basis_strategy": "residuals",                         // 'residuals', 'jacobian'
+                "galerkin_rom_bns_settings": {
+                    "monotonicity_preserving": false
+                },
+                "lspg_rom_bns_settings": {
+                    "train_petrov_galerkin": true,             
+                    "basis_strategy": "residuals",                        // 'residuals', 'jacobian'
                     "include_phi": false,
-                    "svd_truncation_tolerance": 0,
-                    "echo_level": 0
+                    "svd_truncation_tolerance": 0.001,
+                    "solving_technique": "normal_equations",              // 'normal_equations', 'qr_decomposition'
+                    "monotonicity_preserving": false
                 }
             },
             "HROM":{
