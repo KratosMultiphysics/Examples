@@ -98,7 +98,7 @@ def GetRomManagerParameters():
                     "monotonicity_preserving": false
                 },
                 "lspg_rom_bns_settings": {
-                    "train_petrov_galerkin": true,             
+                    "train_petrov_galerkin": false,             
                     "basis_strategy": "residuals",                        // 'residuals', 'jacobian'
                     "include_phi": false,
                     "svd_truncation_tolerance": 0.001,
