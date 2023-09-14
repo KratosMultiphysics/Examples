@@ -1,0 +1,202 @@
+{
+    "analysis_stage": "KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis",
+    "output_processes": {
+        "gid_output": [],
+        "vtk_output": [
+            {
+                "Parameters": {
+                    "condition_data_value_variables": [],
+                    "element_data_value_variables": [],
+                    "file_format": "binary",
+                    "folder_name": "HHROM_fluid",
+                    "gauss_point_variables_extrapolated_to_nodes": [],
+                    "model_part_name": "ThermalModelPart",
+                    "nodal_data_value_variables": [],
+                    "nodal_solution_step_data_variables": [
+                        "TEMPERATURE",
+                        "VELOCITY",
+                        "HEAT_FLUX",
+                        "FACE_HEAT_FLUX",
+                        "REACTION_FLUX",
+                        "AUX_FLUX"
+                    ],
+                    "output_control_type": "step",
+                    "output_interval": 1,
+                    "output_precision": 7,
+                    "output_sub_model_parts": false,
+                    "save_output_files_in_folder": true
+                },
+                "help": "This process writes postprocessing files for Paraview",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "VtkOutputProcess",
+                "python_module": "vtk_output_process"
+            }
+        ],
+        "rom_output": [
+            {
+                "python_module": "calculate_rom_basis_output_process",
+                "kratos_module": "KratosMultiphysics.RomApplication",
+                "process_name": "rom_output",
+                "Parameters": {
+                    "help": "A process to set the snapshots matrix and calculate the ROM basis from it.",
+                    "model_part_name": "ThermalModelPart",
+                    "rom_manager": true,
+                    "snapshots_control_type": "step",
+                    "snapshots_interval": 1.0,
+                    "nodal_unknowns": [
+                        "TEMPERATURE"
+                    ],
+                    "rom_basis_output_format": "numpy",
+                    "rom_basis_output_name": "RomParameters",
+                    "rom_basis_output_folder": "fluid",
+                    "svd_truncation_tolerance": 1e-06
+                }
+            }
+        ]
+    },
+    "problem_data": {
+        "echo_level": 0,
+        "end_time": 0.99,
+        "parallel_type": "OpenMP",
+        "problem_name": "Simplified_model_2D_pump_fluid",
+        "start_time": 0.0,
+        "time_step": 1.0
+    },
+    "processes": {
+        "constraints_process_list": [
+            {
+                "Parameters": {
+                    "add_ambient_convection": true,
+                    "add_ambient_radiation": false,
+                    "ambient_temperature": 300.0,
+                    "convection_coefficient": 5.0,
+                    "emissivity": 0.0,
+                    "interval": [
+                        0.0,
+                        "End"
+                    ],
+                    "model_part_name": "ThermalModelPart.HeatFlux2D_No_slip-Total"
+                },
+                "kratos_module": "KratosMultiphysics.ConvectionDiffusionApplication",
+                "process_name": "ApplyThermalFaceProcess",
+                "python_module": "apply_thermal_face_process"
+            },
+            {
+                "Parameters": {
+                    "model_part_name": "ThermalModelPart.GENERIC_Interface_fluid",
+                    "variable_name": "TEMPERATURE"
+                },
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "FixScalarVariableProcess",
+                "python_module": "fix_scalar_variable_process"
+            },
+            {
+                "Parameters": {
+                    "constrained": true,
+                    "interval": [
+                        0.0,
+                        "End"
+                    ],
+                    "model_part_name": "ThermalModelPart.GENERIC_Inlet",
+                    "value": 300.0,
+                    "variable_name": "TEMPERATURE"
+                },
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignScalarVariableProcess",
+                "python_module": "assign_scalar_variable_process"
+            },
+            {
+                "Parameters": {
+                    "assign_mpcs_every_time_step": false,
+                    "computing_model_part_name": "ThermalModelPart",
+                    "master_model_part_name": "ThermalModelPart.GENERIC_Slave",
+                    "minimum_number_of_neighbouring_nodes": 3,
+                    "search_radius": 0.001,
+                    "slave_model_part_name": "ThermalModelPart.GENERIC_Master",
+                    "variable_names": [
+                        "TEMPERATURE"
+                    ]
+                },
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignMPCsToNeighboursProcess",
+                "python_module": "assign_mpcs_to_neighbours_process"
+            }
+        ],
+        "initial_conditions_process_list": [
+            {
+                "Parameters": {
+                    "constrained": false,
+                    "interval": [
+                        0.0,
+                        0.0
+                    ],
+                    "model_part_name": "ThermalModelPart.TEMPERATURE_Fluid_part-Initial",
+                    "value": 300.0,
+                    "variable_name": "TEMPERATURE"
+                },
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignScalarVariableProcess",
+                "python_module": "assign_scalar_variable_process"
+            }
+        ],
+        "list_other_processes": [
+            {
+                "Parameters": {
+                    "constrained": false,
+                    "model_part_name": "ThermalModelPart.CNVDFFParts_Fluid_part",
+                    "value": 0.0,
+                    "variable_name": "HEAT_FLUX"
+                },
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignScalarVariableProcess",
+                "python_module": "assign_scalar_variable_process"
+            }
+        ]
+    },
+    "restart_options": {
+        "LoadRestart": "False",
+        "RestartFrequency": 0,
+        "Restart_Step": 0,
+        "SaveRestart": "False"
+    },
+    "solver_settings": {
+        "analysis_type": "linear",
+        "assign_neighbour_elements_to_conditions": true,
+        "auxiliary_variables_list": [
+            "AUX_FLUX"
+        ],
+        "compute_reactions": true,
+        "convergence_criterion": "residual_criterion",
+        "domain_size": 2,
+        "echo_level": 1,
+        "line_search": false,
+        "linear_solver_settings": {
+            "solver_type": "LinearSolversApplication.sparse_lu"
+        },
+        "material_import_settings": {
+            "materials_filename": "/home/sebastianadpr/Downloads/CoSimUseCase_Outoputs/ConvectionDiffusionMaterials_fluid.json"
+        },
+        "max_iteration": 10,
+        "model_import_settings": {
+            "input_filename": "fluid",
+            "input_type": "mdpa"
+        },
+        "model_part_name": "ThermalModelPart",
+        "problem_domain_sub_model_part_list": [
+            "CNVDFFParts_Fluid_part"
+        ],
+        "processes_sub_model_part_list": [
+            "TEMPERATURE_Fluid_part-Initial",
+            "HeatFlux2D_No_slip-Total",
+            "GENERIC_Inlet"
+        ],
+        "residual_absolute_tolerance": 1e-12,
+        "residual_relative_tolerance": 1e-08,
+        "solution_absolute_tolerance": 1e-12,
+        "solution_relative_tolerance": 1e-08,
+        "solver_type": "transient",
+        "time_stepping": {
+            "time_step": 100.0
+        }
+    }
+}

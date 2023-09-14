@@ -2,7 +2,7 @@
 
 **Author:** Ignasi de Pouplana
 
-**Kratos version:** 5.2
+**Kratos version:** 9.3
 
 **Source files:** [Arc length test](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/arc_length_test/source)
 

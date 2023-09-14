@@ -2,7 +2,7 @@
 
 **Author:** Ignasi de Pouplana
 
-**Kratos version:** 5.2
+**Kratos version:** 9.3
 
 **Source files:** [Undrained soil column 2D](https://github.com/KratosMultiphysics/Examples/tree/master/poromechanics/validation/undrained_soil_column_2D/source)
 

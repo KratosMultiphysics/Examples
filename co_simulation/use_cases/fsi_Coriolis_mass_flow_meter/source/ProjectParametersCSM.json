@@ -1,0 +1,158 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "CSD",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 1,
+        "start_time"    : 4.294488,
+        "end_time"      : 4.5192071
+    },
+    "solver_settings"  : {
+        "solver_type"                     : "Dynamic",
+        "model_part_name"                 : "Shell",
+        "domain_size"                     : 3,
+        "echo_level"                      : 1,
+        "analysis_type"                   : "linear",
+        "time_integration_method"         : "implicit",
+        "scheme_type"                     : "bossak",
+        "model_import_settings"           : {
+            "input_type"     : "mdpa",
+            "input_filename" : "pipe_str"
+        },
+        "material_import_settings"        : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"                   : {
+            "time_step" : 0.00056179775
+        },
+        "rayleigh_alpha"                  : 1.56337221972929E+00,
+        "rayleigh_beta"                   : 5.55488477851432E-06,
+        "line_search"                        : false,
+        "convergence_criterion"              : "residual_criterion",
+        "displacement_relative_tolerance"    : 1e-6,
+        "displacement_absolute_tolerance"    : 1e-6,
+        "residual_relative_tolerance"        : 1e-6,
+        "residual_absolute_tolerance"        : 1e-6,
+        "max_iteration"                      : 25,
+        "linear_solver_settings"             : {
+            "solver_type" : "LinearSolversApplication.pardiso_lu"
+        },
+        "rotation_dofs"            : true
+    },
+    "processes"        : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Shell.supports",
+                "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },
+        {
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Shell.supports",
+                "variable_name"   : "ROTATION",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Shell.ex_surf_load",
+                "variable_name"   : "SURFACE_LOAD",
+                "interval"        : [4.294488,4.30600485387],
+                "modulus"         : 0.0,
+                "direction"       : [0.0,0.0,1.0]
+            }
+        },{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Shell.ex_surf_load",
+                "variable_name"   : "SURFACE_LOAD",
+                "interval"        : [4.30600485387,4.30656665162],
+                "modulus"         : "1000.0e3*((t-4.30600485387)/(0.00056179775))",
+                "direction"       : [0.0,0.0,1.0]
+            }
+        },{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionToConditionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Shell.ex_surf_load",
+                "variable_name"   : "SURFACE_LOAD",
+                "interval"        : [4.30656665162,"End"],
+                "modulus"         : 0.0,
+                "direction"       : [0.0,0.0,1.0]
+            }
+        }],
+        "list_other_processes"     : [{
+
+                    "python_module"  : "multiple_points_output_process",
+
+                    "kratos_module"  : "KratosMultiphysics",
+
+                    "process_name"   : "MultiplePointsOutputProcess",
+
+                    "Parameters"            : {
+
+                        "positions"         : [[0.1683092000,	0.5341388960,	-0.0000000000],
+                                                [-0.1683092007,	0.5341388960,	-0.0000000000]
+                                                ],
+
+                        "model_part_name"  : "Shell",
+
+                        "output_file_settings": {
+
+                            "file_name" : "node_output"
+
+                        },
+
+                        "output_variables" : ["DISPLACEMENT", "VELOCITY", "ACCELERATION"],
+
+                        "entity_type"      : "node"
+
+                    }
+
+                }]
+    },
+    "output_processes" : {
+        "gid_output" : [],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                             : "Shell",
+                "output_control_type"                         : "step",
+                "output_interval"                             : 1,
+                "file_format"                                 : "binary",
+                "output_precision"                            : 7,
+                "output_sub_model_parts"                      : false,
+                "output_path"                                 : "vtk_output",
+                "save_output_files_in_folder"                 : true,
+                "nodal_solution_step_data_variables"          : ["DISPLACEMENT","POINT_LOAD"],
+                "nodal_data_value_variables"                  : [],
+                "element_data_value_variables"                : [],
+                "condition_data_value_variables"              : [],
+                "gauss_point_variables_extrapolated_to_nodes" : []
+            }
+        }],
+        "restart_output":[]
+    }
+}

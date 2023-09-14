@@ -5,7 +5,6 @@
         "end_time":             250.0,
         "echo_level":           1,
         "parallel_type":        "OpenMP",
-        "number_of_threads":    1,
         "fracture_utility":     false
     },
     "solver_settings": {
@@ -15,11 +14,11 @@
         "start_time":                         0.0,
         "time_step":                          1.0,
         "model_import_settings":              {
-            "input_type":    "mdpa",
-            "input_filename":    "arc_length_test"
+            "input_type":       "mdpa",
+            "input_filename":   "arc_length_test"
         },
-        "material_import_settings": {
-            "materials_filename":    "PoroMaterials.json"
+        "material_import_settings" :{
+            "materials_filename": "PoroMaterials.json"
         },
         "buffer_size":                        2,
         "echo_level":                         1,
@@ -30,13 +29,13 @@
         "reform_dofs_at_each_step":           false,
         "nodal_smoothing":                    true,
         "block_builder":                      false,
-        "solution_type":                      "quasi_static",
+        "solution_type":                      "implicit_quasi_static",
         "scheme_type":                        "Newmark",
         "newmark_beta":                       0.25,
         "newmark_gamma":                      0.5,
         "newmark_theta":                      0.5,
-        "rayleigh_m":                         0.0,
-        "rayleigh_k":                         0.0,
+        "rayleigh_alpha":                         0.0,
+        "rayleigh_beta":                         0.0,
         "strategy_type":                      "arc_length",
         "convergence_criterion":              "And_criterion",
         "displacement_relative_tolerance":    1.0E-4,
@@ -85,8 +84,8 @@
                         "node_output":         false,
                         "skin_output":         false,
                         "plane_output":        [],
-                        "nodal_results":       ["DISPLACEMENT","REACTION","REACTION_WATER_PRESSURE","FACE_LOAD","NODAL_CAUCHY_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_DAMAGE"],
-                        "gauss_point_results": ["CAUCHY_STRESS_TENSOR","DAMAGE_VARIABLE"]
+                        "nodal_results":       ["DISPLACEMENT","REACTION","REACTION_WATER_PRESSURE","FACE_LOAD","NODAL_EFFECTIVE_STRESS_TENSOR","NODAL_DAMAGE_VARIABLE","NODAL_JOINT_DAMAGE"],
+                        "gauss_point_results": ["EFFECTIVE_STRESS_TENSOR","DAMAGE_VARIABLE"]
                     },
                     "point_data_configuration":  []
                 }

@@ -107,9 +107,9 @@ QUESTION: Move_Mesh#CB#(true,false)
 VALUE: false
 QUESTION: Block_Builder#CB#(true,false)
 VALUE: false
-QUESTION: Solver_Type#CB#(skyline_lu_factorization,LinearSolversApplication.super_lu,bicgstab,amgcl,klu,aztec,amgcl,multi_level)
+QUESTION: Solver_Type#CB#(skyline_lu_factorization,LinearSolversApplication.sparse_lu,bicgstab,amgcl,klu,aztec,amgcl,multi_level)
 VALUE: bicgstab
-HELP: OpenMP solvers: skyline_lu_factorization (Direct), LinearSolversApplication.super_lu (Direct), bicgstab (Iter.) and amgcl (Iter.). MPI solvers: klu,aztec,amgcl,multi_level.
+HELP: OpenMP solvers: skyline_lu_factorization (Direct), LinearSolversApplication.sparse_lu (Direct), bicgstab (Iter.) and amgcl (Iter.). MPI solvers: klu,aztec,amgcl,multi_level.
 QUESTION: Scaling#CB#(true,false)
 VALUE: false
 QUESTION: Verbosity
