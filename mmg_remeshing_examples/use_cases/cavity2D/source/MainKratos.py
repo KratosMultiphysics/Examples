@@ -21,6 +21,12 @@ class FluidDynamicsAnalysisWithFlush(FluidDynamicsAnalysis):
             if now - self.last_flush > self.flush_frequency:
                 sys.stdout.flush()
                 self.last_flush = now
+    
+    def _GetOrderOfProcessesInitialization(self):
+        """This function is overridden in order to set 
+        the initialization order of the processes.
+        """
+        return ["initial_remeshing_process","initial_conditions_process_list", "boundary_conditions_process_list"]
 
 if __name__ == "__main__":
 
