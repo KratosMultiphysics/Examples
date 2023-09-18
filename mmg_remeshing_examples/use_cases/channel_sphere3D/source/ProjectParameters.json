@@ -1,14 +1,13 @@
 {
     "problem_data"                     : {
         "problem_name"    : "3D_sphere_remeshed_channel_test",
-        "model_part_name" : "FluidModelPart",
         "parallel_type"   : "OpenMP",
         "echo_level"      : 0,
         "start_time"      : 0.0,
         "end_time"        : 1.2
     },
     "solver_settings"                  : {
-        "model_part_name"              : "FluidModelPart",
+        "model_part_name"              : "Parts_Parts_Auto1",
         "domain_size"                  : 3,
         "solver_type"                  : "FractionalStep",
         "model_import_settings"        : {
@@ -17,7 +16,7 @@
         },
         "echo_level"                   : 1,
         "compute_reactions"            : false,
-        "reform_dofs_at_each_step"     : false,
+        "reform_dofs_at_each_step"     : true,
         "time_order"                   : 2,
         "dynamic_tau"                  : 0.001,
         "predictor_corrector"          : false,
@@ -42,7 +41,7 @@
             "process_name"  : "AssignVectorByDirectionProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "FluidModelPart.AutomaticInlet3D_Automatic_inlet_velocity_Auto1",
+                "model_part_name" : "Parts_Parts_Auto1.AutomaticInlet3D_Automatic_inlet_velocity_Auto1",
                 "variable_name"   : "VELOCITY",
                 "modulus"         : 1.0,
                 "direction"       : "automatic_inwards_normal",
@@ -55,7 +54,7 @@
             "process_name"  : "AssignScalarVariableProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "FluidModelPart.Outlet3D_Outlet_pressure_Auto1",
+                "model_part_name" : "Parts_Parts_Auto1.Outlet3D_Outlet_pressure_Auto1",
                 "variable_name"   : "PRESSURE",
                 "constrained"     : true,
                 "value"           : 0.0
@@ -66,7 +65,7 @@
             "process_name"  : "ApplyNoSlipProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "FluidModelPart.NoSlip3D_No_Slip_Auto1"
+                "model_part_name" : "Parts_Parts_Auto1.NoSlip3D_No_Slip_Auto1"
             }
         },{
             "python_module" : "apply_noslip_process",
@@ -74,7 +73,7 @@
             "process_name"  : "ApplyNoSlipProcess",
             "Parameters"    : {
                 "mesh_id"         : 0,
-                "model_part_name" : "FluidModelPart.NoSlip3D_No_Slip_Auto2"
+                "model_part_name" : "Parts_Parts_Auto1.NoSlip3D_No_Slip_Auto2"
             }
         }],
         "auxiliar_process_list"            : [],
@@ -85,7 +84,7 @@
             "help"                  : "This process automatically remesh using MMG library",
             "process_name"          : "MmgProcess",
             "Parameters"            : {
-                "model_part_name"                  : "FluidModelPart",
+                "model_part_name"                  : "Parts_Parts_Auto1",
                 "strategy"                         : "Hessian",
                 "hessian_strategy_parameters"              :{
                     "metric_variable"                  : ["VELOCITY"],
@@ -114,8 +113,8 @@
             "process_name"  : "GiDOutputProcess",
             "help"          : "This process writes postprocessing files for GiD",
             "Parameters"    : {
-                "model_part_name"        : "FluidModelPart.",
-                "output_name"            : "fluid",
+                "model_part_name"        : "Parts_Parts_Auto1",
+                "output_name"            : "GiD_output/fluid",
                 "postprocess_parameters" : {
                     "result_file_configuration" : {
                         "gidpost_flags"       : {
@@ -145,7 +144,7 @@
             "process_name"  : "VtkOutputProcess",
             "help"          : "This process writes postprocessing files for Paraview",
             "Parameters"    : {
-                "model_part_name"                    : "FluidModelPart.",
+                "model_part_name"                    : "Parts_Parts_Auto1",
                 "output_control_type"                : "step",
                 "output_interval"                    : 1,
                 "file_format"                        : "ascii",
