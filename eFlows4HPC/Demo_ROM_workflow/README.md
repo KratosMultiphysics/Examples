@@ -111,7 +111,7 @@ If on the other hand, you are using the precompiled version of Kratos, do
 
 pip:
 ```shell
-pip install KratosRomApplication KratosCoSimulationApplication
+pip install KratosLinearSolverApplication KratosConvectionDiffusionApplication KratosCoSimulationApplication KratosRomApplication KratosMappingApplication
 ```
 
 ### COMPSs
