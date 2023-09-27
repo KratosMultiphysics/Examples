@@ -2,6 +2,8 @@ import KratosMultiphysics
 import numpy as np
 from scipy.stats import qmc
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import math
 import KratosMultiphysics.kratos_utilities
 from KratosMultiphysics.MeshMovingApplication.mesh_moving_analysis import MeshMovingAnalysis
@@ -76,7 +78,7 @@ def GetRomManagerParameters():
                 "svd_truncation_tolerance": 1e-6,
                 "model_part_name": "MainModelPart",                                      // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
                 "nodal_unknowns": ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"], // Main unknowns. Snapshots are taken from these
-                "rom_basis_output_format": "json",                                      // "json" "numpy"
+                "rom_basis_output_format": "json",                                       // "json" "numpy"
                 "rom_basis_output_name": "RomParameters",
                 "snapshots_control_type": "step",                                        // "step", "time"
                 "snapshots_interval": 1,
@@ -85,6 +87,9 @@ def GetRomManagerParameters():
                     "include_phi": true,
                     "svd_truncation_tolerance": 1e-6,
                     "echo_level": 0
+                },
+                "lspg_rom_bns_settings": {
+                    "solving_technique": "normal_equations"                              // 'normal_equations', 'qr_decomposition'
                 }
             },
             "HROM":{
