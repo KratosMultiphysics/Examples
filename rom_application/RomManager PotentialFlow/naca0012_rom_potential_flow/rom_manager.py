@@ -75,7 +75,7 @@ def GetRomManagerParameters():
             "save_vtk_output": false,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "output_name": "id",                         // "id" , "mu"
             "ROM":{
-                "svd_truncation_tolerance": 1e-6,
+                "svd_truncation_tolerance": 1e-12,
                 "model_part_name": "MainModelPart",                                      // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
                 "nodal_unknowns": ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"], // Main unknowns. Snapshots are taken from these
                 "rom_basis_output_format": "json",                                       // "json" "numpy"
@@ -85,7 +85,7 @@ def GetRomManagerParameters():
                 "petrov_galerkin_training_parameters":{
                     "basis_strategy": "jacobian",                                        // 'residuals', 'jacobian'
                     "include_phi": true,
-                    "svd_truncation_tolerance": 1e-6,
+                    "svd_truncation_tolerance": 1e-12,
                     "echo_level": 0
                 },
                 "lspg_rom_bns_settings": {
@@ -94,7 +94,7 @@ def GetRomManagerParameters():
             },
             "HROM":{
                 "element_selection_type": "empirical_cubature",
-                "element_selection_svd_truncation_tolerance": 1e-6,
+                "element_selection_svd_truncation_tolerance": 1e-12,
                 "create_hrom_visualization_model_part" : true,
                 "echo_level" : 0
             }
@@ -174,8 +174,8 @@ def plot_mu_values(mu_train,mu_test):
 if __name__ == "__main__":
     KratosMultiphysics.kratos_utilities.DeleteDirectoryIfExisting('Results')
 
-    mu_train = get_multiple_params_by_Halton_train(15)
-    mu_test  = get_multiple_params_by_Halton_test(15)
+    mu_train = get_multiple_params_by_Halton_train(25)
+    mu_test  = get_multiple_params_by_Halton_test(25)
 
     plot_mu_values(mu_train,mu_test)
 
