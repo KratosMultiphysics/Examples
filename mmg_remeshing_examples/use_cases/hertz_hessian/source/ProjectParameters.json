@@ -1,0 +1,171 @@
+{
+    "problem_data"     : {
+        "problem_name"  : "hertz_2d",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 1,
+        "start_time"    : 0.0,
+        "end_time"      : 1.0
+    },
+    "solver_settings"  : {
+        "solver_type"                     : "Static",
+        "model_part_name"                 : "Structure",
+        "domain_size"                     : 2,
+        "echo_level"                      : 1,
+        "analysis_type"                   : "non_linear",
+        "model_import_settings"           : {
+            "input_type"     : "mdpa",
+            "input_filename" : "hertz_2d"
+        },
+        "material_import_settings"        : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"                   : {
+            "time_step" : 0.1
+        },
+        "convergence_criterion"           : "contact_residual_criterion",
+        "displacement_relative_tolerance" : 0.0001,
+        "displacement_absolute_tolerance" : 1e-9,
+        "residual_relative_tolerance"     : 0.0001,
+        "residual_absolute_tolerance"     : 1e-9,
+        "max_iteration"                   : 20,
+        "contact_settings"                : {
+            "mortar_type" : "ALMContactFrictionlessComponents"
+        }
+    },
+    "processes"        : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.GENERIC_Displacement_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        },{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.GENERIC_Displacement_Auto2",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,false,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "contact_process_list"     : [{
+            "python_module" : "alm_contact_process",
+            "kratos_module" : "KratosMultiphysics.ContactStructuralMechanicsApplication",
+            "process_name"  : "ALMContactProcess",
+            "Parameters"    : {
+                "model_part_name"     : "Structure",
+                "contact_model_part"  : {
+                    "0" : ["CONTACT_Contact_slave_Auto1","CONTACT_Contact_master_Auto1"]
+                },
+                "assume_master_slave" : {
+                    "0" : ["CONTACT_Contact_master_Auto1"]
+                },
+                "contact_type"        : "FrictionlessComponents"
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_vector_by_direction_to_condition_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "Parameters"    : {
+                "model_part_name" : "Structure.LineLoad2D_Load_on_lines_Auto1",
+                "variable_name"   : "LINE_LOAD",
+                "modulus"         : "1.0e7*t",
+                "direction"       : [0.0,-1.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "list_other_processes"     : [],
+        "mesh_adaptivity_processes" :[
+        {
+            "python_module"   : "contact_remesh_mmg_process",
+            "kratos_module"   : "KratosMultiphysics.ContactStructuralMechanicsApplication",
+            "help"                  : "This process automatically remesh using MMG library",
+            "process_name"          : "ContactRemeshMmgProcess",
+            "Parameters"            : {
+                "model_part_name"                  : "Structure",
+                "discretization_type"              : "Standard",
+                "consider_strain_energy"           : true,
+                "hessian_strategy_parameters"              :{
+                    "interpolation_error"              : 0.1
+                },
+                "automatic_remesh"                 : true,
+                "automatic_remesh_parameters"      :{
+                    "automatic_remesh_type"            : "Ratio",
+                    "min_size_ratio"                   : 0.25,
+                    "max_size_ratio"                   : 1.2,
+                    "refer_type"                       : "Mean"
+                },
+                "save_external_files"              : false,
+                "initial_step"                     : 4,
+                "step_frequency"                   : 3,
+                "enforce_current"                  : false,
+                "echo_level"                       : 3,
+                "debug_mode"                       : ""
+            }
+        }
+        ]
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "Structure",
+                "output_name"            : "hertz_2d",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "MultipleFiles"
+                        },
+                        "file_label"          : "step",
+                        "output_control_type" : "step",
+                        "output_interval"     : 1,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
+                        "nodal_nonhistorical_results": ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                        "nodal_flags_results": ["ACTIVE","SLAVE","INTERFACE"],
+                        "gauss_point_results" : ["VON_MISES_STRESS","STRAIN_ENERGY"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","NORMAL","REACTION","VECTOR_LAGRANGE_MULTIPLIER","WEIGHTED_GAP"],
+                "nodal_data_value_variables"         : ["AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                "condition_flags"                    : ["ACTIVE","SLAVE","INTERFACE"],
+                "element_data_value_variables"       : [],
+                "condition_data_value_variables"     : [],
+                "gauss_point_variables_extrapolated_to_nodes"              : ["VON_MISES_STRESS","STRAIN_ENERGY"]
+            }
+        }]
+    }
+}

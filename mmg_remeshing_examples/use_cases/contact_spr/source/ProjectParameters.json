@@ -1,0 +1,142 @@
+{
+    "problem_data"             : {
+        "problem_name"    : "contact_spr",
+        "parallel_type"   : "OpenMP",
+        "start_time"      : 0.0,
+        "end_time"        : 1.0,
+        "echo_level"      : 1
+    },
+    "solver_settings"          : {
+        "model_part_name"                    : "Structure",
+        "domain_size"                        : 2,
+        "solver_type"                        : "Static",
+        "time_stepping"                      :{
+            "time_step"        : 1.1
+        },
+        "echo_level"                         : 1,
+        "analysis_type"                      : "non_linear",
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "contact_spr"
+        },
+        "material_import_settings" :{
+            "materials_filename": "StructuralMaterials.json"
+        },
+        "contact_settings":
+        {
+            "mortar_type"                    : "ALMContactFrictionlessComponents"
+        },
+        "convergence_criterion"              : "adaptative_remesh_criteria",
+        "compute_error_settings" : {
+            "error_mesh_tolerance" : 2.0e-3
+        },
+        "remeshing_parameters":
+        {
+            "echo_level"           : 0
+        },
+        "max_iteration"                      : 10
+    },
+    "processes" : {
+        "constraints_process_list" : [{
+            "python_module"   : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"                  : "This process fixes the selected components of a given vector variable",
+            "process_name"          : "AssignVectorVariableProcess",
+            "Parameters"            : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        },{
+            "python_module"   : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "help"                  : "This process fixes the selected components of a given vector variable",
+            "process_name"          : "AssignVectorVariableProcess",
+            "Parameters"            : {
+                "mesh_id"         : 0,
+                "model_part_name" : "Structure.IMPOSE_DISP_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,-0.01,0.0]
+            }
+        }
+        ],
+        "loads_process_list"       : [],
+        "contact_process_list" :[
+        {
+            "python_module"   : "alm_contact_process",
+            "kratos_module"   : "KratosMultiphysics.ContactStructuralMechanicsApplication",
+            "help"                  : "",
+            "process_name"          : "ALMContactProcess",
+            "Parameters"            : {
+                "model_part_name"             : "Structure",
+                "contact_model_part"          : {
+                                                    "0" : ["Contact_Part_1","Contact_Part_2"]
+                                                },
+                "contact_type"                : "FrictionlessComponents",
+                "assume_master_slave"         : {
+                                                    "0" : ["Contact_Part_1"]
+                                                }
+            }
+        }
+        ]
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "help"          : "This process writes postprocessing files for GiD",
+            "Parameters"    : {
+                "model_part_name"        : "Structure",
+                "output_name"            : "contact_spr",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"       : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"          : "step",
+                        "output_control_type" : "step",
+                        "output_interval"     : 1,
+                        "body_output"         : true,
+                        "node_output"         : false,
+                        "skin_output"         : false,
+                        "plane_output"        : [],
+                        "nodal_results"       : ["DISPLACEMENT","REACTION","WEIGHTED_GAP","NORMAL"],
+                        "nodal_nonhistorical_results": ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                        "nodal_flags_results": ["ACTIVE","SLAVE","CONTACT"],
+                        "gauss_point_results" : ["ERROR_INTEGRATION_POINT"]
+                    },
+                    "point_data_configuration"  : []
+                }
+            }
+        }],
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "ascii",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT","REACTION","WEIGHTED_GAP","NORMAL"],
+                "nodal_data_value_variables"         : ["NODAL_AREA", "AUGMENTED_NORMAL_CONTACT_PRESSURE"],
+                "nodal_flags"                        : ["ACTIVE","SLAVE","MASTER","CONTACT"],
+                "element_data_value_variables"       : [],
+                "condition_data_value_variables"     : [],
+                "gauss_point_variables_extrapolated_to_nodes"              : ["ERROR_INTEGRATION_POINT"]
+            }
+        }]
+    }
+}
