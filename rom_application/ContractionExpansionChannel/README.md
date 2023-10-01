@@ -1,4 +1,4 @@
-![Alt Text](README_files/Paper_title.png)
+![Alt Text](README_files/PAPER_title.png)
 
 ![Alt Text](README_files/GraphicalAbstract.svg)
 
