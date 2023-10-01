@@ -6,13 +6,9 @@ This folder contains the scripts for reproducing the examples shown in [this pap
 
 ![Alt Text](README_files/GraphicalAbstract.png)
 
+# Requirements
 
-
-# Launching the Example
-
-## Requirements
-
-### Kratos
+## Kratos
 
 This example requires the RomApplication and the FluidDynamicsApplication.
 
@@ -36,7 +32,7 @@ pip:
 ```shell
 pip install KratosRomApplication KratosFluidDynamicsApplication
 ```
-### PyGeM
+## PyGeM
 
 The official distribution of PyGeM can be obtained [here](https://github.com/mathLab/PyGeM)
 
