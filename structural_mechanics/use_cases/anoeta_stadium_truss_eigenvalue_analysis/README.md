@@ -23,7 +23,7 @@ The roof structure is conformed by two curved trusses of almost 200m aligned wit
 The side trusses intersect the goal ones so the structure can be defined a spatial 3D truss.
 While different cross-section areas are used, all the members are made of the same steel, which material properties are
 - $E = 206.9$ GPa
-- $\rho = 7850.0$ Kg/m^3^
+- $\rho = 7850.0$ Kg/m<sup>3<\sup>
 
 Each member is meshed with a single truss element.
 On top of these, nodal concentrated mass elements have been added in addition to the truss ones (see the [MainKratos.py](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/source/MainKratos.py) file) in order to account for the weight of the plastic canopy.
@@ -44,25 +44,25 @@ By running the [MainKratos.py](https://github.com/KratosMultiphysics/Examples/tr
 
 corresponding to the frequencies
 
-- $\f_{1} = 1.3813$ Hz
-- $\f_{2} = 1.4374$ Hz
-- $\f_{3} = 1.6349$ Hz
-- $\f_{4} = 2.012$ Hz
-- $\f_{5} = 2.0932$ Hz
+- $f_{1} = 1.3813$ Hz
+- $f_{2} = 1.4374$ Hz
+- $f_{3} = 1.6349$ Hz
+- $f_{4} = 2.012$ Hz
+- $f_{5} = 2.0932$ Hz
 
 Complementary, a folder with the postprocess of the eigenmodes is also created.
 The animation of the first three ones is shown below.
 
 <p align="center">
-  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_1?raw=true" alt="1st eigenmode animation." style="width: 600px;"/>
+  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_1.gif?raw=true" alt="1st eigenmode animation." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_2?raw=true" alt="2st eigenmode animation." style="width: 600px;"/>
+  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_2.gif?raw=true" alt="2st eigenmode animation." style="width: 600px;"/>
 </p>
 
 <p align="center">
-  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_3?raw=true" alt="3st eigenmode animation." style="width: 600px;"/>
+  <img src="https://github.com/KratosMultiphysics/Examples/blob/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/data/anoeta_stadium_truss_eigenmode_3.gif?raw=true" alt="3st eigenmode animation." style="width: 600px;"/>
 </p>
 
 ## References
