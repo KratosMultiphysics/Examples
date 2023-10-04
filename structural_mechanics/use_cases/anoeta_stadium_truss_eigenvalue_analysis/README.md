@@ -23,7 +23,7 @@ The roof structure is conformed by two curved trusses of almost 200m aligned wit
 The side trusses intersect the goal ones so the structure can be defined a spatial 3D truss.
 While different cross-section areas are used, all the members are made of the same steel, which material properties are
 - $E = 206.9$ GPa
-- $\rho = 7850.0$ Kg/m<sup>3 <\sup>
+- $\rho = 7850.0$ Kg/m<sup>3
 
 Each member is meshed with a single truss element.
 On top of these, nodal concentrated mass elements have been added in addition to the truss ones (see the [MainKratos.py](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/use_cases/anoeta_stadium_truss_eigenvalue_analysis/source/MainKratos.py) file) in order to account for the weight of the plastic canopy.
