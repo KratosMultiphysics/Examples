@@ -18,5 +18,6 @@ The Examples are continously updated and extended
 ## Use Cases
 - [Disk subjected to centrifugal force - periodic boundary conditions](use_cases/periodic_bc_example/README.md)
 - [Tensile test examples](use_cases/tensile_test_example/README.md)
+- [Anoeta stadium truss eigenvalue analysis](use_cases/anoeta_stadium_truss_eigenvalue_analysis/README.md)
 
 
