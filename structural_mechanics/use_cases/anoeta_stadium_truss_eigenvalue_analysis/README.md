@@ -21,6 +21,7 @@ More specifically, the example focuses on the truss structure that supports the 
 
 The roof structure is conformed by two curved trusses of almost 200m aligned with the touch lines and two straight trusses of around 155m aligned with the goal lines.
 The side trusses intersect the goal ones so the structure can be defined a spatial 3D truss.
+To represent the piers that support the truss, all displacement components are fixed in the ends of the four trusses.
 While different cross-section areas are used, all the members are made of the same steel, which material properties are
 - $E = 206.9$ GPa
 - $\rho = 7850.0$ Kg/m<sup>3
