@@ -1,4 +1,4 @@
-# Example of eigenvalue analysis - Anoeta stadium truss
+# Anoeta stadium truss eigenvalue analysis
 
 **Author:** Jon Arambarri Rumayor - Rubén Zorrilla Martínez
 
@@ -8,7 +8,7 @@
 
 ## Problem definition
 
-This example presents an eigenvalue analysis of the [Anoeta stadium](https://en.wikipedia.org/wiki/Anoeta_Stadium) roof structure.
+This example presents an eigenvalue analysis of the [Anoeta stadium](https://en.wikipedia.org/wiki/Anoeta_Stadium) in San Sebastián.
 More specifically, the example focuses on the truss structure that supports the plastic canopy that covers the tiers (see the figures below).
 
 <p align="center">
