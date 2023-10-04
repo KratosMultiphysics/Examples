@@ -1,0 +1,78 @@
+{
+    "problem_data"    : {
+        "problem_name"  : "anoeta_stadium_truss",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 1,
+        "start_time"    : 0.0,
+        "end_time"      : 1.0
+    },
+    "solver_settings" : {
+        "time_stepping"            : {
+            "time_step" : 1.1
+        },
+        "solver_type"              : "eigen_value",
+        "model_part_name"          : "Structure",
+        "domain_size"              : 3,
+        "echo_level"               : 1,
+        "model_import_settings"    : {
+            "input_type"     : "mdpa",
+            "input_filename" : "anoeta_stadium_truss"
+        },
+        "material_import_settings" : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "eigensolver_settings"     : {
+            "solver_type"           : "eigen_eigensystem",
+            "max_iteration"         : 1000,
+            "tolerance"             : 1e-6,
+            "number_of_eigenvalues" : 5,
+            "echo_level"            : 1
+        },
+        "rotation_dofs"            : false,
+        "volumetric_strain_dofs"   : false,
+        "builder_and_solver_settings": {
+            "use_block_builder": false
+        }
+    },
+    "processes"       : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.DISPLACEMENT_Displacement_Auto1",
+                "variable_name"   : "DISPLACEMENT",
+                "interval"        : [0.0,"End"],
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0]
+            }
+        }],
+        "loads_process_list"       : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "check"         : "DirectorVectorNonZero direction",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "Structure.SelfWeight3D_Self_weight_Auto1",
+                "variable_name"   : "VOLUME_ACCELERATION",
+                "interval"        : [0.0,"End"],
+                "constrained"     : false,
+                "modulus"         : 9.81,
+                "direction"       : [0.0,0.0,-1.0]
+            }
+        }],
+        "list_other_processes"     : [{
+            "python_module" : "postprocess_eigenvalues_process",
+            "kratos_module" : "KratosMultiphysics.StructuralMechanicsApplication",
+            "help"          : "This process postprocces the eigen values for GiD",
+            "process_name"  : "PostProcessEigenvaluesProcess",
+            "Parameters"    : {
+                "result_file_name" : "anoeta_stadium_truss",
+                "animation_steps"  : 20,
+                "file_format"      : "gid",
+                "label_type"       : "frequency"
+            }
+        }]
+    },
+    "analysis_stage"  : "KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis"
+}
