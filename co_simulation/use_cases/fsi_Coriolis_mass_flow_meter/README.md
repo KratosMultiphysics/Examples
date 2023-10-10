@@ -17,7 +17,8 @@ You can find the schematic description of the problem and its properties in the 
 <table>
   <tr>
     <td><img src="data/fsi_problem_setup_fig.png" alt="Problem setup of a U-shaped Coriolis mass flow meter."></td>
-    <td><img src="data/fluid_structure_properties.png" alt="Fluid & structrure properties."></td>
+    <td><img src="![FS_prop](https://github.com/KratosMultiphysics/Examples/assets/62375973/31c37a2a-d1cc-488c-9646-e80780afdc5c)
+" alt="Fluid & structrure properties."></td>
   </tr>
   <tr>
     <td>Figure 1: Problem setup of a U-shaped Coriolis mass flow meter.</td>
