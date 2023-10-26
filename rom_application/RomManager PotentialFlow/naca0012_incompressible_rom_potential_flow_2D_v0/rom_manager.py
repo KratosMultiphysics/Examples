@@ -75,10 +75,10 @@ def GetRomManagerParameters():
             "save_vtk_output": false,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "output_name": "id",                         // "id" , "mu"
             "ROM":{
-                "svd_truncation_tolerance": 1e-12,
+                "svd_truncation_tolerance": 1e-30,
                 "model_part_name": "MainModelPart",                                      // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
                 "nodal_unknowns": ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"], // Main unknowns. Snapshots are taken from these
-                "rom_basis_output_format": "json",                                       // "json" "numpy"
+                "rom_basis_output_format": "numpy",                                       // "json" "numpy"
                 "rom_basis_output_name": "RomParameters",
                 "snapshots_control_type": "step",                                        // "step", "time"
                 "snapshots_interval": 1,
@@ -94,8 +94,8 @@ def GetRomManagerParameters():
             },
             "HROM":{
                 "element_selection_type": "empirical_cubature",
-                "element_selection_svd_truncation_tolerance": 1e-12,
-                "create_hrom_visualization_model_part" : true,
+                "element_selection_svd_truncation_tolerance": 1e-30,
+                "create_hrom_visualization_model_part" : false,
                 "echo_level" : 0
             }
         }""")
@@ -112,8 +112,8 @@ def get_multiple_params_by_Halton_test(number_of_values):
     l_angle = -1.0
     u_angle =  6.0
     #Mach infinit
-    l_mach = 0.03
-    u_mach = 0.6
+    l_mach = 0.05
+    u_mach = 0.65
     mu = []
     values = qmc.scale(sample, [l_angle,l_mach], [u_angle,u_mach])
     for i in range(number_of_values):
@@ -128,8 +128,8 @@ def get_multiple_params_by_Halton_train(number_of_values):
     l_angle = -1.0
     u_angle =  6.0
     #Mach infinit
-    l_mach = 0.03
-    u_mach = 0.6
+    l_mach = 0.05
+    u_mach = 0.65
     mu = []
     values = qmc.scale(sample, [l_angle,l_mach], [u_angle,u_mach])
     values[0,0] = l_angle
@@ -174,8 +174,8 @@ def plot_mu_values(mu_train,mu_test):
 if __name__ == "__main__":
     KratosMultiphysics.kratos_utilities.DeleteDirectoryIfExisting('Results')
 
-    mu_train = get_multiple_params_by_Halton_train(25)
-    mu_test  = get_multiple_params_by_Halton_test(25)
+    mu_train = get_multiple_params_by_Halton_train(30)
+    mu_test  = get_multiple_params_by_Halton_test(10)
 
     plot_mu_values(mu_train,mu_test)
 

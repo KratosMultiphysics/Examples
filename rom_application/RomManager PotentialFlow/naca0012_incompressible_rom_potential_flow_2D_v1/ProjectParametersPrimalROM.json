@@ -13,10 +13,9 @@
         "domain_size"     : 2,
         "model_import_settings"  : {
             "input_type"     : "mdpa",
-            "input_filename" : "naca0012_5aoa"
+            "input_filename" : "naca0012_0aoa_00"
         },
-        "maximum_iterations"     : 30,
-        "echo_level"             : 0,
+        "echo_level"             : 1,
         "material_import_settings": {
             "materials_filename": ""
         },
@@ -24,18 +23,8 @@
         {
             "element_type": "perturbation_incompressible"
         },
-        "convergence_criterion": "solution_criterion",
         "linear_solver_settings"  : {
-            "solver_type": "amgcl",
-            "max_iteration": 400,
-            "gmres_krylov_space_dimension": 100,
-            "smoother_type":"ilu0",
-            "coarsening_type":"ruge_stuben",
-            "coarse_enough" : 5000,
-            "krylov_type": "lgmres",
-            "tolerance": 1e-9,
-            "verbosity": 0,
-            "scaling": false
+            "solver_type": "LinearSolversApplication.pardiso_lu"
         },
         "volume_model_part_name" : "Parts_Parts_Auto1",
         "skin_parts"             : ["PotentialWallCondition2D_Far_field_Auto1","Body2D_Body"],
@@ -49,10 +38,9 @@
             "process_name"  : "FarFieldProcess",
             "Parameters"    : {
                 "model_part_name"   : "MainModelPart.PotentialWallCondition2D_Far_field_Auto1",
-                "angle_of_attack": 0.0,
-                "mach_infinity": 0.3,
-                "free_stream_density": 1.225,
-                "inlet_potential"         : 1.0,
+                "angle_of_attack"         : 0.0,
+                "mach_infinity"           : 0.05,
+                "free_stream_density"     : 1.225,
                 "perturbation_field"      : true
             }
         },
@@ -62,8 +50,7 @@
             "process_name"  : "DefineWakeProcess",
             "Parameters"    : {
                 "model_part_name" : "MainModelPart.Body2D_Body",
-                 "epsilon"         : 1e-9,
-                 "echo_level" : 0
+                "echo_level": 0
              }
         },
         {
@@ -102,8 +89,8 @@
                         "skin_output"         : false,
                         "plane_output"        : [],
                         "nodal_nonhistorical_results": ["VELOCITY","PRESSURE_COEFFICIENT"],
-                        "nodal_results"       : ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL","MESH_DISPLACEMENT"],
-                        "gauss_point_results" : ["PRESSURE_COEFFICIENT","VELOCITY","WAKE"]
+                        "nodal_results"       : ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"],
+                        "gauss_point_results" : ["WAKE"]
                     },
                     "point_data_configuration"  : []
                 }
