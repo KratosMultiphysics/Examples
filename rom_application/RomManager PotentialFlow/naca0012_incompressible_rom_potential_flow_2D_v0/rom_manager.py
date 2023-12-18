@@ -70,7 +70,7 @@ def GetRomManagerParameters():
             "rom_stages_to_train" : ["ROM","HROM"],      // ["ROM","HROM"]
             "rom_stages_to_test"  : ["ROM","HROM"],      // ["ROM","HROM"]
             "paralellism" : null,                        // null, TODO: add "compss"
-            "projection_strategy": "galerkin",           // "lspg", "galerkin", "petrov_galerkin"
+            "projection_strategy": "petrov_galerkin",           // "lspg", "galerkin", "petrov_galerkin"
             "save_gid_output": true,                     // false, true #if true, it must exits previously in the ProjectParameters.json
             "save_vtk_output": false,                    // false, true #if true, it must exits previously in the ProjectParameters.json
             "output_name": "id",                         // "id" , "mu"
@@ -82,14 +82,19 @@ def GetRomManagerParameters():
                 "rom_basis_output_name": "RomParameters",
                 "snapshots_control_type": "step",                                        // "step", "time"
                 "snapshots_interval": 1,
-                "petrov_galerkin_training_parameters":{
-                    "basis_strategy": "jacobian",                                        // 'residuals', 'jacobian'
-                    "include_phi": true,
-                    "svd_truncation_tolerance": 1e-12,
-                    "echo_level": 0
+                "galerkin_rom_bns_settings": {
+                    "monotonicity_preserving": false
                 },
                 "lspg_rom_bns_settings": {
-                    "solving_technique": "normal_equations"                              // 'normal_equations', 'qr_decomposition'
+                    "train_petrov_galerkin": false,
+                    "basis_strategy": "reactions",                        // 'residuals', 'jacobian'
+                    "include_phi": false,
+                    "svd_truncation_tolerance": 1e-8,
+                    "solving_technique": "normal_equations",              // 'normal_equations', 'qr_decomposition'
+                    "monotonicity_preserving": false
+                },
+                "petrov_galerkin_rom_bns_settings": {
+                    "monotonicity_preserving": false
                 }
             },
             "HROM":{
