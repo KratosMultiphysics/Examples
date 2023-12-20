@@ -89,7 +89,7 @@ def GetRomManagerParameters():
                 "svd_truncation_tolerance": 1e-6,
                 "model_part_name": "Structure",                            // This changes depending on the simulation: Structure, FluidModelPart, ThermalPart #TODO: Idenfity it automatically
                 "nodal_unknowns": ["DISPLACEMENT_X","DISPLACEMENT_Y"],     // Main unknowns. Snapshots are taken from these
-                "rom_basis_output_format": "numpy",                         
+                "rom_basis_output_format": "numpy",
                 "rom_basis_output_name": "RomParameters",
                 "rom_basis_output_folder": "rom_data",
                 "snapshots_control_type": "step",                          // "step", "time"
@@ -98,11 +98,14 @@ def GetRomManagerParameters():
                     "monotonicity_preserving": false
                 },
                 "lspg_rom_bns_settings": {
-                    "train_petrov_galerkin": false,             
-                    "basis_strategy": "residuals",                        // 'residuals', 'jacobian'
+                    "train_petrov_galerkin": false,
+                    "basis_strategy": "residuals",                        // 'residuals', 'jacobian', 'reactions'
                     "include_phi": false,
-                    "svd_truncation_tolerance": 0.001,
+                    "svd_truncation_tolerance": 1e-12,
                     "solving_technique": "normal_equations",              // 'normal_equations', 'qr_decomposition'
+                    "monotonicity_preserving": false
+                },
+                "petrov_galerkin_rom_bns_settings": {
                     "monotonicity_preserving": false
                 }
             },
