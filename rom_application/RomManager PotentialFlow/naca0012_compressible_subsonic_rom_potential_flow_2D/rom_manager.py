@@ -13,11 +13,11 @@ from KratosMultiphysics.MeshMovingApplication.mesh_moving_analysis import MeshMo
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 def GenerateMeshes(id, angle, typename):
-                
+
     with open("ProjectParametersMeshMoving.json",'r') as parameter_file:
         mesh_parameters = KratosMultiphysics.Parameters(parameter_file.read())
     mesh_parameters["processes"]["boundary_conditions_process_list"][0]["Parameters"]["rotation_angle"].SetDouble(angle*-np.pi/180)
-    
+
     model = KratosMultiphysics.Model()
     mesh_simulation = MeshMovingAnalysis(model,mesh_parameters)
     mesh_simulation.Run()
@@ -130,11 +130,11 @@ def plot_mu_values(mu_train,mu_test):
     plt.grid(True)
     plt.legend(bbox_to_anchor=(.85, 1.03, 1., .102), loc='upper left', borderaxespad=0.)
     plt.savefig("MuValues.png")
-    
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # plot
-# 
+#
 def plot_Cps(mu_train,mu_test):
     case_names = ["FOM","ROM","HROM"]
     markercolor = ["ob","xr","+g"]
@@ -191,7 +191,7 @@ def plot_Cps(mu_train,mu_test):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # save / load parameters
-# 
+#
 def save_mu_parameters(mu_train, mu_test):
     archivo = open('Data/mu_train.dat', 'wb')
     pickle.dump(mu_train, archivo)
@@ -241,26 +241,31 @@ def GetRomManagerParameters():
             "rom_stages_to_test"  : ["ROM","HROM"],      // ["ROM","HROM"]
             "paralellism" : null,                        // null, TODO: add "compss"
             "projection_strategy": "galerkin",               // "lspg", "galerkin", "petrov_galerkin"
-            "assembling_strategy": "global",          // "global", "elemental"                                              
+            "assembling_strategy": "global",          // "global", "elemental"
             "save_gid_output": true,                     // false, true #if true, it must exits previously in the ProjectParameters.json
             "save_vtk_output": false,
             "output_name": "mu",                         // "id" , "mu"
             "ROM":{
                 "svd_truncation_tolerance": 1e-30,
-                "model_part_name": "MainModelPart",                                      
+                "model_part_name": "MainModelPart",
                 "nodal_unknowns": ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"], // Main unknowns. Snapshots are taken from these
                 "rom_basis_output_format": "numpy",                                       // "json" "numpy"
                 "rom_basis_output_name": "RomParameters",
                 "snapshots_control_type": "step",                                        // "step", "time"
                 "snapshots_interval": 1,
-                "petrov_galerkin_training_parameters":{
-                    "basis_strategy": "residuals",                                        // 'residuals', 'jacobian'
-                    "include_phi": false,
-                    "svd_truncation_tolerance": 1e-12,
-                    "echo_level": 0
+                "galerkin_rom_bns_settings": {
+                    "monotonicity_preserving": false
                 },
                 "lspg_rom_bns_settings": {
-                    "solving_technique": "normal_equations"                              // 'normal_equations', 'qr_decomposition'
+                    "train_petrov_galerkin": false,
+                    "basis_strategy": "reactions",                        // 'residuals', 'jacobian', 'reactions'
+                    "include_phi": false,
+                    "svd_truncation_tolerance": 1e-12,
+                    "solving_technique": "normal_equations",              // 'normal_equations', 'qr_decomposition'
+                    "monotonicity_preserving": false
+                },
+                "petrov_galerkin_rom_bns_settings": {
+                    "monotonicity_preserving": false
                 }
             },
             "HROM":{
@@ -284,7 +289,7 @@ if __name__ == "__main__":
 
     # Definir rango de valores de mach y angulo de ataque
     mach_range  = [ 0.20, 0.70]
-    angle_range = [-1.00, 6.00] 
+    angle_range = [-1.00, 6.00]
 
     #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -293,7 +298,7 @@ if __name__ == "__main__":
     #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
+
     if load_old_mu_parameters:
         mu_train, mu_test = load_mu_parameters()
 
@@ -301,20 +306,20 @@ if __name__ == "__main__":
         CleanToTest()
 
         mu_train = get_multiple_params_by_Halton_sequence(NumberofMuTrain, angle_range, mach_range, "train",
-                                                           fix_corners_of_parametric_space = False ) 
-        mu_test  = get_multiple_params_by_Halton_sequence(NumberOfMuTest , angle_range, mach_range, "test" , 
-                                                          fix_corners_of_parametric_space = False) 
+                                                           fix_corners_of_parametric_space = False )
+        mu_test  = get_multiple_params_by_Halton_sequence(NumberOfMuTest , angle_range, mach_range, "test" ,
+                                                          fix_corners_of_parametric_space = False)
 
         save_mu_parameters(mu_train,mu_test)
         plot_mu_values(mu_train,mu_test)
-        
+
     else:
         CleanFolder()
-        
+
         mu_train = get_multiple_params_by_Halton_sequence(NumberofMuTrain, angle_range, mach_range, "train",
-                                                           fix_corners_of_parametric_space = True ) 
-        mu_test  = get_multiple_params_by_Halton_sequence(NumberOfMuTest , angle_range, mach_range, "test" , 
-                                                          fix_corners_of_parametric_space = False) 
+                                                           fix_corners_of_parametric_space = True )
+        mu_test  = get_multiple_params_by_Halton_sequence(NumberOfMuTest , angle_range, mach_range, "test" ,
+                                                          fix_corners_of_parametric_space = False)
 
         save_mu_parameters(mu_train,mu_test)
         plot_mu_values(mu_train,mu_test)
