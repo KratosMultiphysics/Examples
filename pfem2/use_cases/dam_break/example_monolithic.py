@@ -13,7 +13,7 @@ from KratosMultiphysics.LinearSolversApplication import *        #and now our ap
 model = Model()
 model_part = model.CreateModelPart("ExampleModelPart");  #we create a model part
 
-import pfem_2_solver_monolithic_fluid as pfem_2_solver           #we import the python file that includes the commands that we need
+import KratosMultiphysics.PFEM2Application.pfem_2_solver_monolithic_fluid as pfem_2_solver           #we import the python file that includes the commands that we need
 
 pfem_2_solver.AddVariables(model_part)
 
