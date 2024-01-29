@@ -113,7 +113,7 @@ def GetRomManagerParameters():
                     "monotonicity_preserving": false
                 }
             },
-            "NN":{
+            "neural_network":{
                 "saved_models_root_path": "rom_data/saved_nn_models/",
                 "training":{
             	    "modes":[3,10],
