@@ -173,6 +173,6 @@ if __name__ == "__main__":
     rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters,UpdateMaterialParametersFile)
 
     """if no list "mu" is passed, the case already contained in the ProjectParametes and CustomSimulation is launched (useful for example for a single time dependent simulation)"""
-    rom_manager.FitNN(mu_train, mu_test)
-    # rom_manager.TestNN()
+    rom_manager.FitNeuralNetwork(mu_train, mu_test)
+    # rom_manager.TestNeuralNetwork()
 
