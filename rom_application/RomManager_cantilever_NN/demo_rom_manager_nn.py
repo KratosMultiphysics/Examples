@@ -111,31 +111,31 @@ def GetRomManagerParameters():
                     "svd_truncation_tolerance": 0.001,
                     "solving_technique": "normal_equations",              // 'normal_equations', 'qr_decomposition'
                     "monotonicity_preserving": false
-                }
-            },
-            "neural_network":{
-                "saved_models_root_path": "rom_data/saved_nn_models/",
-                "training":{
-            	    "modes":[3,10],
-		    "layers_size":[200,200],
-		    "batch_size":4,
-		    "epochs":10,
-		    "lr_strategy": {
-		        "scheduler": "sgdr",         // "const", "steps", "sgdr"
-		        "base_lr": 0.001,
-		        "additional_params": [1e-4,10,5]     // const:[], steps/sgdr:["min_lr", "reduction_factor","update_period"]
-		    },
-		    "database":{
-		        "training_set": "rom_data/SnapshotsMatrices/fom_snapshots.npy",
-		        "validation_set": "rom_data/SnapshotsMatrices/fom_snapshots_val.npy",
-		        "phi_matrix": "rom_data/RightBasisMatrix.npy",
-		        "sigma_vector": "rom_data/SingularValuesVector.npy"
-		    },
-		    "use_automatic_name": true,
-		    "custom_name": "test_neural_network"
                 },
-                "online":{
-                    "model_name": "NN_model_3.10_[2](200,200)_lrsgdr.0.001_batchsize4"
+                "ann_enhanced_settings":{
+                    "saved_models_root_path": "rom_data/saved_nn_models/",
+                    "training":{
+            	        "modes":[3,10],
+		        "layers_size":[200,200],
+		        "batch_size":4,
+		        "epochs":10,
+		        "lr_strategy": {
+		            "scheduler": "sgdr",         // "const", "steps", "sgdr"
+		            "base_lr": 0.001,
+		            "additional_params": [1e-4, 10, 400]     // const:[], steps/sgdr:["min_lr", "reduction_factor","update_period"]
+		        },
+		        "database":{
+		            "training_set": "rom_data/SnapshotsMatrices/fom_snapshots.npy",
+		            "validation_set": "rom_data/SnapshotsMatrices/fom_snapshots_val.npy",
+		            "phi_matrix": "rom_data/RightBasisMatrix.npy",
+		            "sigma_vector": "rom_data/SingularValuesVector.npy"
+		        },
+		        "use_automatic_name": true,
+		        "custom_name": "test_neural_network"
+                    },
+                    "online":{
+                        "model_name": "NN_model_3.10_[2](200,200)_lrsgdr.0.001_batchsize4"
+                    }
                 }
             },
             "HROM":{
@@ -175,6 +175,12 @@ if __name__ == "__main__":
     rom_manager = RomManager(project_parameters_name,general_rom_manager_parameters,CustomizeSimulation,UpdateProjectParameters,UpdateMaterialParametersFile)
 
     """if no list "mu" is passed, the case already contained in the ProjectParametes and CustomSimulation is launched (useful for example for a single time dependent simulation)"""
-    rom_manager.FitNeuralNetwork(mu_train, mu_test)
-    # rom_manager.TestNeuralNetwork()
+    
+    #option 1
+    rom_manager.Fit(mu_train=mu_train,mu_validation=mu_validation)
+
+    #option 2
+    # rom_manager.StoreFomSnapshotsAndBasis(mu_train=mu_train)
+    # rom_manager.StoreFomValidationSnapshots(mu_validation=mu_validation)
+    # rom_manager.TrainAnnEnhacedNeuralNetwork()
 
