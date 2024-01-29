@@ -130,7 +130,9 @@ def GetRomManagerParameters():
 		        "validation_set": "rom_data/SnapshotsMatrices/fom_snapshots_val.npy",
 		        "phi_matrix": "rom_data/RightBasisMatrix.npy",
 		        "sigma_vector": "rom_data/SingularValuesVector.npy"
-		    }
+		    },
+		    "use_automatic_name": true,
+		    "custom_name": "test_neural_network"
                 },
                 "online":{
                     "model_name": "NN_model_3.10_[2](200,200)_lrsgdr.0.001_batchsize4"
