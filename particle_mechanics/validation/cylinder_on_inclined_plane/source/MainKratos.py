@@ -1,11 +1,11 @@
 from __future__ import print_function, absolute_import, division #makes KratosMultiphysics backward compatible with python 2.6 and 2.7
 
 import KratosMultiphysics
-from KratosMultiphysics.ParticleMechanicsApplication.particle_mechanics_analysis import ParticleMechanicsAnalysis
+from KratosMultiphysics.MPMApplication.mpm_analysis import MPMAnalysis
 
 """
 For user-scripting it is intended that a new class is derived
-from ParticleMechanicsAnalysis to do modifications
+from MPMAnalysis to do modifications
 """
 
 if __name__ == "__main__":
@@ -14,5 +14,5 @@ if __name__ == "__main__":
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
 
     model = KratosMultiphysics.Model()
-    simulation = ParticleMechanicsAnalysis(model,parameters)
+    simulation = MPMAnalysis(model,parameters)
     simulation.Run()

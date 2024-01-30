@@ -19,7 +19,7 @@
             "input_filename" : "granular_flow_2D_Body"
         },
         "material_import_settings"           : {
-            "materials_filename" : "ParticleMaterials.json"
+            "materials_filename" : "MaterialPointsMaterials.json"
         },
         "time_stepping"                      : {
             "time_step" : 5e-5
@@ -58,9 +58,9 @@
         "loads_process_list"       : [],
         "list_other_processes"     : [],
         "gravity"                  : [{
-            "python_module" : "assign_gravity_to_particle_process",
-            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
-            "process_name"  : "AssignGravityToParticleProcess",
+            "python_module" : "assign_gravity_to_material_point_process",
+            "kratos_module" : "KratosMultiphysics.MPMApplication",
+            "process_name"  : "AssignGravityToMaterialPointProcess",
             "Parameters"    : {
                 "model_part_name" : "MPM_Material",
                 "variable_name"   : "MP_VOLUME_ACCELERATION",
@@ -71,9 +71,9 @@
     },
     "output_processes" : {
         "body_output_process" : [{
-            "python_module" : "particle_gid_output_process",
-            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
-            "process_name"  : "ParticleMPMGiDOutputProcess",
+            "python_module" : "mpm_gid_output_process",
+            "kratos_module" : "KratosMultiphysics.MPMApplication",
+            "process_name"  : "MPMGiDOutputProcess",
             "help"          : "This process writes postprocessing files for GiD",
             "Parameters"    : {
                 "model_part_name"        : "MPM_Material",
@@ -100,9 +100,9 @@
             }
         },
         {
-            "python_module" : "particle_vtk_output_process",
-            "kratos_module" : "KratosMultiphysics.ParticleMechanicsApplication",
-            "process_name"  : "ParticleVTKOutputProcess",
+            "python_module" : "mpm_vtk_output_process",
+            "kratos_module" : "KratosMultiphysics.MPMApplication",
+            "process_name"  : "MPMVTKOutputProcess",
             "Parameters"    : {
                 "model_part_name"        : "MPM_Material",
                 "output_path"            : "granular_flow_2D_Body",

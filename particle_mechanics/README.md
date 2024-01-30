@@ -1,11 +1,11 @@
-# Particle Mechanics Examples
+# Material Point Method (MPM) Examples
 
-This folder contains examples related to the [Particle Mechanics Application](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication) implemented in Kratos-Multiphysics. 
+This folder contains examples related to the [MPM Application](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MPMApplication) implemented in Kratos-Multiphysics.
 
 ## Instruction
-- Please follow the instruction to download and install the latest version of the application and the GiD interface, [here](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication). 
+- Please follow the instruction to download and install the latest version of the application and the GiD interface, [here](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MPMApplication).
 - At the moment, we only support [GiD](https://www.gidhome.com/) for pre- and post-processing.
-- For unit testings of the currently available feature, please visit the [tests](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication/tests) folder in Particle Mechanics Application.
+- For unit testings of the currently available feature, please visit the [tests](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MPMApplication/tests) folder in MPM Application.
 
 ## Examples
 
