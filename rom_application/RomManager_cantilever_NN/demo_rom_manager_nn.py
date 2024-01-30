@@ -85,7 +85,7 @@ def GetRomManagerParameters():
     general_rom_manager_parameters = KratosMultiphysics.Parameters("""{
             "rom_stages_to_train" : ["ROM"],             // ["ROM","HROM"]
             "rom_stages_to_test" : [],              // ["ROM","HROM"]
-            "rom_stages_nn_fit"  : ["GenValData","GenTrainData","TrainNN"],      // ["GenValData","GenTrainData","TrainNN"]
+	    "type_of_decoder" : "ann_enhanced",           // "linear" "ann_enhanced",  TODO: add "quadratic"
             "paralellism" : null,                        // null, TODO: add "compss"
             "projection_strategy": "galerkin",            // "lspg", "galerkin", "petrov_galerkin"
             "assembling_strategy": "global",            // "global", "elemental"
