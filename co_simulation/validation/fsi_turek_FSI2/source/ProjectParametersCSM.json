@@ -30,9 +30,6 @@
         "residual_relative_tolerance"        : 1e-6,
         "residual_absolute_tolerance"        : 1e-8,
         "max_iteration"                      : 10,
-        "linear_solver_settings"             : {
-            "solver_type" : "LinearSolversApplication.sparse_qr"
-        },
         "rotation_dofs"            : false
     },
     "processes" : {
