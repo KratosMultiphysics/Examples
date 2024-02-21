@@ -19,7 +19,7 @@ This is a 2D simulation of the well-known Turek FSI benchmark. It consists in a 
 
 The problem geometry as well as the boundary conditions are sketched below (image from Turek et. al. (2006).
 <p align="center">
-  <img src="data/turek_benchmark_geometry.png" alt="Turek benchmark geometry." style="width: 350px;"/>
+  <img src="data/turek_benchmark_geometry.png" alt="Turek benchmark geometry." style="width: 800px;"/>
 </p>
 
 A Newtonian constitutive law is considered in the fluid domain. The fluid characteristic parameters are:
@@ -38,11 +38,11 @@ The time step is 0.002 seconds, which is small enough to capture the oscillation
 The structural mechanics problem is solved using a FE structured mesh conformed by around 3.3k linear quadrilateral elements implementing a Total Lagrangian formulation. On the other hand, the fluid dynamics problem is solved using a FE unstructured mesh of around 30k linear triangular elements implementing an ALE ASGS Navier-Stokes formulation. The obtained fluid velocity and structure displacement fields, together with the deformed geometry, are shown below. The obtained results are in agreement to the ones in the reference publication.
 
 <p align="center">
-  <img src="data/turek_benchmark_FSI2_v.gif" alt="Fluid velocity field [m/s]." style="width: 600px;"/>
+  <img src="data/turek_benchmark_FSI2_v.gif" alt="Fluid velocity field [m/s]." style="width: 800px;"/>
 </p>
 
 <p align="center">
-  <img src="data/turek_benchmark_FSI2_d.gif" alt="Structure displacement field [m]." style="width: 600px;"/>
+  <img src="data/turek_benchmark_FSI2_d.gif" alt="Structure displacement field [m]." style="width: 800px;"/>
 </p>
 
 ## References
