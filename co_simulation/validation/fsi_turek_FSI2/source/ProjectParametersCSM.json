@@ -47,20 +47,7 @@
                 "interval"        : [0.0,"End"]
             }
         }],
-        "loads_process_list"       : [
-            // {
-            //     "python_module" : "assign_vector_by_direction_to_condition_process",
-            //     "kratos_module" : "KratosMultiphysics",
-            //     "process_name"          : "AssignVectorByDirectionToConditionProcess",
-            //     "Parameters"            : {
-            //         "mesh_id"         : 0,
-            //         "model_part_name" : "Structure.StructureInterface2D_StructureInterface",
-            //         "variable_name"   : "POINT_LOAD",
-            //         "modulus"          : 1,
-            //         "direction"       : [0.0,-1.0,0.0]
-            //     }
-            // }
-        ]
+        "loads_process_list"       : []
     },
     "output_processes" : {
         "vtk_output" : [{
@@ -100,26 +87,6 @@
 				    "write_buffer_size" : 1,
 				    "file_extension" : "dat"
 				}
-		    }}],
-        "hdf5_output": [
-            // {
-            //     "kratos_module" : "KratosMultiphysics.HDF5Application",
-            //     "python_module" : "single_mesh_temporal_output_process",
-            //     "process_name" : "SingleMeshTemporalOutputProcess",
-            //     "Parameters" : {
-            //         "model_part_name" : "Structure",
-            //         "file_settings" : {
-            //             "file_name" : "structure_<time>.h5",
-            //             "file_access_mode" : "truncate"
-            //         },
-            //         "nodal_solution_step_data_settings" : {
-            //             "list_of_variables" : ["DISPLACEMENT", "REACTION"]
-            //         },
-            //         "condition_data_value_settings" : {
-            //             "list_of_variables" : ["POINT_LOAD"]
-            //         }
-            //     }
-            // }
-        ]
+		    }}]
     }
 }
