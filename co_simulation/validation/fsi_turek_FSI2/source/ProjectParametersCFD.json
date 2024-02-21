@@ -26,7 +26,7 @@
             "echo_level"                  : 0,
             "compute_reactions"           : true,
             "formulation": {
-                "element_type": "vms",
+                "element_type": "qsvms",
                 "use_orthogonal_subscales": false,
                 "dynamic_tau": 1.0
             },
