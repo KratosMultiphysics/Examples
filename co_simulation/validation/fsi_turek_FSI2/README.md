@@ -1,19 +1,21 @@
 # Turek benchmark - FSI2
 
-**Author:** [Rubén Zorrilla](https://github.com/rubenzorrilla)
+**Author:** [Juan Ignacio Camarotti](https://github.com/juancamarotti)
 
-**Kratos version:** 7.0
+**Kratos version:** 9.4
 
-**Source files:** [Turek benchmark - FSI2](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/fsi_turek_FSI2/source)
+**Source files:** [Turek benchmark - FSI2](https://github.com/KratosMultiphysics/Examples/tree/master/co_simulation/validation/fsi_turek_FSI2/source)
 
 ## Case Specification
 
 This is a 2D simulation of the well-known Turek FSI benchmark. It consists in a 2D fluid channel that contains a cylinder to which flexible flag is attached. In this case, the FSI2 set-up is taken into account. The main challenge of such FSI2 test is the large oscillations of the flexible flag associated to the fluid-structure interaction mechanisms. It is therefore considered as a challenging test for the coupling algorithms. The main reference of the test can be found in [Turek et. al. (2006)](https://doi.org/10.1007/3-540-34596-5_15). The following applications of Kratos are used:
-* FSIApplication
+* CoSimulationApplication
+* MappingApplication
 * MeshMovingApplication
 * FluidDynamicsApplication
 * StructuralMechanicsApplication
 * ConstitutiveLawsApplication
+* LinearSolversApplication
 
 The problem geometry as well as the boundary conditions are sketched below (image from Turek et. al. (2006).
 <p align="center">
