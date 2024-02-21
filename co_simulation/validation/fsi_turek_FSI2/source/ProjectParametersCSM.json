@@ -1,0 +1,125 @@
+{
+    "problem_data"             : {
+        "problem_name"    : "fsi_turek_FSI2",
+        "parallel_type"   : "OpenMP",
+        "start_time"      : 0.0,
+        "end_time"        : 20.0,
+        "echo_level"      : 0
+    },
+    "solver_settings" : {
+        "solver_type"                        : "dynamic",
+        "echo_level"                         : 1,
+        "analysis_type"                      : "non_linear",
+        "time_integration_method"            : "implicit",
+        "scheme_type"                        : "bossak",
+        "model_part_name"                    : "Structure",
+        "domain_size"                        : 2,
+        "model_import_settings"              : {
+            "input_type"     : "mdpa",
+            "input_filename" : "fsi_turek_FSI2_Structural"
+        },
+        "material_import_settings"           : {
+            "materials_filename" : "StructuralMaterials.json"
+        },
+        "time_stepping"               : {
+            "time_step"           : 0.002
+        },
+        "convergence_criterion"              : "residual_criterion",
+        "displacement_relative_tolerance"    : 0.0001,
+        "displacement_absolute_tolerance"    : 1e-9,
+        "residual_relative_tolerance"        : 1e-6,
+        "residual_absolute_tolerance"        : 1e-8,
+        "max_iteration"                      : 10,
+        "linear_solver_settings"             : {
+            "solver_type" : "LinearSolversApplication.sparse_qr"
+        },
+        "rotation_dofs"            : false
+    },
+    "processes" : {
+        "constraints_process_list" : [{
+            "python_module" : "assign_vector_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "Parameters"    : {
+                "model_part_name" : "Structure.DISPLACEMENT_FixedDisplacement",
+                "variable_name"   : "DISPLACEMENT",
+                "constrained"     : [true,true,true],
+                "value"           : [0.0,0.0,0.0],
+                "interval"        : [0.0,"End"]
+            }
+        }],
+        "loads_process_list"       : [
+            // {
+            //     "python_module" : "assign_vector_by_direction_to_condition_process",
+            //     "kratos_module" : "KratosMultiphysics",
+            //     "process_name"          : "AssignVectorByDirectionToConditionProcess",
+            //     "Parameters"            : {
+            //         "mesh_id"         : 0,
+            //         "model_part_name" : "Structure.StructureInterface2D_StructureInterface",
+            //         "variable_name"   : "POINT_LOAD",
+            //         "modulus"          : 1,
+            //         "direction"       : [0.0,-1.0,0.0]
+            //     }
+            // }
+        ]
+    },
+    "output_processes" : {
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "binary",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "vtk_output_fsi_turek2_csd",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT", "POINT_LOAD"]
+            }
+        },{
+		    "python_module" : "point_output_process",
+		    "kratos_module" : "KratosMultiphysics",
+		    "process_name"  : "PointOutputProcess",
+		    "help"          : "This process writes postprocessing files for Paraview",
+		    "Parameters"    : {
+		            "model_part_name"      : "Structure",
+			    "entity_type"          : "node",
+			    "interval"             : [0.0, "End"],
+			    "position"             : [0.60000 ,0.20067 ,0.00000],
+			    "output_variables"     : ["DISPLACEMENT_X"],
+			    "historical_value"     : true,
+			    "search_configuration" : "initial",
+			    "search_tolerance"     : 1e-6,
+			    "print_format"         : "",
+			    "output_file_settings" : {
+				    "file_name"  : "Point_A_Displacement_X",
+				    "output_path": "",
+				    "write_buffer_size" : 1,
+				    "file_extension" : "dat"
+				}
+		    }}],
+        "hdf5_output": [
+            // {
+            //     "kratos_module" : "KratosMultiphysics.HDF5Application",
+            //     "python_module" : "single_mesh_temporal_output_process",
+            //     "process_name" : "SingleMeshTemporalOutputProcess",
+            //     "Parameters" : {
+            //         "model_part_name" : "Structure",
+            //         "file_settings" : {
+            //             "file_name" : "structure_<time>.h5",
+            //             "file_access_mode" : "truncate"
+            //         },
+            //         "nodal_solution_step_data_settings" : {
+            //             "list_of_variables" : ["DISPLACEMENT", "REACTION"]
+            //         },
+            //         "condition_data_value_settings" : {
+            //             "list_of_variables" : ["POINT_LOAD"]
+            //         }
+            //     }
+            // }
+        ]
+    }
+}
