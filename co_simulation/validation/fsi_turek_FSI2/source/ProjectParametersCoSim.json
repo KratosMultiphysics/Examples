@@ -82,11 +82,6 @@
                         "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
                         "dimension" : 2,
                         "variable_name" : "REACTION"
-                    },
-                    "velocity" : {
-                        "model_part_name"   : "FluidModelPart.FluidNoSlipInterface2D_FluidInterface",
-                        "dimension" : 2,
-                        "variable_name" : "VELOCITY"
                     }
                 }
             },
