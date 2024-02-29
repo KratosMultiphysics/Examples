@@ -182,5 +182,5 @@ if __name__ == "__main__":
     #option 2
     # rom_manager.StoreFomSnapshotsAndBasis(mu_train=mu_train)
     # rom_manager.StoreFomValidationSnapshots(mu_validation=mu_validation)
-    # rom_manager.TrainAnnEnhacedNeuralNetwork()
+    # rom_manager.TrainAnnEnhacedROM()
 
