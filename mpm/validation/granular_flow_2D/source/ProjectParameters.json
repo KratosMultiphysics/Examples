@@ -19,7 +19,7 @@
             "input_filename" : "granular_flow_2D_Body"
         },
         "material_import_settings"           : {
-            "materials_filename" : "MaterialPointsMaterials.json"
+            "materials_filename" : "ParticleMaterials.json"
         },
         "time_stepping"                      : {
             "time_step" : 5e-5
@@ -104,11 +104,11 @@
             "kratos_module" : "KratosMultiphysics.MPMApplication",
             "process_name"  : "MPMVTKOutputProcess",
             "Parameters"    : {
-                "model_part_name"        : "MPM_Material",
-                "output_path"            : "granular_flow_2D_Body",
-                "output_control_type"    : "time",
-                "output_interval"        : 0.01,
-                "gauss_point_results"    : ["MP_VELOCITY","MP_DISPLACEMENT"]
+                "model_part_name"                       : "MPM_Material",
+                "output_path"                           : "granular_flow_2D_Body",
+                "output_control_type"                   : "time",
+                "output_interval"                       : 0.01,
+                "gauss_point_variables_in_elements"     : ["MP_VELOCITY","MP_DISPLACEMENT"]
             }
         }
         ],
