@@ -1,0 +1,212 @@
+{
+    "problem_data": {
+        "parallel_type": "OpenMP",
+        "echo_level": 0
+    },
+    "model_parts": [
+        {
+            "settings": {
+                "model_part_name": "archara",
+                "domain_size": 3,
+                "input_filename": "../archara"
+            }
+        }
+    ],
+    "analyses": [
+        {
+            "name": "Structure_static",
+            "type": "kratos_analysis_execution_policy",
+            "settings": {
+                "model_part_names": [
+                    "archara"
+                ],
+                "analysis_module": "KratosMultiphysics.StructuralMechanicsApplication",
+                "analysis_type": "StructuralMechanicsAnalysis",
+                "analysis_settings": {
+                    "@include_json": "../ProjectParameters.json"
+                },
+                "analysis_output_settings": {
+                    "nodal_solution_step_data_variables": [
+                        "DISPLACEMENT",
+                        "ROTATION"
+                    ],
+                    "nodal_data_value_variables": [],
+                    "element_data_value_variables": [],
+                    "condition_data_value_variables": []
+                }
+            }
+        }
+    ],
+    "responses": [
+        {
+            "name": "mass",
+            "type": "mass_response_function",
+            "settings": {
+                "evaluated_model_part_names": [
+                    "archara"
+                ],
+                "perturbation_size": 1e-8
+            }
+        },
+        {
+            "name": "strain_energy",
+            "type": "linear_strain_energy_response_function",
+            "settings": {
+                "evaluated_model_part_names": [
+                    "archara"
+                ],
+                "primal_analysis_name": "Structure_static",
+                "perturbation_size": 1e-8
+            }
+        }
+    ],
+    "controls": [
+        {
+            "name": "shape_control",
+            "type": "shape.vertex_morphing_shape_control",
+            "settings": {
+                "controlled_model_part_names": [
+                    "archara"
+                ],
+                "output_all_fields": true,
+                "filter_settings": {
+                    "filter_type": "explicit_filter",
+                    "filter_function_type": "cosine",
+                    "max_nodes_in_filter_radius": 100000,
+                    "filter_radius_settings": {
+                        "filter_radius_type": "constant",
+                        "filter_radius": 20.0
+                    },
+                    "filtering_boundary_conditions": {
+                        "damping_type": "nearest_entity",
+                        "damping_function_type": "cosine",
+                        "damped_model_part_settings": {
+                            "archara.edges": [
+                                true,
+                                true,
+                                true
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "thickness_control",
+            "type": "thickness.shell_thickness_control",
+            "settings": {
+                "controlled_model_part_names": [
+                    "archara"
+                ],
+                "filter_settings": {
+                    "filter_type": "explicit_filter",
+                    "filter_function_type": "linear",
+                    "max_nodes_in_filter_radius": 100000,
+                    "filter_radius_settings": {
+                        "filter_radius_type": "constant",
+                        "filter_radius": 20.0
+                    },
+                    "filtering_boundary_conditions": {
+                        "damping_type": "nearest_entity",
+                        "damping_function_type": "cosine",
+                        "damped_model_part_settings": {}
+                    }
+                },
+                "output_all_fields": true,
+                "beta_settings": {
+                    "initial_value": 5,
+                    "max_value": 30,
+                    "adaptive": true,
+                    "increase_fac": 1.05,
+                    "update_period": 20
+                },
+                "physical_thicknesses": [
+                    0.2,
+                    1.2
+                ]
+            }
+        }
+    ],
+    "algorithm_settings": {
+        "type": "algorithm_gradient_projection",
+        "settings": {
+            "echo_level": 0,
+            "line_search": {
+                "type": "const_step",
+                "init_step": 1.0,
+                "gradient_scaling": "inf_norm"
+            },
+            "conv_settings": {
+                "type": "max_iter",
+                "max_iter": 100
+            },
+            "linear_solver_settings": {
+                "solver_type": "LinearSolversApplication.dense_col_piv_householder_qr"
+            },
+            "correction_size": 2.0
+        },
+        "controls": [
+            "thickness_control",
+            "shape_control"
+        ],
+        "objective": {
+            "response_name": "strain_energy",
+            "type": "minimization",
+            "scaling": 1.0
+        },
+        "constraints": [
+            {
+                "response_name": "mass",
+                "type": "<=",
+                "scaling": 1.0,
+                "scaled_ref_value": "initial_value",
+                "violation_scaling": 5.0
+            }
+        ]
+    },
+    "processes": {
+        "kratos_processes": {},
+        "optimization_data_processes": {
+            "output_processes": [
+                {
+                    "type": "optimization_problem_ascii_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "output_file_name": "summary.csv",
+                        "write_kratos_version": false,
+                        "write_time_stamp": false,
+                        "list_of_output_components": [
+                            "all"
+                        ],
+                        "format_info": {
+                            "int_length": 7,
+                            "float_precision": 6,
+                            "bool_values": [
+                                "no",
+                                "yes"
+                            ],
+                            "string_length": 10
+                        }
+                    }
+                },
+                {
+                    "type": "optimization_problem_vtu_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "file_name": "<model_part_full_name>_<step>",
+                        "file_format": "binary",
+                        "output_path": "Optimization_Results",
+                        "save_output_files_in_folder": true,
+                        "write_deformed_configuration": false,
+                        "list_of_output_components": [
+                            "all"
+                        ],
+                        "output_precision": 7,
+                        "output_interval": 1,
+                        "echo_level": 0
+                    }
+                }
+            ]
+        }
+    }
+}

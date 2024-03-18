@@ -1,0 +1,227 @@
+{
+    "problem_data": {
+        "parallel_type": "OpenMP",
+        "echo_level": 0
+    },
+    "model_parts": [
+        {
+            "settings": {
+                "model_part_name": "3D_Hook",
+                "domain_size": 3,
+                "input_filename": "../hook"
+            }
+        }
+    ],
+    "analyses": [
+        {
+            "name": "main",
+            "type": "kratos_analysis_execution_policy",
+            "settings": {
+                "model_part_names": [
+                    "3D_Hook"
+                ],
+                "analysis_module": "KratosMultiphysics.StructuralMechanicsApplication",
+                "analysis_type": "StructuralMechanicsAnalysis",
+                "analysis_settings": {
+                    "@include_json": "../primal_parameters_main.json"
+                },
+                "analysis_output_settings": {
+                    "nodal_solution_step_data_variables": [
+                        "DISPLACEMENT"
+                    ],
+                    "nodal_data_value_variables": [],
+                    "element_data_value_variables": [],
+                    "condition_data_value_variables": []
+                }
+            }
+        },
+        {
+            "name": "tip",
+            "type": "kratos_analysis_execution_policy",
+            "settings": {
+                "model_part_names": [
+                    "3D_Hook"
+                ],
+                "analysis_module": "KratosMultiphysics.StructuralMechanicsApplication",
+                "analysis_type": "StructuralMechanicsAnalysis",
+                "analysis_settings": {
+                    "@include_json": "../primal_parameters_tip.json"
+                },
+                "analysis_output_settings": {
+                    "nodal_solution_step_data_variables": [],
+                    "nodal_data_value_variables": [],
+                    "element_data_value_variables": [],
+                    "condition_data_value_variables": []
+                }
+            }
+        }
+    ],
+    "responses": [
+        {
+            "name": "mass",
+            "type": "mass_response_function",
+            "settings": {
+                "evaluated_model_part_names": [
+                    "3D_Hook"
+                ],
+                "perturbation_size": 1e-8
+            }
+        },
+        {
+            "name": "strain_energy_main",
+            "type": "linear_strain_energy_response_function",
+            "settings": {
+                "evaluated_model_part_names": [
+                    "3D_Hook"
+                ],
+                "primal_analysis_name": "main",
+                "perturbation_size": 1e-6
+            }
+        },
+        {
+            "name": "strain_energy_tip",
+            "type": "linear_strain_energy_response_function",
+            "settings": {
+                "evaluated_model_part_names": [
+                    "3D_Hook"
+                ],
+                "primal_analysis_name": "tip",
+                "perturbation_size": 1e-6
+            }
+        }
+    ],
+    "controls": [
+        {
+            "name": "shape_control",
+            "type": "shape.vertex_morphing_shape_control",
+            "settings": {
+                "controlled_model_part_names": [
+                    "3D_Hook.design_surface_1"
+                ],
+                "mesh_motion_solver_type": "mesh_moving_analysis",
+                "output_all_fields": true,
+                "mesh_motion_solver_settings": {
+                    "@include_json": "mesh_motion_parameters.json"
+                },
+                "filter_settings": {
+                    "filter_type": "explicit_filter",
+                    "filter_function_type": "linear",
+                    "max_nodes_in_filter_radius": 100000,
+                    "filter_radius_settings": {
+                        "filter_radius_type": "constant",
+                        "filter_radius": 25.0
+                    },
+                    "filtering_boundary_conditions": {
+                        "damping_type": "nearest_entity",
+                        "damping_function_type": "cosine",
+                        "damped_model_part_settings": {
+                            "3D_Hook.non_design_top_1": [
+                                true,
+                                true,
+                                true
+                            ],
+                            "3D_Hook.non_design_inner_1": [
+                                true,
+                                true,
+                                true
+                            ],
+                            "3D_Hook.tip_1": [
+                                true,
+                                true,
+                                true
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "algorithm_settings": {
+        "type": "algorithm_gradient_projection",
+        "settings": {
+            "echo_level": 0,
+            "line_search": {
+                "type": "const_step",
+                "init_step": 3.0,
+                "gradient_scaling": "inf_norm"
+            },
+            "conv_settings": {
+                "type": "max_iter",
+                "max_iter": 100
+            },
+            "linear_solver_settings": {
+                "solver_type": "LinearSolversApplication.dense_col_piv_householder_qr"
+            },
+            "correction_size": 2.0
+        },
+        "controls": [
+            "shape_control"
+        ],
+        "objective": {
+            "response_name": "mass",
+            "type": "minimization",
+            "scaling": 1.0
+        },
+        "constraints": [
+            {
+                "response_name": "strain_energy_main",
+                "type": "<=",
+                "scaling": 1.0,
+                "scaled_ref_value": "initial_value",
+                "violation_scaling": 5.0
+            },
+            {
+                "response_name": "strain_energy_tip",
+                "type": "<=",
+                "scaling": 1.0,
+                "scaled_ref_value": "initial_value",
+                "violation_scaling": 5.0
+            }
+        ]
+    },
+    "processes": {
+        "kratos_processes": {},
+        "optimization_data_processes": {
+            "output_processes": [
+                {
+                    "type": "optimization_problem_ascii_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "output_file_name": "summary.csv",
+                        "write_kratos_version": false,
+                        "write_time_stamp": false,
+                        "list_of_output_components": [
+                            "all"
+                        ],
+                        "format_info": {
+                            "int_length": 7,
+                            "float_precision": 6,
+                            "bool_values": [
+                                "no",
+                                "yes"
+                            ],
+                            "string_length": 10
+                        }
+                    }
+                },
+                {
+                    "type": "optimization_problem_vtu_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "file_name": "<model_part_full_name>_<step>",
+                        "file_format": "binary",
+                        "output_path": "Optimization_Results",
+                        "save_output_files_in_folder": true,
+                        "write_deformed_configuration": false,
+                        "list_of_output_components": [
+                            "all"
+                        ],
+                        "output_precision": 7,
+                        "output_interval": 1,
+                        "echo_level": 0
+                    }
+                }
+            ]
+        }
+    }
+}

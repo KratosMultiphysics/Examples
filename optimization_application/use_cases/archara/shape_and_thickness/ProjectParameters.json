@@ -1,0 +1,112 @@
+{
+    "problem_data": {
+        "problem_name": "archara",
+        "end_time": 1.0,
+        "parallel_type": "OpenMP",
+        "echo_level": 0,
+        "start_time": 0.0
+    },
+    "solver_settings": {
+        "solver_type": "static",
+        "model_part_name": "archara",
+        "domain_size": 3,
+        "linear_solver_settings": {
+            "scaling": false,
+            "solver_type": "LinearSolversApplication.sparse_lu",
+            "verbosity": 0
+        },
+        "material_import_settings": {
+            "materials_filename": "../materials.json"
+        },
+        "model_import_settings": {
+            "input_filename": "archara",
+            "input_type": "use_input_model_part"
+        },
+        "echo_level": 0,
+        "problem_domain_sub_model_part_list": [
+            "domain"
+        ],
+        "processes_sub_model_part_list": [
+            "load",
+            "support_lf",
+            "support_lb",
+            "support_rf",
+            "support_rb",
+            "support_left",
+            "support_right"
+        ],
+        "rotation_dofs": true,
+        "analysis_type": "linear",
+        "time_stepping": {
+            "time_step": 1.1
+        },
+        "move_mesh_flag": false
+    },
+    "processes": {
+        "constraints_process_list": [
+            {
+                "python_module": "assign_vector_variable_process",
+                "help": "This process fixes the selected components of a given vector variable",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorVariableProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "archara.support_left",
+                    "variable_name": "DISPLACEMENT",
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            },
+            {
+                "python_module": "assign_vector_variable_process",
+                "help": "This process fixes the selected components of a given vector variable",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorVariableProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "archara.support_right",
+                    "variable_name": "DISPLACEMENT",
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                }
+            }
+        ],
+        "loads_process_list": [
+            {
+                "python_module": "assign_vector_by_direction_process",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignVectorByDirectionProcess",
+                "Parameters": {
+                    "mesh_id": 0,
+                    "model_part_name": "archara.load",
+                    "variable_name": "POINT_LOAD",
+                    "modulus": 1.0,
+                    "constrained": false,
+                    "direction": [
+                        0.0,
+                        0.0,
+                        -1.0
+                    ]
+                }
+            }
+        ]
+    },
+    "restart_options": {},
+    "output_processes": {}
+}

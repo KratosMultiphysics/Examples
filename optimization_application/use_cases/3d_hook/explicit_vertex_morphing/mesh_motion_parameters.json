@@ -1,0 +1,22 @@
+{
+    "problem_data": {
+        "echo_level": 0,
+        "parallel_type": "OpenMP",
+        "start_time": 0.0,
+        "end_time": 1.0
+    },
+    "solver_settings": {
+        "domain_size": 3,
+        "echo_level": 0,
+        "solver_type": "structural_similarity",
+        "model_part_name": "3D_Hook",
+        "compute_reactions": false,
+        "calculate_mesh_velocity": false,
+        "model_import_settings": {
+            "input_type": "use_input_model_part"
+        },
+        "time_stepping": {
+            "time_step": 1.1
+        }
+    }
+}
