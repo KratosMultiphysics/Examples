@@ -101,6 +101,7 @@ def GetRomManagerParameters():
                 "rom_basis_output_folder": "rom_data",
                 "snapshots_control_type": "step",                          // "step", "time"
                 "snapshots_interval": 1,
+                "print_singular_values":true,
                 "galerkin_rom_bns_settings": {
                     "monotonicity_preserving": false
                 },
