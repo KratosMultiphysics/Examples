@@ -116,14 +116,17 @@ def GetRomManagerParameters():
                 "ann_enhanced_settings":{
                     "saved_models_root_path": "rom_data/saved_nn_models/",
                     "training":{
-            	        "modes":[3,10],
-		        "layers_size":[200,200],
+            	        "modes":[
+		     		3,	// Highest mode to be used as inferior modes (size of NN input)
+	 			10	// Highest mode to be used as superior modes (size of NN output + size of NN input)
+     			],
+		        "layers_size":[200,200],	// Size of each hidden layer in the Neural Network (for more layers, append more values)
 		        "batch_size":4,
 		        "epochs":10,
-		        "lr_strategy": {
-		            "scheduler": "sgdr",         // "const", "steps", "sgdr"
-		            "base_lr": 0.001,
-		            "additional_params": [1e-4, 10, 400]     // const:[], steps/sgdr:["min_lr", "reduction_factor","update_period"]
+		        "lr_strategy": {				// Learning Rate update strategy
+		            "scheduler": "sgdr",         		// "const", "steps", "sgdr"
+		            "base_lr": 0.001,				// Initial LR
+		            "additional_params": [1e-4, 10, 400]     	// 'const' -> []; 'steps' or 'sgdr' -> [minimum_LR, reduction_factor, period_length]
 		        },
 		        "database":{
 		            "training_set": "rom_data/SnapshotsMatrices/fom_snapshots.npy",
