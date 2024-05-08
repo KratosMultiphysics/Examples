@@ -1,0 +1,150 @@
+{
+    "analysis_stage"   : "KratosMultiphysics.CompressiblePotentialFlowApplication.potential_flow_analysis",
+    "problem_data"     : {
+        "problem_name"  : "Onera_wing",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 1
+    }
+    ,
+    "modelers" : [{
+        "name" : "KratosMultiphysics.MedApplication.modelers.import_med_modeler.ImportMedModeler",
+        "parameters" : {
+            "echo_level" : 0,
+            "input_filename" : "Mesh/Fluid.med",
+            "model_part_name" : "FluidModelPart"            
+        }
+    },{
+        "name"       : "Modelers.KratosMultiphysics.CreateEntitiesFromGeometriesModeler",
+        "parameters" : {
+            "elements_list"   : [{
+                "model_part_name" : "FluidModelPart.Domain",
+                "element_name"    : "Element3D4N"
+            }],
+            "conditions_list" : [{
+                "model_part_name" : "FluidModelPart.FarField",
+                "condition_name"  : "WallCondition3D3N"
+            },{
+                "model_part_name" : "FluidModelPart.Wing",
+                "condition_name"  : "WallCondition3D3N"
+            }]
+        }
+    }]
+    ,
+    "output_processes" : {
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "FluidModelPart",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "binary",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : true,
+                "output_path"                        : "vtk_output",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["VELOCITY_POTENTIAL","AUXILIARY_VELOCITY_POTENTIAL"],
+                "nodal_data_value_variables"         : ["PRESSURE_COEFFICIENT","VELOCITY","DENSITY","MACH","POTENTIAL_JUMP","TRAILING_EDGE","WAKE_DISTANCE"],
+                "element_data_value_variables"       : ["WAKE","KUTTA"],
+                "condition_data_value_variables"     : []
+            }
+        }]
+    },
+    "solver_settings"  : {
+        "model_part_name"          : "FluidModelPart",
+        "domain_size"              : 3,
+        "solver_type"              : "potential_flow",
+        "model_import_settings"    : {
+            "input_type"     : "use_input_model_part"
+        },
+        "material_import_settings" : {
+            "materials_filename" : ""
+        },
+        "formulation": {
+            "element_type": "perturbation_transonic"
+        },
+        "scheme_settings" :{
+            "model_part_name": "Wing",
+            "critical_mach"                 : 0.9,
+            "upwind_factor_constant"        : 1.6,
+            "update_critical_mach"          : -1.0,
+            "update_upwind_factor_constant" : -1.0,
+            "update_transonic_tolerance"    : 1e-30,
+            "mach_number_squared_limit"     : 3.0
+        }, 
+        "maximum_iterations": 50,
+        "relative_tolerance": 1e-12,
+        "absolute_tolerance": 1e-12,   
+        "residual_tolerance_between_steps" : 1e-12,      
+        "linear_solver_settings": {
+            "solver_type": "LinearSolversApplication.pardiso_lu"
+        },
+        "solving_strategy_settings": {
+            "advanced_settings": {
+                "max_line_search_iterations" : 5,
+                "first_alpha_value"          : 0.5,
+                "second_alpha_value"         : 1.0,
+                "min_alpha"                  : 0.05,
+                "max_alpha"                  : 1.0,
+                "line_search_tolerance"      : 0.5},
+            "type": "line_search"
+        },    
+        "echo_level"               : 1,
+        "reference_chord"          : 1.0,
+        "volume_model_part_name"   : "FluidModelPart.Domain",
+        "skin_parts"               : ["FluidModelPart.FarField","FluidModelPart.Wing"],
+        "no_skin_parts"            : [],
+        "auxiliary_variables_list" : [],
+        "reform_dofs_at_each_step" : false
+    },
+    "processes"        : {
+        "boundary_conditions_process_list" : [{
+            "python_module" : "apply_far_field_process",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "process_name"  : "FarFieldProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.FarField",
+                "free_stream_density": 1.225,
+                "angle_of_attack": 0.0,
+                "mach_infinity": 0.03,
+                "perturbation_field": true
+            }
+        },
+        {
+            "python_module" : "define_wake_process_3d",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "process_name"  : "DefineWakeProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.TE_Wing",
+                "body_model_part_name" : "FluidModelPart.Wing",
+                "wake_stl_file_name" : "",
+                "output_wake": false,
+                "wake_process_cpp_parameters":    {
+                    "tolerance"                     : 1e-9,
+                    "wake_normal"                   : [0.0,0.0,1.0],
+                    "switch_wake_normal"            : false,
+                    "count_elements_number"         : false,
+                    "write_elements_ids_to_file"    : false,
+                    "shed_wake_from_trailing_edge"  : false,
+                    "shedded_wake_distance"         : 12.5,
+                    "shedded_wake_element_size"     : 0.2,
+                    "decrease_wake_width_at_the_wing_tips" : false,
+                    "echo_level": 1
+                }
+             }
+        },
+        {
+            "python_module" : "compute_nodal_value_process",
+            "kratos_module" : "KratosMultiphysics.CompressiblePotentialFlowApplication",
+            "process_name"  : "ComputeNodalValueProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart",
+                "elemental_variables_list_to_project":  ["PRESSURE_COEFFICIENT","VELOCITY","MACH","DENSITY"]
+             }
+        }]
+    }
+}
