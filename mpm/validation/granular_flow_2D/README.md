@@ -3,14 +3,14 @@
 
 **Kratos version:** Development branch. **Expected 6.0**
 
-**Source files:** [granular_flow_2D](https://github.com/KratosMultiphysics/Examples/tree/master/particle_mechanics/validation/granular_flow_2D/source)
+**Source files:** [granular_flow_2D](https://github.com/KratosMultiphysics/Examples/tree/master/mpm/validation/granular_flow_2D/source)
 
 ## Case Specification
 
 This is a 2D non-cohesive granular material simulation according to the experiment conducted by (Bui et al., 2008). Here, linear structured triangular elements are used to initialize the MPs and as the background mesh. The structured mesh arrangement is chosen to avoid the irregularities of the generated MP’s density, which, by further, improving the numerical solutions.
 
 The following application of Kratos is used:
-- [ParticleMechanicsApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/ParticleMechanicsApplication)
+- [MPMApplication](https://github.com/KratosMultiphysics/Kratos/tree/master/applications/MPMApplication)
 
 The problem geometry as well as the boundary conditions are sketched below:
 
@@ -34,7 +34,7 @@ The problem stated above has been solved with a structured mesh with 3 material 
 
 <p align="center">
   <img src="data/granular_flow_2D_results.png" alt="Obtained results and comparison." width="700" />
-  
+
   (a.) Experiment conducted by (Bui et al., 2008), (b.) comparison of final surface configuration and failure line, (c.) simulation results of (Bui et al., 2008) by using SPH method, (d.) simulation results obtained by implicit MPM method
 </p>
 

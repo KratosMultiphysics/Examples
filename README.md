@@ -130,11 +130,11 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Small Box Lagrangian OW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/One_Way/Small_Box_Eulerian_OW/README.md)
 - [Small Box Lagrangian TW](swimming_dem_fluid_interaction/use_cases/PFEMFluid_Element/Two_Way/Small_Box_Eulerian_TW/README.md)
 
-## Particle Mechanics
+## MPM (Material Point Method)
 
 **Validation**
-- [Granular Flow 2D](particle_mechanics/validation/granular_flow_2D/README.md)
-- [Cylinder on inclined plane 2D](particle_mechanics/validation/cylinder_on_inclined_plane/README.md)
+- [Granular Flow 2D](mpm/validation/granular_flow_2D/README.md)
+- [Cylinder on inclined plane 2D](mpm/validation/cylinder_on_inclined_plane/README.md)
 
 ## PFEM2
 
