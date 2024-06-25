@@ -123,6 +123,7 @@ def GetRomManagerParameters():
 		        "layers_size":[200,200],	// Size of each hidden layer in the Neural Network (for more layers, append more values)
 		        "batch_size":4,
 		        "epochs":10,
+                        "NN_gradient_regularisation_weight": 1.0,
 		        "lr_strategy": {				// Learning Rate update strategy
 		            "scheduler": "sgdr",         		// "const", "steps", "sgdr"
 		            "base_lr": 0.001,				// Initial LR
