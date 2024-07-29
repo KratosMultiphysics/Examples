@@ -30,6 +30,14 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Two-fluids dam break scenario](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_dam_break/README.md)
 - [Two-fluids wave propagation](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_wave/README.md)
 
+## Potential Flow
+
+**Use cases**
+- [Naca 0012 compressible - sensitivity analysis](https://github.com/KratosMultiphysics/Examples/tree/master/potential_flow/use_cases/sensitivity_analysis_compressible/source)
+
+**Validation**
+- [Naca 0012 transonic scheme](https://github.com/KratosMultiphysics/Examples/tree/master/potential_flow/validation/naca0012_transonic_scheme/source)
+
 ## Structural Mechanics
 
 **Use cases**
