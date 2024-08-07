@@ -1,0 +1,15 @@
+{
+    "properties" : [{
+        "model_part_name" : "Structure.Parts_Cable_Membrane",
+        "properties_id"   : 1,
+        "Material"        : {
+            "Variables"        : {
+                "DENSITY"             : 441.75,
+                "YOUNG_MODULUS"       : 250000.0,
+                "THICKNESS"           : 0.0002,
+                "PRESTRESS_VECTOR"    : [0.0]
+            },
+            "Tables"           : null
+        }
+    }]
+}
