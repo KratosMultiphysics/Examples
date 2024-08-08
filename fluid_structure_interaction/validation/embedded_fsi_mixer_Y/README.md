@@ -7,7 +7,7 @@
 **Source files:** [Mixer with flexible blades](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_structure_interaction/validation/embedded_fsi_mixer_Y/source)
 
 ## Case Specification
-This example is specifically conceived to prove the extended scope of applicatoin of embedded mesh methods. Hence, it involves extremely large rotations, which would be impossible to solve by using a body fitted ALE based approach.
+This example is specifically conceived to prove the extended scope of application of embedded mesh methods. Hence, it involves extremely large rotations, which would be impossible to solve by using a body fitted ALE based approach.
 
 The problem is set up as a 2D idealization of a turbine mixer with clockwise-anticlockwise alternate rotation. The problem geometry is a unit diameter circle with three embedded flexible blades. An imposed rotation is enforced in the blades axis to emulate the spin of the rotor. Such rotation changes the direction (anticlockwise to clockwise and viceversa) after More details on the dimensions, material settings and boundary conditions can be found in [here](https://doi.org/10.1016/j.cma.2020.113179).
 
