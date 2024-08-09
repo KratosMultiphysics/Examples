@@ -1,0 +1,112 @@
+{
+    "problem_data": {
+        "start_time": 0.0,
+        "end_time": 15.0,
+        "echo_level": 0,
+        "print_colors": true,
+        "parallel_type": "OpenMP"
+    },
+    "solver_settings": {
+        "type": "coupled_solvers.gauss_seidel_strong",
+        "echo_level": 3,
+        "predictors": [],
+        "data_transfer_operators": {
+            "mapper": {
+                "type": "kratos_mapping",
+                "mapper_settings": {
+                    "mapper_type": "nearest_neighbor"
+                }
+            }
+        },
+        "num_coupling_iterations": 10,
+        "convergence_accelerators": [],
+        "coupling_operations" : {
+            "distribute_point_values" : {
+                "type" : "distribute_point_values",
+                "redistribution_iterations" : 100,
+                "redistribution_tolerance" : 1e-6,
+                "solver"    : "solid",
+                "data_point_values" : "reaction",
+                "data_distributed_values" : "flux",
+                "entities" : "conditions"
+            }
+        },
+        "convergence_criteria": [
+            {
+                "type": "relative_norm_previous_residual",
+                "solver": "fluid",
+                "data_name": "temp",
+                "abs_tolerance": 1e-3,
+                "rel_tolerance": 1e-3
+            }
+        ],
+        "coupling_sequence": [
+            {
+                "name": "solid",
+                "input_data_list": [
+                    {
+                        "data": "reaction",
+                        "from_solver": "fluid",
+                        "from_solver_data": "reaction",
+                        "data_transfer_operator": "mapper",
+                        "data_transfer_operator_options": [
+                            "swap_sign"
+                        ],
+                        "after_data_transfer_operations":["distribute_point_values"]
+                    }
+                ],
+                "output_data_list": [
+                    {
+                        "data": "temp",
+                        "to_solver": "fluid",
+                        "to_solver_data": "temp",
+                        "data_transfer_operator": "mapper"
+                    }
+                ]
+            },
+            {
+                "name": "fluid",
+                "output_data_list": [],
+                "input_data_list": []
+            }
+        ],
+        "solvers": {
+            "fluid": {
+                "type": "solver_wrappers.kratos.convection_diffusion_wrapper",
+                "solver_wrapper_settings": {
+                    "input_file": "ProjectParametersFTHERMAL"
+                },
+                "data": {
+                    "temp": {
+                        "model_part_name": "ThermalModelPart.FluidThermalInterface2D_Fluid_Interface",
+                        "variable_name": "TEMPERATURE"
+                    },
+                    "reaction": {
+                        "model_part_name": "ThermalModelPart.FluidThermalInterface2D_Fluid_Interface",
+                        "variable_name": "REACTION_FLUX"
+                    }
+                }
+            },
+            "solid": {
+                "type": "solver_wrappers.kratos.convection_diffusion_wrapper",
+                "solver_wrapper_settings": {
+                    "input_file": "ProjectParametersSOLID"
+                },
+                "data": {
+                    "temp": {
+                        "model_part_name": "Parts_Solid.SolidThermalInterface2D_Solid_Interface",
+                        "variable_name": "TEMPERATURE"
+                    },
+                    "reaction": {
+                        "model_part_name": "Parts_Solid.SolidThermalInterface2D_Solid_Interface",
+                        "variable_name": "REACTION_FLUX"
+                    },
+                    "flux": {
+                        "model_part_name": "Parts_Solid.SolidThermalInterface2D_Solid_Interface",
+                        "variable_name": "FACE_HEAT_FLUX"
+                    }
+                }
+            }
+        }
+    }
+}

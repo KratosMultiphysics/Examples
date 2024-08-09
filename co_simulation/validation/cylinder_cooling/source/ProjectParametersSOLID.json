@@ -1,0 +1,144 @@
+{
+    "analysis_stage": "KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis",
+    "problem_data": {
+        "problem_name": "solid",
+        "parallel_type": "OpenMP",
+        "time_step": 0.1,
+        "start_time": 0.0,
+        "end_time": 15.0,
+        "echo_level": 0
+    },
+    "solver_settings": {
+        "solver_type": "transient",
+        "analysis_type": "non_linear",
+        "model_part_name": "Parts_Solid",
+        "domain_size": 2,
+        "model_import_settings": {
+            "input_type": "mdpa",
+            "input_filename": "test_cylinder_cooling_Re100_Pr2_Solid"
+        },
+        "material_import_settings": {
+            "materials_filename": "ConvectionDiffusionMaterials.json"
+        },
+        "line_search": false,
+        "echo_level": 1,
+        "compute_reactions": true,
+        "max_iteration": 10,
+        "convergence_criterion": "residual_criterion",
+        "solution_relative_tolerance": 1e-5,
+        "solution_absolute_tolerance": 1e-7,
+        "residual_relative_tolerance": 1e-5,
+        "residual_absolute_tolerance": 1e-7,
+        "problem_domain_sub_model_part_list": [
+            "TEMPERATURE_Solid",
+            "SolidThermalInterface2D_Solid_Interface"
+        ],
+        "processes_sub_model_part_list": [
+            "Parts_Solid"
+        ],
+        "time_stepping": {
+            "time_step": 0.1
+        }
+    },
+    "processes": {
+        "initial_conditions_process_list": [
+            {
+                "python_module": "assign_scalar_variable_process",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "AssignScalarVariableProcess",
+                "Parameters": {
+                    "model_part_name": "Parts_Solid.TEMPERATURE_Solid",
+                    "variable_name": "TEMPERATURE",
+                    "interval": [
+                        0.0,
+                        1e-5
+                    ],
+                    "constrained": false,
+                    "value": 1.0
+                }
+            }
+        ],
+        "constraints_process_list":[
+            {
+                "python_module": "apply_thermal_face_process",
+                "kratos_module": "KratosMultiphysics.ConvectionDiffusionApplication",
+                "Parameters": {
+                    "model_part_name": "Parts_Solid.SolidThermalInterface2D_Solid_Interface",
+                    "ambient_temperature": 0.0,
+                    "add_ambient_radiation": false,
+                    "emissivity": 0.0,
+                    "add_ambient_convection": false,
+                    "convection_coefficient": 0.0
+                }
+            }
+        ]
+    },
+    "output_processes": {
+        "gid_output": [
+            {
+                "python_module": "gid_output_process",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "GiDOutputProcess",
+                "Parameters": {
+                    "model_part_name": "Parts_Solid",
+                    "postprocess_parameters": {
+                        "result_file_configuration": {
+                            "gidpost_flags": {
+                                "GiDPostMode": "GiD_PostBinary",
+                                "WriteDeformedMeshFlag": "WriteDeformed",
+                                "WriteConditionsFlag": "WriteConditions",
+                                "MultiFileFlag": "SingleFile"
+                            },
+                            "file_label": "time",
+                            "output_control_type": "step",
+                            "output_interval": 1,
+                            "body_output": true,
+                            "node_output": false,
+                            "skin_output": false,
+                            "plane_output": [],
+                            "nodal_results": [
+                                "TEMPERATURE"
+                            ],
+                            "gauss_point_results": [],
+                            "nodal_nonhistorical_results": []
+                        },
+                        "point_data_configuration": []
+                    },
+                    "output_name": "gid_output/solid"
+                }
+            }
+        ],
+        "vtk_output": [
+            {
+                "python_module": "vtk_output_process",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "VtkOutputProcess",
+                "Parameters": {
+                    "model_part_name": "Parts_Solid",
+                    "output_control_type": "step",
+                    "output_interval": 1,
+                    "file_format": "ascii",
+                    "output_precision": 7,
+                    "output_sub_model_parts": false,
+                    "output_path": "vtk_output",
+                    "save_output_files_in_folder": true,
+                    "nodal_solution_step_data_variables": [
+                        "TEMPERATURE",
+                        "REACTION_FLUX",
+                        "FACE_HEAT_FLUX"
+                    ],
+                    "nodal_data_value_variables": [],
+                    "element_data_value_variables": [],
+                    "condition_data_value_variables": [],
+                    "gauss_point_variables_extrapolated_to_nodes": []
+                }
+            }
+        ]
+    },
+    "restart_options": {
+        "SaveRestart": false,
+        "RestartFrequency": 0,
+        "LoadRestart": false,
+        "Restart_Step": 0
+    }
+}
