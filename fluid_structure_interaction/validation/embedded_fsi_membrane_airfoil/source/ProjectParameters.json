@@ -5,7 +5,7 @@
         "parallel_type": "OpenMP",
         "echo_level": 0,
         "start_time": 0.0,
-        "end_time": 1.0e0
+        "end_time": 1.0
     },
     "solver_settings": {
         "solver_type": "partitioned_embedded",
@@ -27,7 +27,7 @@
                 "materials_filename": "StructuralMaterials.json"
             },
             "time_stepping": {
-                "time_step": 5e-3
+                "time_step": 2.0e-3
             },
             "line_search"                        : false,
             "convergence_criterion"              : "residual_criterion",
@@ -64,13 +64,13 @@
             "no_skin_parts"               : [],
             "time_stepping"               : {
                 "automatic_time_step": false,
-                "time_step": 5e-3
+                "time_step": 2.0e-3
             },
             "formulation": {
                 "element_type": "embedded_weakly_compressible_navier_stokes_discontinuous",
                 "is_slip": true,
                 "slip_length": 1.0e6,
-                "penalty_coefficient": 1.0e3,
+                "penalty_coefficient": 1.0e2,
                 "dynamic_tau": 1.0
             },
             "fm_ale_settings": {
@@ -203,14 +203,17 @@
             }
         }],
         "fluid_gravity" : [],
-        "fluid_auxiliar_process_list" : [{
-            "python_module": "apply_embedded_postprocess_process",
-            "kratos_module": "KratosMultiphysics.FluidDynamicsApplication",
-            "process_name": "ApplyEmbeddedPostprocessrocess",
-            "Parameters": {
-                "model_part_name": "FluidModelPart.FluidParts_Fluid"
-            }
-        }]
+        "fluid_auxiliar_process_list" : []
+        // "fluid_auxiliar_process_list" : [{
+        //     "name": "Processes.KratosMultiphysics.FluidDynamicsApplication.EmbeddedSkinVisualizationProcess",
+        //     "Parameters": {
+        //         "model_part_name": "FluidModelPart.FluidParts_Fluid",
+        //         "visualization_model_part_name"         : "FluidModelPartVisualization",
+        //         "reform_model_part_at_each_time_step"   : true,
+        //         "level_set_type"                        : "discontinuous",
+        //         "shape_functions"                       : "ausas"
+        //     }
+        // }]
     },
     "output_processes":{
         "gid_output" : [{
@@ -271,6 +274,96 @@
                     "point_data_configuration": []
                 }
             }
+        // },{
+        //     "python_module": "gid_output_process",
+        //     "kratos_module": "KratosMultiphysics",
+        //     "process_name": "GiDOutputProcess",
+        //     "Parameters": {
+        //         "model_part_name": "FluidModelPartVisualization",
+        //         "output_name": "gordnier_membrane_fluid_visualization",
+        //         "postprocess_parameters": {
+        //             "result_file_configuration": {
+        //                 "gidpost_flags": {
+        //                     "GiDPostMode": "GiD_PostBinary",
+        //                     "WriteDeformedMeshFlag": "WriteDeformed",
+        //                     "WriteConditionsFlag": "WriteConditions",
+        //                     "MultiFileFlag": "MultipleFiles"
+        //                 },
+        //                 "file_label": "time",
+        //                 "output_control_type": "step",
+        //                 "output_interval" : 1,
+        //                 "body_output": true,
+        //                 "node_output": false,
+        //                 "skin_output": false,
+        //                 "plane_output": [],
+        //                 "nodal_results": ["VELOCITY","PRESSURE"],
+        //                 "nodal_nonhistorical_results": [],
+        //                 "elemental_conditional_flags_results": [],
+        //                 "gauss_point_results": []
+        //             },
+        //             "point_data_configuration": []
+        //         }
+        //     }
+        // },{
+        //     "python_module" : "gid_output_process",
+        //     "kratos_module" : "KratosMultiphysics",
+        //     "process_name"  : "GiDOutputProcess",
+        //     "help"          : "This process writes postprocessing files for GiD",
+        //     "Parameters"    : {
+        //         "model_part_name"        : "FSICouplingInterfaceStructure",
+        //         "output_name"            : "gordnier_membrane_coupling_interface_str",
+        //         "postprocess_parameters" : {
+        //             "result_file_configuration" : {
+        //                 "gidpost_flags"               : {
+        //                     "GiDPostMode"           : "GiD_PostBinary",
+        //                     "WriteDeformedMeshFlag" : "WriteDeformed",
+        //                     "WriteConditionsFlag"   : "WriteConditions",
+        //                     "MultiFileFlag"         : "SingleFile"
+        //                 },
+        //                 "file_label"                  : "time",
+        //                 "output_control_type"         : "step",
+        //                 "output_interval"             : 1,
+        //                 "body_output"                 : true,
+        //                 "node_output"                 : false,
+        //                 "skin_output"                 : false,
+        //                 "plane_output"                : [],
+        //                 "nodal_results"               : ["DISPLACEMENT","NORMAL","LINE_LOAD","POSITIVE_FACE_PRESSURE","NEGATIVE_FACE_PRESSURE"],
+        //                 "gauss_point_results"         : [],
+        //                 "nodal_nonhistorical_results" : []
+        //             },
+        //             "point_data_configuration"  : []
+        //         }
+        //     }
+        // },{
+        //     "python_module" : "gid_output_process",
+        //     "kratos_module" : "KratosMultiphysics",
+        //     "process_name"  : "GiDOutputProcess",
+        //     "help"          : "This process writes postprocessing files for GiD",
+        //     "Parameters"    : {
+        //         "model_part_name"        : "FSICouplingInterfaceFluid",
+        //         "output_name"            : "gordnier_membrane_coupling_interface_fl",
+        //         "postprocess_parameters" : {
+        //             "result_file_configuration" : {
+        //                 "gidpost_flags"               : {
+        //                     "GiDPostMode"           : "GiD_PostBinary",
+        //                     "WriteDeformedMeshFlag" : "WriteDeformed",
+        //                     "WriteConditionsFlag"   : "WriteConditions",
+        //                     "MultiFileFlag"         : "SingleFile"
+        //                 },
+        //                 "file_label"                  : "time",
+        //                 "output_control_type"         : "step",
+        //                 "output_interval"             : 1,
+        //                 "body_output"                 : true,
+        //                 "node_output"                 : false,
+        //                 "skin_output"                 : false,
+        //                 "plane_output"                : [],
+        //                 "nodal_results"               : ["DISPLACEMENT","POSITIVE_FACE_PRESSURE","NEGATIVE_FACE_PRESSURE"],
+        //                 "gauss_point_results"         : [],
+        //                 "nodal_nonhistorical_results" : []
+        //             },
+        //             "point_data_configuration"  : []
+        //         }
+        //     }
         }]
     }
 }

@@ -61,9 +61,9 @@
             "absolute_velocity_tolerance" : 1e-10,
             "relative_pressure_tolerance" : 1e-8,
             "absolute_pressure_tolerance" : 1e-10,
-            "volume_model_part_name"      : "FluidParts_Fluid",
-            "skin_parts"                  : ["Outlet3D_Outlet","NoSlip3D_Walls","FluidNoSlipInterface3D_FluidInterface"],
-            "no_skin_parts"               : ["VelocityConstraints3D_Inlet","VelocityConstraints3D_InletWalls","ALEMeshDisplacementBC3D_Inlet","ALEMeshDisplacementBC3D_InletWalls","ALEMeshDisplacementBC3D_Outlet","ALEMeshDisplacementBC3D_Walls"],
+            "volume_model_part_name"      : "FluidModelPart.FluidParts_Fluid",
+            "skin_parts"                  : ["FluidModelPart.Outlet3D_Outlet","FluidModelPart.NoSlip3D_Walls","FluidModelPart.FluidNoSlipInterface3D_FluidInterface"],
+            "no_skin_parts"               : ["FluidModelPart.VelocityConstraints3D_Inlet","FluidModelPart.VelocityConstraints3D_InletWalls","FluidModelPart.ALEMeshDisplacementBC3D_Inlet","FluidModelPart.ALEMeshDisplacementBC3D_InletWalls","FluidModelPart.ALEMeshDisplacementBC3D_Outlet","FluidModelPart.ALEMeshDisplacementBC3D_Walls"],
             "time_stepping"               : {
                 "automatic_time_step" : false,
                 "time_step"           : 0.025
