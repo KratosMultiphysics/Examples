@@ -58,8 +58,8 @@
             "absolute_velocity_tolerance" : 1e-5,
             "relative_pressure_tolerance" : 1e-3,
             "absolute_pressure_tolerance" : 1e-5,
-            "volume_model_part_name"      : "Parts_Fluid",
-            "skin_parts"                  : ["AutomaticInlet2D_Inlet","Outlet2D_Outlet","Slip2D","NoSlip2D_NoSlip","FluidNoSlipInterface2D_FluidInterface"],
+            "volume_model_part_name"      : "FluidModelPart.Parts_Fluid",
+            "skin_parts"                  : ["FluidModelPart.AutomaticInlet2D_Inlet","FluidModelPart.Outlet2D_Outlet","FluidModelPart.Slip2D","FluidModelPart.NoSlip2D_NoSlip","FluidModelPart.FluidNoSlipInterface2D_FluidInterface"],
             "no_skin_parts"               : [],
             "time_stepping"               : {
                 "automatic_time_step": false,
@@ -226,7 +226,6 @@
             "kratos_module" : "KratosMultiphysics",
             "process_name"  : "AssignVectorByDirectionProcess",
             "Parameters"    : {
-                "mesh_id"         : 0,
                 "model_part_name" : "FluidModelPart.Parts_Fluid",
                 "variable_name"   : "BODY_FORCE",
                 "modulus"         : 0.0,
@@ -266,7 +265,7 @@
                         "node_output"         : false,
                         "skin_output"         : false,
                         "plane_output"        : [],
-                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","POSITIVE_FACE_PRESSURE"],
+                        "nodal_results"       : ["DISPLACEMENT","VELOCITY","ACCELERATION","REACTION","LINE_LOAD"],
                         "gauss_point_results" : []
                     },
                     "point_data_configuration"  : []
@@ -302,6 +301,66 @@
                     "point_data_configuration": []
                 }
             }
+        // },{
+        //     "python_module" : "gid_output_process",
+        //     "kratos_module" : "KratosMultiphysics",
+        //     "process_name"  : "GiDOutputProcess",
+        //     "help"          : "This process writes postprocessing files for GiD",
+        //     "Parameters"    : {
+        //         "model_part_name"        : "FSICouplingInterfaceStructure",
+        //         "output_name"            : "embedded_fsi_mok_test_coupling_interface_str",
+        //         "postprocess_parameters" : {
+        //             "result_file_configuration" : {
+        //                 "gidpost_flags"               : {
+        //                     "GiDPostMode"           : "GiD_PostBinary",
+        //                     "WriteDeformedMeshFlag" : "WriteDeformed",
+        //                     "WriteConditionsFlag"   : "WriteConditions",
+        //                     "MultiFileFlag"         : "SingleFile"
+        //                 },
+        //                 "file_label"                  : "time",
+        //                 "output_control_type"         : "step",
+        //                 "output_interval"             : 1,
+        //                 "body_output"                 : true,
+        //                 "node_output"                 : false,
+        //                 "skin_output"                 : false,
+        //                 "plane_output"                : [],
+        //                 "nodal_results"               : ["DISPLACEMENT","NORMAL","LINE_LOAD","POSITIVE_FACE_PRESSURE"],
+        //                 "gauss_point_results"         : [],
+        //                 "nodal_nonhistorical_results" : []
+        //             },
+        //             "point_data_configuration"  : []
+        //         }
+        //     }
+        // },{
+        //     "python_module" : "gid_output_process",
+        //     "kratos_module" : "KratosMultiphysics",
+        //     "process_name"  : "GiDOutputProcess",
+        //     "help"          : "This process writes postprocessing files for GiD",
+        //     "Parameters"    : {
+        //         "model_part_name"        : "FSICouplingInterfaceFluid",
+        //         "output_name"            : "embedded_fsi_mok_test_coupling_interface_fl",
+        //         "postprocess_parameters" : {
+        //             "result_file_configuration" : {
+        //                 "gidpost_flags"               : {
+        //                     "GiDPostMode"           : "GiD_PostBinary",
+        //                     "WriteDeformedMeshFlag" : "WriteDeformed",
+        //                     "WriteConditionsFlag"   : "WriteConditions",
+        //                     "MultiFileFlag"         : "SingleFile"
+        //                 },
+        //                 "file_label"                  : "time",
+        //                 "output_control_type"         : "step",
+        //                 "output_interval"             : 1,
+        //                 "body_output"                 : true,
+        //                 "node_output"                 : false,
+        //                 "skin_output"                 : false,
+        //                 "plane_output"                : [],
+        //                 "nodal_results"               : ["DISPLACEMENT","POSITIVE_FACE_PRESSURE"],
+        //                 "gauss_point_results"         : [],
+        //                 "nodal_nonhistorical_results" : []
+        //             },
+        //             "point_data_configuration"  : []
+        //         }
+        //     }
         }]
     }
 }

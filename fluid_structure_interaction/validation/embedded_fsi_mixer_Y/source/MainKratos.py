@@ -21,7 +21,7 @@ def CreateAnalysisStageWithFlushInstance(cls, global_model, parameters):
         def ApplyBoundaryConditions(self):
             super().ApplyBoundaryConditions()
 
-            model_part = self.model.GetModelPart("Structure.DISPLACEMENT_DisplacementBC")
+            model_part = self.model.GetModelPart("Structure.Parts_Solid_DisplacementBC")
             time = model_part.ProcessInfo[KratosMultiphysics.TIME]
             tol_zero = 1.0e-12
             if (numpy.trunc(time // (2.0 * numpy.pi)) % 2) < tol_zero:
