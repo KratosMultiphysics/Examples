@@ -1,11 +1,10 @@
 # Cylinder on inclined plane 2D - comparison between analytical and numerical solution with MPM
+
 **Author:** Philip Franz
 
-**Kratos version:** Development branch. **Expected 9.1**
+**Kratos version:** **9.5**
 
 **Source files:** [cylinder_on_inclined_plane_2D](https://github.com/KratosMultiphysics/Examples/tree/master/mpm/validation/cylinder_on_inclined_plane/source)
-
-
 
 ## Case Specification
 
@@ -42,16 +41,11 @@ The analytical and numerical solution for the displacement function of the respe
 The left image displays the rolling cylinder - modelled with option "contact". The right one shows the sliding cylinder (frictionless) - modelled with option "slip".
 
 <p align="center">
-  <img alt="Light" src="data/rolling cylinder gif.gif" width="45%">
+  <img alt="Light" src="https://raw.githubusercontent.com/KratosMultiphysics/Examples/refs/heads/master/mpm/validation/cylinder_on_inclined_plane/data/rolling%20cylinder%20gif.gif" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="data/sliding cylinder gif.gif" width="46%">
+  <img alt="Dark" src="https://raw.githubusercontent.com/KratosMultiphysics/Examples/refs/heads/master/mpm/validation/cylinder_on_inclined_plane/data/sliding%20cylinder%20gif.gif" width="46%">
 </p>
 
-
-
-
-
-
 ## References
-- Iaconeta, I. (2019). *Discrete-continuum hybrid modelling of flowing and static regimes.* (Ph.D. thesis). Universitat politècnica de Catalunya - Barcelona tech
-- Chandra, B., Singer, V., Teschemacher, T., Wüchner, R., Larese, A. (2021) *Nonconforming Dirichlet boundary conditions in implicit material point method by means of penalty augmentation*. Acta Geotech. 16, 2315–2335. https://doi.org/10.1007/s11440-020-01123-3
+- Iaconeta, I. (2019). **Discrete-continuum hybrid modelling of flowing and static regimes**, *Ph.D. thesis*, Universitat Politècnica de Catalunya, Barcelona
+- Chandra, B., Singer, V., Teschemacher, T., Wuechner, R., & Larese, A. (2021). **Nonconforming Dirichlet boundary conditions in implicit material point method by means of penalty augmentation**, *Acta Geotechnica*, 16(8), 2315-2335. DOI: <a href="https://doi.org/10.1007/s11440-020-01123-3">10.1007/s11440-020-01123-3</a>.
