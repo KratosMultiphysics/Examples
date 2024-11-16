@@ -1,0 +1,89 @@
+{
+    "problem_data": {
+        "problem_name": "SnapThroughDisplacementControl",
+        "parallel_type": "OpenMP",
+        "echo_level": 0,
+        "start_time": 0.0,
+        "end_time": 2.2
+    },
+    "solver_settings": {
+        "solver_type": "Static",
+        "echo_level": 1,
+        "analysis_type": "non_linear",
+        "time_stepping" : {
+            "time_step": 5e-3
+        },
+        "domain_size" : 3,
+        "model_part_name" : "Structure",
+        "model_import_settings": {
+            "input_type": "mdpa",
+            "input_filename": "SnapThrough"
+        },
+        "material_import_settings": {
+            "materials_filename": "StructuralMaterials.json"
+        },
+        "compute_reactions": true,
+        "line_search": false,
+        "convergence_criterion": "residual_criterion",
+        "displacement_relative_tolerance": 1e-9,
+        "displacement_absolute_tolerance": 1e-9,
+        "residual_relative_tolerance": 1e-4,
+        "residual_absolute_tolerance": 1e-9,
+        "max_iteration": 1e3,
+        "linear_solver_settings": {
+            "solver_type": "LinearSolversApplication.sparse_lu",
+            "scaling": false,
+            "verbosity": 0
+        },
+        "rotation_dofs": true
+    },
+    "processes" : {
+        "constraints_process_list": [
+            {
+                "python_module": "assign_vector_variable_process",
+                "kratos_module": "KratosMultiphysics",
+                "help": "This process fixes the selected components of a given vector variable",
+                "process_name": "AssignVectorVariableProcess",
+                "Parameters": {
+                    "model_part_name": "Structure.DISPLACEMENT_dirichletXYZ",
+                    "variable_name": "DISPLACEMENT",
+                    "value": [0.0, 0.0, 0.0],
+                    "constrained" : [true, true, true],
+                    "interval": [0.0, "End"]
+                }
+            },
+            {
+                "python_module": "assign_vector_variable_process",
+                "kratos_module": "KratosMultiphysics",
+                "help": "This process fixes the selected components of a given vector variable",
+                "process_name": "AssignVectorVariableProcess",
+                "Parameters": {
+                    "model_part_name": "Structure.DISPLACEMENT_dirichletXZ",
+                    "variable_name": "DISPLACEMENT",
+                    "value": [0.0, "-t", 0.0],
+                    "constrained" : [true, true, true],
+                    "interval": [0.0, "End"]
+                }
+            }
+        ]
+    },
+    "output_processes" : {
+        "vtk_output" : [{
+            "python_module" : "vtk_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "VtkOutputProcess",
+            "help"          : "This process writes postprocessing files for Paraview",
+            "Parameters"    : {
+                "model_part_name"                    : "Structure",
+                "output_control_type"                : "step",
+                "output_interval"                    : 1,
+                "file_format"                        : "binary",
+                "output_precision"                   : 7,
+                "output_sub_model_parts"             : false,
+                "output_path"                        : "vtk_output_displacement_control",
+                "save_output_files_in_folder"        : true,
+                "nodal_solution_step_data_variables" : ["DISPLACEMENT", "REACTION", "ROTATION", "POINT_LOAD"]
+            }
+        }]
+    }
+}
