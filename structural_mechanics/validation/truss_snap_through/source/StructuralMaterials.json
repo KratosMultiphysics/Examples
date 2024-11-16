@@ -1,21 +1,19 @@
 {
-    "properties" : [{
-        "model_part_name" : "Parts_structure",
-        "properties_id"   : 1,
-        "Material"        : {
-            "constitutive_law" : {
-                "name" : "KratosMultiphysics.StructuralMechanicsApplication.LinearElasticPlaneStress2DLaw"
-            },
-            "Variables"        : {
-                "DENSITY"       : 7850.0,
-                "YOUNG_MODULUS" : 210000000000.0,
-                "KratosMultiphysics.StructuralMechanicsApplication.CROSS_AREA"  : 0.01,
-		"KratosMultiphysics.StructuralMechanicsApplication.TRUSS_PRESTRESS_PK2"  : 0.00
-            },
-            "Tables"           : {}
+    "properties": [
+        {
+            "model_part_name" : "Structure.Parts_structure",
+            "properties_id" : 1,
+            "Material" : {
+                "constitutive_law" : {
+                    "name" : "TrussConstitutiveLaw"
+                },
+                "Variables" : {
+                    "DENSITY": 7.85e3,
+                    "YOUNG_MODULUS": 2.1e11,
+                    "CROSS_AREA" : 1e-2,
+                    "TRUSS_PRESTRESS_PK2" : 0
+                }
+            }
         }
-    }]
+    ]
 }
-
-
-
