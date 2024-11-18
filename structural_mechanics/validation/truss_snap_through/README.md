@@ -24,14 +24,14 @@ By incrementally increasing the load and solving for the residual to be zero the
 
 <img src="data/LoadCont.PNG" width="500">
 
-_Non-linear snap through: Load-control_
+_Non-linear snap through: Load-control_ `python3 MainKratos.py ProjectParametersLoadControl.json`
 
 Whereas both limit points can be found by incrementally increasing the displacement and solving for the residual to be zero:
 
 
 <img src="data/DispCont.PNG" width="500">
 
-_Non-linear snap through: Displacement-control_
+_Non-linear snap through: Displacement-control_ `python3 MainKratos.py ProjectParametersDisplacementControl.json`
 
 
 
