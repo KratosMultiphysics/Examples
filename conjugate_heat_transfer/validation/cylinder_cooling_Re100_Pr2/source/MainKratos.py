@@ -5,7 +5,7 @@ import KratosMultiphysics.FluidDynamicsApplication
 import KratosMultiphysics.ConvectionDiffusionApplication
 
 
-from convection_diffusion_analysis import ConvectionDiffusionAnalysis
+from KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis import ConvectionDiffusionAnalysis
 
 import sys
 import time
