@@ -7,6 +7,7 @@
 ## Validation Cases
 - [Body-fitted 100 Re cylinder](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/body_fitted_cylinder_100Re/README.md)
 - [Embedded moving cylinder](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/embedded_moving_cylinder/README.md)
+- [Low Mach thermally driven cavity](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/low_mach_thermally_driven_cavity/README.md)
 - [Transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8/README.md)
 - [Multistage transonic flow around a NACA0012 profile](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/multistage_compressible_naca_0012_Ma_0.8/README.md)
 - [Transonic flow around a NACA0012 profile at a 3&deg; angle](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_naca_0012_Ma_0.8_aoa_3/README.md)
