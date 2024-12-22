@@ -1,0 +1,163 @@
+{
+    "analysis_stage"   : "KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis",
+    "problem_data"     : {
+        "problem_name"  : "low_mach_cavity",
+        "parallel_type" : "OpenMP",
+        "echo_level"    : 0,
+        "start_time"    : 0.0,
+        "end_time"      : 30.0
+    },
+    "output_processes" : {
+        "gid_output" : [{
+            "python_module" : "gid_output_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "GiDOutputProcess",
+            "Parameters"    : {
+                "model_part_name"        : "FluidModelPart.fluid_computational_model_part",
+                "postprocess_parameters" : {
+                    "result_file_configuration" : {
+                        "gidpost_flags"               : {
+                            "GiDPostMode"           : "GiD_PostBinary",
+                            "WriteDeformedMeshFlag" : "WriteDeformed",
+                            "WriteConditionsFlag"   : "WriteConditions",
+                            "MultiFileFlag"         : "SingleFile"
+                        },
+                        "file_label"                  : "time",
+                        "output_control_type"         : "time",
+                        "output_interval"             : 0.5,
+                        "body_output"                 : true,
+                        "node_output"                 : false,
+                        "skin_output"                 : false,
+                        "plane_output"                : [],
+                        "nodal_results"               : ["VELOCITY","PRESSURE","TEMPERATURE","DENSITY"],
+                        "nodal_nonhistorical_results" : ["NODAL_AREA"],
+                        "gauss_point_results"         : []
+                    },
+                    "point_data_configuration"  : []
+                },
+                "output_name"            : "gid_output/low_mach_cavity"
+            }
+        }]
+    },
+    "solver_settings"  : {
+        "model_part_name"             : "FluidModelPart",
+        "domain_size"                 : 2,
+        "solver_type"                 : "low_mach",
+        "material_import_settings"    : {
+            "materials_filename" : "FluidMaterials.json"
+        },
+        "echo_level"                  : 1,
+        "compute_reactions"           : false,
+        "maximum_iterations"          : 10,
+        "relative_velocity_tolerance" : 0.001,
+        "absolute_velocity_tolerance" : 1e-5,
+        "relative_pressure_tolerance" : 0.001,
+        "absolute_pressure_tolerance" : 1e-5,
+        "relative_temperature_tolerance" : 0.001,
+        "absolute_temperature_tolerance" : 1e-5,
+        "volume_model_part_name"      : "FluidParts_Fluid",
+        "skin_parts"                  : ["NoSlip2D_Left","NoSlip2D_Right","NoSlip2D_Top","NoSlip2D_Bottom"],
+        "no_skin_parts"               : [],
+        "time_scheme"                 : "bdf2",
+        "time_stepping"               : {
+            "automatic_time_step" : false,
+            "time_step"           : 0.25
+        },
+        "formulation"                 : {
+            "element_type"             : "qsvms"
+        },
+        "reform_dofs_at_each_step"    : false,
+        "model_import_settings"       : {
+            "input_type" : "use_input_model_part"
+        },
+        "thermodynamic_pressure_settings" : {
+            "flow_type" : "closed",
+            "value": 101325.0
+        }
+    },
+    "processes"        : {
+        "initial_conditions_process_list"  : [],
+        "boundary_conditions_process_list" : [{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyNoSlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Left"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyNoSlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Right"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyNoSlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Top"
+            }
+        },{
+            "python_module" : "apply_noslip_process",
+            "kratos_module" : "KratosMultiphysics.FluidDynamicsApplication",
+            "process_name"  : "ApplyNoSlipProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Bottom"
+            }
+        },{
+            "python_module" : "assign_scalar_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignScalarVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Left",
+                "variable_name" : "TEMPERATURE",
+                "interval" : [0.0,"End"],
+                "constrained" : true,
+                "value" : 960.0
+            }
+        },{
+            "python_module" : "assign_scalar_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignScalarVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.NoSlip2D_Right",
+                "variable_name" : "TEMPERATURE",
+                "interval" : [0.0,"End"],
+                "constrained" : true,
+                "value" : 240.0
+            }
+        },{
+            "python_module" : "assign_scalar_variable_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignScalarVariableProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.PressureConstraints2D_TopRightCorner",
+                "variable_name" : "PRESSURE",
+                "interval" : [0.0,"End"],
+                "constrained" : true,
+                "value" : 0.0
+            }
+        }],
+        "gravity"                          : [{
+            "python_module" : "assign_vector_by_direction_process",
+            "kratos_module" : "KratosMultiphysics",
+            "process_name"  : "AssignVectorByDirectionProcess",
+            "Parameters"    : {
+                "model_part_name" : "FluidModelPart.FluidParts_Fluid",
+                "variable_name"   : "BODY_FORCE",
+                "modulus"         : 2.40690342,
+                "constrained"     : false,
+                "direction"       : [0.0,-1.0,0.0]
+            }
+        }],
+        "auxiliar_process_list"            : []
+    },
+    "modelers"         : [{
+        "name"       : "Modelers.KratosMultiphysics.ImportMDPAModeler",
+        "parameters" : {
+            "input_filename"  : "low_mach_cavity",
+            "model_part_name" : "FluidModelPart"
+        }
+    }]
+}
