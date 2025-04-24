@@ -13,7 +13,7 @@ The problem geometry consists in a 5 x 1 m channel inside which a cylinder is pl
 
 Concerning the material properties, a Newtonian constitutive law is used. Considering that the cylinder diameter is 0.2 m and the average velocity is 1 m/s, the fluid characteristic parameters to obtain a 100 Re flow are:
 * Density (&rho;): 1 _Kg/m<sup>3</sup>_
-* Dynamic viscosity (&mu;): 1E-02 _Kg/ms_
+* Dynamic viscosity (&mu;): 2E-03 _Kg/ms_
 
 The time step is 0.1 seconds, while the total simulation time is 45.0 seconds. 
 
