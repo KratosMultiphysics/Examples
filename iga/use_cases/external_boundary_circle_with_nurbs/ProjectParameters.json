@@ -1,0 +1,152 @@
+{
+  "problem_data": {
+    "problem_name": "example_1_kratos",
+    "echo_level": 0,
+    "parallel_type": "OpenMP",
+    "start_time": 0,
+    "end_time": 0.1
+  },
+  "solver_settings": {
+    "model_part_name": "IgaModelPart",
+    "domain_size": 2,
+    "echo_level": 1,
+    "buffer_size": 2,
+    "analysis_type": "non_linear",
+    "model_import_settings": { "input_type": "use_input_model_part" },
+    "material_import_settings": { "materials_filename": "materials.json" },
+    "time_stepping": { "time_step": 0.1 },
+    "rotation_dofs": false,
+    "reform_dofs_at_each_step": false,
+    "line_search": false,
+    "compute_reactions": true,
+    "block_builder": true,
+    "clear_storage": false,
+    "move_mesh_flag": false,
+    "convergence_criterion": "residual_criterion",
+    "displacement_relative_tolerance": 0.0000000001,
+    "displacement_absolute_tolerance": 0.0000000001,
+    "residual_relative_tolerance": 0.00000000001,
+    "residual_absolute_tolerance": 0.00000000001,
+    "max_iteration": 5,
+    "solver_type": "static",
+    "linear_solver_settings": {
+      "solver_type": "LinearSolversApplication.sparse_lu",
+      "write_system_matrix_to_file": true,
+      "max_iteration": 500,
+      "tolerance": 1E-09,
+      "scaling": false,
+      "verbosity": 0
+    },
+    "auxiliary_variables_list": [],
+    "auxiliary_dofs_list": [],
+    "auxiliary_reaction_list": []
+  },
+  "modelers": [
+    {
+      "modeler_name" : "ImportNurbsSbmModeler",
+      "Parameters" : {
+        "input_filename" : "nurbs_files/circle_nurbs.json",
+        "model_part_name" : "initial_skin_model_part_out",
+        "link_layer_to_condition_name": [
+          {
+            "layer_name" : "Layer0",
+            "condition_name" : "SbmSolidCondition"
+          }
+        ]
+        }
+    },
+    {
+      "modeler_name": "NurbsGeometryModelerSbm",
+      "Parameters": {
+          "echo_level": 1,
+          "model_part_name" : "IgaModelPart",
+          "lower_point_xyz": [-2.0,-2.0,0.0],
+          "upper_point_xyz": [2.0,2.0,0.0],
+          "lower_point_uvw": [-2.0,-2.0,0.0],
+          "upper_point_uvw": [2.0,2.0,0.0],
+          "polynomial_order" : [2, 2],
+          "number_of_knot_spans" : [20,20],
+          "lambda_outer": 0.5,
+          "number_of_inner_loops": 0,
+          "skin_model_part_outer_initial_name": "initial_skin_model_part_out",    
+          "skin_model_part_name": "skin_model_part"
+      }
+    },
+    {
+      "modeler_name": "IgaModelerSbm",
+      "Parameters": {
+      "echo_level": 0,
+      "skin_model_part_name": "skin_model_part",
+      "analysis_model_part_name": "IgaModelPart",
+      "element_condition_list": [
+          {
+              "geometry_type": "GeometrySurface",
+              "iga_model_part": "StructuralAnalysisDomain",
+              "type": "element",
+              "name": "SolidElement",
+              "shape_function_derivatives_order": 2
+          },
+          {
+            "geometry_type": "SurfaceEdge",
+            "brep_ids" : [2],
+            "iga_model_part": "SBM_Support_outer",
+            "type": "condition",
+            "name": "SbmSolidCondition",
+            "shape_function_derivatives_order": 6,
+            "sbm_parameters": {
+                "is_inner" : false
+            }
+          }
+      ]
+      }
+  }
+  ],
+  "processes": {
+    "additional_processes": [
+      {
+        "python_module": "assign_iga_external_conditions_process",
+        "kratos_module" : "KratosMultiphysics.IgaApplication",
+        "process_name"  : "AssignIgaExternalConditionsProcess",
+        "Parameters": {
+          "echo_level": 4,
+          "element_condition_list": [
+            {
+                "iga_model_part": "IgaModelPart.StructuralAnalysisDomain",
+                "variables": [
+                {
+                    "variable_name": "BODY_FORCE",
+                    "value": ["-1000*(1+0.3)/(1-0.3*0.3)*cos(x)*sinh(y)", 
+                             "-1000*(1+0.3)/(1-0.3*0.3)*sin(x)*cosh(y)", "0.0"]
+                }]
+            },
+            {
+                "iga_model_part": "IgaModelPart.SBM_Support_outer",
+                "variables": [
+                {
+                    "variable_name": "DISPLACEMENT",
+                    "value"           : ["-cos(x)*sinh(y)","sin(x)*cosh(y)", "0.0"]
+                }]
+            }
+          ]
+        }
+      }
+    ],
+    "dirichlet_process_list": [
+      {
+        "kratos_module": "KratosMultiphysics",
+        "python_module": "assign_vector_variable_to_nodes_process",
+        "Parameters": {
+          "model_part_name": "skin_model_part.outer",
+          "variable_name": "DISPLACEMENT",
+          "value"           : ["-cos(x)*sinh(y)","sin(x)*cosh(y)", "0.0"]
+        }
+      }
+    ],
+    "constraints_process_list"        : []
+},
+  "output_processes": {
+    "output_process_list": []
+  }
+}
+
+
