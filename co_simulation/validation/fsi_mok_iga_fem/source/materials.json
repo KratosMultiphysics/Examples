@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "model_part_name": "IgaModelPart.StructuralAnalysis_2",
+      "properties_id": 2,
+      "Material": {
+        "name": "Steel",
+        "constitutive_law": { "name": "LinearElasticPlaneStress2DLaw" },
+        "Variables": {
+          "THICKNESS": 1.0,
+          "YOUNG_MODULUS": 2300000.0,
+          "POISSON_RATIO": 0.45,
+          "DENSITY": 1500.0
+        },
+        "Tables": {}
+      }
+    }
+  ]
+}

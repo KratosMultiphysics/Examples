@@ -1,0 +1,118 @@
+{
+    "problem_data" :
+    {
+        "start_time" : 0.0,
+        "end_time" : 25.0,
+        "echo_level" : 0,
+        "print_colors" : true,
+        "parallel_type" : "OpenMP"
+    },
+    "solver_settings" :
+    {
+        "type" : "coupled_solvers.gauss_seidel_strong",
+        "echo_level" : 4,
+        "num_coupling_iterations" : 20,
+        "convergence_accelerators" : [
+            {
+                "type"      : "mvqn",
+                "solver"    : "structure",
+                "data_name" : "load"
+            }
+        ],
+        "convergence_criteria" : [
+            {
+                "type"          : "relative_norm_previous_residual",
+                "solver"        : "structure",
+                "data_name"     : "load",
+                "abs_tolerance" : 1e-4,
+                "rel_tolerance" : 1e-4
+            }
+        ],
+        "data_transfer_operators" : {
+            "mapper" : {
+                "type" : "kratos_mapping",
+					"mapper_settings" : {
+					    "mapper_type": "nearest_neighbor_iga",
+                        "search_settings" : {
+                            "search_radius": 0.05
+                        },
+                        "is_origin_iga" : true
+				    }
+            }
+        },
+        "coupling_sequence":
+        [
+            {
+                "name": "structure",
+                "input_data_list"  : [],
+                "output_data_list" : []
+            },
+            {
+                "name": "fluid",
+                "input_data_list": [
+                    {
+                        "data"             : "disp",
+                        "from_solver"      : "structure",
+                        "from_solver_data" : "disp",
+                        "data_transfer_operator" : "mapper"
+                    }
+                ],
+                "output_data_list": [
+                    {
+                        "data"           : "load",
+                        "to_solver"      : "structure",
+                        "to_solver_data" : "load",
+                        "data_transfer_operator" : "mapper",
+                        "data_transfer_operator_options" : ["swap_sign", "use_transpose"]
+                    }
+                ]
+            }
+        ],
+        "solvers" :
+        {
+            "fluid":
+            {
+                "type" : "solver_wrappers.kratos.fluid_dynamics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCFD"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 2,
+                        "variable_name" : "MESH_DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 2,
+                        "variable_name" : "REACTION"
+                    },
+                    "velocity" : {
+                        "model_part_name"   : "FluidModelPart.interface",
+                        "dimension" : 2,
+                        "variable_name" : "VELOCITY"
+                    }
+                }
+            },
+            "structure" :
+            {
+                "type" : "solver_wrappers.kratos.structural_mechanics_wrapper",
+                "solver_wrapper_settings" : {
+                    "input_file"  : "ProjectParametersCSM_IGA"
+                },
+                "data" : {
+                    "disp" : {
+                        "model_part_name"   : "IgaModelPart.Load_4",
+                        "dimension" : 2,
+                        "variable_name" : "DISPLACEMENT"
+                    },
+                    "load" : {
+                        "model_part_name"   : "IgaModelPart.Load_4",
+                        "dimension" : 2,
+                        "variable_name" : "POINT_LOAD"
+                    }
+                }
+            }
+        }
+    }
+}
