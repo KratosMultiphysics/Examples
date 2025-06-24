@@ -25,50 +25,61 @@ class CustomCoSimulationAnalysis(CoSimulationAnalysis):
         solver = self._GetSolver()
 
         if hasattr(solver, "model") and hasattr(solver.model, "solver_wrappers"):
-            structure_solver = solver.model.solver_wrappers.get("structure")  # Direct access
-
+            structure_solver = solver.model.solver_wrappers.get("structure")
             if structure_solver and hasattr(structure_solver, "model"):
                 sub_model = structure_solver.model
                 model_part_name = "IgaModelPart"
 
                 if hasattr(sub_model, "HasModelPart") and sub_model.HasModelPart(model_part_name):
                     model_part = sub_model.GetModelPart(model_part_name)
-        
+
         wet_interface_sub_model_part = model_part.GetSubModelPart("Load_4")
-        
         current_time = wet_interface_sub_model_part.ProcessInfo[KratosMultiphysics.TIME]
 
-        for condition in wet_interface_sub_model_part.Conditions:
-            condition_geom = condition.GetGeometry()
-            x = condition_geom.Center().X
-            y = condition_geom.Center().Y
+        # Only do this the first time
+        if not hasattr(self, "tracking_conditions_initialized"):
+            self.tracking_conditions_initialized = True
 
-            if condition.Id == 88:
-                N = condition_geom.ShapeFunctionsValues()
+            # Choose target locations
+            self.point_A = (0.50025, 0.25)  # Replace with your target coordinates
+            self.point_B = (0.50, 0.125)
 
-                solution_A = 0.0
-                index = 0
-                for node in condition.GetNodes():
-                    nodal_solution = node.GetSolutionStepValue(KratosMultiphysics.DISPLACEMENT_X)
+            def get_closest_condition(target_point):
+                min_dist = float("inf")
+                closest_cond = None
+                for cond in wet_interface_sub_model_part.Conditions:
+                    center = cond.GetGeometry().Center()
+                    dist = (center.X - target_point[0])**2 + (center.Y - target_point[1])**2
+                    if dist < min_dist:
+                        min_dist = dist
+                        closest_cond = cond
+                return closest_cond
 
-                    solution_A += nodal_solution * N[0,index]
-                    index += 1
-                
-                self.time_history.append(current_time)
-                self.disp_x_history_A.append(solution_A)
+            self.condition_A = get_closest_condition(self.point_A)
+            self.condition_B = get_closest_condition(self.point_B)
 
-            if condition.Id == 140:
-                N = condition_geom.ShapeFunctionsValues()
+        # --- Evaluate displacement at A ---
+        condition = self.condition_A
+        geom = condition.GetGeometry()
+        N = geom.ShapeFunctionsValues()
 
-                solution_B = 0.0
-                index = 0
-                for node in condition.GetNodes():
-                    nodal_solution = node.GetSolutionStepValue(KratosMultiphysics.DISPLACEMENT_X)
+        solution_A = 0.0
+        for i, node in enumerate(condition.GetNodes()):
+            solution_A += node.GetSolutionStepValue(KratosMultiphysics.DISPLACEMENT_X) * N[0, i]
 
-                    solution_B += nodal_solution * N[0,index]
-                    index += 1
-                
-                self.disp_x_history_B.append(solution_B)
+        self.time_history.append(current_time)
+        self.disp_x_history_A.append(solution_A)
+
+        # --- Evaluate displacement at B ---
+        condition = self.condition_B
+        geom = condition.GetGeometry()
+        N = geom.ShapeFunctionsValues()
+
+        solution_B = 0.0
+        for i, node in enumerate(condition.GetNodes()):
+            solution_B += node.GetSolutionStepValue(KratosMultiphysics.DISPLACEMENT_X) * N[0, i]
+
+        self.disp_x_history_B.append(solution_B)
 
     def Finalize(self):
         super().Finalize()
