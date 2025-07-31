@@ -95,11 +95,11 @@
                     "filtering_boundary_conditions": {}
                 },
                 "output_all_fields": true,
-                "beta_settings": {
+                "thickness_projection_settings": {
+                    "type": "adaptive_sigmoidal_projection",
                     "initial_value": 5,
-                    "max_value": 30,
-                    "adaptive": true,
-                    "increase_fac": 1.05,
+                    "max_value"    : 30,
+                    "increase_fac" : 1.05,
                     "update_period": 20
                 },
                 "physical_thicknesses": [

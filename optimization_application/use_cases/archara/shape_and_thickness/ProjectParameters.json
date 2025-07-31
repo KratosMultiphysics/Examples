@@ -50,7 +50,6 @@
                 "kratos_module": "KratosMultiphysics",
                 "process_name": "AssignVectorVariableProcess",
                 "Parameters": {
-                    "mesh_id": 0,
                     "model_part_name": "archara.support_left",
                     "variable_name": "DISPLACEMENT",
                     "constrained": [
@@ -71,7 +70,6 @@
                 "kratos_module": "KratosMultiphysics",
                 "process_name": "AssignVectorVariableProcess",
                 "Parameters": {
-                    "mesh_id": 0,
                     "model_part_name": "archara.support_right",
                     "variable_name": "DISPLACEMENT",
                     "constrained": [
@@ -93,7 +91,6 @@
                 "kratos_module": "KratosMultiphysics",
                 "process_name": "AssignVectorByDirectionProcess",
                 "Parameters": {
-                    "mesh_id": 0,
                     "model_part_name": "archara.load",
                     "variable_name": "POINT_LOAD",
                     "modulus": 1.0,
