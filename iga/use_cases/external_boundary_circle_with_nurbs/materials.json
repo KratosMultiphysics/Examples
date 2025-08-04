@@ -1,0 +1,27 @@
+{
+  "properties": [
+    {
+      "model_part_name": "IgaModelPart",
+      "properties_id": 2,
+      "Material": {
+        "Variables": { "PENALTY_FACTOR": -1},
+        "Tables": {}
+      }
+    },
+    {
+      "model_part_name": "IgaModelPart.StructuralAnalysisDomain",
+      "properties_id": 2,
+      "Material": {
+        "name": "lin_el",
+        "constitutive_law": { "name": "LinearElasticPlaneStress2DLaw" },
+        "Variables": {
+          "THICKNESS": 1.0,
+          "YOUNG_MODULUS": 1000,
+          "POISSON_RATIO": 0.3,
+          "DENSITY": 1
+        },
+        "Tables": {}
+      }
+    }
+  ]
+}
