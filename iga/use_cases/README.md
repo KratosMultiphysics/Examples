@@ -1,4 +1,4 @@
-# Use Cases IGA – External Boundary Circle (NURBS) — README.txt
+# Use Case IGA – External Boundary Circle (NURBS)
 
 Short description
 This example runs a 2D IGA structural model whose outer boundary is a NURBS circle. A manufactured solution is enforced to validate the setup.
@@ -9,7 +9,7 @@ Files
 - nurbs_files/circle_nurbs.json
 - run_and_post.py (optional)
 
-Geometry / modeling (very brief)
+Geometry
 - ImportNurbsSbmModeler loads the circle NURBS into “initial_skin_model_part_out”.
 - NurbsGeometryModelerSbm builds the analysis surface (order [2,2], knot spans [20,20]) and creates “skin_model_part”.
 - IgaModelerSbm creates:

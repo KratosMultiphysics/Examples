@@ -1,7 +1,8 @@
 # Iga Examples
 
 ## Use Cases
-- External Boundary Circle (NURBS) 
+- [External Boundary Circle (NURBS) ](https://github.com/KratosMultiphysics/Examples/blob/master/iga/use_cases/README.md)
 
 ## Validation Cases
-- External Boundary Circle (NURBS) 
+
+# Use Cases
