@@ -118,7 +118,7 @@ if __name__ == "__main__":
             yDegrees[i][jtest] = np.exp(degrees[i] * np.log(h[jtest]) + stored[i])
         plt.plot(h, yDegrees[i], "--", label='vel %d' % tuple([degrees[i]]))
 
-    plt.plot(h, L2error_vector, 's-', markersize=1.5, linewidth=2, label='L^2 error with Weight')
+    plt.plot(h, L2error_vector, 's-', markersize=1.5, linewidth=2, label='L^2 error')
     plt.ylabel('L2 err',fontsize=14, color='blue')
     plt.xlabel('h',fontsize=14, color='blue')
     plt.legend(loc='lower right')
