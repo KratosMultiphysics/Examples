@@ -99,8 +99,6 @@ if __name__ == "__main__":
                     # plot gp, arrows, etc...
 
             
-
-    
     # === ACTIVE GAUSS POINTS: FROM ELEMENT CENTERS ===
     mp = model["IgaModelPart.StructuralAnalysisDomain"]
     active_gauss_points = []

@@ -18,11 +18,7 @@ class CustomAnalysisStage(StructuralMechanicsAnalysis):
 
 # Define the analytical solution
 def analytical_temperature(x, y, t):
-    # return x**2*y
     return -np.cos(x)*np.sinh(y)
-    # return x**3+y**3
-    # return x**2+y**2
-    # return x+y
 
 # Main simulation function
 if __name__ == "__main__":
@@ -60,25 +56,6 @@ if __name__ == "__main__":
         for i, node in enumerate(geom):
             curr_temperature += N[0, i] * node.GetSolutionStepValue(KratosMultiphysics.DISPLACEMENT_X, 0)
         computed_temperature.append(curr_temperature)
-
-
-    # # Loop over elements to gather computed solution
-    # for cond in mp.Conditions:
-    #     geom = cond.GetGeometry()
-    #     N = geom.ShapeFunctionsValues()
-    #     center = geom.Center()
-    #     weight = elem.GetValue(KratosMultiphysics.INTEGRATION_WEIGHT)
-    #     weights.append(weight)
-    #     # Extract Gauss point (center) coordinates
-    #     x_coord.append(center.X)
-    #     y_coord.append(center.Y)
-
-    #     # Initialize solution values at the center
-    #     curr_temperature = 0
-    #     # Compute nodal contributions using shape functions
-    #     for i, node in enumerate(geom):
-    #         curr_temperature += N[0, i] * node.GetSolutionStepValue(KratosMultiphysics.TEMPERATURE, 0)
-    #     computed_temperature.append(curr_temperature)
 
     # Get the current time after simulation run
     current_time = simulation._GetSolver().GetComputingModelPart().ProcessInfo[KratosMultiphysics.TIME]
