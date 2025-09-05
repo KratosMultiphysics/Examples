@@ -53,4 +53,14 @@ Run:
   python3 convergence.py         # for the convergence analysis
   python3 plot_surrogate_boundaries.py  # to visualize the surrogate and true boundaries
 
+<img width="999" height="786" alt="image" src="https://github.com/user-attachments/assets/ea1c01a6-806c-486a-b11e-d3846bac3b85" />
+
+<img width="588" height="430" alt="image" src="https://github.com/user-attachments/assets/9401a33e-4c81-47de-bc9b-a0323fdb89a9" />
+
+results of the convergence:
+
+ h =  [1.0, 0.5, 0.25, 0.125, 0.0625]
+ 
+ L2_error = [0.04245443538478202, 0.00612519522524315, 0.0006828403386498715, 7.033648516213708e-05, 1.0075704685614167e-05]
+
 
