@@ -34,7 +34,7 @@ The results obtained corresponds with the following:
   <img src="data/result.gif" alt="Solution" style="width: 600px;"/>
 </p>
 
-[YouTube](https://www.youtube.com/watch?v=Yd57qxtnNFk&feature=youtu.be)
+[YouTube](https://www.youtube.com/watch?v=-IFMPLYkLZ4)
 
 ## References
 *Frédéric Alauzet*. Metric-Based Anisotropic Mesh Adaptation. Course material, CEA-EDF-INRIA Schools. Numerical Analysis Summer School.  [https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf](https://www.rocq.inria.fr/gamma/Frederic.Alauzet/cours/cirm.pdf)
