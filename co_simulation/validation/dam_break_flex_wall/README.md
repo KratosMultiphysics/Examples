@@ -16,6 +16,7 @@ This is a 2D FSI simulation of the dam break against a flexible wall benchmark t
 * MappingApplication
 * MeshingApplication
 * LinearSolversApplication
+* KratosDelaunayMeshingApplication
 
 The problem geometry as well as the boundary conditions are sketched below.
 <p align="center">
