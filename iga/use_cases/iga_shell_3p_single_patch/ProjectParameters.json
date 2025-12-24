@@ -1,6 +1,6 @@
 {
   "problem_data": {
-    "problem_name": "embedded_plate",
+    "problem_name": "iga_shell_3p_single_patch",
     "echo_level": 4,
     "parallel_type": "OpenMP",
     "start_time": 0.0,
@@ -121,4 +121,5 @@
     }
   ]
 }
+
 }
