@@ -1,0 +1,16 @@
+{
+  "refinements": [
+    {
+      "brep_ids": [ 2 ],
+      "geometry_type": "NurbsSurface",
+      "model_part_name": "IgaModelPart",
+      "parameters": {
+        "insert_nb_per_span_u": 10,
+        "insert_nb_per_span_v": 10,
+        "increase_degree_u": 1,
+        "increase_degree_v": 1
+      }
+    }
+  ]
+}
+
