@@ -1,0 +1,175 @@
+{
+    "problem_data": {
+        "parallel_type": "OpenMP",
+        "echo_level": 0
+    },
+    "model_parts": [
+        {
+            "type": "mdpa_model_part_controller",
+            "settings": {
+                "model_part_name": "AdjointStructure",
+                "domain_size": 3,
+                "input_filename": "../../prep_mdpa/Structure_coarse"
+            }
+        },
+        {
+            "type": "connectivity_preserving_model_part_controller",
+            "settings": {
+                "transformation_settings": [
+                    {
+                        "source_model_part_name": "AdjointStructure",
+                        "destination_model_part_name": "Structure",
+                        "destination_element_name": "ShellThinElement3D3N",
+                        "destination_condition_name": "LineLoadCondition3D2N"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "sensor_model_part_controller",
+            "module": "KratosMultiphysics.SystemIdentificationApplication.sensor_io",
+            "settings": {
+                "sensor_group_name": "sensors",
+                "domain_model_part_name": "AdjointStructure",
+                "@include_json": "../sensor_placement/sensor_data.json"
+            }
+        }
+    ],
+    "analyses": [
+        {
+            "name": "Structure_static",
+            "type": "kratos_analysis_execution_policy",
+            "settings": {
+                "model_part_names": [
+                    "Structure"
+                ],
+                "analysis_module": "KratosMultiphysics.StructuralMechanicsApplication",
+                "analysis_type": "StructuralMechanicsAnalysis",
+                "analysis_settings": {
+                    "@include_json": "PrimalParametersCase2A.json"
+                },
+                "analysis_output_settings": {
+                    "nodal_solution_step_data_variables": [
+                        "DISPLACEMENT",
+                        "REACTION"
+                    ]
+                }
+            }
+        }
+    ],
+    "responses": [
+        {
+            "name": "damage_response",
+            "type": "damage_detection_response",
+            "module": "KratosMultiphysics.SystemIdentificationApplication.responses",
+            "settings": {
+                "sensor_group_name": "sensors",
+                "p_coefficient": 1,
+                "evaluated_model_part_names": [
+                    "AdjointStructure"
+                ],
+                "adjoint_parameters": {
+                    "@include_json": "DamageResponseParametersCase2A.json"
+                },
+                "test_analysis_list": [
+                    {
+                        "primal_analysis_name": "Structure_static",
+                        "sensor_measurement_csv_file": "../damaged_system/measured_data.csv",
+                        "weight": 1.0
+                    }
+                ]
+            }
+        }
+    ],
+    "controls": [
+        {
+            "name": "material_control",
+            "type": "material_properties_control",
+            "module": "KratosMultiphysics.SystemIdentificationApplication.controls",
+            "settings": {
+                "model_part_names": [
+                    {
+                        "primal_model_part_name": "Structure",
+                        "adjoint_model_part_name": "AdjointStructure"
+                    }
+                ],
+                "control_variable_name": "YOUNG_MODULUS",
+                "output_all_fields": true,
+                "control_variable_bounds": [
+                    10e9,
+                    210e9
+                ],
+                "filter_settings": {
+                    "filter_type": "explicit_filter",
+                    "filter_function_type": "linear",
+                    "max_nodes_in_filter_radius": 100000,
+                    "echo_level": 0,
+                    "filter_radius_settings": {
+                        "filter_radius_type": "constant",
+                        "filter_radius": 0.004
+                    },
+                    "filtering_boundary_conditions": {
+                        "damping_type": "nearest_entity",
+                        "damped_model_part_settings": {
+                            "Structure.left_fixed": [true],
+                            "Structure.right_force": [true]
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "algorithm_settings": {
+        "type": "algorithm_steepest_descent",
+        "settings": {
+            "echo_level": 0,
+            "line_search": {
+                "type": "BB_step",
+                "init_step": 2e-2,
+                "max_step": 1.0,
+                "gradient_scaling": "l2_norm"
+            },
+            "conv_settings": {
+                "max_iter": 1000,
+                "module": "KratosMultiphysics.SystemIdentificationApplication.convergence_criteria",
+                "type": "sensor_error",
+                "settings": {
+                    "sensor_group_name": "sensors",
+                    "tolerance": 1e-07,
+                    "output_to_file": true
+                }
+            }
+        },
+        "controls": [
+            "material_control"
+        ],
+        "objective": {
+            "response_name": "damage_response",
+            "type": "minimization",
+            "scaling": 1.0
+        }
+    },
+    "processes": {
+        "kratos_processes": {},
+        "optimization_data_processes": {
+            "output_processes": [
+                {
+                    "type": "optimization_problem_vtu_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "output_path": "Optimization_Results"
+                    }
+                },
+                {
+                    "type": "optimization_problem_ascii_output_process",
+                    "module": "KratosMultiphysics.OptimizationApplication.processes",
+                    "settings": {
+                        "output_file_name": "Optimization_Results/1_summary.csv",
+                        "write_kratos_version": false,
+                        "write_time_stamp": false
+                    }
+                }
+            ]
+        }
+    }
+}
