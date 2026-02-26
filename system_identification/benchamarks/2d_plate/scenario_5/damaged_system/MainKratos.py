@@ -1,0 +1,23 @@
+import KratosMultiphysics as Kratos
+from KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis import StructuralMechanicsAnalysis
+import KratosMultiphysics.OptimizationApplication as KratosOA
+import os
+from pathlib import Path
+
+class CustomStructuralMechanicsAnalysis(StructuralMechanicsAnalysis):
+    def FinalizeSolutionStep(self):
+        for element in self._GetSolver().GetComputingModelPart().Elements:
+            element.SetValue(Kratos.YOUNG_MODULUS, element.Properties[Kratos.YOUNG_MODULUS])
+
+if __name__ == "__main__":
+    # Change to the directory where this script is located
+    script_dir = Path(__file__).resolve().parent
+    os.chdir(script_dir)
+    
+    model = Kratos.Model()
+
+    with open("PrimalParametersCase2A.json", "r") as file_input:
+        parameters = Kratos.Parameters(file_input.read())
+
+    analysis = CustomStructuralMechanicsAnalysis(model, parameters)
+    analysis.Run()
