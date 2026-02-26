@@ -1,0 +1,868 @@
+{
+    "list_of_sensors": [
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.005,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_1",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.005,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_2",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.005,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_3",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.005,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_4",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.005,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_5",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.01,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_6",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.01,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_7",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.01,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_8",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.01,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_9",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.01,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_10",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.015,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_11",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.015,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_12",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.015,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_13",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.015,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_14",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.015,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_15",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.02,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_16",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.02,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_17",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.02,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_18",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.02,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_19",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.02,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_20",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.025,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_21",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.025,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_22",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.025,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_23",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.025,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_24",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.025,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_25",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.03,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_26",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.03,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_27",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.03,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_28",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.03,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_29",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.035,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_30",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.035,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_31",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.035,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_32",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.035,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_33",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.035,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_34",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.04,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_35",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.04,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_36",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.04,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_37",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.04,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_38",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.04,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_39",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.045,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_40",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.045,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_41",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.045,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_42",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.045,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_43",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.045,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_44",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.05,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_45",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.05,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_46",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.05,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_47",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.05,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_48",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.05,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_49",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.055,
+                0.005,
+                0.0
+            ],
+            "name": "disp_x_50",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.055,
+                0.01,
+                0.0
+            ],
+            "name": "disp_x_51",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.055,
+                0.015,
+                0.0
+            ],
+            "name": "disp_x_52",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.055,
+                0.02,
+                0.0
+            ],
+            "name": "disp_x_53",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        },
+        {
+            "direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "location": [
+                0.055,
+                0.025,
+                0.0
+            ],
+            "name": "disp_x_54",
+            "type": "displacement_sensor",
+            "variable_data": {},
+            "weight": 1e11
+        }
+    ]
+}
