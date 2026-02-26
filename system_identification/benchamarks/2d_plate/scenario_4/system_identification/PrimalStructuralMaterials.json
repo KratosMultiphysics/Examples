@@ -1,0 +1,23 @@
+{
+    "properties": [
+        {
+            "model_part_name": "Structure.all_nodes_elements",
+            "properties_id": 1,
+            "Material": {
+                "constitutive_law": {
+                    "name": "ConstitutiveLawsApplication.ThermalLinearPlaneStress"
+                },
+                "Variables": {
+                    "THICKNESS": 0.0025,
+                    "DENSITY": 7800.0,
+                    "YOUNG_MODULUS": 210e9,
+                    "POISSON_RATIO": 0.3,
+                    "THERMAL_EXPANSION_COEFFICIENT": 12e-6,
+                    "REFERENCE_TEMPERATURE": 0.0,
+                    "AMBIENT_TEMPERATURE" : 0.0
+                },
+                "Tables": {}
+            }
+        }
+    ]
+}
