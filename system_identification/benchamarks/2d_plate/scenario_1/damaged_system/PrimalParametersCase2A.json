@@ -1,0 +1,136 @@
+{
+    "problem_data": {
+        "problem_name": "solve_forward_problem_system_identification",
+        "parallel_type": "OpenMP",
+        "echo_level": 0,
+        "start_time": 0.0,
+        "end_time": 1.0
+    },
+    "solver_settings": {
+        "solver_type": "Static",
+        "model_part_name": "Structure",
+        "domain_size": 3,
+        "echo_level": 0,
+        "analysis_type": "linear",
+        "model_import_settings": {
+            "input_type": "mdpa",
+            "input_filename": "../../prep_mdpa/Structure_coarse"
+        },
+        "material_import_settings": {
+            "materials_filename": "StructuralMaterials.json"
+        },
+        "time_stepping": {
+            "time_step": 1.0
+        },
+        "solving_strategy_settings": {
+            "line_search": false
+        },
+        "move_mesh_flag": false,
+        "convergence_criterion": "residual_criterion",
+        "displacement_relative_tolerance": 0.0001,
+        "displacement_absolute_tolerance": 1e-9,
+        "residual_relative_tolerance": 0.0001,
+        "residual_absolute_tolerance": 1e-9,
+        "max_iteration": 20,
+        "rotation_dofs": true,
+        "volumetric_strain_dofs": false
+    },
+    "processes": {
+        "constraints_process_list": [
+            {
+                "python_module": "assign_vector_variable_process",
+                "kratos_module": "KratosMultiphysics",
+                "help": "This process fixes the selected components of a given vector variable",
+                "process_name": "AssignVectorVariableProcess",
+                "Parameters": {
+                    "model_part_name": "Structure.left_fixed",
+                    "variable_name": "DISPLACEMENT",
+                    "value": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "constrained": [
+                        true,
+                        true,
+                        true
+                    ],
+                    "interval": [
+                        0.0,
+                        "End"
+                    ]
+                }
+            }
+        ],
+        "loads_process_list": [
+            {
+                "python_module": "assign_vector_by_direction_to_condition_process",
+                "kratos_module": "KratosMultiphysics",
+                "help": "This process sets a vector variable value over a condition",
+                "check": "DirectorVectorNonZero direction",
+                "process_name": "AssignModulusAndDirectionToConditionsProcess",
+                "Parameters": {
+                    "model_part_name": "Structure.right_force",
+                    "variable_name": "LINE_LOAD",
+                    "modulus": 500000.0,
+                    "direction": [
+                        1.0,
+                        0.0,
+                        0.0
+                    ],
+                    "interval": [
+                        0.0,
+                        "End"
+                    ]
+                }
+            }
+        ],
+        "list_other_processes": []
+    },
+    "output_processes": {
+        "sensor_output": [
+            {
+                "Parameters": {
+                    "model_part_name": "Structure",
+                    "output_file_name": "measured_data.csv",
+                    "@include_json": "../sensor_placement/sensor_data.json"
+                },
+                "kratos_module": "KratosMultiphysics.SystemIdentificationApplication.processes",
+                "process_name": "SensorOutputProcess",
+                "python_module": "sensor_output_process"
+            }
+        ],
+        "vtk_output": [
+            {
+                "Parameters": {
+                    "condition_data_value_variables": [],
+                    "element_data_value_variables": [
+                        "YOUNG_MODULUS"
+                    ],
+                    "file_format": "binary",
+                    "model_part_name": "Structure",
+                    "nodal_data_value_variables": [],
+                    "nodal_solution_step_data_variables": [
+                        "DISPLACEMENT",
+                        "REACTION",
+                        "ROTATION"
+                    ],
+                    "gauss_point_variables_extrapolated_to_nodes": [
+                        "VON_MISES_STRESS"
+                    ],
+                    "output_control_type": "step",
+                    "output_interval": 1,
+                    "output_path": "Output",
+                    "output_precision": 7,
+                    "output_sub_model_parts": true,
+                    "save_output_files_in_folder": true
+                },
+                "help": "This process writes postprocessing files for Paraview",
+                "kratos_module": "KratosMultiphysics",
+                "process_name": "VtkOutputProcess",
+                "python_module": "vtk_output_process"
+            }
+        ]
+    },
+    "analysis_stage": "KratosMultiphysics.StructuralMechanicsApplication.structural_mechanics_analysis"
+}
