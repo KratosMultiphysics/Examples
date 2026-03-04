@@ -2,7 +2,7 @@
 
 **Author:** Ihar Antonau
 
-**Kratos version:** X.X
+**Kratos version:** 10.4.1
 
 ## Benchmarks Specification
 
