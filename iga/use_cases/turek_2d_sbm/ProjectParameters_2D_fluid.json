@@ -1,0 +1,203 @@
+{
+  "analysis_stage": "KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis",
+  "problem_data": {
+    "problem_name": "turek_sbm_single_patch",
+    "echo_level": 1,
+    "parallel_type": "OpenMP",
+    "start_time": 0.0,
+    "end_time": 10.0
+  },
+  "solver_settings": {
+    "solver_type": "monolithic_iga",
+    "time_scheme": "bdf2_higher_order_vms",
+    "analysis_type": "non_linear",
+    "model_part_name": "IgaModelPart",
+    "domain_size": 2,
+    "model_import_settings": {
+      "input_type": "use_input_model_part"
+    },
+    "material_import_settings": {
+      "materials_filename": "FluidMaterials.json"
+    },
+    // "linear_solver_settings": {
+    //   "solver_type": "skyline_lu_factorization"
+    // },
+    "linear_solver_settings":             { "solver_type":         "bicgstab", "tolerance":           1.0e-14, "max_iteration":       1000, "scaling":             true, "preconditioner_type": "ilu0"},
+    "echo_level": 1,
+    "enforce_element_and_conditions_replacement": false,
+    "compute_reactions": false,
+    "maximum_iterations": 50,
+    "relative_velocity_tolerance": 1e-11,
+    "absolute_velocity_tolerance": 1e-11,
+    "relative_pressure_tolerance": 1e-9,
+    "absolute_pressure_tolerance": 1e-9,
+    "time_stepping": {
+      "time_step": 0.005,
+      "automatic_time_step": false
+    },
+    "skip_entities_replace_and_check": true
+  },
+  "modelers": [
+    {
+      "modeler_name": "ImportNurbsSbmModeler",
+      "Parameters": {
+        "input_filename": "turek_nurbs.json",
+        "model_part_name": "initial_skin_model_part_in",
+        "link_layer_to_condition_name": [
+          {
+            "layer_name": "Layer0",
+            "condition_name": "SbmFluidConditionDirichlet"
+          }
+        ]
+      }
+    },
+    {
+      "modeler_name": "NurbsGeometryModelerSbm",
+      "Parameters": {
+        "model_part_name": "IgaModelPart",
+        "lower_point_xyz": [0.0, 0.0, 0.0],
+        "upper_point_xyz": [2.5, 0.41, 0.0],
+        "lower_point_uvw": [0.0, 0.0, 0.0],
+        "upper_point_uvw": [2.5, 0.41, 0.0],
+        "polynomial_order": [1, 1],
+        // Roughly square background cells for a 2.5 x 0.41 box.
+        // "number_of_knot_spans": [25, 4],   // m0
+        // "number_of_knot_spans": [50, 8],   // m1
+        // "number_of_knot_spans": [100, 16], // m2
+        // "number_of_knot_spans": [200, 33], // m3
+        "number_of_knot_spans": [400, 66],    // m4
+        // "number_of_knot_spans": [800, 131],  // m5
+        // "number_of_knot_spans": [1600, 262], // m6
+        "number_initial_points_if_importing_nurbs": 1000,
+        "lambda_outer": 0.5,
+        "lambda_inner": 0.0,
+        "number_of_inner_loops": 1,
+        "skin_model_part_inner_initial_name": "initial_skin_model_part_in",
+        "skin_model_part_name": "skin_model_part"
+      }
+    },
+    {
+      "modeler_name": "IgaModelerSbm",
+      "Parameters": {
+        "echo_level": 0,
+        "skin_model_part_name": "skin_model_part",
+        "analysis_model_part_name": "IgaModelPart",
+        "integrate_on_true_boundary": true,
+        "element_condition_list": [
+          {
+            "geometry_type": "GeometrySurface",
+            "iga_model_part": "FluidDomain",
+            "type": "element",
+            "name": "NavierStokesElement",
+            // "name": "StokesElement",
+            "shape_function_derivatives_order": 3
+          },
+          {
+            "geometry_type": "SurfaceEdge",
+            "iga_model_part": "SBM_Support_outer",
+            "type": "condition",
+            "name": "SupportFluidCondition",
+            "shape_function_derivatives_order": 2,
+            "brep_ids": [2, 4]
+          },
+          {
+            "geometry_type": "SurfaceEdge",
+            "iga_model_part": "Inlet_Velocity",
+            "type": "condition",
+            "name": "SupportFluidCondition",
+            "shape_function_derivatives_order": 2,
+            "brep_ids": [5]
+          },
+          {
+            "geometry_type": "SurfaceEdge",
+            "iga_model_part": "Outlet_Pressure",
+            "type": "condition",
+            "name": "SupportPressureCondition",
+            "shape_function_derivatives_order": 2,
+            "brep_ids": [3]
+          },
+          {
+            "boundary_role": "internal",
+            "geometry_type": "SurfaceEdge",
+            "iga_model_part": "SBM_Support_inner",
+            "type": "condition",
+            "name": "SbmCondition",
+            "shape_function_derivatives_order": 7,
+            "sbm_parameters": {
+              "is_inner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": {
+    "additional_processes": [
+      {
+        "python_module": "assign_iga_external_conditions_process",
+        "kratos_module": "KratosMultiphysics.IgaApplication",
+        "process_name": "AssignIgaExternalConditionsProcess",
+        "Parameters": {
+          "model_part_name": "IgaModelPart",
+          "echo_level": 0,
+          "element_condition_list": [
+            {
+              "iga_model_part": "IgaModelPart.FluidDomain",
+              "variables": [
+                {
+                  "variable_name": "BODY_FORCE",
+                  "value": ["0.0", "0.0"]
+                }
+              ]
+            },
+            {
+              "iga_model_part": "IgaModelPart.SBM_Support_outer",
+              "variables": [
+                {
+                  "variable_name": "VELOCITY",
+                  "value": ["0.0", "0.0"]
+                }
+              ]
+            },
+            {
+              "iga_model_part": "IgaModelPart.Inlet_Velocity",
+              "variables": [
+                {
+                  "variable_name": "VELOCITY",
+                  "value": [
+                    "0.5*(1 - cos(3.141592653589793 * (t + 2.0 - sqrt((t - 2.0)*(t - 2.0))) / 4.0)) * (0.2 * 1.5 * 4 * y * (0.41 - y) / (0.41 * 0.41))",
+                    "0.0"
+                  ]
+                }
+              ]
+            },
+            {
+              "iga_model_part": "IgaModelPart.Outlet_Pressure",
+              "variables": [
+                {
+                  "variable_name": "PRESSURE",
+                  "value": "0.0"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "dirichlet_process_list": [
+      {
+        "kratos_module": "KratosMultiphysics",
+        "python_module": "assign_vector_variable_to_nodes_process",
+        "Parameters": {
+          "model_part_name": "skin_model_part.inner",
+          "variable_name": "VELOCITY",
+          "value": ["0.0", "0.0", "0.0"]
+        }
+      }
+    ],
+    "constraints_process_list": []
+  },
+  "output_processes": {
+    "output_process_list": []
+  }
+}
