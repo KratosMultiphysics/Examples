@@ -140,21 +140,6 @@ The actual time step and final time are set in:
 ProjectParameters_2D_fluid.json
 ```
 
-Check the entries corresponding to:
-
-```json
-"time_step": ...
-"end_time": ...
-```
-
-or the equivalent time-stepping parameters used in the Kratos analysis settings.
-
-In the reference Turek CFD3 benchmark, time steps `dt = 0.01` and `dt = 0.005` are commonly used for comparison.
-
-## Meshes
-
-Two Cartesian background patches are considered.
-
 ### Mesh3
 
 ```json
