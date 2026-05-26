@@ -1,17 +1,17 @@
 # 2D Turek SBM Example
 
-Single-patch SBM/IGA version of the classical 2D Turek cylinder benchmark.
+Single-patch SBM/IGA version of the 2D Turek benchmark.
 
 This example uses:
 - the unordered Turek NURBS skin for the immersed cylinder
 - a single Cartesian background patch generated with `NurbsGeometryModelerSbm`
-- Turek-style boundary conditions: ramped parabolic inlet, no-slip walls and cylinder, zero outlet pressure
+- Turek-style boundary conditions: ramped parabolic inlet, no-slip walls and immersed object, zero outlet pressure
 
 ## Files
 
 - `ProjectParameters_2D_fluid.json`: fluid setup and boundary conditions
 - `FluidMaterials.json`: 2D Newtonian material
-- `turek_nurbs_unordered.json`: immersed cylinder skin
+- `turek_nurbs.json`: immersed object skin
 - `run_and_post_nurbs.py`: run the case and create the plots and GIFs
 - `plot_geometry.py`: plot the background mesh, skin boundary, and surrogate boundary
 
@@ -22,9 +22,18 @@ The post-processing scripts require:
 - `matplotlib`
 - `imageio`
 
-If one of them is missing, the script stops immediately with a clear error message.
+To plot only the geometry:
 
-If a `latex` executable is available, matplotlib uses it for text rendering. Otherwise the scripts fall back to Computer Modern mathtext.
+```bash
+cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
+python3 plot_geometry.py
+```
+"number_of_knot_spans": [200, 33], -> "Mesh3"
+<img width="1620" height="864" alt="geometry_plot" src="https://github.com/user-attachments/assets/f586d1fb-9c1c-4121-95a8-9e20d6e6f758" />
+
+"number_of_knot_spans": [400, 66], -> "Mesh4"
+<img width="1620" height="864" alt="geometry_plot" src="https://github.com/user-attachments/assets/1abcd585-90e0-415d-ac3e-f4e5af456f98" />
+
 
 ## Run
 
@@ -33,12 +42,8 @@ cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
 python3 run_and_post_nurbs.py
 ```
 
-To plot only the geometry:
 
-```bash
-cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
-python3 plot_geometry.py
-```
+
 
 ## Outputs
 
@@ -48,6 +53,5 @@ python3 plot_geometry.py
 - `geometry_plot.png`
 
 Internal frame caches are written into:
-- `_frame_cache`
 - `frames_velocity`
 - `frames_pressure`
