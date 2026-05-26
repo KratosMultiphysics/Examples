@@ -72,10 +72,12 @@ FRAME_DATA_DIRNAME = "_frame_cache"
 VELOCITY_FRAME_DIRNAME = "frames_velocity"
 PRESSURE_FRAME_DIRNAME = "frames_pressure"
 
-FRAME_EVERY = 1
+FRAME_EVERY = 2
 GIF_DURATION = 0.05
 GIF_PALETTE_SIZE = 64
-MIN_VELOCITY_COLOR_MAX = 0.3
+VELOCITY_COLOR_MAX = 4.5
+PRESSURE_COLOR_MIN = -7500.0
+PRESSURE_COLOR_MAX = 9500.0
 FRAME_DPI = 120
 def _configure_matplotlib() -> None:
     def _font_available(font_name: str) -> bool:
@@ -480,9 +482,6 @@ def main() -> int:
             "The obstacle fill will be skipped."
         )
 
-    pressure_min = None
-    pressure_max = None
-    velocity_max = MIN_VELOCITY_COLOR_MAX
     final_frame_path = None
     frame_index = 0
 
@@ -503,12 +502,6 @@ def main() -> int:
             raise RuntimeError("No element data were found for plotting.")
 
         velocity_magnitude = np.linalg.norm(velocity, axis=1)
-        velocity_max = max(velocity_max, float(np.max(velocity_magnitude)))
-
-        current_pressure_min = float(np.min(pressure))
-        current_pressure_max = float(np.max(pressure))
-        pressure_min = current_pressure_min if pressure_min is None else min(pressure_min, current_pressure_min)
-        pressure_max = current_pressure_max if pressure_max is None else max(pressure_max, current_pressure_max)
 
         if frame_index % FRAME_EVERY == 0:
             time_value = float(model_part.ProcessInfo[KratosMultiphysics.TIME])
@@ -523,13 +516,8 @@ def main() -> int:
             final_frame_path = frame_data_dir / f"frame_{frame_index:06d}.npz"
 
             # Write preview frames immediately so users can inspect progress while the solve runs.
-            preview_velocity_norm = Normalize(vmin=0.0, vmax=velocity_max)
-            preview_pressure_min = pressure_min if pressure_min is not None else current_pressure_min
-            preview_pressure_max = pressure_max if pressure_max is not None else current_pressure_max
-            if abs(preview_pressure_max - preview_pressure_min) < 1e-14:
-                preview_pressure_min -= 1.0
-                preview_pressure_max += 1.0
-            preview_pressure_norm = Normalize(vmin=preview_pressure_min, vmax=preview_pressure_max)
+            preview_velocity_norm = Normalize(vmin=0.0, vmax=VELOCITY_COLOR_MAX)
+            preview_pressure_norm = Normalize(vmin=PRESSURE_COLOR_MIN, vmax=PRESSURE_COLOR_MAX)
 
             frame_suffix = f"frame_{frame_index:06d}.png"
             time_label = rf"$t = {time_value:.3f}$"
@@ -559,14 +547,8 @@ def main() -> int:
     if final_frame_path is None or not final_frame_path.is_file():
         raise RuntimeError("No frame data were cached during the simulation.")
 
-    if pressure_min is None or pressure_max is None:
-        raise RuntimeError("Pressure bounds could not be computed from the simulation output.")
-    if abs(pressure_max - pressure_min) < 1e-14:
-        pressure_min -= 1.0
-        pressure_max += 1.0
-
-    velocity_norm = Normalize(vmin=0.0, vmax=velocity_max)
-    pressure_norm = Normalize(vmin=pressure_min, vmax=pressure_max)
+    velocity_norm = Normalize(vmin=0.0, vmax=VELOCITY_COLOR_MAX)
+    pressure_norm = Normalize(vmin=PRESSURE_COLOR_MIN, vmax=PRESSURE_COLOR_MAX)
 
     cached_paths = _cached_frame_paths(frame_data_dir)
     if not cached_paths:
