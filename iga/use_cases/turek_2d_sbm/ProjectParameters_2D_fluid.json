@@ -64,8 +64,8 @@
         // "number_of_knot_spans": [25, 4],   // m0
         // "number_of_knot_spans": [50, 8],   // m1
         // "number_of_knot_spans": [100, 16], // m2
-        // "number_of_knot_spans": [200, 33], // m3
-        "number_of_knot_spans": [400, 66],    // m4
+        "number_of_knot_spans": [200, 33], // m3
+        // "number_of_knot_spans": [400, 66],    // m4
         // "number_of_knot_spans": [800, 131],  // m5
         // "number_of_knot_spans": [1600, 262], // m6
         "number_initial_points_if_importing_nurbs": 1000,
@@ -165,7 +165,7 @@
                 {
                   "variable_name": "VELOCITY",
                   "value": [
-                    "0.5*(1 - cos(3.141592653589793 * (t + 2.0 - sqrt((t - 2.0)*(t - 2.0))) / 4.0)) * (0.2 * 1.5 * 4 * y * (0.41 - y) / (0.41 * 0.41))",
+                    "0.5*(1 - cos(3.141592653589793 * (t + 2.0 - sqrt((t - 2.0)*(t - 2.0))) / 4.0)) * (2.0 * 1.5 * 4 * y * (0.41 - y) / (0.41 * 0.41))",
                     "0.0"
                   ]
                 }

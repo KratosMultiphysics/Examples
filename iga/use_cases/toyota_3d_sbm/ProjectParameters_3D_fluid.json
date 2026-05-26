@@ -1,0 +1,229 @@
+{
+  "analysis_stage": "KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis",
+
+  "problem_data": {
+    "problem_name": "example_1_kratos",
+    "echo_level": 1,
+    "parallel_type": "OpenMP",
+    "start_time": 0.0,
+    "end_time": 4.0
+    // "end_time": 1.0
+  },
+
+  "solver_settings": {
+    "solver_type": "Monolithic",
+    "time_scheme": "bdf2_higher_order_vms",
+    "analysis_type": "non_linear",
+    "model_part_name": "IgaModelPart",
+    "domain_size": 3,
+    "model_import_settings": { "input_type": "use_input_model_part" },
+    "material_import_settings": { "materials_filename": "FluidMaterials.json" },
+    "linear_solver_settings":             { "solver_type":         "bicgstab", "tolerance":           1.0e-14, "max_iteration":       1000, "scaling":             true, "preconditioner_type": "ilu0"},
+    // "linear_solver_settings":{
+    //   // "solver_type": "LinearSolversApplication.sparse_lu"
+    //   "solver_type": "skyline_lu_factorization"
+    // }, 
+    "echo_level": 1,
+    "enforce_element_and_conditions_replacement": false,
+    "compute_reactions": false,
+    "maximum_iterations": 100,
+    "relative_velocity_tolerance": 1e-9,
+    "absolute_velocity_tolerance": 1e-9,
+    "relative_pressure_tolerance": 1e-7,
+    "absolute_pressure_tolerance": 1e-7,
+    // "relative_velocity_tolerance": 1e-14,
+    // "absolute_velocity_tolerance": 1e-14,
+    // "relative_pressure_tolerance": 1e-12,
+    // "absolute_pressure_tolerance": 1e-12,
+    "time_stepping": {
+      // "time_step" : 1e20,
+        // "time_step" : 0.0025,
+        // "time_step" : 1.0,
+        // "time_step" : 0.5,
+        // "time_step" : 0.2,
+        // "time_step" : 0.1,
+        // "time_step" : 0.05, //
+        // "time_step" : 0.02,
+        "time_step" : 0.01,
+        // "time_step" : 0.005, 
+        // "time_step" : 0.0025,
+      "automatic_time_step": false
+    }
+  },
+
+  "modelers": [
+    {
+      "modeler_name" : "import_mdpa_modeler",
+      "kratos_module" : "KratosMultiphysics",
+      "Parameters" : {
+        "input_filename" : "toyota_immersed_surface_sbm",
+        "model_part_name" : "initial_skin_model_part_in"
+        }
+    },
+    {
+      "modeler_name": "NurbsGeometryModelerSbm",
+      "Parameters": {
+          "model_part_name" : "IgaModelPart",
+          "lower_point_xyz": [-0.2142325,-0.04246225,0.01640625],
+          "upper_point_xyz": [0.1763925,0.3481627,1.5],
+          "lower_point_uvw": [-0.2142325,-0.04246225,0.01640625],
+          "upper_point_uvw": [0.1763925,0.3481627,1.5],
+
+          "polynomial_order" : [1,
+                                1,
+                                1],
+          // "number_of_knot_spans" : [30,
+          //                           30,
+          //                           90],
+          "number_of_knot_spans" : [25,
+                                    25,
+                                    70],
+          "lambda_outer": 0.5,
+          "lambda_inner": 0.0,
+          "number_of_inner_loops": 1,
+          // "skin_model_part_outer_initial_name": "initial_skin_model_part_out",    
+          "skin_model_part_inner_initial_name": "initial_skin_model_part_in",           
+          "skin_model_part_name": "skin_model_part"
+      }
+    },
+    {
+      "modeler_name": "IgaModelerSbm",
+      "Parameters": {
+      "echo_level": 0,
+      "skin_model_part_name": "skin_model_part",
+      "analysis_model_part_name": "IgaModelPart",
+      "element_condition_list": [
+          {
+            "geometry_type" : "GeometryVolume",
+            "iga_model_part" : "FluidDomain",
+            "type" : "element",
+            "name" : "NavierStokesElement",
+            // "name" : "StokesElement",
+            "shape_function_derivatives_order" : 3
+          },
+          {
+              "geometry_type": "GeometrySurface",
+              "brep_ids" : [4,5,6,7],
+              "iga_model_part": "SBM_Support_outer",
+              "type": "condition",
+              "name": "SupportFluidCondition",
+              "shape_function_derivatives_order": 4
+          },
+          {
+              "geometry_type": "GeometrySurface",
+              "brep_ids" : [2],
+              "iga_model_part": "Support_inlet",
+              "type": "condition",
+              "name": "SupportFluidCondition",
+              "shape_function_derivatives_order": 4
+          },
+          {
+              "geometry_type": "GeometrySurface",
+              "brep_ids" : [3],
+              "iga_model_part": "SupportOuterPressure",
+              "type": "condition",
+              "name": "SupportPressureCondition",
+              "shape_function_derivatives_order": 3
+          },
+          {
+            "geometry_type": "GeometrySurface",
+            "iga_model_part": "SBM_Support_inner",
+            "type": "condition",
+            "name": "SbmFluidConditionDirichlet",
+            "shape_function_derivatives_order": 6,
+            "sbm_parameters": {
+                "is_inner" : true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": {
+    "additional_processes": [
+      {
+        "python_module": "assign_iga_external_conditions_process",
+        "kratos_module": "KratosMultiphysics.IgaApplication",
+        "process_name": "AssignIgaExternalConditionsProcess",
+        "Parameters": {
+          "echo_level": 0,
+          "element_condition_list": [
+            {
+              "iga_model_part": "IgaModelPart.FluidDomain",
+              "variables": [
+                {
+                  "variable_name": "BODY_FORCE",
+                  "value": ["0", "0", "0"] // linear
+                  // NAVIER STOKES
+                  // "value": ["(cosh(x)*sinh(x)*cosh(y)*cosh(y)*cosh(z)*cosh(z) + cosh(x)*sinh(x)*sinh(y)*cosh(z)*sinh(z-y) - cosh(x)*sinh(x)*sinh(y)*cosh(y)*cosh(z)*sinh(z)) + cosh(x) - 3*cosh(x)*cosh(y)*cosh(z)", "(cosh(x)*cosh(x)*cosh(y)*cosh(z)*sinh(z-y) - sinh(x)*sinh(x)*sinh(z-y)*cosh(z-y) - sinh(x)*sinh(x)*sinh(y)*cosh(z)*cosh(z-y)) + sinh(y) - 3*sinh(x)*sinh(z-y)", "(-cosh(x)*cosh(x)*cosh(y)*sinh(y)*cosh(z)*cosh(z) - sinh(x)*sinh(x)*sinh(z-y)*cosh(y)*cosh(z) + sinh(x)*sinh(x)*sinh(y)*sinh(y)*cosh(z)*sinh(z)) + cosh(z) + 3*sinh(x)*sinh(y)*cosh(z)"]  
+                }
+              ]
+            },
+            {
+                "iga_model_part": "IgaModelPart.SBM_Support_outer",
+                "variables": [
+                {
+                    "variable_name": "VELOCITY",
+                    "value": [
+                              "0.0",
+                              "0.0",
+                              "0.0"
+                            ]
+                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
+                }]
+            },
+            {
+                "iga_model_part": "IgaModelPart.Support_inlet",
+                "variables": [
+                {
+                    "variable_name": "VELOCITY",
+                    "value": [
+                      "0.0",
+                      "0.0",
+                      "2.0 * 0.5*(t/2.0 + 1.0 - abs(t/2.0 - 1.0))"
+                    ]
+                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
+                }]
+            },
+            {
+                "iga_model_part": "IgaModelPart.SupportOuterPressure",
+                "variables": [
+                {
+                    "variable_name": "PRESSURE",
+                    "value": "0.0"
+                    // "value": "sinh(x) + cosh(y) + sinh(z)"
+                },
+                {
+                    "variable_name": "NORMAL_STRESS",
+                    "value": [
+                      "0.0",
+                      "0.0",
+                      "0.0"
+                    ]
+                }]
+            }
+          ]
+        }
+      }
+    ],
+    "dirichlet_process_list": [
+      {
+        "kratos_module": "KratosMultiphysics",
+        "python_module": "assign_vector_variable_to_nodes_process",
+        "Parameters": {
+          "model_part_name": "skin_model_part.inner",
+          "variable_name": "VELOCITY",
+          "value": [
+                              "0.0",
+                              "0.0",
+                              "0.0"
+                            ]
+          // "value": ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
+        }
+      }
+    ],
+    "constraints_process_list": []
+  },
+
+  "output_processes": { "output_process_list": [] }
+}

@@ -1,0 +1,32 @@
+{
+    "properties" : [
+    {
+        "model_part_name" : "IgaModelPart",
+        "properties_id"   : 1,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "Newtonian3DLaw"
+            },
+            "Variables"        : {
+                "DENSITY"           : 1.0,
+                "DYNAMIC_VISCOSITY" : 1e-3,
+                "PENALTY_FACTOR": 1e3
+            },
+            "Tables"           : null
+        }
+    },
+    {
+        "model_part_name" : "IgaModelPart.SBM_Support_inner",
+        "properties_id"   : 2,
+        "Material"        : {
+            "constitutive_law" : {
+                "name" : "Newtonian3DLaw"
+            },
+            "Variables"        : {
+                "PENALTY_FACTOR": 0.0
+            },
+            "Tables"           : null
+        }
+    }
+]
+}
