@@ -113,7 +113,6 @@ python3 plot_conditions.py
 
 Transient script:
 
-- `particles_trails.gif`
 - `cut_contour_x_lt_0.gif`
 - `plane_x_eq_0_contour.gif`
 

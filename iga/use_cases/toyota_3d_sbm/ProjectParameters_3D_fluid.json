@@ -7,7 +7,6 @@
     "parallel_type": "OpenMP",
     "start_time": 0.0,
     "end_time": 4.0
-    // "end_time": 1.0
   },
 
   "solver_settings": {
@@ -31,22 +30,8 @@
     "absolute_velocity_tolerance": 1e-9,
     "relative_pressure_tolerance": 1e-7,
     "absolute_pressure_tolerance": 1e-7,
-    // "relative_velocity_tolerance": 1e-14,
-    // "absolute_velocity_tolerance": 1e-14,
-    // "relative_pressure_tolerance": 1e-12,
-    // "absolute_pressure_tolerance": 1e-12,
     "time_stepping": {
-      // "time_step" : 1e20,
-        // "time_step" : 0.0025,
-        // "time_step" : 1.0,
-        // "time_step" : 0.5,
-        // "time_step" : 0.2,
-        // "time_step" : 0.1,
-        // "time_step" : 0.05, //
-        // "time_step" : 0.02,
         "time_step" : 0.01,
-        // "time_step" : 0.005, 
-        // "time_step" : 0.0025,
       "automatic_time_step": false
     }
   },
@@ -72,16 +57,15 @@
           "polynomial_order" : [1,
                                 1,
                                 1],
-          // "number_of_knot_spans" : [30,
-          //                           30,
-          //                           90],
-          "number_of_knot_spans" : [25,
+          "number_of_knot_spans" : [25, // m1
                                     25,
                                     70],
+          // "number_of_knot_spans" : [41,  // m2
+          //                           41,
+          //                           120],       
           "lambda_outer": 0.5,
-          "lambda_inner": 0.0,
+          "lambda_inner": 0.5,
           "number_of_inner_loops": 1,
-          // "skin_model_part_outer_initial_name": "initial_skin_model_part_out",    
           "skin_model_part_inner_initial_name": "initial_skin_model_part_in",           
           "skin_model_part_name": "skin_model_part"
       }
@@ -153,9 +137,7 @@
               "variables": [
                 {
                   "variable_name": "BODY_FORCE",
-                  "value": ["0", "0", "0"] // linear
-                  // NAVIER STOKES
-                  // "value": ["(cosh(x)*sinh(x)*cosh(y)*cosh(y)*cosh(z)*cosh(z) + cosh(x)*sinh(x)*sinh(y)*cosh(z)*sinh(z-y) - cosh(x)*sinh(x)*sinh(y)*cosh(y)*cosh(z)*sinh(z)) + cosh(x) - 3*cosh(x)*cosh(y)*cosh(z)", "(cosh(x)*cosh(x)*cosh(y)*cosh(z)*sinh(z-y) - sinh(x)*sinh(x)*sinh(z-y)*cosh(z-y) - sinh(x)*sinh(x)*sinh(y)*cosh(z)*cosh(z-y)) + sinh(y) - 3*sinh(x)*sinh(z-y)", "(-cosh(x)*cosh(x)*cosh(y)*sinh(y)*cosh(z)*cosh(z) - sinh(x)*sinh(x)*sinh(z-y)*cosh(y)*cosh(z) + sinh(x)*sinh(x)*sinh(y)*sinh(y)*cosh(z)*sinh(z)) + cosh(z) + 3*sinh(x)*sinh(y)*cosh(z)"]  
+                  "value": ["0", "0", "0"]
                 }
               ]
             },
@@ -169,7 +151,6 @@
                               "0.0",
                               "0.0"
                             ]
-                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
                 }]
             },
             {
@@ -182,7 +163,6 @@
                       "0.0",
                       "2.0 * 0.5*(t/2.0 + 1.0 - abs(t/2.0 - 1.0))"
                     ]
-                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
                 }]
             },
             {
@@ -191,7 +171,6 @@
                 {
                     "variable_name": "PRESSURE",
                     "value": "0.0"
-                    // "value": "sinh(x) + cosh(y) + sinh(z)"
                 },
                 {
                     "variable_name": "NORMAL_STRESS",
@@ -218,7 +197,6 @@
                               "0.0",
                               "0.0"
                             ]
-          // "value": ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
         }
       }
     ],

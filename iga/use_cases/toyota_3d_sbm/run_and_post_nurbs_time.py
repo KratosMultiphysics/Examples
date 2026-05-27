@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Transient Toyota post-processing example.
-
-This script runs the transient SBM/IGA case and then post-processes the
-final solution. The particle GIF is generated on the frozen last velocity
-field, which is much faster and clearer than plotting particles at every
-time step.
-"""
+"""Transient Toyota post-processing example."""
 
 import importlib
 import os
@@ -25,7 +19,8 @@ try:
     import matplotlib.pyplot as plt
     from matplotlib.colors import Normalize
     from matplotlib.ticker import MaxNLocator, StrMethodFormatter
-    from mpl_toolkits.mplot3d.art3d import Line3DCollection, Poly3DCollection
+    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
 
     HAVE_MPL = True
 
@@ -60,7 +55,6 @@ except ModuleNotFoundError:
     HAVE_MPL = False
     plt = None
     Normalize = None
-    Line3DCollection = None
     Poly3DCollection = None
 
 try:
@@ -73,6 +67,12 @@ except ModuleNotFoundError:
 
 PLOT_SWAP_Z_TO_X = True
 PLOT_MODEL_PART_NAME = "IgaModelPart"
+PROJECT_PARAMETERS_FILENAME = "ProjectParameters_3D_fluid.json"
+
+WRITE_3D_CUT_GIF = True
+WRITE_VELOCITY_PLANE_GIF = True
+WRITE_PRESSURE_PLANE_GIF = True
+
 CAMERA_ELEV = 20.0
 CAMERA_AZIM = 322.0
 COLORBAR_MAX = 4.5
@@ -81,26 +81,28 @@ FIG_DPI = 120
 GIF_DURATION = 0.05
 GIF_PALETTE_SIZE = 64
 
-PARTICLE_SEED_NX = 10
-PARTICLE_SEED_NY = 5
-PARTICLE_SEED_Z_OFFSET = 0.02
-PARTICLE_STEP_FRACTION = 0.02
-PARTICLE_ALPHA = 0.9
-TRAIL_ALPHA = 0.7
-TRAIL_LINEWIDTH = 1.0
-USE_PHYSICAL_DT = True
-PARTICLE_POST_STEPS = 180
-PARTICLE_POST_WAVES = 4
+CUT_FRAME_DIRNAME = "frames_time_cut_contour"
+VELOCITY_PLANE_FRAME_DIRNAME = "frames_time_velocity_magnitude_x0"
+PRESSURE_PLANE_FRAME_DIRNAME = "frames_time_pressure_x0"
 
+CUT_GIF_FILENAME = "cut_contour_x_lt_0.gif"
+VELOCITY_PLANE_GIF_FILENAME = "velocity_magnitude_x_eq_0_contour.gif"
+PRESSURE_PLANE_GIF_FILENAME = "pressure_x_eq_0_contour.gif"
+
+PLANE_FIGSIZE = (8.0, 6.0)
+PLANE_TITLE_SIZE = 14
+PLANE_LABEL_SIZE = 13
+PLANE_TICK_SIZE = 11
+PLANE_COLORBAR_LABEL_SIZE = 13
+PLANE_COLORBAR_TICK_SIZE = 11
+PLANE_COLORBAR_SIZE = "4%"
+PLANE_COLORBAR_PAD = 0.08
+PLANE_COLORBAR_NBINS = 6
 
 def _map_points(points):
     if not PLOT_SWAP_Z_TO_X or points.size == 0:
         return points
     return points[:, [0, 2, 1]]
-
-
-def _axis_labels():
-    return ("X", "Z", "Y") if PLOT_SWAP_Z_TO_X else ("X", "Y", "Z")
 
 
 def _normalize_solver_settings(parameters):
@@ -228,31 +230,63 @@ def _square_marker_size(ax, coordinates_a, coordinates_b):
     return marker_size_pts ** 2
 
 
-def _plot_x_plane(ax, plane_points, plane_values, color_norm):
+def _plot_x_plane(ax, plane_points, plane_values, color_norm, cmap="jet"):
     y = plane_points[:, 1]
     z = plane_points[:, 2]
 
     marker_size = _square_marker_size(ax, z, y)
+
     artist = ax.scatter(
         z,
         y,
         c=plane_values,
-        cmap="jet",
+        cmap=cmap,
         norm=color_norm,
         s=marker_size,
         marker="s",
         linewidths=0.0,
+        rasterized=True,
     )
+
     ax.set_facecolor("white")
-    ax.set_xlabel(r"$Z$")
-    ax.set_ylabel(r"$Y$")
+    ax.set_xlabel(r"$Z$", fontsize=PLANE_LABEL_SIZE)
+    ax.set_ylabel(r"$Y$", fontsize=PLANE_LABEL_SIZE)
+
+    if z.size:
+        ax.set_xlim(float(z.min()), float(z.max()))
+    if y.size:
+        ax.set_ylim(float(y.min()), float(y.max()))
+
+    ax.margins(x=0.0, y=0.0)
     ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
     ax.xaxis.set_major_formatter(StrMethodFormatter("{x:.2f}"))
     ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
     ax.yaxis.set_major_formatter(StrMethodFormatter("{x:.2f}"))
-    ax.set_aspect("equal")
+
+    ax.tick_params(axis="both", which="major", labelsize=PLANE_TICK_SIZE)
+    ax.set_aspect("equal", adjustable="box")
+
     return artist
 
+def _add_2d_colorbar(fig, ax, artist, label):
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes(
+        "right",
+        size=PLANE_COLORBAR_SIZE,
+        pad=PLANE_COLORBAR_PAD,
+    )
+
+    colorbar = fig.colorbar(
+        artist,
+        cax=cax,
+    )
+
+    colorbar.set_label(label, fontsize=PLANE_COLORBAR_LABEL_SIZE)
+    colorbar.ax.tick_params(labelsize=PLANE_COLORBAR_TICK_SIZE)
+    colorbar.locator = MaxNLocator(nbins=PLANE_COLORBAR_NBINS)
+    colorbar.update_ticks()
+
+    return colorbar
 
 def _collect_surrogate_faces(model):
     names = []
@@ -309,7 +343,7 @@ def _add_surrogate_faces(ax, faces, alpha):
         ax.add_collection3d(poly)
 
 
-def _set_3d_axes(ax, bounds, axis_labels):
+def _set_3d_axes(ax, bounds):
     x_min, x_max, y_min, y_max, z_min, z_max = bounds
     x_span = x_max - x_min
     y_span = y_max - y_min
@@ -326,11 +360,10 @@ def _set_3d_axes(ax, bounds, axis_labels):
         ax.set_zlim(z_min, z_max)
         ax.set_box_aspect((x_span, y_span, z_span))
 
-    ax.set_xlabel(axis_labels[0])
-    ax.set_ylabel(axis_labels[1])
-    ax.set_zlabel(axis_labels[2])
-    ax.xaxis.set_major_locator(MaxNLocator(nbins=3))
-    ax.xaxis.set_major_formatter(StrMethodFormatter("{x:.2f}"))
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_zlabel("")
+    ax.set_xticks([])
     ax.view_init(elev=CAMERA_ELEV, azim=CAMERA_AZIM)
 
 
@@ -366,193 +399,28 @@ def _write_gif(frame_dir, gif_path):
     print(f"Saved GIF: {gif_path}")
 
 
-def _seed_particle_points(bounds):
-    x_min, x_max, y_min, y_max, z_min, z_max = bounds
-    x_span = x_max - x_min
-    y_span = y_max - y_min
-    z_span = z_max - z_min
-
-    seed_xs = np.linspace(x_min + 0.01 * x_span, x_max - 0.01 * x_span, PARTICLE_SEED_NX)
-    seed_ys = np.linspace(y_min + 0.01 * y_span, y_max - 0.01 * y_span, PARTICLE_SEED_NY)
-    seed_z = z_min + PARTICLE_SEED_Z_OFFSET * z_span
-    return [
-        np.array([x, y, seed_z], dtype=float)
-        for x in seed_xs
-        for y in seed_ys
-    ]
-
-
-def _nearest_velocity(points, velocity, point):
-    diff = points - point
-    nearest = np.argmin(np.einsum("ij,ij->i", diff, diff))
-    return velocity[nearest]
-
-
-def _render_particle_frame(
-    frame_path,
-    bounds,
-    axis_labels,
-    surrogate_faces,
-    velocity_norm,
-    step_index,
-    particle_positions,
-    particle_paths,
-    particle_speeds,
-):
-    fig = plt.figure(figsize=(9, 6))
-    ax = fig.add_subplot(1, 1, 1, projection="3d")
-    _set_3d_axes(ax, bounds, axis_labels)
-    ax.set_title(f"Particle post-process on final field (step {step_index})")
-
-    if surrogate_faces:
-        faces = [_map_points(np.array(face, dtype=float)).tolist() for face in surrogate_faces]
-        _add_surrogate_faces(ax, faces, alpha=0.35)
-
-    segments = []
-    segment_speeds = []
-    for path, speed_history in zip(particle_paths, particle_speeds):
-        if len(path) < 2:
-            continue
-        for index in range(1, len(path)):
-            segments.append(np.array([path[index - 1], path[index]], dtype=float))
-            segment_speeds.append(
-                speed_history[index - 1] if index - 1 < len(speed_history) else 0.0
-            )
-
-    mappable = None
-    if segments:
-        mapped_segments = [_map_points(segment) for segment in segments]
-        trails = Line3DCollection(
-            mapped_segments,
-            cmap="jet",
-            norm=velocity_norm,
-            linewidth=TRAIL_LINEWIDTH,
-            alpha=TRAIL_ALPHA,
-        )
-        trails.set_array(np.array(segment_speeds, dtype=float))
-        ax.add_collection3d(trails)
-        mappable = trails
-
-    if particle_positions:
-        point_speeds = np.array([history[-1] if history else 0.0 for history in particle_speeds], dtype=float)
-        plot_positions = _map_points(np.array(particle_positions, dtype=float))
-        particles = ax.scatter(
-            plot_positions[:, 0],
-            plot_positions[:, 1],
-            plot_positions[:, 2],
-            c=point_speeds,
-            cmap="jet",
-            norm=velocity_norm,
-            s=10,
-            alpha=PARTICLE_ALPHA,
-        )
-        if mappable is None:
-            mappable = particles
-
-    if mappable is not None:
-        plt.colorbar(mappable, ax=ax, shrink=0.8, pad=0.03, label=r"$|v_z|$")
-
-    plt.tight_layout()
-    plt.savefig(frame_path, dpi=FIG_DPI)
-    plt.close(fig)
-
-
-def _create_particle_postprocess_gif(
-    frame_dir,
-    bounds,
-    axis_labels,
-    surrogate_faces,
-    velocity_norm,
-    points,
-    velocity,
-    physical_dt,
-):
-    seed_points = _seed_particle_points(bounds)
-    particle_positions = [point.copy() for point in seed_points]
-    particle_paths = [[point.copy()] for point in seed_points]
-    particle_speeds = [[] for _ in seed_points]
-
-    x_min, x_max, y_min, y_max, z_min, z_max = bounds
-    x_span = x_max - x_min
-    y_span = y_max - y_min
-    z_span = z_max - z_min
-    step_length = PARTICLE_STEP_FRACTION * min(x_span, y_span, z_span)
-    field_speed_max = float(np.max(np.abs(velocity[:, 2]))) if velocity.size > 0 else 0.0
-    wave_interval = max(1, PARTICLE_POST_STEPS // PARTICLE_POST_WAVES)
-
-    for step_index in range(PARTICLE_POST_STEPS):
-        if step_index > 0 and step_index % wave_interval == 0:
-            particle_positions.extend(point.copy() for point in seed_points)
-            particle_paths.extend([point.copy()] for point in seed_points)
-            particle_speeds.extend([] for _ in seed_points)
-
-        new_positions = []
-        new_paths = []
-        new_speeds = []
-        for point, path, speed_history in zip(particle_positions, particle_paths, particle_speeds):
-            local_velocity = _nearest_velocity(points, velocity, point)
-            speed = float(abs(local_velocity[2]))
-            if speed > 1e-12:
-                if physical_dt is not None:
-                    next_point = point + local_velocity * physical_dt
-                else:
-                    direction = local_velocity / speed
-                    step = step_length
-                    if field_speed_max > 0.0:
-                        step *= speed / field_speed_max
-                    next_point = point + direction * step
-            else:
-                next_point = point
-
-            inside_domain = (
-                x_min <= next_point[0] <= x_max
-                and y_min <= next_point[1] <= y_max
-                and z_min <= next_point[2] <= z_max
-            )
-            if not inside_domain:
-                continue
-
-            next_point = np.array(next_point, dtype=float)
-            new_positions.append(next_point)
-            new_paths.append(path + [next_point.copy()])
-            new_speeds.append(speed_history + [speed])
-
-        particle_positions = new_positions
-        particle_paths = new_paths
-        particle_speeds = new_speeds
-
-        frame_path = os.path.join(frame_dir, f"frame_{step_index:06d}.png")
-        _render_particle_frame(
-            frame_path,
-            bounds,
-            axis_labels,
-            surrogate_faces,
-            velocity_norm,
-            step_index,
-            particle_positions,
-            particle_paths,
-            particle_speeds,
-        )
-
-
 def main():
     if not HAVE_MPL:
         print("matplotlib not installed; cannot generate plots.")
         return 1
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    particle_frame_dir = os.path.join(script_dir, "frames_time_particles")
-    cut_frame_dir = os.path.join(script_dir, "frames_time_cut_contour")
-    plane_frame_dir = os.path.join(script_dir, "frames_time_plane_x0")
-    particle_gif_path = os.path.join(script_dir, "particles_trails.gif")
-    cut_gif_path = os.path.join(script_dir, "cut_contour_x_lt_0.gif")
-    plane_gif_path = os.path.join(script_dir, "plane_x_eq_0_contour.gif")
+    cut_frame_dir = os.path.join(script_dir, CUT_FRAME_DIRNAME)
+    velocity_plane_frame_dir = os.path.join(script_dir, VELOCITY_PLANE_FRAME_DIRNAME)
+    pressure_plane_frame_dir = os.path.join(script_dir, PRESSURE_PLANE_FRAME_DIRNAME)
 
-    _prepare_output_directory(particle_frame_dir)
-    _prepare_output_directory(cut_frame_dir)
-    _prepare_output_directory(plane_frame_dir)
+    cut_gif_path = os.path.join(script_dir, CUT_GIF_FILENAME)
+    velocity_plane_gif_path = os.path.join(script_dir, VELOCITY_PLANE_GIF_FILENAME)
+    pressure_plane_gif_path = os.path.join(script_dir, PRESSURE_PLANE_GIF_FILENAME)
 
-    project_parameters_path = os.path.join(script_dir, "ProjectParameters_3D_fluid.json")
+    if WRITE_3D_CUT_GIF:
+        _prepare_output_directory(cut_frame_dir)
+    if WRITE_VELOCITY_PLANE_GIF:
+        _prepare_output_directory(velocity_plane_frame_dir)
+    if WRITE_PRESSURE_PLANE_GIF:
+        _prepare_output_directory(pressure_plane_frame_dir)
+
+    project_parameters_path = os.path.join(script_dir, PROJECT_PARAMETERS_FILENAME)
     with open(project_parameters_path, "r") as parameter_file:
         parameters = KratosMultiphysics.Parameters(parameter_file.read())
     _normalize_solver_settings(parameters)
@@ -563,13 +431,9 @@ def main():
     simulation.Initialize()
 
     velocity_norm = Normalize(vmin=0.0, vmax=COLORBAR_MAX)
-    axis_labels = _axis_labels()
-    surrogate_faces = _collect_surrogate_faces(model)
+    surrogate_faces = _collect_surrogate_faces(model) if WRITE_3D_CUT_GIF else []
 
     frame_index = 0
-    final_points = None
-    final_velocity = None
-    final_dt = None
     while simulation.KeepAdvancingSolutionLoop():
         simulation.time = simulation._AdvanceTime()
         simulation.InitializeSolutionStep()
@@ -587,7 +451,7 @@ def main():
             break
 
         model_part = model[PLOT_MODEL_PART_NAME]
-        points, velocity, _ = _sample_element_fields(model_part)
+        points, velocity, pressure = _sample_element_fields(model_part)
         if points.size == 0:
             print("No element data found for plotting.")
             break
@@ -599,10 +463,10 @@ def main():
 
         cut_mask = points[:, 0] < 0.0
         cut_points = points[cut_mask]
-        if cut_points.size > 0:
+        if WRITE_3D_CUT_GIF and cut_points.size > 0:
             fig_cut = plt.figure(figsize=(9, 6))
             ax_cut = fig_cut.add_subplot(1, 1, 1, projection="3d")
-            _set_3d_axes(ax_cut, bounds, axis_labels)
+            _set_3d_axes(ax_cut, bounds)
             ax_cut.set_title(rf"Cut contour $x < 0$ (t = {simulation.time:.5f})")
 
             if surrogate_faces:
@@ -624,50 +488,119 @@ def main():
             )
             plt.colorbar(cut_artist, ax=ax_cut, shrink=0.8, pad=0.03, label=r"$|v_z|$")
             plt.tight_layout()
-            plt.savefig(os.path.join(cut_frame_dir, f"frame_{frame_index:06d}.png"), dpi=FIG_DPI)
+            plt.savefig(
+                os.path.join(cut_frame_dir, f"frame_{frame_index:06d}.png"),
+                dpi=FIG_DPI,
+                bbox_inches="tight",
+                pad_inches=0.02,
+            )
             plt.close(fig_cut)
 
-        plane_points, plane_values, plane_x = _extract_x_plane_layer(points, np.abs(velocity[:, 2]))
-        if plane_points is not None and plane_points.size > 0:
-            fig_plane, ax_plane = plt.subplots(figsize=(8, 6))
-            plane_artist = _plot_x_plane(ax_plane, plane_points, plane_values, velocity_norm)
-            ax_plane.set_title(rf"Plane contour $x \approx {plane_x:.3f}$ (t = {simulation.time:.5f})")
-            plt.colorbar(plane_artist, ax=ax_plane, shrink=0.9, pad=0.03, label=r"$|v_z|$")
-            plt.tight_layout()
-            plt.savefig(os.path.join(plane_frame_dir, f"frame_{frame_index:06d}.png"), dpi=FIG_DPI)
+        velocity_magnitude = np.linalg.norm(velocity, axis=1)
+
+        # ------------------------------------------------------------
+        # Velocity magnitude on x ~= 0 plane
+        # ------------------------------------------------------------
+        plane_points, plane_values, plane_x = _extract_x_plane_layer(
+            points,
+            velocity_magnitude,
+        )
+
+        if WRITE_VELOCITY_PLANE_GIF and plane_points is not None and plane_points.size > 0:
+            fig_plane, ax_plane = plt.subplots(figsize=PLANE_FIGSIZE)
+
+            plane_artist = _plot_x_plane(
+                ax_plane,
+                plane_points,
+                plane_values,
+                velocity_norm,
+            )
+
+            ax_plane.set_title(
+                rf"Velocity magnitude on $x \approx {plane_x:.3f}$, $t = {simulation.time:.5f}$",
+                fontsize=PLANE_TITLE_SIZE,
+            )
+
+            _add_2d_colorbar(
+                fig_plane,
+                ax_plane,
+                plane_artist,
+                r"$|\mathbf{u}|$",
+            )
+
+            fig_plane.tight_layout()
+
+            fig_plane.savefig(
+                os.path.join(velocity_plane_frame_dir, f"frame_{frame_index:06d}.png"),
+                dpi=FIG_DPI,
+                bbox_inches="tight",
+                pad_inches=0.02,
+            )
+
             plt.close(fig_plane)
 
-        final_points = points
-        final_velocity = velocity
-        final_dt = model_part.ProcessInfo[KratosMultiphysics.DELTA_TIME] if USE_PHYSICAL_DT else None
+        # ------------------------------------------------------------
+        # Pressure on x ~= 0 plane
+        # ------------------------------------------------------------
+        pressure_plane_points, pressure_plane_values, pressure_plane_x = _extract_x_plane_layer(
+            points,
+            pressure,
+        )
+
+        if WRITE_PRESSURE_PLANE_GIF and pressure_plane_points is not None and pressure_plane_points.size > 0:
+            pressure_min = float(np.min(pressure_plane_values))
+            pressure_max = float(np.max(pressure_plane_values))
+
+            if abs(pressure_max - pressure_min) < 1.0e-14:
+                pressure_min -= 0.5
+                pressure_max += 0.5
+
+            pressure_norm = Normalize(
+                vmin=pressure_min,
+                vmax=pressure_max,
+            )
+
+            fig_pressure, ax_pressure = plt.subplots(figsize=PLANE_FIGSIZE)
+
+            pressure_artist = _plot_x_plane(
+                ax_pressure,
+                pressure_plane_points,
+                pressure_plane_values,
+                pressure_norm,
+            )
+
+            ax_pressure.set_title(
+                rf"Pressure on $x \approx {pressure_plane_x:.3f}$, $t = {simulation.time:.5f}$",
+                fontsize=PLANE_TITLE_SIZE,
+            )
+
+            _add_2d_colorbar(
+                fig_pressure,
+                ax_pressure,
+                pressure_artist,
+                r"$p$",
+            )
+
+            fig_pressure.tight_layout()
+
+            fig_pressure.savefig(
+                os.path.join(pressure_plane_frame_dir, f"frame_{frame_index:06d}.png"),
+                dpi=FIG_DPI,
+                bbox_inches="tight",
+                pad_inches=0.02,
+            )
+
+            plt.close(fig_pressure)
+        
         frame_index += 1
 
     simulation.Finalize()
-
-    if final_points is not None and final_velocity is not None:
-        final_bounds = (
-            float(final_points[:, 0].min()),
-            float(final_points[:, 0].max()),
-            float(final_points[:, 1].min()),
-            float(final_points[:, 1].max()),
-            float(final_points[:, 2].min()),
-            float(final_points[:, 2].max()),
-        )
-        velocity_norm = Normalize(vmin=0.0, vmax=COLORBAR_MAX)
-        _create_particle_postprocess_gif(
-            particle_frame_dir,
-            final_bounds,
-            axis_labels,
-            surrogate_faces,
-            velocity_norm,
-            final_points,
-            final_velocity,
-            final_dt,
-        )
-
-    _write_gif(particle_frame_dir, particle_gif_path)
-    _write_gif(cut_frame_dir, cut_gif_path)
-    _write_gif(plane_frame_dir, plane_gif_path)
+    if WRITE_3D_CUT_GIF:
+        _write_gif(cut_frame_dir, cut_gif_path)
+    if WRITE_VELOCITY_PLANE_GIF:
+        _write_gif(velocity_plane_frame_dir, velocity_plane_gif_path)
+    if WRITE_PRESSURE_PLANE_GIF:
+        _write_gif(pressure_plane_frame_dir, pressure_plane_gif_path)
     return 0
 
 

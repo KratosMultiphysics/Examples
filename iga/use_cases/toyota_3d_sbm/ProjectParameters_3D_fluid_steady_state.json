@@ -6,7 +6,6 @@
     "echo_level": 1,
     "parallel_type": "OpenMP",
     "start_time": 0.0,
-    // "end_time": 9.0
     "end_time": 5.0
   },
 
@@ -139,8 +138,6 @@
                 {
                   "variable_name": "BODY_FORCE",
                   "value": ["0", "0", "0"]
-                  // NAVIER STOKES
-                  // "value": ["(cosh(x)*sinh(x)*cosh(y)*cosh(y)*cosh(z)*cosh(z) + cosh(x)*sinh(x)*sinh(y)*cosh(z)*sinh(z-y) - cosh(x)*sinh(x)*sinh(y)*cosh(y)*cosh(z)*sinh(z)) + cosh(x) - 3*cosh(x)*cosh(y)*cosh(z)", "(cosh(x)*cosh(x)*cosh(y)*cosh(z)*sinh(z-y) - sinh(x)*sinh(x)*sinh(z-y)*cosh(z-y) - sinh(x)*sinh(x)*sinh(y)*cosh(z)*cosh(z-y)) + sinh(y) - 3*sinh(x)*sinh(z-y)", "(-cosh(x)*cosh(x)*cosh(y)*sinh(y)*cosh(z)*cosh(z) - sinh(x)*sinh(x)*sinh(z-y)*cosh(y)*cosh(z) + sinh(x)*sinh(x)*sinh(y)*sinh(y)*cosh(z)*sinh(z)) + cosh(z) + 3*sinh(x)*sinh(y)*cosh(z)"]  
                 }
               ]
             },
@@ -154,7 +151,6 @@
                               "0.0",
                               "0.0"
                             ]
-                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
                 }]
             },
             {
@@ -167,7 +163,6 @@
                       "0.0",
                       "2.0"
                     ]
-                    // "value":  ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
                 }]
             },
             {
@@ -176,7 +171,6 @@
                 {
                     "variable_name": "PRESSURE",
                     "value": "0.0"
-                    // "value": "sinh(x) + cosh(y) + sinh(z)"
                 },
                 {
                     "variable_name": "NORMAL_STRESS",
@@ -203,7 +197,6 @@
                               "0.0",
                               "0.0"
                             ]
-          // "value": ["cosh(x)*cosh(y)*cosh(z)","sinh(x)*sinh(z-y)","-sinh(x)*sinh(y)*cosh(z)"]
         }
       }
     ],
