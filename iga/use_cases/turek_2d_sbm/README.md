@@ -189,14 +189,12 @@ The post-processing scripts require:
 To plot only the geometry:
 
 ```bash
-cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
 python3 plot_geometry.py
 ```
 
 ## Run
 
 ```bash
-cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
 python3 run_and_post_nurbs.py
 ```
 
