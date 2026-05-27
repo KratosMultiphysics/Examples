@@ -1,6 +1,6 @@
 # 2D Turek SBM Example
 
-Single-patch SBM/IGA version of the 2D Turek benchmark.
+Single-patch SBM/IGA [1,2] version of the 2D Turek benchmark [3].
 
 The example considers the incompressible laminar flow around an immersed circular obstacle in a 2D channel. The geometry follows the standard Turek benchmark configuration: a channel of length `L = 2.5` and height `H = 0.41`, with a circular obstacle of radius `r = 0.05` centered at `(0.2, 0.2)`.
 
@@ -200,6 +200,19 @@ cd /home/nantonelli/Examples/iga/use_cases/turek_2d_sbm
 python3 run_and_post_nurbs.py
 ```
 
+<img width="2240" height="800" alt="final_step_fields" src="https://github.com/user-attachments/assets/cbc82205-3a2a-4c58-8547-dd2f9515ec7b" />
+
+
+Velocity and pressure with a very fine mesh:
+
+https://github.com/user-attachments/assets/b85a74d0-d801-403c-bd0a-50199e9f0eab
+
+
+https://github.com/user-attachments/assets/9ff7637b-e2d8-4c65-980a-8d9cf8b28627
+
+
+
+
 ## Outputs
 
 The script generates:
@@ -214,6 +227,28 @@ Internal frame caches are written into:
 - `frames_velocity`
 - `frames_pressure`
 
-## Reference
 
-Turek, S. and Hron, J., Proposal for numerical benchmarking of fluid-structure interaction between an elastic object and laminar incompressible flow, 2006.
+## Local Refinement Requirement
+
+The present example uses globally refined Cartesian background patches. This is useful for testing and debugging the SBM/IGA formulation, but it is not the most efficient strategy for obtaining high-quality solutions around the embedded obstacle.
+
+For the Turek benchmark, the relevant flow features are concentrated near the immersed cylinder and in the wake region. Therefore, a local refinement strategy around the embedded object is needed in order to obtain solutions that are properly comparable with body-fitted reference results, without increasing the number of degrees of freedom globally.
+
+Possible refinement strategies include:
+
+- adaptive refinement based on THB-splines, following the hierarchical spline approach introduced in [4];
+- multipatch local refinement, where a refined patch is inserted around the embedded object and coupled to the background patch using the Gap-SBM approach [5].
+
+The second option is particularly natural in the present framework: the refined patch can be placed only where additional resolution is needed, while the Gap-SBM coupling allows non-matching patches with different mesh sizes and parametrizations to be connected without introducing additional degrees of freedom.
+
+## References
+
+[1] Antonelli, N., Aristio, R., Gorgi, A., Zorrilla, R., Rossi, R., Scovazzi, G., and Wüchner, R., *The Shifted Boundary Method in Isogeometric Analysis*, Computer Methods in Applied Mechanics and Engineering, Volume 430, 2024, 117228.
+
+[2] Antonelli, N., Gorgi, A., Zorrilla, R., and Rossi, R., *Isogeometric analysis for non-Newtonian viscoplastic fluids: challenges for non-smooth solutions*, Computer Methods in Applied Mechanics and Engineering, Volume 447, 2025, 118386.
+
+[3] Turek, S. and Hron, J., *Proposal for numerical benchmarking of fluid-structure interaction between an elastic object and laminar incompressible flow*, 2006.
+
+[4] Giannelli, C., Jüttler, B., and Speleers, H., *THB-splines: The truncated basis for hierarchical splines*, Computer Aided Geometric Design, Volume 29, Issue 7, 2012, pp. 485–498.
+
+[5] Antonelli, N., Gorgi, A., Zorrilla, R., and Rossi, R., *Isogeometric multipatch coupling with arbitrary refinement and parametrization using the Gap–Shifted Boundary Method*, Computer Methods in Applied Mechanics and Engineering, Volume 456, 2026, 118913.
