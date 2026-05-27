@@ -1,0 +1,177 @@
+{
+    "problem_data": {
+        "problem_name": "Buckling_Analysis",
+        "echo_level": 0,
+        "parallel_type": "OpenMP",
+        "start_time": 0,
+        "end_time": 0.1
+    },
+    "solver_settings": {
+        "model_part_name": "IgaModelPart",
+        "domain_size": 1,
+        "echo_level": 1,
+        "buffer_size": 2,
+        "analysis_type": "linear",
+        "model_import_settings": {
+            "input_type": "use_input_model_part"
+        },
+        "material_import_settings": {
+            "materials_filename": "materials.json"
+        },
+        "time_stepping": {
+            "time_step": 1
+        },
+        "rotation_dofs": false,
+        "reform_dofs_at_each_step": false,
+        "line_search": false,
+        "compute_reactions": true,
+        "clear_storage": false,
+        "move_mesh_flag": true,
+        "convergence_criterion": "residual_criterion",
+        "displacement_relative_tolerance": 0.0001,
+        "displacement_absolute_tolerance": 1E-09,
+        "residual_relative_tolerance": 0.0001,
+        "residual_absolute_tolerance": 1E-09,
+        "max_iteration": 1,
+        "builder_and_solver_settings" : {
+            "advanced_settings": {},
+            "use_block_builder": true,
+            "use_lagrange_BS": false
+        },
+        "solver_type": "prebuckling",
+        "buckling_settings"     : {
+            "initial_load_increment"    : 1.0,
+            "small_load_increment"      : 0.0005,
+            "path_following_step"       : 0.5,
+            "convergence_ratio"         : 0.05,
+            "make_matrices_symmetric"   : true
+        },
+        "eigensolver_settings" : {
+            "solver_type"           : "eigen_eigensystem",
+            "max_iteration"         : 1000,
+            "tolerance"             : 1e-6,
+            "number_of_eigenvalues" : 5,
+            "echo_level"            : 1
+        },
+        "auxiliary_variables_list": [],
+        "auxiliary_dofs_list": [],
+        "auxiliary_reaction_list": []
+    },
+    "modelers": [
+        {
+            "modeler_name": "CadIoModeler",
+            "Parameters": {
+                "echo_level": 0,
+                "cad_model_part_name": "IgaModelPart",
+                "geometry_file_name": "geometry.cad.json",
+                "output_geometry_file_name": "Buckling_Analysis_kratos_0.georhino.json"
+            }
+        },
+        {
+            "modeler_name": "RefinementModeler",
+            "Parameters": {
+                "echo_level": 0,
+                "physics_file_name": "refinements.iga.json"
+            }
+        },
+        {
+            "modeler_name": "IgaModeler",
+            "Parameters": {
+                "echo_level": 0,
+                "cad_model_part_name": "IgaModelPart",
+                "analysis_model_part_name": "IgaModelPart",
+                "physics_file_name": "physics.iga.json"
+            }
+        }
+    ],
+    "processes": {
+        "additional_processes": [
+            {
+                "kratos_module": "IgaApplication",
+                "python_module": "output_quadrature_domain_process",
+                "Parameters": {
+                    "output_file_name": "Buckling_Analysis_kratos_shell_1_integrationdomain.json",
+                    "model_part_name": "IgaModelPart.StructuralAnalysis_1",
+                    "output_geometry_elements": true,
+                    "output_geometry_conditions": false
+                }
+            },
+            {
+                "kratos_module": "IgaApplication",
+                "python_module": "output_quadrature_domain_process",
+                "Parameters": {
+                    "output_file_name": "Buckling_Analysis_kratos_support_2_integrationdomain.json",
+                    "model_part_name": "IgaModelPart.Support_2",
+                    "output_geometry_elements": false,
+                    "output_geometry_conditions": true
+                }
+            },
+            {
+                "kratos_module": "IgaApplication",
+                "python_module": "output_eigen_values_process",
+                "Parameters": {
+                    "output_file_name": "Buckling_Analysis_kratos_eigen_values.post.res",
+                    "model_part_name": "IgaModelPart"
+                }
+            }
+        ],
+        "dirichlet_process_list": [
+            {
+                "kratos_module": "KratosMultiphysics",
+                "python_module": "assign_vector_variable_process",
+                "Parameters": {
+                    "model_part_name": "IgaModelPart.Support_2",
+                    "variable_name": "DISPLACEMENT",
+                    "value": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "interval": [
+                        0,
+                        "End"
+                    ]
+                }
+            },
+            {
+                "kratos_module": "KratosMultiphysics",
+                "python_module": "assign_vector_variable_process",
+                "Parameters": {
+                    "model_part_name": "IgaModelPart.Support_2_Rotational",
+                    "variable_name": "DISPLACEMENT",
+                    "value": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "interval": [
+                        0,
+                        "End"
+                    ]
+                }
+            }
+        ],
+        "neumann_process_list": [
+            {
+                "kratos_module": "KratosMultiphysics",
+                "python_module": "assign_vector_variable_to_conditions_process",
+                "Parameters": {
+                    "model_part_name": "IgaModelPart.Load_3",
+                    "variable_name": "DEAD_LOAD",
+                    "value": [
+                        -5,
+                        0,
+                        0
+                    ],
+                    "interval": [
+                        0,
+                        "End"
+                    ]
+                }
+            }
+        ]
+    },
+    "output_processes": {
+        "output_process_list": []
+    }
+}
