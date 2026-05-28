@@ -399,6 +399,10 @@ def _write_gif(frame_dir, gif_path):
     print(f"Saved GIF: {gif_path}")
 
 
+def _save_frame(fig, output_path):
+    fig.savefig(output_path, dpi=FIG_DPI)
+
+
 def main():
     if not HAVE_MPL:
         print("matplotlib not installed; cannot generate plots.")
@@ -488,12 +492,7 @@ def main():
             )
             plt.colorbar(cut_artist, ax=ax_cut, shrink=0.8, pad=0.03, label=r"$|v_z|$")
             plt.tight_layout()
-            plt.savefig(
-                os.path.join(cut_frame_dir, f"frame_{frame_index:06d}.png"),
-                dpi=FIG_DPI,
-                bbox_inches="tight",
-                pad_inches=0.02,
-            )
+            _save_frame(fig_cut, os.path.join(cut_frame_dir, f"frame_{frame_index:06d}.png"))
             plt.close(fig_cut)
 
         velocity_magnitude = np.linalg.norm(velocity, axis=1)
@@ -529,12 +528,9 @@ def main():
             )
 
             fig_plane.tight_layout()
-
-            fig_plane.savefig(
+            _save_frame(
+                fig_plane,
                 os.path.join(velocity_plane_frame_dir, f"frame_{frame_index:06d}.png"),
-                dpi=FIG_DPI,
-                bbox_inches="tight",
-                pad_inches=0.02,
             )
 
             plt.close(fig_plane)
@@ -582,12 +578,9 @@ def main():
             )
 
             fig_pressure.tight_layout()
-
-            fig_pressure.savefig(
+            _save_frame(
+                fig_pressure,
                 os.path.join(pressure_plane_frame_dir, f"frame_{frame_index:06d}.png"),
-                dpi=FIG_DPI,
-                bbox_inches="tight",
-                pad_inches=0.02,
             )
 
             plt.close(fig_pressure)
