@@ -409,7 +409,7 @@ def main():
             label=r"$|v|$",
         )
         plt.tight_layout()
-        plt.savefig(output_plane_velocity_path, dpi=200)
+        plt.savefig(output_plane_velocity_path, dpi=200, bbox_inches="tight", pad_inches=0.02)
         plt.close(fig_plane_velocity)
 
     plane_points_pressure, plane_values_pressure, plane_x_pressure = _extract_x_plane_layer(
@@ -433,7 +433,7 @@ def main():
             label=r"$p$",
         )
         plt.tight_layout()
-        plt.savefig(output_plane_pressure_path, dpi=200)
+        plt.savefig(output_plane_pressure_path, dpi=200, bbox_inches="tight", pad_inches=0.02)
         plt.close(fig_plane_pressure)
 
     print(f"Saved {output_3d_path}")

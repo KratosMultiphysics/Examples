@@ -22,9 +22,19 @@ PLOT_PROJECTIONS = False
 
 def _read_parameters():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    parameter_path = os.path.join(script_dir, "ProjectParameters_3D_fluid.json")
-    with open(parameter_path, "r") as parameter_file:
-        return KratosMultiphysics.Parameters(parameter_file.read())
+    candidate_filenames = (
+        "ProjectParameters_3D_fluid.json",
+        "ProjectParameters_3D_fluid_steady_state.json",
+    )
+    for filename in candidate_filenames:
+        parameter_path = os.path.join(script_dir, filename)
+        if not os.path.exists(parameter_path):
+            continue
+        with open(parameter_path, "r") as parameter_file:
+            return KratosMultiphysics.Parameters(parameter_file.read())
+    raise FileNotFoundError(
+        "No local ProjectParameters_3D_fluid*.json file found next to plot_conditions.py"
+    )
 
 
 def _map_points(points):
