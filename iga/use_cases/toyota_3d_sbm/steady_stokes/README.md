@@ -162,9 +162,9 @@ The nominal time data are:
 "time_step": 1e20
 ```
 
-This is not a dedicated stationary solver. Instead, it reuses the monolithic IGA fluid infrastructure with a practically infinite time step, so the run behaves as a single-step Stokes solve for documentation and post-processing purposes.
+This is not a dedicated stationary solver. Instead, it reuses the monolithic IGA fluid infrastructure with a practically infinite time step, so the run behaves as a single-step Stokes solve.
 
-The linear solver is:
+The solver is iterative:
 
 ```json
 "solver_type": "bicgstab",
@@ -173,13 +173,6 @@ The linear solver is:
 "max_iteration": 1000,
 "scaling": true
 ```
-
-The nonlinear tolerances are:
-
-- relative velocity tolerance: `1e-11`
-- absolute velocity tolerance: `1e-11`
-- relative pressure tolerance: `1e-9`
-- absolute pressure tolerance: `1e-9`
 
 ## Boundary Conditions
 
@@ -259,6 +252,7 @@ This helper script rebuilds the geometry/modeler setup and plots the surrogate b
 Its output file is:
 
 - `surrogate_faces_plot.png`
+<img width="2000" height="1600" alt="surrogate_faces_plot" src="https://github.com/user-attachments/assets/d183f776-04db-4df2-8835-d50d407ec2d4" />
 
 ### `run_and_post_nurbs_steady_state.py`
 
@@ -271,8 +265,13 @@ The steady Stokes script writes:
 The output files are:
 
 - `steady_3d_velocity_pressure.png`
+<img width="3200" height="1400" alt="steady_3d_velocity_pressure" src="https://github.com/user-attachments/assets/89ccbae1-df0c-4f46-af52-6b81d7502c43" />
+
 - `steady_plane_x0_velocity.png`
+<img width="1492" height="1060" alt="steady_plane_x0_velocity" src="https://github.com/user-attachments/assets/be47f70e-bf95-422e-996d-29780ed334fe" />
+
 - `steady_plane_x0_pressure.png`
+<img width="1487" height="1034" alt="steady_plane_x0_pressure" src="https://github.com/user-attachments/assets/2827e8c7-edc6-44d0-b239-e62c1d74aa6b" />
 
 ## Files
 
@@ -323,6 +322,34 @@ More efficient options include:
 
 - adaptive local refinement with THB-splines [3]
 - local multipatch refinement around the vehicle and wake, coupled back to the background patch with Gap-SBM [4]
+
+## Polynomial Order and Solver Considerations
+
+The default setup uses linear B-splines,
+
+```json
+"polynomial_order": [1, 1, 1]
+```
+
+but higher-order discretizations can also be used. In particular, `p = 2` is a reasonable option for this type of Stokes/SBM example. Manufactured-solution tests have shown that the SBM/IGA formulation behaves correctly with higher-order B-splines when direct solvers are used.
+
+When iterative solvers are used, however, even a light preconditioner is generally needed. This is due to the larger tensor-product support of the B-spline basis in 3D and to the possible presence of very small active supports near immersed boundaries.
+
+For example:
+
+```text
+p = 2  -> support over (p + 1)^3 = 3^3 = 27 knot spans
+p = 3  -> support over (p + 1)^3 = 4^3 = 64 knot spans
+```
+
+Close to the immersed boundary, a basis function can remain active even if only a very small portion of its support intersects the physical fluid domain. In extreme cases, this may correspond to approximately:
+
+```text
+1 active knot span out of 27 for p = 2
+1 active knot span out of 64 for p = 3
+```
+
+This small active-support effect can negatively affect the conditioning of the linear system, especially for higher-order B-splines in 3D. Therefore, when using iterative solvers, it is recommended to use at least a lightweight preconditioner, such as `ilu0`, together with solver scaling.
 
 ## References
 
