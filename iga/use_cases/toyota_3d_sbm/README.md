@@ -2,8 +2,8 @@
 
 This directory contains the shared geometry for the Toyota SBM examples together with two split use cases:
 
-- [steady_stokes/README.md](/home/nantonelli/Examples/iga/use_cases/toyota_3d_sbm/steady_stokes/README.md): steady-state-style 3D Stokes example
-- [transient_navier_stokes/README.md](/home/nantonelli/Examples/iga/use_cases/toyota_3d_sbm/transient_navier_stokes/README.md): transient 3D Navier-Stokes example
+- [steady_stokes/README.md](https://github.com/KratosMultiphysics/Examples/blob/master/iga/use_cases/toyota_3d_sbm/steady_stokes/README.md): steady-state-style 3D Stokes example
+- [transient_navier_stokes/README.md](https://github.com/KratosMultiphysics/Examples/blob/master/iga/use_cases/toyota_3d_sbm/transient_navier_stokes/README.md): transient 3D Navier-Stokes example
 
 The shared files stored in this parent folder are:
 
