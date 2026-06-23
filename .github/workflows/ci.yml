@@ -21,4 +21,8 @@ jobs:
 
     - name: Running examples
       shell: bash
-      run: echo "Hi!"
+      run: python3 -m pip install KratosMultiphysics-all
+
+    - name: Running examples
+      shell: bash
+      run: python3 ${GITHUB_WORKSPACE}/run_examples.py
