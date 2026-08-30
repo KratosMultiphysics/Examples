@@ -174,6 +174,27 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Strain Energy Minimization - 3D Shell](shape_optimization/use_cases/02_Strain_Energy_Minimization_3D_Shell)
 - [Bead Optimization Plate](shape_optimization/use_cases/06_bead_optimization_plate)
 
+## PhysicsNeMo (machine-learning surrogates)
+
+- [Thermal surrogate lifecycle: train, govern, deploy, validate, serve](physics_nemo_application/use_cases/thermal_surrogate_lifecycle/README.md)
+- [Transient thermo-mechanical surrogate with BPTT](physics_nemo_application/use_cases/transient_thermomechanical_surrogate/README.md)
+- [GNN surrogates and exact shape optimization](physics_nemo_application/use_cases/gnn_and_exact_shape_optimization/README.md)
+- [Superresolution and CorrDiff diffusion downscaling](physics_nemo_application/use_cases/superresolution_and_diffusion/README.md)
+- [Transient in-loop superresolution](physics_nemo_application/use_cases/transient_superresolution/README.md)
+- [Physics-refined superresolution](physics_nemo_application/use_cases/physics_informed_superresolution/README.md)
+- [Lid-driven cavity MeshGraphNet](physics_nemo_application/use_cases/fluid_cavity_gnn/README.md)
+- [PINN forward solve and inverse coefficient recovery](physics_nemo_application/use_cases/pinn_forward_and_inverse/README.md)
+- [Surrogate-driven adaptive remeshing (MMG)](physics_nemo_application/use_cases/surrogate_driven_remeshing/README.md)
+- [Lagrangian particle surrogate](physics_nemo_application/use_cases/lagrangian_particle_surrogate/README.md)
+- [Animated adaptive remeshing](physics_nemo_application/use_cases/animated_adaptive_remeshing/README.md)
+- [Active learning with Kratos as the labeler](physics_nemo_application/use_cases/active_learning/README.md)
+- [Co-simulation surrogate coupling](physics_nemo_application/use_cases/cosim_surrogate/README.md)
+- [Uncertainty and trust](physics_nemo_application/use_cases/uncertainty_and_trust/README.md)
+- [Hybrid initialization: warm-starting Newton](physics_nemo_application/use_cases/hybrid_initialization/README.md)
+- [Implicit geometry and SDF-encoded surrogates](physics_nemo_application/use_cases/implicit_geometry_sdf_surrogate/README.md)
+- [Sparse-sensor field inversion by conditional diffusion](physics_nemo_application/use_cases/sparse_sensor_inversion/README.md)
+- [ROM-space temporal surrogate on a RomApplication basis](physics_nemo_application/use_cases/rom_temporal_surrogate/README.md)
+
 ## Convection Diffusion
 **Validation**
 - [Convection gaussian hill problem](convection_diffusion/validation/gaussian_hill_explicit)
