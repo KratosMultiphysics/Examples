@@ -16,10 +16,9 @@ import numpy
 
 import KratosMultiphysics as Kratos
 import meshioplusplus as mio
-from KratosMultiphysics.PhysicsNeMoApplication import adaptive_remesh_process
-from KratosMultiphysics.PhysicsNeMoApplication import adaptive_remeshing
-from KratosMultiphysics.PhysicsNeMoApplication import solver_residuals
-
+from KratosMultiphysics.PhysicsNeMoApplication.processes import adaptive_remesh_process
+from KratosMultiphysics.PhysicsNeMoApplication.bridges.mesh_bridge import adaptive_remeshing
+from KratosMultiphysics.PhysicsNeMoApplication.physics import solver_residuals
 import importlib
 stage1 = importlib.import_module("01_surrogate_driven_remeshing")
 

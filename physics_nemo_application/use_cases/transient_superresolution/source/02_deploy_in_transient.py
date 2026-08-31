@@ -21,9 +21,8 @@ from matplotlib import pyplot
 from PIL import Image
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import superresolution_process
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import superresolution_process
 import thermal_plate
 
 OUTPUT = pathlib.Path("output")

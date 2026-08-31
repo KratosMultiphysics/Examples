@@ -28,10 +28,9 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import grid_inference_process
-from KratosMultiphysics.PhysicsNeMoApplication import ood_guard_utils
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import grid_inference_process
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import ood_guard_utils
 import thermal_plate
 import viz
 

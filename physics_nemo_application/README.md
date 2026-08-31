@@ -29,6 +29,12 @@ All examples are **self-contained and CPU-capable** (a GPU accelerates training 
 
 ## Running
 
+New to NVIDIA PhysicsNeMo itself? [PhysicsNeMo Basics](https://kratosmultiphysics.github.io/Kratos/pages/Applications/PhysicsNeMo_Application/PhysicsNeMo_Basics/Overview.html)
+explains the library — what each of its modules does and which part of the application uses it — and
+[Where things live](https://kratosmultiphysics.github.io/Kratos/pages/Applications/PhysicsNeMo_Application/General/Module_Map.html)
+maps the application's own modules. These examples import from the package tree those pages describe,
+e.g. `from KratosMultiphysics.PhysicsNeMoApplication.training import training_utils`.
+
 ```bash
 export PYTHONPATH=/path/to/Kratos/bin/Release
 export LD_LIBRARY_PATH=/path/to/Kratos/bin/Release/libs:$LD_LIBRARY_PATH

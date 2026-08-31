@@ -19,8 +19,7 @@ import pathlib
 import numpy
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
 import thermal_plate
 import viz
 

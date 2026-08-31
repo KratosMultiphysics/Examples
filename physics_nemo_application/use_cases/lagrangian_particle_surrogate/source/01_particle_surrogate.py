@@ -29,10 +29,10 @@ from PIL import Image
 
 import KratosMultiphysics as Kratos
 import KratosMultiphysics.PhysicsNeMoApplication  # registers the application  # noqa: F401
-from KratosMultiphysics.PhysicsNeMoApplication import model_registry
-from KratosMultiphysics.PhysicsNeMoApplication import particle_inference_process
-from KratosMultiphysics.PhysicsNeMoApplication import training_utils
-from KratosMultiphysics.PhysicsNeMoApplication.torch_dataset import CreateParticleTrajectoryDataset
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import model_registry
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import particle_inference_process
+from KratosMultiphysics.PhysicsNeMoApplication.training import training_utils
+from KratosMultiphysics.PhysicsNeMoApplication.training.torch_dataset import CreateParticleTrajectoryDataset
 
 OUTPUT = pathlib.Path("output")
 DATA = pathlib.Path("..") / "data"

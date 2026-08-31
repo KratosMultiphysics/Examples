@@ -26,9 +26,8 @@ from matplotlib import pyplot, tri
 from physicsnemo.models.meshgraphnet import MeshGraphNet
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import graph_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import graph_inference_process
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import graph_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import graph_inference_process
 import fluid_case
 
 OUTPUT = pathlib.Path("output")

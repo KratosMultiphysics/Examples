@@ -28,8 +28,7 @@ from matplotlib import pyplot
 from physicsnemo.models.fno import FNO
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import training_utils
-
+from KratosMultiphysics.PhysicsNeMoApplication.training import training_utils
 OUTPUT = pathlib.Path("output")
 DATA = pathlib.Path("..") / "data"
 

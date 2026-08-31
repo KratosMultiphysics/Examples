@@ -86,7 +86,7 @@ def IdentityCheckpoint():
 
 def WrapperBlock(checkpoint, time_step=0.0):
     return Kratos.Parameters("""{
-        "type" : "KratosMultiphysics.PhysicsNeMoApplication.cosim_surrogate_solver_wrapper",
+        "type" : "KratosMultiphysics.PhysicsNeMoApplication.deployment.cosim_surrogate_solver_wrapper",
         "solver_wrapper_settings" : {
             "mdpa_file"      : "%s",
             "time_step"      : %f,

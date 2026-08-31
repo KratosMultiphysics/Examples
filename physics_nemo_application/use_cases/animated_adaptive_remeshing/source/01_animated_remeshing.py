@@ -32,7 +32,7 @@ from matplotlib import pyplot
 import KratosMultiphysics as Kratos
 from KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis import (
     ConvectionDiffusionAnalysis)
-from KratosMultiphysics.PhysicsNeMoApplication import adaptive_remesh_process
+from KratosMultiphysics.PhysicsNeMoApplication.processes import adaptive_remesh_process
 import KratosMultiphysics.pyvista_utilities as pyvista_utilities
 
 import thermal_plate

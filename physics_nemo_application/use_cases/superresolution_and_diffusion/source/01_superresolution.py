@@ -23,8 +23,7 @@ from matplotlib import pyplot
 from physicsnemo.models.srrn import SRResNet
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import superresolution_process
-
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import superresolution_process
 OUTPUT = pathlib.Path("output")
 DATA = pathlib.Path("..") / "data"
 

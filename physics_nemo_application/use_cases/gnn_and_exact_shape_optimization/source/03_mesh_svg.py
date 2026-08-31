@@ -41,7 +41,7 @@ def main():
     target = 0.75 * initial_objective
     learning_rate = 0.1
     control = numpy.zeros((2, 2, 2, 3))
-    from KratosMultiphysics.PhysicsNeMoApplication import sensitivity_utils
+    from KratosMultiphysics.PhysicsNeMoApplication.physics import sensitivity_utils
     for iteration in range(20):
         _, part = stage2.Solve(control, reference) if iteration else (model, model_part)
         value = stage2.Objective(part)

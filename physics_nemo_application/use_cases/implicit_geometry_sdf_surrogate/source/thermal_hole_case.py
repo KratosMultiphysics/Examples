@@ -20,7 +20,7 @@ import KratosMultiphysics as Kratos
 import KratosMultiphysics.ConvectionDiffusionApplication  # registers thermal variables  # noqa: F401
 from KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis import (
     ConvectionDiffusionAnalysis)
-from KratosMultiphysics.PhysicsNeMoApplication.mesh_bridge import generate
+from KratosMultiphysics.PhysicsNeMoApplication.bridges.mesh_bridge import generate
 
 _HISTORICAL_VARIABLES = (
     "TEMPERATURE", "DENSITY", "SPECIFIC_HEAT", "CONDUCTIVITY", "HEAT_FLUX",
@@ -129,7 +129,7 @@ def FeatureLadder(part, hole_center, hole_radius):
     min/max combinators have kinks whose second derivatives autograd
     NaNs on - measured, not theorized.
     """
-    from KratosMultiphysics.PhysicsNeMoApplication.mesh_bridge import generate as _generate
+    from KratosMultiphysics.PhysicsNeMoApplication.bridges.mesh_bridge import generate as _generate
     phi_hole = _generate.SdfPrimitives()["sphere"](tuple(hole_center), hole_radius)
     points = torch.tensor([[node.X, node.Y] for node in part.Nodes],
                           dtype=torch.float64, requires_grad=True)

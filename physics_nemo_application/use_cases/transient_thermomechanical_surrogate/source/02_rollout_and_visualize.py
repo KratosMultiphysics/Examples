@@ -19,8 +19,7 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import temporal_training
-
+from KratosMultiphysics.PhysicsNeMoApplication.training import temporal_training
 import sintering_case
 import surrogate_model
 

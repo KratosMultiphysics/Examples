@@ -25,9 +25,8 @@ import numpy
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import diffusion_utils
-from KratosMultiphysics.PhysicsNeMoApplication import model_registry
-
+from KratosMultiphysics.PhysicsNeMoApplication.training import diffusion_utils
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import model_registry
 import importlib
 stage1 = importlib.import_module("01_train_inversion")
 

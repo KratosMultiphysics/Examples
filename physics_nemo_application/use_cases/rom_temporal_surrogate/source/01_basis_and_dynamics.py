@@ -33,9 +33,8 @@ import numpy
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import rom_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import rom_temporal
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import rom_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.training import rom_temporal
 import thermal_plate
 
 OUTPUT = pathlib.Path("output")

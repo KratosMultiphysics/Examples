@@ -35,9 +35,8 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import physics_informed
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.physics import physics_informed
 import thermal_cube
 
 OUTPUT = pathlib.Path("output")

@@ -22,8 +22,7 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import calculus_bridge
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import calculus_bridge
 import thermal_hole_case
 
 OUTPUT = pathlib.Path("output")

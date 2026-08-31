@@ -28,9 +28,9 @@ import torch
 from matplotlib import pyplot, tri as mtri
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import differentiable_residual
-from KratosMultiphysics.PhysicsNeMoApplication import sensitivity_utils
-from KratosMultiphysics.PhysicsNeMoApplication.mesh_bridge import deformation
+from KratosMultiphysics.PhysicsNeMoApplication.physics import differentiable_residual
+from KratosMultiphysics.PhysicsNeMoApplication.physics import sensitivity_utils
+from KratosMultiphysics.PhysicsNeMoApplication.bridges.mesh_bridge import deformation
 
 import thermal_case
 

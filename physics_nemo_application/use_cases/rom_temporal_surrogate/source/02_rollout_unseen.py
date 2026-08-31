@@ -22,9 +22,8 @@ import numpy
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import rom_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import rom_temporal
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import rom_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.training import rom_temporal
 import importlib
 stage1 = importlib.import_module("01_basis_and_dynamics")
 import thermal_plate

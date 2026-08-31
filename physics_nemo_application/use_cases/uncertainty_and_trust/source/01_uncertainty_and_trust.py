@@ -29,8 +29,8 @@ from matplotlib import pyplot
 import KratosMultiphysics as Kratos
 from KratosMultiphysics.ConvectionDiffusionApplication.convection_diffusion_analysis import (
     ConvectionDiffusionAnalysis)
-from KratosMultiphysics.PhysicsNeMoApplication import ood_guard_utils
-from KratosMultiphysics.PhysicsNeMoApplication.validation_metrics_process import (
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import ood_guard_utils
+from KratosMultiphysics.PhysicsNeMoApplication.processes.validation_metrics_process import (
     ComputeCalibrationMetricValues)
 
 import thermal_plate

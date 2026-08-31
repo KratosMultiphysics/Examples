@@ -29,12 +29,11 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_inference_process
-from KratosMultiphysics.PhysicsNeMoApplication import model_registry
-from KratosMultiphysics.PhysicsNeMoApplication import onnx_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import triton_export
-from KratosMultiphysics.PhysicsNeMoApplication import validation_metrics_process
-
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import grid_inference_process
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import model_registry
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import onnx_utils
+from KratosMultiphysics.PhysicsNeMoApplication.deployment import triton_export
+from KratosMultiphysics.PhysicsNeMoApplication.processes import validation_metrics_process
 import thermal_plate
 
 OUTPUT = pathlib.Path("output")
@@ -153,7 +152,7 @@ def main():
     buffer = pathlib.Path(OUTPUT / "thermal_student.onnx")
     torch.onnx.export(student, (sample,), str(buffer), dynamo=False, opset_version=17)
 
-    session = onnx_bridge.CreateOrtSession(buffer, "cpu")
+    session = onnx_utils.CreateOrtSession(buffer, "cpu")
     input_name = session.get_inputs()[0].name
     onnx_out = session.run(None, {input_name: sample.numpy().astype(numpy.float32)})[0]
     with torch.no_grad():

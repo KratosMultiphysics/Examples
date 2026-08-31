@@ -71,7 +71,7 @@ _RESIDUAL_LINE = re.compile(r"Absolute norm = ([0-9.eE+-]+)")
 def _WarmStartProcessList():
     return Kratos.Parameters("""[{
         "python_module" : "hybrid_initialization_process",
-        "kratos_module" : "KratosMultiphysics.PhysicsNeMoApplication",
+        "kratos_module" : "KratosMultiphysics.PhysicsNeMoApplication.processes.inference",
         "Parameters"    : {
             "model_part_name" : "StructuralModelPart",
             "model_settings"  : {

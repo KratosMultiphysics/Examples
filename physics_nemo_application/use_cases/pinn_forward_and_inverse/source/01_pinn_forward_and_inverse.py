@@ -25,8 +25,7 @@ import numpy
 from matplotlib import pyplot, tri
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import pinn_solve_process
-
+from KratosMultiphysics.PhysicsNeMoApplication.processes.inference import pinn_solve_process
 import thermal_case
 
 OUTPUT = pathlib.Path("output")

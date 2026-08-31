@@ -22,8 +22,7 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
 import thermal_plate
 
 OUTPUT = pathlib.Path("output")

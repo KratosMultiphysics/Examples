@@ -28,9 +28,9 @@ import torch
 from matplotlib import pyplot
 
 import KratosMultiphysics as Kratos
-from KratosMultiphysics.PhysicsNeMoApplication import diffusion_utils
-from KratosMultiphysics.PhysicsNeMoApplication import grid_bridge
-from KratosMultiphysics.PhysicsNeMoApplication import training_utils
+from KratosMultiphysics.PhysicsNeMoApplication.training import diffusion_utils
+from KratosMultiphysics.PhysicsNeMoApplication.bridges import grid_bridge
+from KratosMultiphysics.PhysicsNeMoApplication.training import training_utils
 from physicsnemo.diffusion.preconditioners import EDMPrecondSuperResolution
 
 import thermal_plate
