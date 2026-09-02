@@ -26,6 +26,9 @@ All examples are **self-contained and CPU-capable** (a GPU accelerates training 
 | [Implicit geometry + SDF surrogate](use_cases/implicit_geometry_sdf_surrogate/README.md) | Meshes generated straight from signed distance functions, solved, and learned through a ladder of autograd-computed SDF encodings (value → gradient → curvature) that generalizes across shapes |
 | [Sparse-sensor field inversion](use_cases/sparse_sensor_inversion/README.md) | What ten sensors tell you about the whole field: a mask-conditioned diffusion model reconstructs full temperature fields, ensemble std as inversion uncertainty |
 | [ROM-space temporal surrogate](use_cases/rom_temporal_surrogate/README.md) | RomApplication writes the POD basis, physicsnemo's temporal attention learns the dynamics in 8 coefficients, and an unseen conductivity rolls out to a 2 % full-space field |
+| [Adjoint integration](use_cases/adjoint_integration/README.md) | Kratos's own adjoint stack read through `adjoint_bridge` on two physics, a surrogate trained on those gradients (46x better dJ/dθ at held-out designs), the descent that spends the difference, and the model deployed back as a Kratos response function |
+| [Digital twin in OpenUSD](use_cases/digital_twin_usd/README.md) | A transient solve, its in-loop surrogate and its MC-dropout uncertainty written as one time-sampled USD stage (`UsdExportProcess` + `usd-core`, no Omniverse needed) — the figure is rendered entirely from the reopened `.usda` |
+| [Volumetric diffusion downscaling](use_cases/volumetric_diffusion/README.md) | `DiffusionUNet3D` through `denoiser_interface: "unet3d"` on full 16³ grids of real 3D solves — the downscaled ensemble mean halves the coarse error, spread tracks it, no thin-axis squeeze anywhere |
 
 ## Running
 
