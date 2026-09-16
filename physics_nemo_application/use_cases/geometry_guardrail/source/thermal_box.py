@@ -106,19 +106,29 @@ def CreateModelPart(model: Kratos.Model, scale, divisions: int = 6) -> Kratos.Mo
 
 def ApplyCase(model_part: Kratos.ModelPart, scale, conductivity: float,
               source_amplitude: float, tolerance: float = 1e-8) -> None:
-    """Material data, a centred Gaussian source and the Dirichlet boundary."""
+    """Material data, a UNIFORM volumetric source and the Dirichlet boundary.
+
+    The source is uniform on purpose, and this is what makes the guardrail
+    comparison a controlled experiment. Both nodal inputs a surrogate reads
+    here - heat flux and conductivity - are then two constants per case,
+    drawn from the same ranges whatever the box's proportions, so the field
+    values carry NO information about the shape. The temperature field
+    still depends entirely on the domain, because uniform heating of a slab
+    and of a cube are different problems.
+
+    An earlier version centred a Gaussian source of width 0.15 * min(side).
+    That is physically reasonable and pedagogically useless: on a
+    5 x 1 x 0.2 slab the source is four times sharper than on the family's
+    boxes, so the flux DISTRIBUTION changes with the geometry and the field
+    guard flags the slab correctly - measured, it did. Shape and values
+    varied together, and no flag could be attributed to either.
+    """
     scale = numpy.asarray(scale, dtype=float)
-    center = 0.5 * scale
-    width = 0.15 * float(scale.min())   # the source stays inside the thinnest axis
     for node in model_part.Nodes:
         node.SetSolutionStepValue(Kratos.DENSITY, 1.0)
         node.SetSolutionStepValue(Kratos.SPECIFIC_HEAT, 1.0)
         node.SetSolutionStepValue(Kratos.CONDUCTIVITY, conductivity)
-        radius2 = ((node.X - center[0]) ** 2 + (node.Y - center[1]) ** 2
-                   + (node.Z - center[2]) ** 2)
-        node.SetSolutionStepValue(
-            Kratos.HEAT_FLUX,
-            source_amplitude * numpy.exp(-radius2 / (2.0 * width ** 2)))
+        node.SetSolutionStepValue(Kratos.HEAT_FLUX, source_amplitude)
         on_boundary = (abs(node.X) < tolerance or abs(node.X - scale[0]) < tolerance or
                        abs(node.Y) < tolerance or abs(node.Y - scale[1]) < tolerance or
                        abs(node.Z) < tolerance or abs(node.Z - scale[2]) < tolerance)

@@ -194,6 +194,14 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Implicit geometry and SDF-encoded surrogates](physics_nemo_application/use_cases/implicit_geometry_sdf_surrogate/README.md)
 - [Sparse-sensor field inversion by conditional diffusion](physics_nemo_application/use_cases/sparse_sensor_inversion/README.md)
 - [ROM-space temporal surrogate on a RomApplication basis](physics_nemo_application/use_cases/rom_temporal_surrogate/README.md)
+- [Adjoint integration: Kratos gradients as data](physics_nemo_application/use_cases/adjoint_integration/README.md)
+- [Digital twin in OpenUSD](physics_nemo_application/use_cases/digital_twin_usd/README.md)
+- [Volumetric diffusion downscaling](physics_nemo_application/use_cases/volumetric_diffusion/README.md)
+- [Lennard-Jones molecular dynamics](physics_nemo_application/use_cases/lennard_jones_md/README.md)
+- [Geometry guardrail: the OOD question a field guard cannot answer](physics_nemo_application/use_cases/geometry_guardrail/README.md)
+- [Residual-guided diffusion: steering a trained denoiser with the solver's own physics](physics_nemo_application/use_cases/residual_guided_diffusion/README.md)
+- [Boundary-to-interior operators: GLOBE and xDeepONet in the solution loop](physics_nemo_application/use_cases/boundary_to_interior_operators/README.md)
+- [Generative topology design: TopoDiff on SIMP optima, scored by re-solving](physics_nemo_application/use_cases/generative_topology_design/README.md)
 
 ## Convection Diffusion
 **Validation**
