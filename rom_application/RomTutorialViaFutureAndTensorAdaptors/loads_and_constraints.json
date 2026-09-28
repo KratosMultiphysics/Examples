@@ -1,0 +1,41 @@
+{
+    "loads_process_list": [{
+        "python_module" : "assign_vector_by_direction_to_condition_process",
+        "kratos_module" : "KratosMultiphysics",
+        "check"         : "DirectorVectorNonZero direction",
+        "process_name"  : "AssignVectorByDirectionToConditionProcess",
+        "Parameters"    : {
+            "model_part_name" : "MainModelPart.LineLoad2D_Load_on_lines_Auto1",
+            "variable_name"   : "LINE_LOAD",
+            "interval"        : [0.0,"End"],
+            "modulus"         : 10000.0,
+            "direction"       : [0.0, -1.0, 0.0]
+        }
+    },
+    {
+        "python_module"               : "assign_vector_by_direction_process",
+        "kratos_module"               : "KratosMultiphysics",
+        "check"                       : "DirectorVectorNonZero direction",
+        "process_name"                : "AssignDirectionVectorProcess",
+        "Parameters"      : {
+            "model_part_name"         : "MainModelPart.SelfWeight2D_Self_weight_Auto1",
+            "variable_name"           : "VOLUME_ACCELERATION",
+            "interval"                : [0.0,"End"],
+            "constrained"             : false,
+            "modulus"                 : 0.0,
+            "direction"               : [0.0,0.0,-1.0]
+        }
+    }],
+    "constraints_process_list": [{
+        "python_module" : "assign_vector_variable_process",
+        "kratos_module" : "KratosMultiphysics",
+        "process_name"  : "AssignVectorVariableProcess",
+        "Parameters"    : {
+            "model_part_name" : "MainModelPart.DISPLACEMENT_Displacement_Auto1",
+            "variable_name"   : "DISPLACEMENT",
+            "interval"        : [0.0,"End"],
+            "constrained"     : [true,true,false],
+            "value"           : [0.0,0.0,null]
+        }
+    }]
+}
