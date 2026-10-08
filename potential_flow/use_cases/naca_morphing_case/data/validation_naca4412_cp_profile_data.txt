@@ -1,0 +1,10 @@
+XFOIL reference over 401 surface points (Re = 0, 201 points per surface, inviscid):
+  Cl = 0.638952
+
+NACA 4412, Mach 0.2, alpha 1.0 deg - coarse / medium / fine comparison:
+            Mesh            Cl   t solve [s]
+ baseline_coarse      0.562500          0.19
+ baseline_medium      0.646981          0.89
+   baseline_fine      0.646470        499.81
+
+Figure written to data/validation_naca4412.png

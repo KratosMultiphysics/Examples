@@ -1,0 +1,11 @@
+NACA 4-Digit Profiles - Coarse / Medium / Fine Comparison:
+   Airfoil   Cl coarse   Cl medium     Cl fine     error coarse-fine [%]  error coarse-medium [%]  error medium-fine [%]  t coarse [s]  t medium [s]  t fine [s]
+   3614      0.50947496  0.61662081    0.61605409         17.300                   17.376                  0.092              0.20         0.82         353.77
+   1409      0.20927309  0.24523980    0.24515392         14.636                   14.666                  0.035              0.09         0.85         416.15
+   5411      0.66972021  0.76916961    0.76867719         12.874                   12.929                  0.064              0.14         0.71         319.55
+   6313      0.76709195  0.86394055    0.86352528         11.167                   11.210                  0.048              0.12         0.64         463.51
+
+Mean error: 9.367 %, worst error: 17.376 %
+
+Figure written to data/run_example_cp_profile.png
+
