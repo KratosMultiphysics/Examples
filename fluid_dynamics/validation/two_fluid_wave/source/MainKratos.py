@@ -2,17 +2,18 @@ from __future__ import print_function, absolute_import, division #makes KratosMu
 
 import KratosMultiphysics
 import KratosMultiphysics.FluidDynamicsApplication
+import KratosMultiphysics.FluidDynamicsHydraulicsApplication
 
-from KratosMultiphysics.FluidDynamicsApplication.fluid_dynamics_analysis import FluidDynamicsAnalysis
+from KratosMultiphysics.FluidDynamicsHydraulicsApplication.fluid_dynamics_hydraulic_analysis import FluidDynamicsHydraulicsAnalysis
 from math import pi, cos
 
 import sys
 import time
 
 # Hierarchy of classes: (>> = inherits to)
-# PythonSolver >> FluidSolver >> NavierStokesTwoFluidsSolver
-# AnalysisStage >> FluidDynamicsAnalysis >> FluidDynamicsAnalysisWithFlush( to redefine individual functions )
-class FluidDynamicsAnalysisWithFlush(FluidDynamicsAnalysis):
+# PythonSolver >> FluidSolver >> NavierStokesTwoFluidsHydraulicSolver
+# AnalysisStage >> FluidDynamicsAnalysis >> FluidDynamicsHydraulicsAnalysis >> FluidDynamicsAnalysisWithFlush( to redefine individual functions )
+class FluidDynamicsAnalysisWithFlush(FluidDynamicsHydraulicsAnalysis):
     # Constructor of the derived class "FluidDynamicsAnalysisWithFlush"
     def __init__(self,model,project_parameters,flush_frequency=10.0):
         super(FluidDynamicsAnalysisWithFlush,self).__init__(model,project_parameters)
