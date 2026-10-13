@@ -29,6 +29,8 @@ Unit tests should *not* be uploaded to this repository. Please put them in the `
 - [Supersonic flow over a wedge](https://github.com/KratosMultiphysics/Examples/tree/master/fluid_dynamics/validation/compressible_Wedge/README.md)
 - [Two-fluids dam break scenario](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_dam_break/README.md)
 - [Two-fluids wave propagation](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_wave/README.md)
+- [Two-fluids dam break scenario with particle level set transport](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_dam_break_particles/README.md)
+- [Two-fluids wave propagation with particle level set transport](https://github.com/KratosMultiphysics/Examples/blob/master/fluid_dynamics/validation/two_fluid_wave_particles/README.md)
 
 ## Potential Flow
 
