@@ -11,6 +11,7 @@
         "domain_size"     	: 2,
         "solver_type"   	: "two_fluid_hydraulic",
         "levelset_transport_type": "particle_pde_projection",
+        "eulerian_fm_ale": true,
         "particle_pde_projection_settings": {
             "echo_level": 1,
             "particles_output": {

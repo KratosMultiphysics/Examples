@@ -19,6 +19,7 @@ The method, its settings and its validation are documented in the [Kratos docume
 Compared with the original example, `ProjectParameters.json` adds the following to the `solver_settings`:
 
 ```json
+"eulerian_fm_ale": true,
 "levelset_transport_type": "particle_pde_projection",
 "particle_pde_projection_settings": {
     "echo_level": 1,
@@ -49,7 +50,7 @@ To see the particles in ParaView:
 3. A *Threshold* on `DISTANCE` between -0.25 and 0.25 keeps only the particles next to the interface, as in the pictures below.
 
 ## Results
-The case was run to 10 s, with the given mesh of 5,635 triangles, once with the particle transport and once with the original Eulerian setup. The particles were 140,875 at the start and 157,081 at the end; the population control adds particles to the elements that fall below the minimum.
+The case was run to 10 s, with the given mesh of 5,635 triangles. The population control adds particles to the elements that fall below the minimum.
 
 The pictures show the water (light blue) and the zero level set of `DISTANCE` (black line). The particles closer than 0.25 m to the interface are drawn coloured by their phase: water in blue, air in orange.
 
@@ -74,31 +75,30 @@ The pictures show the water (light blue) and the zero level set of `DISTANCE` (b
 </p>
 
 ### Water volume
-The conserved volume $\int c_h$ of the particle transport stays constant to 1.7e-13 %. In every step, the local conservation residual is below 6e-16 and the projection system converges to 1e-8.
+The conserved volume $\int c_h$ of the particle transport stays constant to 1.9e-13 %. In every step, the local conservation residual is below 6e-16 and the projection system converges to 1e-8. The domain is closed, so there is no flux through the boundary.
 
 The volume of the region where `DISTANCE < 0` is plotted at the end of each step, after the redistancing. It deviates by at most 0.026 % from the initial volume. The deviation comes from the redistancing and is removed at the start of the next step, when the distance is shifted back to the conserved volume.
 
-In this smooth 2D case the Eulerian transport also keeps the volume almost constant (2.3e-5 %).
+The Eulerian level set convection loses water instead: 1.75 % at 2 s and 7 % at 4.6 s, where the run fails (see the next section). The curve below stops there.
 
 <p align="center">
   <img src="data/wave_2D_water_volume.png" alt="Water volume change over time" style="width: 700px;"/>
 </p>
 
-### Velocities and run time
-With the original Eulerian setup, spurious velocities develop at the interface next to the left wall and grow linearly in time, up to 63 m/s at 10 s. They force the automatic time step (CFL 0.5) to become about 7 times smaller. With the particle transport the maximum water velocity stays between 1 and 7 m/s.
+### Level set convection and `eulerian_fm_ale`
+The hydraulic solver option `eulerian_fm_ale` (default `true`) sets the mesh velocity equal to the fluid velocity at the free nodes. The Eulerian level set convection advects `DISTANCE` with the velocity relative to the mesh, so with the option on the Eulerian interface does not move at all (we measured 0 of 2,985 nodes changing sign in 10 s). The particles are advected with the fluid velocity directly and are not affected. For this reason:
 
-<p align="center">
-  <img src="data/wave_2D_max_velocity.png" alt="Maximum water velocity over time" style="width: 700px;"/>
-</p>
+* the particle example keeps the default `"eulerian_fm_ale": true`, which is written explicitly in `ProjectParameters.json`;
+* an Eulerian run with a moving interface needs `"eulerian_fm_ale": false`, and that is the only Eulerian reference that makes sense to compare with.
 
-| Transport | Time steps | Run time | Time per step |
-|---|---|---|---|
-| Eulerian level set (original example) | 8,170 | 2,864 s | 0.35 s |
-| Particles | 1,174 | 364 s | 0.31 s |
+With `"eulerian_fm_ale": false` both transports fail at the same moment, when the wave breaks on the beach: the Eulerian run at 4.67 s (after losing 7 % of the water) and the particle run at 4.48 s. The cause is then in the flow solution with this option, not in the level set transport. With the option on, the particles run to 10 s: the maximum water velocity stays between 1 and 8 m/s, and the automatic time step (CFL 0.5) goes from 0.01 s down to 0.005 s when the wave breaks.
 
-The run times are from a 16-core workstation with OpenMP. In this 2D case a particle step costs about the same as an Eulerian one. The difference in total run time comes from the time step.
+### Run time
+| Run | Time steps | Run time |
+|---|---|---|
+| Particles, `eulerian_fm_ale: true` | 1,169 | 450 s |
 
-The projected indicator stays in [-0.04, 1.38]. The largest overshoots appear where the wave breaks; the conservation is not affected.
+The particle run took 450 s on 8 OpenMP threads of a 16-core workstation, which was shared with another run. The particles start at 140,875 and end at 157,213; the projected indicator stays in [-0.042, 1.38], with the largest overshoots where the wave breaks. The conservation is not affected by them.
 
 ## References
 * J.M. Maljaars, R.J. Labeur, N. Trask, D. Sulsky, (2019) "Conservative, high-order particle-mesh scheme with applications to advection-dominated flows", Computer Methods in Applied Mechanics and Engineering 348, pp. 443-465.
