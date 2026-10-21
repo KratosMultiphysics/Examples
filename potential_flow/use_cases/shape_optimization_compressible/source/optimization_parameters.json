@@ -95,7 +95,7 @@
             "identifier" : "angle_of_attack",
             "type"       : "=",
             "reference"  : "initial_value",
-            "reference_value" : 7000000,
+            "reference_value" : 5,
             "analyzer" : "kratos",
             "response_settings":{
                 "response_type"          : "airfoil_angle_of_attack",
@@ -107,7 +107,7 @@
             "identifier" : "chord_length",
             "type"       : "=",
             "reference"  : "initial_value",
-            "reference_value" : 0.0,
+            "reference_value" : 1.0,
             "analyzer" : "kratos",
             "response_settings":{
                 "response_type"          : "airfoil_chord_length",
@@ -119,7 +119,7 @@
             "identifier" : "perimeter",
             "type"       : "=",
             "reference"  : "initial_value",
-            "reference_value" : 0.0,
+            "reference_value" : 2.0,
             "analyzer" : "kratos",
             "response_settings":{
                 "response_type"          : "airfoil_perimeter",
